@@ -32,8 +32,10 @@ Qualified scope
 
 The published Windows runs pass all 27 validator steps and 197 interop assertions
 each in the editor, relocated Debug and relocated Release. The fresh fixtures
-supersede the preceding 60-, 93- and 133-assertion results. Native engine APIs, generated glue
-and external helper declarations are unchanged in this source increment.
+supersede the preceding 60-, 93- and 133-assertion results. The upstream
+consolidation reruns this matrix with the newly compiled Windows Mono editor and
+templates. The captured extension API remains byte-identical; native and managed
+binaries have new identities. See :doc:`qualification` for their source pins.
 
 The C++ sample's ``poll()`` binding now returns the first high-/low-level native
 error instead of discarding it. An isolated old/current DLL control confirms
@@ -272,10 +274,11 @@ reentry and three fresh admissions preserve the adapter/world and remap entity
 ownership to body 10000. Fixture commands execute after the current tick returns;
 arbitrary callback mutation remains unqualified. The latest C# helper inputs pass
 fresh 27-stage editor/Debug/Release builds, alongside low-facade/world and default
-runtime regressions. Native artifacts and prior GDS-only lab/admission inputs
-remain unchanged. See :doc:`hot_reload` for the separate capsule contract.
+runtime regressions. The upstream consolidation repeats the lab/admission gates
+against the updated native artifacts. See :doc:`hot_reload` for the separate
+capsule contract and :doc:`qualification` for compiled artifact pins.
 
 Exact publication receipts and remaining acceptance items are listed in the
 `pinned engine integration record
-<https://github.com/ZSG-Studios/EGP/blob/153dd599e9127d8c86f81fcafa1bdd4ab8168bb6/doc/egp_integration_loop.md>`__.
+<https://github.com/ZSG-Studios/EGP/blob/8eb540e94d3ce792a79a3d89bcaf0d7464d32747/doc/egp_integration_loop.md>`__.
 See :doc:`qualification`, :doc:`explicit_world` and :doc:`admission_testing`.

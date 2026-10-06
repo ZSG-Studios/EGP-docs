@@ -8,6 +8,86 @@ systems below; qualification applies to the binaries, platforms and fixtures
 identified in the engine's receipts. Build success and API exposure alone do
 not establish runtime behavior or production readiness.
 
+Published upstream consolidation
+--------------------------------
+
+The documentation is generated from engine revision
+``8eb540e94d3ce792a79a3d89bcaf0d7464d32747``. It includes the sixteen incoming
+official Godot commits through ``3ea0cf3e72699c5e3b35f7956670ac93b9d1d4a0``.
+This is a pinned upstream snapshot; later upstream commits require another
+compatibility review.
+
+The Windows Mono editor was compiled from
+``7b57a3b3140cb1c8b0bbcfb6bbe2c1f4eab70161``. Debug and Release templates were
+compiled from ``c6a6920685b844ff0ba30d2e794117b776edf72a``; the later export fix
+affects the editor only. The final source also includes a compile-time zstd
+guard. Actual MSVC probes accept the pinned header and an absent macro, and
+reject an incorrect value. The binaries were not rebuilt for that guard, and a
+complete engine using system zstd remains unqualified. The published source pin
+and compiled artifact pins therefore differ.
+
+The combined gate records 29 passing scopes, including fresh language, physics,
+reload, network-lab and admission regressions. Native Debug/Release suites pass
+120 checks and ten CTest tests each. The captured extension API remains
+byte-identical, with matching SDK key ``4bc13481314e7023`` and MSVC 19.51 libraries.
+New native and managed artifacts supersede the previous binary identities.
+Consult the `pinned integration record
+<https://github.com/ZSG-Studios/EGP/blob/8eb540e94d3ce792a79a3d89bcaf0d7464d32747/doc/egp_integration_loop.md>`__
+for exact hashes, commands and retained failed controls.
+
+Inherited scene references in binary exports
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When an inherited scene introduces a child referenced by a base scene property,
+binary scene conversion must retain that property's serialized NodePath until
+the complete scene is instantiated. Unmodified conversion now saves the
+original PackedScene. Export plugins that modify the scene still cause it to be
+instantiated and repacked, preserving their changes.
+
+The focused fixture passes 36 assertions in the editor and each relocated
+Debug/Release game: 108 total. Six plain, inherited and three-level scenes cover
+GDScript Node and C# NetNode references in scalar, array and dictionary
+key/value properties. Six separate checks verify plugin-added metadata and
+renamed children in relocated binary exports. These checks do not establish
+every combination of customized inherited scenes.
+
+Run from the engine checkout using matching Mono packages and templates:
+
+.. code-block:: powershell
+
+   python misc/scripts/validate_egp_scene_node_refs.py `
+       --engine bin/godot.windows.editor.dev.x86_64.mono.exe `
+       --packages bin/GodotSharp/Tools/nupkgs `
+       --debug-template bin/godot.windows.template_debug.x86_64.mono.exe `
+       --release-template bin/godot.windows.template_release.x86_64.mono.exe `
+       --output .build/scene-references-new
+
+   python misc/scripts/validate_egp_export_customization.py `
+       --editor bin/godot.windows.editor.dev.x86_64.mono.exe `
+       --debug-template bin/godot.windows.template_debug.x86_64.mono.exe `
+       --release-template bin/godot.windows.template_release.x86_64.mono.exe `
+       --output .build/export-customization-new
+
+Use fresh output directories. The scene validator rejects export error output
+even if the exporter exits zero, creates its managed solution and verifies the
+relocated games. The trilingual sample now tracks its required
+``NetInterop.sln`` so fresh checkouts do not depend on an ignored local file.
+
+Source checkout verification
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Vendor source verification accepts the original raw hashes or explicit UTF-8/LF
+pins for Git line-ending conversion. It rejects other content changes; seven
+semantic checks and a changed-content control qualify that bounded behavior.
+Vendor-only validation does not establish native or runtime compatibility:
+
+.. code-block:: console
+
+   python misc/scripts/validate_egp_net.py --verify-vendor-only --output .build/vendor-identity-new
+
+System support
+--------------
+
 .. list-table:: Current scope
    :header-rows: 1
    :widths: 25 45 30
@@ -145,8 +225,8 @@ fresh-session cycles. New entities remap to retained body 10000 and client physi
 advances. Debugger commands defer until the active poll/tick returns; preserved
 failing controls do not qualify arbitrary synchronous callback mutation. Fresh
 27-stage editor/Debug/Release language builds and low-facade/default runtime
-regressions pass. Earlier GDS-only lab/admission inputs remain byte-identical;
-their unused C# manifest entry is superseded by fresh C# checks. See
+regressions pass. The upstream consolidation repeats the GDS-only lab/admission
+matrix against the updated Windows artifacts. See
 :doc:`hot_reload` for ownership, disposal, command and scope details.
 
 Admission testing separates listener timestamp protection from key rotation.

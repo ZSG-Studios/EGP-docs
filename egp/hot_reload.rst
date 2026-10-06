@@ -92,7 +92,7 @@ closure persistence, automatic client physics rollback, independent-process
 low-level fault/reload and exported-runtime reload remain unqualified. Raw
 transport ownership does not authorize opaque gameplay messages. Exact receipts
 and remaining scope are in the `pinned engine integration record
-<https://github.com/ZSG-Studios/EGP/blob/153dd599e9127d8c86f81fcafa1bdd4ab8168bb6/doc/egp_integration_loop.md>`__.
+<https://github.com/ZSG-Studios/EGP/blob/8eb540e94d3ce792a79a3d89bcaf0d7464d32747/doc/egp_integration_loop.md>`__.
 See :doc:`language_testing` and :doc:`qualification` for the distinct networking
 fixture evidence.
 
@@ -596,10 +596,12 @@ application mutation inside callbacks and general in-flight reload remain open.
 
 Fresh 27-stage trilingual validation passes 197 assertions in each editor,
 Debug and Release configuration. The low-level facade/world and default runtime
-regressions also pass. The native engine, SDK, ClassDB and managed glue retain
-their unchanged identities. Seven GDS-only physics/lab cases and 72 admission
-cases reuse byte-identical executed inputs; fresh C# builds supersede their unused
-historical C# helper manifest entry. Reload remains one local Windows Debug pair
+regressions also pass. The upstream consolidation repeats the live/stopped
+ownership gates, seven physics/lab cases and 72 admission cases against the
+updated Windows artifacts. The captured extension API and matching SDK identity
+remain unchanged; native and managed binary identities are recorded separately
+in :doc:`qualification`. These results supersede the earlier reused GDS-only
+receipts. Reload remains one local Windows Debug pair
 sharing a game process. High-level C++ adapter ownership, authenticated-node
 assembly/unload/ABI failures, concurrent/exported-runtime reload, automatic client
 rollback, production checkpoint policy and broader platform/scale/performance
