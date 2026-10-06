@@ -2,7 +2,7 @@
   "class_count": 1101,
   "documentation_generator_sha256": "447055a5625282b6c64331f323780e113210a57e79688df240c6c4a6cd5ccf97",
   "engine_repository": "ZSG-Studios/EGP",
-  "engine_revision": "0783e116211ee76dd117fa11dbc6000e6081d5d2",
+  "engine_revision": "745f2496d364eb4a3495abf949610ecda51e58b1",
   "generated_sha256": {
     "classes/class_@gdscript.rst": "6b264fc48ea2b0962ae3a70f53863f50779b9d529c0be1c679d9b0c4fcef8ad6",
     "classes/class_@globalscope.rst": "02b993ec0f010d9c53941021502126a48cb9dd64ca91e5a20c85b31b932d408b",
@@ -1107,12 +1107,12 @@
     "classes/class_zipreader.rst": "37f2d7996c927d58aa025ded46feb86ae7e5f75775ccca0b571b0054315b7244",
     "classes/index.rst": "ba20bebad9dcf589049b3b61d3d94e4644c8daf3b6c4c5079771f2099855d77f",
     "egp/api_contract.md": "8aa81a391f9e147f3640c882f447943bb3c491d5197bcc0e48f4537b5a07e6d7",
-    "egp/box2d.md": "ffdd2e38b0055e13d0920829043b67d40c9cc31fd1c8d04064327b6dde1f8da9",
+    "egp/box2d.md": "92fd7d4d8116379a5e2f68a712835330ebfd70f1431571b9d8bb22f64b8b90ce",
     "egp/box3d.md": "bd8e389ab12c93180eabd32769611c0dc4738006eeab3de83280e6bdb08c54db",
     "egp/cpp_extensions.md": "29bcbdd49888ee0fe5a73a3ce64d0d0a629eb43f8b0341b958ca9bc3ed575235",
     "egp/documentation.md": "81ccb6c12a9429da81f452e4b4f25d3183ee824f7c53638b1fe1bdcb60827262",
     "egp/fastbuild.md": "eabd5f270960199e92744cb84f653f9334027cbcedec416e99566d16e2e4bdae",
-    "egp/helper_reference.rst": "b93716e41aee4b767194a6126958d9de3e022798cc8cbb13464671736524b6f7",
+    "egp/helper_reference.rst": "0d9a5c4ce3237726fc22c06abe6b5c211f00adeb8d91b2fa62f6e658baa1bc39",
     "egp/network_lab.md": "4c6a0a8c50ef48a095156025975c11c1218703423c45a0e3d688b3c818fcf9f9",
     "egp/networking_reference.md": "ab8c567377bc49ece5efd9682ef34c431d9f4ba4ebedfbd0d92d2e6d2b69131b"
   },

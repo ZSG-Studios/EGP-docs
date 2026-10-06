@@ -12,7 +12,7 @@ Published upstream consolidation
 --------------------------------
 
 The documentation is generated from engine revision
-``0783e116211ee76dd117fa11dbc6000e6081d5d2``. It includes the sixteen incoming
+``745f2496d364eb4a3495abf949610ecda51e58b1``. It includes the sixteen incoming
 official Godot commits through ``3ea0cf3e72699c5e3b35f7956670ac93b9d1d4a0``.
 This is a pinned upstream snapshot; later upstream commits require another
 compatibility review.
@@ -37,7 +37,7 @@ reload, network-lab and admission regressions. Native Debug/Release suites pass
 byte-identical, with matching SDK key ``4bc13481314e7023`` and MSVC 19.51 libraries.
 New native and managed artifacts supersede the previous binary identities.
 Consult the `pinned integration record
-<https://github.com/ZSG-Studios/EGP/blob/0783e116211ee76dd117fa11dbc6000e6081d5d2/doc/egp_integration_loop.md>`__
+<https://github.com/ZSG-Studios/EGP/blob/745f2496d364eb4a3495abf949610ecda51e58b1/doc/egp_integration_loop.md>`__
 for exact hashes, commands and retained failed controls.
 
 The subsequent C++ helper update adds explicit ``Net``/``Box3D`` ownership
@@ -122,6 +122,18 @@ native tests, rather than complete Linux editors, exports, WAN behavior or
 overload performance. Hosted results remain separately identified in the
 pinned integration record.
 
+The `hosted networking run at revision 745f2496d3
+<https://github.com/ZSG-Studios/EGP/actions/runs/37546566363>`__ passes on
+Windows, Linux and macOS in Debug: 120 native checks and all eleven CTest
+cases per platform. The added abrupt-disconnect fixture drops the original
+owner's heartbeat and disconnect notification. It separately checks transport
+timeout detection, immediate server authority revocation and delivery to the
+remaining client within the existing five-second replication deadline. Two
+reconnect cycles retain the 64-entity load and 32-message-per-second budget.
+The original compound deadline fails the retained abrupt-outage control.
+This hosted result does not qualify Release, WAN behavior or complete engine
+and managed runtime coverage.
+
 Strict compilation and CI profiles
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -152,6 +164,15 @@ advances a CircleShape2D/RigidBody2D and a SphereShape3D/RigidBody3D under gravi
 for 60 physics ticks, verifies finite positions and confirms EGPNetSession is
 exposed. This primitive physics smoke test does not qualify networking traffic,
 managed scripts, hot reload, graphical behavior or larger worlds.
+
+Current Linux Mono Debug and Release templates at ``745f2496d3`` also pass
+headless probes using a pack exported by the matching Windows native editor.
+The physics probe checks the actual Box2D and Box3D backend types and advances
+both primitive bodies for 60 ticks. Additional GDScript fixtures pass encrypted
+admission, prediction/replay, lifecycle and separate dedicated-server/client
+process checks in both templates. Matching Windows editor fixtures also pass.
+These checks cover GDScript running in Mono templates; they do not exercise
+C# scripts, graphical rendering, hot reload or production networking scale.
 
 All 26 Box2D adapter translation units compile under optimized GCC and Clang
 with warnings treated as errors. The cleanup preserves signed index rejection,
