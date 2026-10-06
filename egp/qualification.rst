@@ -96,10 +96,20 @@ without new admission. Stopped recovery retains an exact trusted checkpoint,
 transactionally rejects damaged bytes, explicitly restores the saved state and
 resumes physics with a checkpoint-to-network clock offset after fresh admission.
 Current physics-enabled live/stopped, physics-off live and runtime-disabled runs
-pass; the focused suite passes 47 semantic tests and eleven invalid CLI cases.
+pass; the current focused suite passes 64 semantic tests and twelve invalid CLI cases.
 This local Windows Debug editor-run evidence covers one authority/client pair
 and one body. It does not establish automatic client rollback, general game/ABI
 state persistence, production checkpoint policy or larger-world behavior.
+
+The public low-level C# ``NetSession`` now supports explicit ownership transfer
+through ``DetachForReload()`` and ``ResumeAfterReload(Dictionary)``. Applications
+save the local capsule in serialization hooks and resubscribe their handlers.
+Current full live/stopped repair gates each perform 23 managed checks and retain
+constant connection counts for all seven native signals, without stale delegate
+or script errors. Changed helper sources also pass fresh 27-stage language
+validation and 197 assertions each in editor/Debug/Release. High-level
+``Net``/``NetNode``/``NetBox3D`` ownership and arbitrary captured event closures
+remain unqualified. See :doc:`hot_reload` for the same-thread and capsule contract.
 
 Admission testing separates listener timestamp protection from key rotation.
 The controlled native/GDScript matrix covers retained zero/nonzero test keys

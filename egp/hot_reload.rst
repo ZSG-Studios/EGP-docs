@@ -71,6 +71,9 @@ through serialized dictionaries. Native-session signals use method-name
 Callables into the reconstructed objects. C++ uses generated session bindings;
 C# uses the native ``GodotObject`` call API.
 
+The optional public C# facade gate below transfers low-level ``NetSession``
+ownership explicitly instead of retaining its managed wrapper.
+
 Poll calls work after reconstruction, stopped state remains empty and reload
 does not implicitly restart authority. Explicit rebind and fresh-token admission
 restart the same sessions on the original port. Retired peer sends and entity
@@ -89,7 +92,7 @@ closure persistence, automatic client physics rollback, independent-process
 low-level fault/reload and exported-runtime reload remain unqualified. Raw
 transport ownership does not authorize opaque gameplay messages. Exact receipts
 and remaining scope are in the `pinned engine integration record
-<https://github.com/ZSG-Studios/EGP/blob/4773948b80812cbb21149a2af95a94b0cab70399/doc/egp_integration_loop.md>`__.
+<https://github.com/ZSG-Studios/EGP/blob/bbc7d801f5f9f6aff7aa62f0e999db2c156a6698/doc/egp_integration_loop.md>`__.
 See :doc:`language_testing` and :doc:`qualification` for the distinct networking
 fixture evidence.
 
@@ -150,8 +153,8 @@ and C# callbacks advance exactly from 1 through 6, without duplicates. These
 checks cover transport and ownership metadata; gameplay authorization remains
 the application's responsibility.
 
-The full repair gate also passes. The current evidence suite passes 47 semantic
-tests (29 networking/reload and 18 physics) and eleven invalid CLI cases.
+The full repair gate also passes. The current evidence suite passes 64 semantic
+tests and twelve invalid CLI cases, including physics and public C# handoff checks.
 Configured loss does not measure actual dropped packets or real WAN behavior;
 poll/tick counts establish fixture continuity, not performance.
 
@@ -199,8 +202,8 @@ world ObjectID, body ID and body count must remain unchanged.
 
 In live mode, the same world and body advance through all six reload checkpoints
 without a new admission. The qualified run records authority physics ticks
-33, 133, 225, 428, 669 and 995, with received client ticks 27, 126, 222, 420, 666
-and 991. Authority physics time equals native network time; the received baseline
+33, 133, 246, 452, 688 and 1000, with received client ticks 27, 126, 242, 448, 679
+and 996. Authority physics time equals native network time; the received baseline
 stays at or behind it. Both outbound simulators use the live configuration above.
 These observations establish fixture continuity and state consistency.
 
@@ -215,8 +218,9 @@ then attempts to restore damaged checkpoint bytes. ``ERR_FILE_CORRUPT`` (16)
 must leave the changed world's tick and hash intact. Explicit restoration of the
 original trusted bytes must recover the exact saved tick, hash and position.
 Fresh admission maps a new network entity to the same body 10000 and rejects
-retired peer/entity handles. The world resumes at tick 39 and the client receives
-tick 38, satisfying ``world_tick = checkpoint_tick + restarted_network_tick``.
+retired peer/entity handles. The current facade-enabled run resumes at world tick
+40 and the client receives tick 40, satisfying
+``world_tick = checkpoint_tick + restarted_network_tick``.
 
 Current physics-enabled live and stopped gates, physics-off live regression and
 the runtime-disabled baseline pass. This qualifies one local Windows Debug
@@ -228,3 +232,104 @@ closure or ABI state need separate qualification. Exported-runtime reload,
 platform parity, scale/soak and performance remain open. Configured packet loss
 does not quantify actual drops or WAN behavior. See :doc:`explicit_world` for
 the public world API and :doc:`prediction` for game-provided replay callbacks.
+
+C# session ownership and events
+-------------------------------
+
+``EGP.Networking.NetSession`` provides an explicit handoff for editor-run C#
+reload. Call ``DetachForReload()`` in ``ISerializationListener.OnBeforeSerialize``
+and save its dictionary capsule in an exported property. Call the static
+``ResumeAfterReload(Dictionary)`` in ``OnAfterDeserialize``, then subscribe your
+application event handlers again. Both operations belong on the original Godot
+thread, as do polling and disposal.
+
+.. code-block:: csharp
+
+   using EGP.Networking;
+   using Godot;
+
+   public partial class GameSession : Node, ISerializationListener
+   {
+       [Export] public Godot.Collections.Dictionary SessionReload { get; set; } = new();
+       private NetSession? session;
+
+       public override void _Ready()
+       {
+           session = new();
+           session.ApplicationReceived += Receive;
+           // Configure and listen/connect here; check each returned Error.
+       }
+
+       private void Receive(long peer, byte[] payload) { /* Application message. */ }
+
+       public void OnBeforeSerialize()
+       {
+           if (session == null) return;
+           SessionReload = session.DetachForReload();
+           session = null;
+       }
+
+       public void OnAfterDeserialize()
+       {
+           if (SessionReload.Count == 0) return;
+           session = NetSession.ResumeAfterReload(SessionReload);
+           session.ApplicationReceived += Receive;
+       }
+
+       public override void _ExitTree() => session?.Dispose();
+   }
+
+Detaching disconnects managed signal bridges and clears the old wrapper's event
+subscriptions while keeping the native session alive. The old wrapper becomes
+unusable; accessing it or detaching it again throws ``ObjectDisposedException``.
+Disposing that wrapper later does not close the transferred session. Successful
+restoration reconnects the typed bridges, takes ownership and clears the capsule.
+Dispose the restored wrapper when its owner exits.
+
+Missing, malformed, foreign or consumed capsules throw ``ArgumentException``;
+``null`` throws ``ArgumentNullException``. Rejected capsules remain unchanged.
+Copies cannot claim the same session twice. Capsules contain trusted local
+native references and stay in memory: they are not disk checkpoints, network
+payloads or admission tokens. Save application state separately in exported
+properties. Application handlers are resubscribed explicitly; arbitrary captured
+closures and high-level ``Net``, ``NetNode`` or ``NetBox3D`` ownership are not
+automatically transferred.
+
+Add ``--network-csharp-facade`` to either networking reload mode to exercise the
+public API; the flag requires ``--network-live-reload`` or ``--network-recovery``
+and is off by default. The current qualified runs also enable Box3D physics and
+all repair checks:
+
+.. code-block:: powershell
+
+   python misc/scripts/validate_egp_hot_reload.py `
+       --engine bin/godot.windows.editor.dev.x86_64.mono.exe `
+       --packages bin/GodotSharp/Tools/nupkgs `
+       --assembly-recovery --unload-recovery `
+       --native-recovery --native-abi-recovery `
+       --network-live-reload --network-physics --network-csharp-facade `
+       --output .build/csharp-live-handoff-new
+
+   python misc/scripts/validate_egp_hot_reload.py `
+       --engine bin/godot.windows.editor.dev.x86_64.mono.exe `
+       --packages bin/GodotSharp/Tools/nupkgs `
+       --assembly-recovery --unload-recovery `
+       --native-recovery --native-abi-recovery `
+       --network-recovery --network-physics --network-csharp-facade `
+       --output .build/csharp-stopped-handoff-new
+
+Each facade fixture performs 23 managed checks, including invalid/copied claims,
+detached-wrapper access, old-wrapper disposal, native identity, event disconnect
+and fresh callbacks. All seven native signal connection counts remain constant
+at each checkpoint, including quiet signals. Live application callback counts
+advance exactly from 1 through 6 in each direction. Handoff/restore counts are
+0, 0, 0, 1, 1, 2: failed compilation and C++-only reload do not transfer the
+managed owner. Game logs check for stale delegate, capture and script errors.
+
+Fresh 27-stage language validation also passes 197 interoperability assertions
+each in the Windows Mono editor and relocated Debug/Release exports with the
+changed helper sources. Exported language compatibility is distinct from runtime
+reload, which remains editor-run only. High-level ownership, arbitrary closure
+or ABI state, independent-process low-level fault/reload, concurrent/in-flight
+reload and automatic client rollback remain outside this gate. See
+:doc:`helper_reference`, :doc:`language_testing` and :doc:`qualification`.

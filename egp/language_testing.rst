@@ -232,7 +232,17 @@ after fresh admission. The current gates cover one local Windows Debug pair and
 one body; automatic client prediction/rollback remains separate work. See the
 physics subsection of :doc:`hot_reload` for commands and precise scope.
 
+The current 27-stage language run freshly builds the changed C# session helpers
+and passes 197 assertions each in editor and relocated Debug/Release, including
+the independent high-level process fault cycles. Separate editor-run reload
+gates exercise low-level ``NetSession.DetachForReload()`` and
+``NetSession.ResumeAfterReload(Dictionary)`` with explicit handler resubscription.
+Both live and stopped gates perform 23 managed checks and keep all seven native
+signal connection counts constant. High-level ownership and arbitrary captured
+closures remain outside this contract; exported language compatibility does not
+qualify exported-runtime reload. See :doc:`hot_reload` for the hook example.
+
 Exact publication receipts and remaining acceptance items are listed in the
 `pinned engine integration record
-<https://github.com/ZSG-Studios/EGP/blob/4773948b80812cbb21149a2af95a94b0cab70399/doc/egp_integration_loop.md>`__.
+<https://github.com/ZSG-Studios/EGP/blob/bbc7d801f5f9f6aff7aa62f0e999db2c156a6698/doc/egp_integration_loop.md>`__.
 See :doc:`qualification`, :doc:`explicit_world` and :doc:`admission_testing`.
