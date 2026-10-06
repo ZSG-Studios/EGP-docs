@@ -236,5 +236,11 @@ restored world advances from its own tick even when the restarted transport
 clock begins at zero. The opt-in ``--physics`` :doc:`network lab <network_lab>`
 demonstrates bounded checkpoint restoration and six-tick local replay.
 
+The separate ``--network-physics`` :doc:`reload fixture <hot_reload>` retains
+one native world/body through live C#/C++ reload or explicit trusted checkpoint
+restoration after a stopped authority fault. It uses a GDScript clock callback
+and fixture-owned baseline codec. This bounded Windows Debug evidence is distinct
+from automatic client rollback and general game-state persistence.
+
 See :doc:`box3d`, :doc:`prediction` and the
 :ref:`EGPBox3DWorld class reference <class_EGPBox3DWorld>`.

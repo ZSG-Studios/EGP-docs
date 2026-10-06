@@ -85,8 +85,21 @@ checkpoints retain session identities, peer/entity handles and exact callback
 counts, with both outbound simulators configured at 30 ms latency, 5 ms jitter
 and 5 percent loss. This configuration does not measure actual packet drops or
 WAN performance. In-flight/concurrent reload, arbitrary managed facade/event
-closure persistence, physics rollback during reload and exported-runtime reload
+closure persistence, automatic client physics rollback and exported-runtime reload
 remain unqualified. See :doc:`hot_reload` for both modes and their exact scopes.
+
+The optional ``--network-physics`` extension qualifies one explicit Box3D body
+through those reload modes. GDScript drives a 60 Hz authority-clock stepper and
+fixture-owned baseline codec; reconstructed C++/C# objects retain the native world
+reference and agree on its body state. Live reload advances the same world/body
+without new admission. Stopped recovery retains an exact trusted checkpoint,
+transactionally rejects damaged bytes, explicitly restores the saved state and
+resumes physics with a checkpoint-to-network clock offset after fresh admission.
+Current physics-enabled live/stopped, physics-off live and runtime-disabled runs
+pass; the focused suite passes 47 semantic tests and eleven invalid CLI cases.
+This local Windows Debug editor-run evidence covers one authority/client pair
+and one body. It does not establish automatic client rollback, general game/ABI
+state persistence, production checkpoint policy or larger-world behavior.
 
 Admission testing separates listener timestamp protection from key rotation.
 The controlled native/GDScript matrix covers retained zero/nonzero test keys

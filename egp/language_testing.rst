@@ -222,7 +222,17 @@ failed builds and C#/C++ reload under configured latency/jitter/loss. See
 :doc:`hot_reload`; these gates do not qualify deliberately in-flight callbacks,
 concurrent reload or arbitrary managed facade/event closure persistence.
 
+Adding ``--network-physics`` retains one explicit native Box3D world through
+either reload mode. GDScript steps its stable body from the authority clock;
+both reconstructed C++ and C# objects must match the same native body state,
+tick and hash. Live reload keeps physics advancing without new admission.
+Stopped recovery preserves the world, rejects a damaged local checkpoint without
+changing state, explicitly restores trusted bytes and resumes with a clock offset
+after fresh admission. The current gates cover one local Windows Debug pair and
+one body; automatic client prediction/rollback remains separate work. See the
+physics subsection of :doc:`hot_reload` for commands and precise scope.
+
 Exact publication receipts and remaining acceptance items are listed in the
 `pinned engine integration record
-<https://github.com/ZSG-Studios/EGP/blob/4d43a101cf6a55e41c753720b089f348f72e58d2/doc/egp_integration_loop.md>`__.
+<https://github.com/ZSG-Studios/EGP/blob/4773948b80812cbb21149a2af95a94b0cab70399/doc/egp_integration_loop.md>`__.
 See :doc:`qualification`, :doc:`explicit_world` and :doc:`admission_testing`.

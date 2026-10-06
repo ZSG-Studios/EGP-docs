@@ -85,11 +85,11 @@ disabled baseline retains its non-collectible assembly behavior.
 
 This qualifies stopped native-session retention and explicit recovery.
 Arbitrary managed facade or event
-closure persistence, physics rollback during reload, independent-process
+closure persistence, automatic client physics rollback, independent-process
 low-level fault/reload and exported-runtime reload remain unqualified. Raw
 transport ownership does not authorize opaque gameplay messages. Exact receipts
 and remaining scope are in the `pinned engine integration record
-<https://github.com/ZSG-Studios/EGP/blob/4d43a101cf6a55e41c753720b089f348f72e58d2/doc/egp_integration_loop.md>`__.
+<https://github.com/ZSG-Studios/EGP/blob/4773948b80812cbb21149a2af95a94b0cab70399/doc/egp_integration_loop.md>`__.
 See :doc:`language_testing` and :doc:`qualification` for the distinct networking
 fixture evidence.
 
@@ -150,13 +150,81 @@ and C# callbacks advance exactly from 1 through 6, without duplicates. These
 checks cover transport and ownership metadata; gameplay authorization remains
 the application's responsibility.
 
-The full repair gate also passes. The current evidence suite passes 29 semantic
-tests (14 stopped recovery and 15 live reload) and ten invalid CLI cases.
+The full repair gate also passes. The current evidence suite passes 47 semantic
+tests (29 networking/reload and 18 physics) and eleven invalid CLI cases.
 Configured loss does not measure actual dropped packets or real WAN behavior;
 poll/tick counts establish fixture continuity, not performance.
 
 Independent-process low-level fault/reload, deliberately in-flight callbacks or
 concurrent reload, arbitrary managed facade/event closures or application/ABI
-state, physics rollback during reload, exported-runtime reload, other platforms,
+state, automatic client physics rollback, exported-runtime reload, other platforms,
 scale and soak remain unqualified. Consult the pinned integration record above
 for exact source/artifact hashes, checkpoints and remaining acceptance items.
+
+Native physics state during reload
+----------------------------------
+
+Add ``--network-physics`` to either networking mode to include one explicit native
+Box3D world. The option requires ``--network-live-reload`` or
+``--network-recovery``; it is off by default. The fixture uses a dynamic box at
+stable body ID 10000, 60 Hz, four substeps, one worker and gravity (0, -9.8, 0).
+A GDScript authority-clock callback steps the world once per simulation tick.
+The fixture's own bounded opaque baseline codec publishes body position,
+velocity and physics tick. Peer payloads never become solver snapshots.
+
+Run the two modes separately with fresh output prefixes:
+
+.. code-block:: powershell
+
+   python misc/scripts/validate_egp_hot_reload.py `
+       --engine bin/godot.windows.editor.dev.x86_64.mono.exe `
+       --packages bin/GodotSharp/Tools/nupkgs `
+       --assembly-recovery --unload-recovery `
+       --native-recovery --native-abi-recovery `
+       --network-live-reload --network-physics `
+       --network-latency-ms 30 --network-jitter-ms 5 --network-loss-percent 5 `
+       --output .build/live-physics-reload-new
+
+   python misc/scripts/validate_egp_hot_reload.py `
+       --engine bin/godot.windows.editor.dev.x86_64.mono.exe `
+       --packages bin/GodotSharp/Tools/nupkgs `
+       --network-recovery --network-physics `
+       --output .build/stopped-physics-reload-new
+
+Both reloadable language objects retain the native world reference in serialized
+dictionaries alongside their sessions. C++ generated ``EGPBox3DWorld`` bindings
+and C# native ``GodotObject`` calls must agree exactly on position, rotation,
+linear/angular velocity, tick and state hash after reconstruction. The native
+world ObjectID, body ID and body count must remain unchanged.
+
+In live mode, the same world and body advance through all six reload checkpoints
+without a new admission. The qualified run records authority physics ticks
+33, 133, 225, 428, 669 and 995, with received client ticks 27, 126, 222, 420, 666
+and 991. Authority physics time equals native network time; the received baseline
+stays at or behind it. Both outbound simulators use the live configuration above.
+These observations establish fixture continuity and state consistency.
+
+In recovery mode, the fixture captures a trusted local checkpoint immediately
+before the authority stall. Both sessions stop, the client clears obsolete
+physics state and C#/C++ reload preserves the stopped world without advancing it.
+The qualified checkpoint is tick 22, state hash ``21a31bd979e10a65`` and body
+Y position 9999.333984375.
+
+Before fresh admission, the fixture deliberately advances the world one step,
+then attempts to restore damaged checkpoint bytes. ``ERR_FILE_CORRUPT`` (16)
+must leave the changed world's tick and hash intact. Explicit restoration of the
+original trusted bytes must recover the exact saved tick, hash and position.
+Fresh admission maps a new network entity to the same body 10000 and rejects
+retired peer/entity handles. The world resumes at tick 39 and the client receives
+tick 38, satisfying ``world_tick = checkpoint_tick + restarted_network_tick``.
+
+Current physics-enabled live and stopped gates, physics-off live regression and
+the runtime-disabled baseline pass. This qualifies one local Windows Debug
+editor-run pair and one native body with a fixture stepper and codec. Trusted
+authority restoration is explicit; automatic client prediction/rollback,
+production checkpoint/admission policy, larger worlds, independent-process
+low-level fault/reload, concurrent/in-flight reload and arbitrary facade,
+closure or ABI state need separate qualification. Exported-runtime reload,
+platform parity, scale/soak and performance remain open. Configured packet loss
+does not quantify actual drops or WAN behavior. See :doc:`explicit_world` for
+the public world API and :doc:`prediction` for game-provided replay callbacks.
