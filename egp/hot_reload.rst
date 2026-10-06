@@ -92,7 +92,7 @@ closure persistence, automatic client physics rollback, independent-process
 low-level fault/reload and exported-runtime reload remain unqualified. Raw
 transport ownership does not authorize opaque gameplay messages. Exact receipts
 and remaining scope are in the `pinned engine integration record
-<https://github.com/ZSG-Studios/EGP/blob/bbc7d801f5f9f6aff7aa62f0e999db2c156a6698/doc/egp_integration_loop.md>`__.
+<https://github.com/ZSG-Studios/EGP/blob/b7c02a72753951047e2f4bc5cb3c91825ad69b71/doc/egp_integration_loop.md>`__.
 See :doc:`language_testing` and :doc:`qualification` for the distinct networking
 fixture evidence.
 
@@ -153,8 +153,9 @@ and C# callbacks advance exactly from 1 through 6, without duplicates. These
 checks cover transport and ownership metadata; gameplay authorization remains
 the application's responsibility.
 
-The full repair gate also passes. The current evidence suite passes 64 semantic
-tests and twelve invalid CLI cases, including physics and public C# handoff checks.
+The full repair gate also passes. The current evidence suite passes 208 semantic
+tests and fifteen invalid CLI cases, including low-level ownership, physics and
+high-level C# node checks.
 Configured loss does not measure actual dropped packets or real WAN behavior;
 poll/tick counts establish fixture continuity, not performance.
 
@@ -201,7 +202,7 @@ linear/angular velocity, tick and state hash after reconstruction. The native
 world ObjectID, body ID and body count must remain unchanged.
 
 In live mode, the same world and body advance through all six reload checkpoints
-without a new admission. The qualified run records authority physics ticks
+without a new admission. The preceding full physics/facade run records authority physics ticks
 33, 133, 246, 452, 688 and 1000, with received client ticks 27, 126, 242, 448, 679
 and 996. Authority physics time equals native network time; the received baseline
 stays at or behind it. Both outbound simulators use the live configuration above.
@@ -210,7 +211,7 @@ These observations establish fixture continuity and state consistency.
 In recovery mode, the fixture captures a trusted local checkpoint immediately
 before the authority stall. Both sessions stop, the client clears obsolete
 physics state and C#/C++ reload preserves the stopped world without advancing it.
-The qualified checkpoint is tick 22, state hash ``21a31bd979e10a65`` and body
+The preceding full physics/facade gate's checkpoint is tick 22, state hash ``21a31bd979e10a65`` and body
 Y position 9999.333984375.
 
 Before fresh admission, the fixture deliberately advances the world one step,
@@ -218,12 +219,13 @@ then attempts to restore damaged checkpoint bytes. ``ERR_FILE_CORRUPT`` (16)
 must leave the changed world's tick and hash intact. Explicit restoration of the
 original trusted bytes must recover the exact saved tick, hash and position.
 Fresh admission maps a new network entity to the same body 10000 and rejects
-retired peer/entity handles. The current facade-enabled run resumes at world tick
+retired peer/entity handles. That facade-enabled run resumes at world tick
 40 and the client receives tick 40, satisfying
 ``world_tick = checkpoint_tick + restarted_network_tick``.
 
-Current physics-enabled live and stopped gates, physics-off live regression and
-the runtime-disabled baseline pass. This qualifies one local Windows Debug
+The preceding full physics-enabled live/stopped gates pass, with fresh low-level
+facade/physics live and runtime-disabled regressions at the current source.
+This qualifies one local Windows Debug
 editor-run pair and one native body with a fixture stepper and codec. Trusted
 authority restoration is explicit; automatic client prediction/rollback,
 production checkpoint/admission policy, larger worlds, independent-process
@@ -293,7 +295,8 @@ native references and stay in memory: they are not disk checkpoints, network
 payloads or admission tokens. Save application state separately in exported
 properties. Application handlers are resubscribed explicitly; arbitrary captured
 closures and high-level ``Net``, ``NetNode`` or ``NetBox3D`` ownership are not
-automatically transferred.
+automatically transferred by the low-level capsule. High-level C# ``NetNode``
+has the separate serialization contract below.
 
 Add ``--network-csharp-facade`` to either networking reload mode to exercise the
 public API; the flag requires ``--network-live-reload`` or ``--network-recovery``
@@ -333,3 +336,118 @@ reload, which remains editor-run only. High-level ownership, arbitrary closure
 or ABI state, independent-process low-level fault/reload, concurrent/in-flight
 reload and automatic client rollback remain outside this gate. See
 :doc:`helper_reference`, :doc:`language_testing` and :doc:`qualification`.
+
+High-level C# node reload
+-------------------------
+
+Keep ``EGP.Networking.NetNode`` in the scene tree and preserve its reference in
+the owner's exported ``NetNode`` property. Its serialization hooks disconnect
+forwarding without closing the GDScript codec child or native session, then
+reconnect that same child. All eleven forwarding signals use named Godot methods.
+The owner's ordinary C# application events must resubscribe after reload;
+registered message handlers should retain a named Godot object/method target.
+
+.. code-block:: csharp
+
+   using EGP.Networking;
+   using Godot;
+
+   public partial class NetworkOwner : Node, ISerializationListener
+   {
+       [Export] public NetNode? Network { get; set; }
+
+       public override void _Ready()
+       {
+           Network ??= new NetNode();
+           if (Network.GetParent() == null) AddChild(Network);
+           SubscribeEvents();
+           Error error = Network.RegisterMessage("notice",
+               new Callable(this, nameof(ReceiveNotice)), Sender.Server);
+           if (error != Error.Ok) GD.PushError(error.ToString());
+           // Configure and host/join explicitly; check each returned Error.
+       }
+
+       private void SubscribeEvents()
+       {
+           if (Network == null) return;
+           Network.StateChanged -= OnState;
+           Network.StateChanged += OnState;
+       }
+
+       private void OnState(string state) { /* Update application state. */ }
+       private void ReceiveNotice(long peer, Godot.Collections.Array arguments)
+       { /* Validate and handle the application message. */ }
+       public void OnBeforeSerialize() { /* Save other exported state. */ }
+       public void OnAfterDeserialize() => SubscribeEvents();
+   }
+
+Derived ``NetNode`` serialization overrides must call ``base`` so the helper can
+detach and restore its own forwarding. Store application state separately:
+
+.. code-block:: csharp
+
+   using EGP.Networking;
+
+   public partial class GameNetNode : NetNode
+   {
+       public override void OnBeforeSerialize()
+       {
+           // Save application-owned exported state here.
+           base.OnBeforeSerialize();
+       }
+
+       public override void OnAfterDeserialize()
+       {
+           base.OnAfterDeserialize();
+           // Restore application state and subscribe application handlers here.
+       }
+   }
+
+Leaving the tree closes the session and disconnects all forwarding callbacks.
+Reentry reconnects the existing codec child exactly once; host or join explicitly
+to start a new session. Replacing a freed codec child restores forwarding and
+the ``AutoPoll`` policy. The qualified lifecycle checks require eleven connection
+counts of 1 before exit, 0 after exit and 1 after reentry, the same node/codec
+identities, one child, closed sessions and empty peer/entity caches. Six additional
+managed runtime checks cover codec replacement, event counts, raw packet bytes,
+channel/delivery and retained manual polling. Traffic after tree reentry remains
+unqualified.
+
+Use ``--network-csharp-node`` with either networking reload mode. It is off by
+default and requires ``--network-live-reload`` or ``--network-recovery``. Run it
+separately from ``--network-csharp-facade`` and ``--network-physics``; those
+combinations are rejected before output creation.
+
+.. code-block:: powershell
+
+   python misc/scripts/validate_egp_hot_reload.py `
+       --engine bin/godot.windows.editor.dev.x86_64.mono.exe `
+       --packages bin/GodotSharp/Tools/nupkgs `
+       --assembly-recovery --unload-recovery `
+       --native-recovery --native-abi-recovery `
+       --network-live-reload --network-csharp-node `
+       --output .build/csharp-node-live-new
+
+   python misc/scripts/validate_egp_hot_reload.py `
+       --engine bin/godot.windows.editor.dev.x86_64.mono.exe `
+       --packages bin/GodotSharp/Tools/nupkgs `
+       --assembly-recovery --unload-recovery `
+       --native-recovery --native-abi-recovery `
+       --network-recovery --network-csharp-node `
+       --output .build/csharp-node-stopped-new
+
+The live gate retains node, codec and native session identities and admission
+across failed managed/native compilation and C#-only, C++-only and combined
+reload. Six exchanges in each direction verify messages, named handlers,
+owned input and raw packet contents; unowned input is rejected. Restores are
+0, 0, 0, 1, 1, 2. The stopped gate keeps clients polling during the 550 ms
+authority gap, reloads before explicit fresh admission and rejects retired
+peer/entity handles. Both are one local Windows Debug pair sharing a game process.
+
+Generic corrupted-assembly, blocked-unload and incompatible/missing native-class
+repair checks run before network nodes are created. Those injected failures
+during authenticated ``NetNode`` traffic remain unqualified. High-level C++ and
+physics-adapter ownership, arbitrary captured closures or game/ABI state,
+independent-process low-level reload, concurrent/in-flight or exported-runtime
+reload, automatic client physics rollback, platform/scale/soak and performance
+remain open. Configured loss does not measure actual drops or WAN behavior.

@@ -238,11 +238,21 @@ the independent high-level process fault cycles. Separate editor-run reload
 gates exercise low-level ``NetSession.DetachForReload()`` and
 ``NetSession.ResumeAfterReload(Dictionary)`` with explicit handler resubscription.
 Both live and stopped gates perform 23 managed checks and keep all seven native
-signal connection counts constant. High-level ownership and arbitrary captured
-closures remain outside this contract; exported language compatibility does not
+signal connection counts constant. The low-level capsule does not transfer
+high-level ownership or arbitrary captured closures; exported language compatibility does not
 qualify exported-runtime reload. See :doc:`hot_reload` for the hook example.
+
+The latest source also adds separate high-level C# ``NetNode`` live/stopped
+reload gates. They verify named message handlers, resubscribed application events,
+owned input, exact raw packet delivery and all eleven forwarding connection counts.
+Tree exit/reentry checks require counts of 1/0/1 and the same codec child; traffic
+after reentry remains unqualified. Six managed checks cover freed codec replacement
+and manual polling. Generic assembly/unload/ABI repair precedes node admission,
+so those failures during authenticated node traffic remain open. Fresh 27-stage
+language validation passes 197 assertions per editor/Debug/Release configuration
+with the updated helper sources. See :doc:`hot_reload` for reproduction and limits.
 
 Exact publication receipts and remaining acceptance items are listed in the
 `pinned engine integration record
-<https://github.com/ZSG-Studios/EGP/blob/bbc7d801f5f9f6aff7aa62f0e999db2c156a6698/doc/egp_integration_loop.md>`__.
+<https://github.com/ZSG-Studios/EGP/blob/b7c02a72753951047e2f4bc5cb3c91825ad69b71/doc/egp_integration_loop.md>`__.
 See :doc:`qualification`, :doc:`explicit_world` and :doc:`admission_testing`.

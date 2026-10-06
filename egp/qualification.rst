@@ -95,8 +95,9 @@ reference and agree on its body state. Live reload advances the same world/body
 without new admission. Stopped recovery retains an exact trusted checkpoint,
 transactionally rejects damaged bytes, explicitly restores the saved state and
 resumes physics with a checkpoint-to-network clock offset after fresh admission.
-Current physics-enabled live/stopped, physics-off live and runtime-disabled runs
-pass; the current focused suite passes 64 semantic tests and twelve invalid CLI cases.
+The full physics/facade live/stopped gates pass, with fresh low-level physics live
+and runtime-default regressions at the current source. The focused suite now
+passes 208 semantic tests and fifteen invalid CLI cases.
 This local Windows Debug editor-run evidence covers one authority/client pair
 and one body. It does not establish automatic client rollback, general game/ABI
 state persistence, production checkpoint policy or larger-world behavior.
@@ -104,12 +105,25 @@ state persistence, production checkpoint policy or larger-world behavior.
 The public low-level C# ``NetSession`` now supports explicit ownership transfer
 through ``DetachForReload()`` and ``ResumeAfterReload(Dictionary)``. Applications
 save the local capsule in serialization hooks and resubscribe their handlers.
-Current full live/stopped repair gates each perform 23 managed checks and retain
+The low-level live/stopped repair gates each perform 23 managed checks and retain
 constant connection counts for all seven native signals, without stale delegate
 or script errors. Changed helper sources also pass fresh 27-stage language
-validation and 197 assertions each in editor/Debug/Release. High-level
-``Net``/``NetNode``/``NetBox3D`` ownership and arbitrary captured event closures
-remain unqualified. See :doc:`hot_reload` for the same-thread and capsule contract.
+validation and 197 assertions each in editor/Debug/Release. The capsule transfers
+low-level ownership only; arbitrary captured event closures remain unqualified.
+See :doc:`hot_reload` for the same-thread and capsule contract.
+
+High-level C# ``NetNode`` now preserves forwarding on its codec child through
+serialization and reconnects its eleven signals without duplicate subscriptions.
+Owners preserve the node reference in an exported property, resubscribe ordinary
+application events and register named Godot message handlers. Derived serialization
+overrides must call base. Full live/stopped node fixtures check owned inputs,
+exact messages/raw packets and fresh recovery. Tree exit closes the session and
+disconnects forwarding; reentry restores connections but traffic afterward remains
+unqualified. Six managed runtime checks cover freed codec replacement and polling
+policy. Generic assembly/unload/ABI repair occurs before authenticated node traffic;
+those failures during such traffic remain open. High-level C++ and physics-adapter
+ownership, arbitrary game/closure state and broader reload/platform/scale/performance
+acceptance remain separate work.
 
 Admission testing separates listener timestamp protection from key rotation.
 The controlled native/GDScript matrix covers retained zero/nonzero test keys
