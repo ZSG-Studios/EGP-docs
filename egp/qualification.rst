@@ -41,10 +41,22 @@ receipts check fresh keys/tokens, retired admission and input rejection, new
 ownership and restoration of the fixture's counter. The opt-in ``--physics``
 fixture adds trusted local Box3D checkpoint restoration, transactional rejection
 of damaged snapshots, six-tick replay and stable entity-to-body mapping.
-Arbitrary game-state restoration, larger/repeated-fault worlds and automatic
+Arbitrary game-state restoration, larger authoritative worlds and automatic
 client physics rollback require separate qualification.
 It is an application fixture, not a
 production identity service or automatic server persistence.
+
+Fresh C#/C++ fixtures pass 93 interoperability assertions each in the Windows
+Mono editor and relocated Debug/Release exports. They include three successive
+clock failures per language on both high-level and low-level sessions: 36 local
+faults across those configurations. Each cycle checks the native failure,
+retained session/port, retired handles and explicit recovery. High-level fixtures
+also restore trusted local Box3D checkpoints and map fresh entities to stable
+bodies. These results supersede the historical 60-assertion fixtures.
+
+The repeated-fault cycles have no connected remote peers. Client reconnect and
+hot reload during those faults remain unqualified. See :doc:`language_testing`
+for reproduction, evidence and the distinction from separate-process networking.
 
 Admission testing separates listener timestamp protection from key rotation.
 The controlled native/GDScript matrix covers retained zero/nonzero test keys
