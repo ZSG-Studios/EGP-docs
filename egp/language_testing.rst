@@ -30,9 +30,9 @@ for the Release archive. See :doc:`cpp_extensions` for the SDK workflow.
 Qualified scope
 ---------------
 
-The published Windows runs pass all 27 validator steps and 133 interop assertions
+The published Windows runs pass all 27 validator steps and 197 interop assertions
 each in the editor, relocated Debug and relocated Release. The fresh fixtures
-supersede the preceding 60- and 93-assertion results. Native engine APIs, generated glue
+supersede the preceding 60-, 93- and 133-assertion results. Native engine APIs, generated glue
 and external helper declarations are unchanged in this source increment.
 
 The C++ sample's ``poll()`` binding now returns the first high-/low-level native
@@ -75,8 +75,8 @@ Attaching the physics clock before admission prevents the transport clock from
 advancing while the restored world is detached. Each client records four exact
 ``Connecting -> Synchronizing -> Connected -> Stopped`` cycles: its initial
 admission and three rejoins. Across editor/Debug/Release this qualifies 18
-live-client fault recoveries and 24 fresh admissions. The low-level fault cycles
-remain local with no peers.
+high-level live-client fault recoveries and 24 fresh admissions. Connected
+low-level recovery is qualified separately below.
 
 After rejoin, the client receives only a fresh owned entity mapped to the stable
 physics body, with a tick after the restored checkpoint and continued falling
@@ -87,6 +87,52 @@ restores its client baseline, with zero invalid input callbacks.
 Client outbound simulation uses 20 ms latency, 5 ms jitter and zero loss. This
 bounded simulation does not establish bidirectional WAN behavior or soak.
 Tokens and local snapshots stay outside the receipts.
+
+Connected low-level sessions
+----------------------------
+
+Low-level C# and C++ fixtures now keep authenticated clients connected during
+the three authority clock faults. This replaces the earlier no-peer low-level
+cycles. Across editor/Debug/Release, they add 18 connected low-level recoveries
+and 24 fresh admissions, including initial joins. The mixed high-/low-level
+fixture therefore covers 36 connected recoveries and 48 admissions.
+
+The client keeps polling through the authority's gap, detects native
+``Disconnected``, verifies empty peers/entities and rejects application sends
+with ``ERR_DOES_NOT_EXIST``. It explicitly stops and rejoins with a fresh token
+on the same native session. The authority retains its native session and bound
+port. Admission and disconnect histories require the same synchronization
+stages: ``Connecting -> Synchronizing -> Connected`` for each admission, and
+native ``Stopped -> Disconnected`` followed by explicit ``Stopped`` before rejoin.
+
+Each rejoin advances the authenticated peer generation and creates a fresh owned
+entity. Operations on retired handles must fail:
+
+.. list-table:: Retired-handle checks
+   :header-rows: 1
+   :widths: 60 40
+
+   * - Operation
+     - Expected error
+   * - Application send, disconnect or visibility using the retired peer
+     - ``ERR_DOES_NOT_EXIST``
+   * - Spawn with the retired peer as authority
+     - ``ERR_INVALID_PARAMETER``
+   * - Update the retired entity
+     - ``ERR_DOES_NOT_EXIST``
+
+Opaque baseline bytes are checked exactly, including zero and ``0xff``:
+``0100ff2a``, ``0200ff2a`` and ``0300ff2a``. Each cycle exchanges one application
+payload and one channel-3 ``ReliableOrdered`` packet in each direction. Callback
+checks require the authenticated sender, channel/delivery and exact bytes, with
+cumulative counts of 1/2/3 and no duplicates. Hide/show removes and restores the
+identical baseline, and the resumed authority clock advances at least eight ticks.
+
+These checks qualify raw transport and ownership metadata. Gameplay meaning and
+authorization of opaque application messages remain the application's
+responsibility. Each language uses one authority/client pair in one local
+Windows process, with outbound client latency of 20 ms, jitter of 5 ms and zero
+loss. Independent-process low-level faults require separate qualification.
 
 Independent server stalls
 -------------------------
@@ -147,19 +193,23 @@ Evidence and limits
 The validator records commands, source hashes, SDK archives, fixture assemblies
 and extensions, exported runtime/PCK hashes and process identities. Its evidence
 reader independently checks session retention, fresh handles, failure cycles,
-physics clock offsets and exact diagnostics. Sixteen semantic regression tests
+physics clock offsets and exact diagnostics. Twenty-two language regression tests
 passed, including rejection of paused clients, uncleared baselines, reused
 admission, missing synchronization history, old client physics time, accepted
-retired input and failed visibility restoration.
+retired input and failed visibility restoration. Connected low-level negatives
+also reject reused or accepted retired peer handles, corrupted opaque bytes,
+duplicate application callbacks, missing channel delivery and absent native
+disconnects.
 
 Fourteen additional semantic tests check independent-process evidence, including
 distinct PIDs, continuous client observations, timestamp consistency, native
 disconnects, baseline clearance, fresh admission and owner input history.
-This brings the language/process evidence tests to 30.
+This brings the language/process evidence tests to 36.
 
-Explicit same-process reset/rejoin and independent-process disconnect discovery
-with fixture-controlled rejoin are qualified. Production admission/backoff and
-recovery policy, connected low-level session faults, hot reload during faults,
+Explicit same-process high-/low-level reset/rejoin and independent-process
+high-level disconnect discovery with fixture-controlled rejoin are qualified.
+Production admission/backoff and recovery policy, independent-process low-level
+faults, hot reload during faults,
 process crashes and hard outages, larger authoritative worlds, arbitrary
 application/ABI state recovery, other platforms, scale/soak and performance
 require separate qualification. Existing encrypted separate-process networking
@@ -167,5 +217,5 @@ and reload results remain distinct checks.
 
 Exact publication receipts and remaining acceptance items are listed in the
 `pinned engine integration record
-<https://github.com/ZSG-Studios/EGP/blob/3cbba2e8d28e4f9f7666d06064ab537abbd5c4f4/doc/egp_integration_loop.md>`__.
+<https://github.com/ZSG-Studios/EGP/blob/642b95db236325c8809ba9af6db084825ab0c31c/doc/egp_integration_loop.md>`__.
 See :doc:`qualification`, :doc:`explicit_world` and :doc:`admission_testing`.

@@ -46,19 +46,22 @@ client physics rollback require separate qualification.
 It is an application fixture, not a
 production identity service or automatic server persistence.
 
-Fresh C#/C++ fixtures pass 133 interoperability assertions each in the Windows
+Fresh C#/C++ fixtures pass 197 interoperability assertions each in the Windows
 Mono editor and relocated Debug/Release exports. They include three successive
 clock failures per language on both high-level and low-level sessions: 36 local
 faults across those configurations. Each cycle checks the native failure,
 retained session/port, retired handles and explicit recovery. High-level fixtures
 also restore trusted local Box3D checkpoints and map fresh entities to stable
-bodies. These results supersede the historical 60- and 93-assertion fixtures.
+bodies. These results supersede the historical 60-, 93- and 133-assertion fixtures.
 
 High-level cycles retain live same-process clients through each authority gap,
 then explicitly reset and rejoin them with fresh admission after restoring the
 physics checkpoint. The matrix qualifies 18 live-client fault recoveries and
-24 fresh admissions, including initial joins. Low-level cycles still have no
-peers.
+24 fresh admissions, including initial joins. Connected low-level clients now
+add another 18 recoveries and 24 admissions in the same-process fixtures. Their
+checks cover native disconnection, cleared peers/entities, retired-handle
+rejection, exact opaque baseline bytes and bidirectional application/channel
+delivery. Raw transport ownership metadata does not authorize gameplay messages.
 
 Six additional independent authority/client process pairs qualify 18 server
 clock faults/native client disconnects and 24 fresh admissions on local Windows.
@@ -66,7 +69,7 @@ Clients keep polling during the authority gap, discover disconnection and rejoin
 under a test-only trusted token refresh policy. Restored Box3D baselines, fresh
 ownership and one owner input per admission are checked. The complete language
 validator passes 27 steps in editor/Debug/Release. Production admission/backoff
-and recovery policy, connected low-level faults, hot reload during faults,
+and recovery policy, independent-process low-level faults, hot reload during faults,
 process crashes and hard outages remain unqualified. See :doc:`language_testing`
 for reproduction and the exact scope of each fixture.
 
