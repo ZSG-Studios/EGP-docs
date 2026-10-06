@@ -69,9 +69,19 @@ Clients keep polling during the authority gap, discover disconnection and rejoin
 under a test-only trusted token refresh policy. Restored Box3D baselines, fresh
 ownership and one owner input per admission are checked. The complete language
 validator passes 27 steps in editor/Debug/Release. Production admission/backoff
-and recovery policy, independent-process low-level faults, hot reload during faults,
+and recovery policy, independent-process low-level faults, active-connection reload,
 process crashes and hard outages remain unqualified. See :doc:`language_testing`
 for reproduction and the exact scope of each fixture.
+
+The opt-in network/reload gate qualifies one local authority clock fault followed
+by C++/C# debugger reload after both native sessions stop. Serialized dictionaries
+retain native session references and method-name callbacks; explicit rebind and
+fresh admission restore networking. The full repair gate and runtime-disabled
+baseline pass with current fixture sources. This is Windows Debug editor-run
+evidence, distinct from the 197-assertion editor/export language checks.
+Active-connection reload under impairment, arbitrary managed facade/event closure
+persistence, physics rollback during reload and exported-runtime reload remain
+unqualified. See :doc:`hot_reload` for ``--network-recovery`` and its exact scope.
 
 Admission testing separates listener timestamp protection from key rotation.
 The controlled native/GDScript matrix covers retained zero/nonzero test keys
