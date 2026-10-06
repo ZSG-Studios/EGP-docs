@@ -209,7 +209,7 @@ This brings the language/process evidence tests to 36.
 Explicit same-process high-/low-level reset/rejoin and independent-process
 high-level disconnect discovery with fixture-controlled rejoin are qualified.
 Production admission/backoff and recovery policy, independent-process low-level
-faults, active-connection reload under impairment,
+faults, deliberately in-flight callback or concurrent reload,
 process crashes and hard outages, larger authoritative worlds, arbitrary
 application/ABI state recovery, other platforms, scale/soak and performance
 require separate qualification. Existing encrypted separate-process networking
@@ -217,10 +217,12 @@ and reload results remain distinct checks.
 
 The separate ``--network-recovery`` reload gate retains native sessions through
 C++/C# reconstruction after both sessions stop following one local authority
-fault. See :doc:`hot_reload`; it does not qualify active-connection reload or
-arbitrary managed facade/event closure persistence.
+fault. A separate ``--network-live-reload`` gate retains a connected pair across
+failed builds and C#/C++ reload under configured latency/jitter/loss. See
+:doc:`hot_reload`; these gates do not qualify deliberately in-flight callbacks,
+concurrent reload or arbitrary managed facade/event closure persistence.
 
 Exact publication receipts and remaining acceptance items are listed in the
 `pinned engine integration record
-<https://github.com/ZSG-Studios/EGP/blob/ca35e9c266c1ffaa3163b80e7bc81199a65159e2/doc/egp_integration_loop.md>`__.
+<https://github.com/ZSG-Studios/EGP/blob/4d43a101cf6a55e41c753720b089f348f72e58d2/doc/egp_integration_loop.md>`__.
 See :doc:`qualification`, :doc:`explicit_world` and :doc:`admission_testing`.

@@ -69,7 +69,7 @@ Clients keep polling during the authority gap, discover disconnection and rejoin
 under a test-only trusted token refresh policy. Restored Box3D baselines, fresh
 ownership and one owner input per admission are checked. The complete language
 validator passes 27 steps in editor/Debug/Release. Production admission/backoff
-and recovery policy, independent-process low-level faults, active-connection reload,
+and recovery policy, independent-process low-level faults, in-flight/concurrent reload,
 process crashes and hard outages remain unqualified. See :doc:`language_testing`
 for reproduction and the exact scope of each fixture.
 
@@ -79,9 +79,14 @@ retain native session references and method-name callbacks; explicit rebind and
 fresh admission restore networking. The full repair gate and runtime-disabled
 baseline pass with current fixture sources. This is Windows Debug editor-run
 evidence, distinct from the 197-assertion editor/export language checks.
-Active-connection reload under impairment, arbitrary managed facade/event closure
-persistence, physics rollback during reload and exported-runtime reload remain
-unqualified. See :doc:`hot_reload` for ``--network-recovery`` and its exact scope.
+The separate live-reload gate keeps the same local authenticated pair connected
+across managed/native compiler failures and C#, C++ and combined reloads. Six
+checkpoints retain session identities, peer/entity handles and exact callback
+counts, with both outbound simulators configured at 30 ms latency, 5 ms jitter
+and 5 percent loss. This configuration does not measure actual packet drops or
+WAN performance. In-flight/concurrent reload, arbitrary managed facade/event
+closure persistence, physics rollback during reload and exported-runtime reload
+remain unqualified. See :doc:`hot_reload` for both modes and their exact scopes.
 
 Admission testing separates listener timestamp protection from key rotation.
 The controlled native/GDScript matrix covers retained zero/nonzero test keys
