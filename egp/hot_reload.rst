@@ -92,7 +92,7 @@ closure persistence, automatic client physics rollback, independent-process
 low-level fault/reload and exported-runtime reload remain unqualified. Raw
 transport ownership does not authorize opaque gameplay messages. Exact receipts
 and remaining scope are in the `pinned engine integration record
-<https://github.com/ZSG-Studios/EGP/blob/6a3690387ac23323fe94f3c57f558ae543e84f5f/doc/egp_integration_loop.md>`__.
+<https://github.com/ZSG-Studios/EGP/blob/8ecf5efa30ce2c20e39b397ca8a752bada3c3122/doc/egp_integration_loop.md>`__.
 See :doc:`language_testing` and :doc:`qualification` for the distinct networking
 fixture evidence.
 

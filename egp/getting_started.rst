@@ -30,6 +30,12 @@ For a native editor on another desktop platform, use Godot's inherited
 ``misc/scripts/build_egp_cpp_editor.py`` to embed the exact EGP API.
 Check the :doc:`qualification` page before relying on a platform or feature.
 
+The current physics backends require single-precision x86_64 or arm64 desktop
+builds. Android, iOS, Web and double-precision export profiles explicitly omit
+physics with ``disable_physics_2d=yes disable_physics_3d=yes``. These profiles
+cannot run games that require those physics nodes. Editor builds require physics;
+Android and double-precision editors are currently unsupported.
+
 Choosing a scripting API
 ------------------------
 

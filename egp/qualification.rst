@@ -12,7 +12,7 @@ Published upstream consolidation
 --------------------------------
 
 The documentation is generated from engine revision
-``6a3690387ac23323fe94f3c57f558ae543e84f5f``. It includes the sixteen incoming
+``8ecf5efa30ce2c20e39b397ca8a752bada3c3122``. It includes the sixteen incoming
 official Godot commits through ``3ea0cf3e72699c5e3b35f7956670ac93b9d1d4a0``.
 This is a pinned upstream snapshot; later upstream commits require another
 compatibility review.
@@ -32,7 +32,7 @@ reload, network-lab and admission regressions. Native Debug/Release suites pass
 byte-identical, with matching SDK key ``4bc13481314e7023`` and MSVC 19.51 libraries.
 New native and managed artifacts supersede the previous binary identities.
 Consult the `pinned integration record
-<https://github.com/ZSG-Studios/EGP/blob/6a3690387ac23323fe94f3c57f558ae543e84f5f/doc/egp_integration_loop.md>`__
+<https://github.com/ZSG-Studios/EGP/blob/8ecf5efa30ce2c20e39b397ca8a752bada3c3122/doc/egp_integration_loop.md>`__
 for exact hashes, commands and retained failed controls.
 
 The subsequent C++ helper update adds explicit ``Net``/``Box3D`` ownership
@@ -119,6 +119,15 @@ pinned integration record.
 
 System support
 --------------
+
+Box2D and Box3D currently build on single-precision x86_64/arm64 desktop targets.
+The inherited CI matrix uses explicit no-physics export profiles for Android,
+iOS, Web and double precision. Desktop editors retain physics; Android and
+double-precision editors are unsupported. The double-precision sanitizer
+template retains unit tests, and the regression project's import, rendering and
+runtime checks run in the single-precision Clang sanitizer editor. A successful
+export-profile build would establish compilation for its selected capabilities;
+it would not qualify mobile physics or games that require omitted physics nodes.
 
 .. list-table:: Current scope
    :header-rows: 1
