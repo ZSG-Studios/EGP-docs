@@ -12,7 +12,7 @@ Published upstream consolidation
 --------------------------------
 
 The documentation is generated from engine revision
-``8ecf5efa30ce2c20e39b397ca8a752bada3c3122``. It includes the sixteen incoming
+``4fb5ee619009e4ea2d1acab9d961396454fe21a0``. It includes the sixteen incoming
 official Godot commits through ``3ea0cf3e72699c5e3b35f7956670ac93b9d1d4a0``.
 This is a pinned upstream snapshot; later upstream commits require another
 compatibility review.
@@ -20,19 +20,22 @@ compatibility review.
 The Windows Mono editor was compiled from
 ``7b57a3b3140cb1c8b0bbcfb6bbe2c1f4eab70161``. Debug and Release templates were
 compiled from ``c6a6920685b844ff0ba30d2e794117b776edf72a``; the later export fix
-affects the editor only. The final source also includes a compile-time zstd
-guard. Actual MSVC probes accept the pinned header and an absent macro, and
-reject an incorrect value. The binaries were not rebuilt for that guard, and a
-complete engine using system zstd remains unqualified. The published source pin
-and compiled artifact pins therefore differ.
+affects the editor only. Later source changes include the compile-time zstd
+guard and repairs to test registration, optional-physics CSG compilation,
+Box2D adapter contracts and Clang floating-point settings. These installed
+binaries were not rebuilt for those later changes. Actual MSVC zstd probes
+accept the pinned header and an absent macro, and reject an incorrect value;
+a complete engine using system zstd remains unqualified. The published source
+pin and compiled artifact pins therefore differ.
 
-The combined gate records 29 passing scopes, including fresh language, physics,
+The combined gate records 29 passing scopes against those Windows artifacts,
+including language, physics,
 reload, network-lab and admission regressions. Native Debug/Release suites pass
 120 checks and ten CTest tests each. The captured extension API remains
 byte-identical, with matching SDK key ``4bc13481314e7023`` and MSVC 19.51 libraries.
 New native and managed artifacts supersede the previous binary identities.
 Consult the `pinned integration record
-<https://github.com/ZSG-Studios/EGP/blob/8ecf5efa30ce2c20e39b397ca8a752bada3c3122/doc/egp_integration_loop.md>`__
+<https://github.com/ZSG-Studios/EGP/blob/4fb5ee619009e4ea2d1acab9d961396454fe21a0/doc/egp_integration_loop.md>`__
 for exact hashes, commands and retained failed controls.
 
 The subsequent C++ helper update adds explicit ``Net``/``Box3D`` ownership
@@ -117,6 +120,30 @@ native tests, rather than complete Linux editors, exports, WAN behavior or
 overload performance. Hosted results remain separately identified in the
 pinned integration record.
 
+Strict compilation and CI profiles
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The engine test runner now requires the configured physics backends instead of
+falling back to removed dummy servers. Standalone Box3D executables retain their
+own CMake/CTest targets and are excluded from the engine's doctest source list.
+The viewport test bodies and their existing assertions remain present.
+
+All 26 Box2D adapter translation units compile under optimized GCC and Clang
+with warnings treated as errors. The cleanup preserves signed index rejection,
+orders and initializes members correctly, and follows the upstream query-result
+contract: collider IDs resolve live objects through the current getter.
+All 31 Box3D adapter translation units also pass strict GCC and Clang compilation.
+CSG's path update compiles both with and without physics; these focused compiler
+checks establish neither a full engine link nor mobile runtime behavior.
+
+Clang-cl uses explicit safe floating-point options with contraction disabled,
+avoiding the conflicting precise-model/FMA override. The failing driver control
+is retained, and optimized LLVM IR keeps separate multiply/add operations even
+when the CPU supports FMA. Both standalone Box3D deterministic replay and joint
+tests pass under Windows Clang-cl Release with warnings treated as errors.
+Full engine builds and runtime qualification remain separately identified in
+the integration record.
+
 System support
 --------------
 
@@ -125,7 +152,9 @@ The inherited CI matrix uses explicit no-physics export profiles for Android,
 iOS, Web and double precision. Desktop editors retain physics; Android and
 double-precision editors are unsupported. The double-precision sanitizer
 template retains unit tests, and the regression project's import, rendering and
-runtime checks run in the single-precision Clang sanitizer editor. A successful
+runtime checks run in the single-precision Clang sanitizer editor. SCU and GCC
+sanitizer coverage use a separate single-precision desktop editor, while the
+double-precision template builds without SCU. A successful
 export-profile build would establish compilation for its selected capabilities;
 it would not qualify mobile physics or games that require omitted physics nodes.
 
