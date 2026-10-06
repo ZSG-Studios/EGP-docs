@@ -12,7 +12,7 @@ Published upstream consolidation
 --------------------------------
 
 The documentation is generated from engine revision
-``0a2186345debb2f0f33eabc1e52e77160e47d9a3``. It includes the sixteen incoming
+``8367ea997813c12427c04fbfdd5906a94b48d9a5``. It includes the sixteen incoming
 official Godot commits through ``3ea0cf3e72699c5e3b35f7956670ac93b9d1d4a0``.
 This is a pinned upstream snapshot; later upstream commits require another
 compatibility review.
@@ -37,7 +37,7 @@ reload, network-lab and admission regressions. Native Debug/Release suites pass
 byte-identical, with matching SDK key ``4bc13481314e7023`` and MSVC 19.51 libraries.
 New native and managed artifacts supersede the previous binary identities.
 Consult the `pinned integration record
-<https://github.com/ZSG-Studios/EGP/blob/0a2186345debb2f0f33eabc1e52e77160e47d9a3/doc/egp_integration_loop.md>`__
+<https://github.com/ZSG-Studios/EGP/blob/8367ea997813c12427c04fbfdd5906a94b48d9a5/doc/egp_integration_loop.md>`__
 for exact hashes, commands and retained failed controls.
 
 The subsequent C++ helper update adds explicit ``Net``/``Box3D`` ownership
@@ -129,6 +129,18 @@ The engine test runner now requires the configured physics backends instead of
 falling back to removed dummy servers. Standalone Box3D executables retain their
 own CMake/CTest targets and are excluded from the engine's doctest source list.
 The viewport test bodies and their existing assertions remain present.
+
+The hosted Windows editor built from ``0a2186345`` passes all 1,414 unit test
+cases and 423,722 assertions with test inputs pinned to ``b6227eebab``; three
+cases remain skipped by the runner. The full GDScript text fixture suite passes,
+and the original retired-RPC fixture fails against the same binary. The optional
+binary-token fixture mode remains unqualified. These checks do not replace the
+latest full platform matrix or managed and graphical runtime validation.
+
+The API compatibility script passes all eight official reference versions from
+4.0 through 4.7 against that editor. Exact documented exceptions cover EGP's
+intentional networking and physics API changes. Unlisted removals, signatures
+and hashes remain failures; retained methods remain in the native lookup test.
 
 All 26 Box2D adapter translation units compile under optimized GCC and Clang
 with warnings treated as errors. The cleanup preserves signed index rejection,
