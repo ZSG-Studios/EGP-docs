@@ -146,6 +146,15 @@ tests pass under Windows Clang-cl Release with warnings treated as errors.
 Full engine builds and runtime qualification remain separately identified in
 the integration record.
 
+The `native C++ workflow
+<https://github.com/ZSG-Studios/EGP/actions/runs/37528340019>`__ passes on
+Windows x86_64, Linux x86_64 and macOS arm64 at source revision
+``2b7e76be942716a21c139e00036468965731ddfd``. Its 39 CLI, native-game and
+export checks have the expected exit codes; twelve game logs report success,
+and the SDK unit tests pass. These headless, non-Mono checks qualify that
+earlier source revision. They do not establish graphical behavior, managed
+integration, hot reload or completion of the latest full engine matrix.
+
 System support
 --------------
 
