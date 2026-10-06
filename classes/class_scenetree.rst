@@ -55,8 +55,6 @@ Properties
    +-----------------------------+------------------------------------------------------------------------------+-----------+
    | :ref:`Node<class_Node>`     | :ref:`edited_scene_root<class_SceneTree_property_edited_scene_root>`         |           |
    +-----------------------------+------------------------------------------------------------------------------+-----------+
-   | :ref:`bool<class_bool>`     | :ref:`multiplayer_poll<class_SceneTree_property_multiplayer_poll>`           | ``true``  |
-   +-----------------------------+------------------------------------------------------------------------------+-----------+
    | :ref:`bool<class_bool>`     | :ref:`paused<class_SceneTree_property_paused>`                               | ``false`` |
    +-----------------------------+------------------------------------------------------------------------------+-----------+
    | :ref:`bool<class_bool>`     | :ref:`physics_interpolation<class_SceneTree_property_physics_interpolation>` | ``false`` |
@@ -93,8 +91,6 @@ Methods
    +--------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`int<class_int>`                                  | :ref:`get_frame<class_SceneTree_method_get_frame>`\ (\ ) |const|                                                                                                                                                                                                 |
    +--------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`MultiplayerAPI<class_MultiplayerAPI>`            | :ref:`get_multiplayer<class_SceneTree_method_get_multiplayer>`\ (\ for_path\: :ref:`NodePath<class_NodePath>` = NodePath("")\ ) |const|                                                                                                                          |
-   +--------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`int<class_int>`                                  | :ref:`get_node_count<class_SceneTree_method_get_node_count>`\ (\ ) |const|                                                                                                                                                                                       |
    +--------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`int<class_int>`                                  | :ref:`get_node_count_in_group<class_SceneTree_method_get_node_count_in_group>`\ (\ group\: :ref:`StringName<class_StringName>`\ ) |const|                                                                                                                        |
@@ -122,8 +118,6 @@ Methods
    | |void|                                                 | :ref:`set_group<class_SceneTree_method_set_group>`\ (\ group\: :ref:`StringName<class_StringName>`, property\: :ref:`String<class_String>`, value\: :ref:`Variant<class_Variant>`\ )                                                                             |
    +--------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | |void|                                                 | :ref:`set_group_flags<class_SceneTree_method_set_group_flags>`\ (\ call_flags\: :ref:`int<class_int>`, group\: :ref:`StringName<class_StringName>`, property\: :ref:`String<class_String>`, value\: :ref:`Variant<class_Variant>`\ )                             |
-   +--------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | |void|                                                 | :ref:`set_multiplayer<class_SceneTree_method_set_multiplayer>`\ (\ multiplayer\: :ref:`MultiplayerAPI<class_MultiplayerAPI>`, root_path\: :ref:`NodePath<class_NodePath>` = NodePath("")\ )                                                                      |
    +--------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | |void|                                                 | :ref:`unload_current_scene<class_SceneTree_method_unload_current_scene>`\ (\ )                                                                                                                                                                                   |
    +--------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -418,25 +412,6 @@ The root of the scene currently being edited in the editor. This is usually a di
 
 ----
 
-.. _class_SceneTree_property_multiplayer_poll:
-
-.. rst-class:: classref-property
-
-:ref:`bool<class_bool>` **multiplayer_poll** = ``true`` :ref:`🔗<class_SceneTree_property_multiplayer_poll>`
-
-.. rst-class:: classref-property-setget
-
-- |void| **set_multiplayer_poll_enabled**\ (\ value\: :ref:`bool<class_bool>`\ )
-- :ref:`bool<class_bool>` **is_multiplayer_poll_enabled**\ (\ )
-
-If ``true`` (default value), enables automatic polling of the :ref:`MultiplayerAPI<class_MultiplayerAPI>` for this SceneTree during :ref:`process_frame<class_SceneTree_signal_process_frame>`.
-
-If ``false``, you need to manually call :ref:`MultiplayerAPI.poll()<class_MultiplayerAPI_method_poll>` to process network packets and deliver RPCs. This allows running RPCs in a different loop (e.g. physics, thread, specific time step) and for manual :ref:`Mutex<class_Mutex>` protection when accessing the :ref:`MultiplayerAPI<class_MultiplayerAPI>` from threads.
-
-.. rst-class:: classref-item-separator
-
-----
-
 .. _class_SceneTree_property_paused:
 
 .. rst-class:: classref-property
@@ -697,18 +672,6 @@ Returns how many physics process steps have been processed, since the applicatio
 
 ----
 
-.. _class_SceneTree_method_get_multiplayer:
-
-.. rst-class:: classref-method
-
-:ref:`MultiplayerAPI<class_MultiplayerAPI>` **get_multiplayer**\ (\ for_path\: :ref:`NodePath<class_NodePath>` = NodePath("")\ ) |const| :ref:`🔗<class_SceneTree_method_get_multiplayer>`
-
-Searches for the :ref:`MultiplayerAPI<class_MultiplayerAPI>` configured for the given path, if one does not exist it searches the parent paths until one is found. If the path is empty, or none is found, the default one is returned. See :ref:`set_multiplayer()<class_SceneTree_method_set_multiplayer>`.
-
-.. rst-class:: classref-item-separator
-
-----
-
 .. _class_SceneTree_method_get_node_count:
 
 .. rst-class:: classref-method
@@ -886,22 +849,6 @@ Sets the given ``property`` to ``value`` on all nodes inside this tree added to 
 Sets the given ``property`` to ``value`` on all nodes inside this tree added to the given ``group``. Nodes that do not have the ``property`` are ignored. Use ``call_flags`` to customize this method's behavior (see :ref:`GroupCallFlags<enum_SceneTree_GroupCallFlags>`).
 
 \ **Note:** In C#, ``property`` must be in snake_case when referring to built-in Godot properties. Prefer using the names exposed in the ``PropertyName`` class to avoid allocating a new :ref:`StringName<class_StringName>` on each call.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_SceneTree_method_set_multiplayer:
-
-.. rst-class:: classref-method
-
-|void| **set_multiplayer**\ (\ multiplayer\: :ref:`MultiplayerAPI<class_MultiplayerAPI>`, root_path\: :ref:`NodePath<class_NodePath>` = NodePath("")\ ) :ref:`🔗<class_SceneTree_method_set_multiplayer>`
-
-Sets a custom :ref:`MultiplayerAPI<class_MultiplayerAPI>` with the given ``root_path`` (controlling also the relative subpaths), or override the default one if ``root_path`` is empty.
-
-\ **Note:** No :ref:`MultiplayerAPI<class_MultiplayerAPI>` must be configured for the subpath containing ``root_path``, nested custom multiplayers are not allowed. I.e. if one is configured for ``"/root/Foo"`` setting one for ``"/root/Foo/Bar"`` will cause an error.
-
-\ **Note:** :ref:`set_multiplayer()<class_SceneTree_method_set_multiplayer>` should be called *before* the child nodes are ready at the given ``root_path``. If multiplayer nodes like :ref:`MultiplayerSpawner<class_MultiplayerSpawner>` or :ref:`MultiplayerSynchronizer<class_MultiplayerSynchronizer>` are added to the tree before the custom multiplayer API is set, they will not work.
 
 .. rst-class:: classref-item-separator
 

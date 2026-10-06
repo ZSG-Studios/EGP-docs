@@ -40,8 +40,6 @@ Properties
    +---------------------------+-------------------------------------------------------------------------------+-----------+
    | :ref:`float<class_float>` | :ref:`motor_target_velocity<class_PinJoint2D_property_motor_target_velocity>` | ``0.0``   |
    +---------------------------+-------------------------------------------------------------------------------+-----------+
-   | :ref:`float<class_float>` | :ref:`softness<class_PinJoint2D_property_softness>`                           | ``0.0``   |
-   +---------------------------+-------------------------------------------------------------------------------+-----------+
 
 .. rst-class:: classref-section-separator
 
@@ -132,23 +130,6 @@ When activated, a motor turns the pin.
 - :ref:`float<class_float>` **get_motor_target_velocity**\ (\ )
 
 Target speed for the motor. In radians per second.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_PinJoint2D_property_softness:
-
-.. rst-class:: classref-property
-
-:ref:`float<class_float>` **softness** = ``0.0`` :ref:`🔗<class_PinJoint2D_property_softness>`
-
-.. rst-class:: classref-property-setget
-
-- |void| **set_softness**\ (\ value\: :ref:`float<class_float>`\ )
-- :ref:`float<class_float>` **get_softness**\ (\ )
-
-The higher this value, the more the bond to the pinned partner can flex.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
 .. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`

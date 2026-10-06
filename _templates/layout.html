@@ -18,6 +18,10 @@
 
 {%- block document %}
 <div itemprop="articleBody">
+  <div class="egp-version-notice">
+    <strong>EGP development documentation</strong>
+    <span>Based on Godot 4.8-dev. <a href="{{ pathto('egp/migration') }}">Compatibility guide</a></span>
+  </div>
   {% if godot_is_latest or godot_show_article_status %}
   <div class="admonition-grid">
     {% if godot_is_latest %}

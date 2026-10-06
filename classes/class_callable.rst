@@ -153,10 +153,6 @@ Methods
    +-------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`bool<class_bool>`             | :ref:`is_valid<class_Callable_method_is_valid>`\ (\ ) |const|                                                                                     |
    +-------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
-   | |void|                              | :ref:`rpc<class_Callable_method_rpc>`\ (\ ...\ ) |vararg| |const|                                                                                 |
-   +-------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
-   | |void|                              | :ref:`rpc_id<class_Callable_method_rpc_id>`\ (\ peer_id\: :ref:`int<class_int>`, ...\ ) |vararg| |const|                                          |
-   +-------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`Callable<class_Callable>`     | :ref:`unbind<class_Callable_method_unbind>`\ (\ argcount\: :ref:`int<class_int>`\ ) |const|                                                       |
    +-------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
 
@@ -484,30 +480,6 @@ Returns ``true`` if this **Callable** is a standard callable. This method is the
 :ref:`bool<class_bool>` **is_valid**\ (\ ) |const| :ref:`🔗<class_Callable_method_is_valid>`
 
 Returns ``true`` if the callable's object exists and has a valid method name assigned, or is a custom callable.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_Callable_method_rpc:
-
-.. rst-class:: classref-method
-
-|void| **rpc**\ (\ ...\ ) |vararg| |const| :ref:`🔗<class_Callable_method_rpc>`
-
-Perform an RPC (Remote Procedure Call) on all connected peers. This is used for multiplayer and is normally not available, unless the function being called has been marked as *RPC* (using :ref:`@GDScript.@rpc<class_@GDScript_annotation_@rpc>` or :ref:`Node.rpc_config()<class_Node_method_rpc_config>`). Calling this method on unsupported functions will result in an error. See :ref:`Node.rpc()<class_Node_method_rpc>`.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_Callable_method_rpc_id:
-
-.. rst-class:: classref-method
-
-|void| **rpc_id**\ (\ peer_id\: :ref:`int<class_int>`, ...\ ) |vararg| |const| :ref:`🔗<class_Callable_method_rpc_id>`
-
-Perform an RPC (Remote Procedure Call) on a specific peer ID (see multiplayer documentation for reference). This is used for multiplayer and is normally not available unless the function being called has been marked as *RPC* (using :ref:`@GDScript.@rpc<class_@GDScript_annotation_@rpc>` or :ref:`Node.rpc_config()<class_Node_method_rpc_config>`). Calling this method on unsupported functions will result in an error. See :ref:`Node.rpc_id()<class_Node_method_rpc_id>`.
 
 .. rst-class:: classref-item-separator
 

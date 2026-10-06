@@ -19,6 +19,8 @@ A physics joint that connects two 3D physics bodies in a way that simulates a ba
 Description
 -----------
 
+EGP maps this joint to a native Box3D spherical constraint, including swing and twist limits. Bias and softness map to native constraint tuning; numerical equivalence with other physics backends requires separate qualification.
+
 A physics joint that connects two 3D physics bodies in a way that simulates a ball-and-socket joint. The twist axis is initiated as the X axis of the **ConeTwistJoint3D**. Once the physics bodies swing, the twist axis is calculated as the middle of the X axes of the joint in the local space of the two physics bodies. Useful for limbs like shoulders and hips, lamps hanging off a ceiling, etc.
 
 .. rst-class:: classref-reftable-group

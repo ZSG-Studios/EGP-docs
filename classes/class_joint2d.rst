@@ -32,8 +32,6 @@ Properties
    :widths: auto
 
    +---------------------------------+--------------------------------------------------------------------+------------------+
-   | :ref:`float<class_float>`       | :ref:`bias<class_Joint2D_property_bias>`                           | ``0.0``          |
-   +---------------------------------+--------------------------------------------------------------------+------------------+
    | :ref:`bool<class_bool>`         | :ref:`disable_collision<class_Joint2D_property_disable_collision>` | ``true``         |
    +---------------------------------+--------------------------------------------------------------------+------------------+
    | :ref:`NodePath<class_NodePath>` | :ref:`node_a<class_Joint2D_property_node_a>`                       | ``NodePath("")`` |
@@ -61,25 +59,6 @@ Methods
 
 Property Descriptions
 ---------------------
-
-.. _class_Joint2D_property_bias:
-
-.. rst-class:: classref-property
-
-:ref:`float<class_float>` **bias** = ``0.0`` :ref:`🔗<class_Joint2D_property_bias>`
-
-.. rst-class:: classref-property-setget
-
-- |void| **set_bias**\ (\ value\: :ref:`float<class_float>`\ )
-- :ref:`float<class_float>` **get_bias**\ (\ )
-
-When :ref:`node_a<class_Joint2D_property_node_a>` and :ref:`node_b<class_Joint2D_property_node_b>` move in different directions the :ref:`bias<class_Joint2D_property_bias>` controls how fast the joint pulls them back to their original position. The lower the :ref:`bias<class_Joint2D_property_bias>` the more the two bodies can pull on the joint.
-
-When set to ``0``, the default value from :ref:`ProjectSettings.physics/2d/solver/default_constraint_bias<class_ProjectSettings_property_physics/2d/solver/default_constraint_bias>` is used.
-
-.. rst-class:: classref-item-separator
-
-----
 
 .. _class_Joint2D_property_disable_collision:
 

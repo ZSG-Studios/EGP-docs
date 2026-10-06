@@ -12,9 +12,14 @@ ScriptExtension
 
 **Inherits:** :ref:`Script<class_Script>` **<** :ref:`Resource<class_Resource>` **<** :ref:`RefCounted<class_RefCounted>` **<** :ref:`Object<class_Object>`
 
-.. container:: contribute
+Virtual interface for implementing a native script resource and its language integration.
 
-	There is currently no description for this class. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+.. rst-class:: classref-introduction-group
+
+Description
+-----------
+
+Implement the required virtual methods to provide executable instances, source code, introspection, editor exports, and reload behavior for a custom :ref:`ScriptLanguage<class_ScriptLanguage>`. Native pointer hooks require GDExtension and are not supported by generated C# or ordinary GDScript overrides. Instance ownership, placeholder cleanup, and state preservation remain the language implementation's responsibility.
 
 .. rst-class:: classref-reftable-group
 
@@ -52,8 +57,6 @@ Methods
    | :ref:`Dictionary<class_Dictionary>`                              | :ref:`_get_method_info<class_ScriptExtension_private_method__get_method_info>`\ (\ method\: :ref:`StringName<class_StringName>`\ ) |virtual| |required| |const|                         |
    +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`Variant<class_Variant>`                                    | :ref:`_get_property_default_value<class_ScriptExtension_private_method__get_property_default_value>`\ (\ property\: :ref:`StringName<class_StringName>`\ ) |virtual| |required| |const| |
-   +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`Variant<class_Variant>`                                    | :ref:`_get_rpc_config<class_ScriptExtension_private_method__get_rpc_config>`\ (\ ) |virtual| |required| |const|                                                                         |
    +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`Variant<class_Variant>`                                    | :ref:`_get_script_method_argument_count<class_ScriptExtension_private_method__get_script_method_argument_count>`\ (\ method\: :ref:`StringName<class_StringName>`\ ) |virtual| |const|  |
    +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -115,9 +118,7 @@ Method Descriptions
 
 :ref:`bool<class_bool>` **_can_instantiate**\ (\ ) |virtual| |required| |const| :ref:`🔗<class_ScriptExtension_private_method__can_instantiate>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Overridable implementation of :ref:`Script.can_instantiate()<class_Script_method_can_instantiate>`.
 
 .. rst-class:: classref-item-separator
 
@@ -129,9 +130,7 @@ Method Descriptions
 
 :ref:`bool<class_bool>` **_editor_can_reload_from_file**\ (\ ) |virtual| |required| :ref:`🔗<class_ScriptExtension_private_method__editor_can_reload_from_file>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Returns whether the editor may safely reload this script from its source file. Reject reloads that would discard unsaved source or violate the language implementation's reload requirements.
 
 .. rst-class:: classref-item-separator
 
@@ -143,9 +142,7 @@ Method Descriptions
 
 :ref:`Script<class_Script>` **_get_base_script**\ (\ ) |virtual| |required| |const| :ref:`🔗<class_ScriptExtension_private_method__get_base_script>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Overridable implementation of :ref:`Script.get_base_script()<class_Script_method_get_base_script>`.
 
 .. rst-class:: classref-item-separator
 
@@ -157,9 +154,7 @@ Method Descriptions
 
 :ref:`String<class_String>` **_get_class_icon_path**\ (\ ) |virtual| |const| :ref:`🔗<class_ScriptExtension_private_method__get_class_icon_path>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Returns the resource path to the icon used for this script class in the editor, or an empty string to use the default icon.
 
 .. rst-class:: classref-item-separator
 
@@ -171,9 +166,7 @@ Method Descriptions
 
 :ref:`Dictionary<class_Dictionary>` **_get_constants**\ (\ ) |virtual| |required| |const| :ref:`🔗<class_ScriptExtension_private_method__get_constants>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Returns a dictionary mapping script constant names to their values. Used by :ref:`Script.get_script_constant_map()<class_Script_method_get_script_constant_map>`.
 
 .. rst-class:: classref-item-separator
 
@@ -185,9 +178,7 @@ Method Descriptions
 
 :ref:`StringName<class_StringName>` **_get_doc_class_name**\ (\ ) |virtual| |required| |const| :ref:`🔗<class_ScriptExtension_private_method__get_doc_class_name>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Returns the class identity used for this script's generated editor documentation.
 
 .. rst-class:: classref-item-separator
 
@@ -199,9 +190,7 @@ Method Descriptions
 
 :ref:`Array<class_Array>`\[:ref:`Dictionary<class_Dictionary>`\] **_get_documentation**\ (\ ) |virtual| |required| |const| :ref:`🔗<class_ScriptExtension_private_method__get_documentation>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Returns documentation dictionaries for the script classes defined by this resource. Each dictionary uses the engine's class-documentation schema, including class name, inheritance, descriptions, and member documentation. This is an internal language integration hook.
 
 .. rst-class:: classref-item-separator
 
@@ -213,9 +202,7 @@ Method Descriptions
 
 :ref:`StringName<class_StringName>` **_get_global_name**\ (\ ) |virtual| |required| |const| :ref:`🔗<class_ScriptExtension_private_method__get_global_name>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Overridable implementation of :ref:`Script.get_global_name()<class_Script_method_get_global_name>`.
 
 .. rst-class:: classref-item-separator
 
@@ -227,9 +214,7 @@ Method Descriptions
 
 :ref:`StringName<class_StringName>` **_get_instance_base_type**\ (\ ) |virtual| |required| |const| :ref:`🔗<class_ScriptExtension_private_method__get_instance_base_type>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Overridable implementation of :ref:`Script.get_instance_base_type()<class_Script_method_get_instance_base_type>`.
 
 .. rst-class:: classref-item-separator
 
@@ -241,9 +226,7 @@ Method Descriptions
 
 :ref:`ScriptLanguage<class_ScriptLanguage>` **_get_language**\ (\ ) |virtual| |required| |const| :ref:`🔗<class_ScriptExtension_private_method__get_language>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Returns the :ref:`ScriptLanguage<class_ScriptLanguage>` implementation that owns this script resource.
 
 .. rst-class:: classref-item-separator
 
@@ -255,9 +238,7 @@ Method Descriptions
 
 :ref:`int<class_int>` **_get_member_line**\ (\ member\: :ref:`StringName<class_StringName>`\ ) |virtual| |required| |const| :ref:`🔗<class_ScriptExtension_private_method__get_member_line>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Returns the source line for ``member``, or ``-1`` when no source location is available. Used by editor navigation.
 
 .. rst-class:: classref-item-separator
 
@@ -269,9 +250,7 @@ Method Descriptions
 
 :ref:`Array<class_Array>`\[:ref:`StringName<class_StringName>`\] **_get_members**\ (\ ) |virtual| |required| |const| :ref:`🔗<class_ScriptExtension_private_method__get_members>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Returns the names of the script's members for the engine's script introspection.
 
 .. rst-class:: classref-item-separator
 
@@ -283,9 +262,7 @@ Method Descriptions
 
 :ref:`Dictionary<class_Dictionary>` **_get_method_info**\ (\ method\: :ref:`StringName<class_StringName>`\ ) |virtual| |required| |const| :ref:`🔗<class_ScriptExtension_private_method__get_method_info>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Returns a method-info dictionary for ``method``, using the schema described by :ref:`Object.get_method_list()<class_Object_method_get_method_list>`. Return an empty dictionary when the method is unknown.
 
 .. rst-class:: classref-item-separator
 
@@ -297,23 +274,7 @@ Method Descriptions
 
 :ref:`Variant<class_Variant>` **_get_property_default_value**\ (\ property\: :ref:`StringName<class_StringName>`\ ) |virtual| |required| |const| :ref:`🔗<class_ScriptExtension_private_method__get_property_default_value>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_ScriptExtension_private_method__get_rpc_config:
-
-.. rst-class:: classref-method
-
-:ref:`Variant<class_Variant>` **_get_rpc_config**\ (\ ) |virtual| |required| |const| :ref:`🔗<class_ScriptExtension_private_method__get_rpc_config>`
-
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Overridable implementation of :ref:`Script.get_property_default_value()<class_Script_method_get_property_default_value>`.
 
 .. rst-class:: classref-item-separator
 
@@ -337,9 +298,7 @@ Return the expected argument count for the given ``method``, or ``null`` if it c
 
 :ref:`Array<class_Array>`\[:ref:`Dictionary<class_Dictionary>`\] **_get_script_method_list**\ (\ ) |virtual| |required| |const| :ref:`🔗<class_ScriptExtension_private_method__get_script_method_list>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Overridable implementation of :ref:`Script.get_script_method_list()<class_Script_method_get_script_method_list>`.
 
 .. rst-class:: classref-item-separator
 
@@ -351,9 +310,7 @@ Return the expected argument count for the given ``method``, or ``null`` if it c
 
 :ref:`Array<class_Array>`\[:ref:`Dictionary<class_Dictionary>`\] **_get_script_property_list**\ (\ ) |virtual| |required| |const| :ref:`🔗<class_ScriptExtension_private_method__get_script_property_list>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Overridable implementation of :ref:`Script.get_script_property_list()<class_Script_method_get_script_property_list>`.
 
 .. rst-class:: classref-item-separator
 
@@ -365,9 +322,7 @@ Return the expected argument count for the given ``method``, or ``null`` if it c
 
 :ref:`Array<class_Array>`\[:ref:`Dictionary<class_Dictionary>`\] **_get_script_signal_list**\ (\ ) |virtual| |required| |const| :ref:`🔗<class_ScriptExtension_private_method__get_script_signal_list>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Overridable implementation of :ref:`Script.get_script_signal_list()<class_Script_method_get_script_signal_list>`.
 
 .. rst-class:: classref-item-separator
 
@@ -379,9 +334,7 @@ Return the expected argument count for the given ``method``, or ``null`` if it c
 
 :ref:`String<class_String>` **_get_source_code**\ (\ ) |virtual| |required| |const| :ref:`🔗<class_ScriptExtension_private_method__get_source_code>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Overridable getter for :ref:`Script.source_code<class_Script_property_source_code>`.
 
 .. rst-class:: classref-item-separator
 
@@ -393,9 +346,7 @@ Return the expected argument count for the given ``method``, or ``null`` if it c
 
 :ref:`bool<class_bool>` **_has_method**\ (\ method\: :ref:`StringName<class_StringName>`\ ) |virtual| |required| |const| :ref:`🔗<class_ScriptExtension_private_method__has_method>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Returns whether the script defines ``method``, including inherited methods according to the language's lookup rules. Used by :ref:`Script.has_script_method()<class_Script_method_has_script_method>`.
 
 .. rst-class:: classref-item-separator
 
@@ -407,9 +358,7 @@ Return the expected argument count for the given ``method``, or ``null`` if it c
 
 :ref:`bool<class_bool>` **_has_property_default_value**\ (\ property\: :ref:`StringName<class_StringName>`\ ) |virtual| |required| |const| :ref:`🔗<class_ScriptExtension_private_method__has_property_default_value>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Returns whether a default value is available for ``property``. Distinguish a missing default from a valid ``null`` default returned by :ref:`_get_property_default_value()<class_ScriptExtension_private_method__get_property_default_value>`.
 
 .. rst-class:: classref-item-separator
 
@@ -421,9 +370,7 @@ Return the expected argument count for the given ``method``, or ``null`` if it c
 
 :ref:`bool<class_bool>` **_has_script_signal**\ (\ signal\: :ref:`StringName<class_StringName>`\ ) |virtual| |required| |const| :ref:`🔗<class_ScriptExtension_private_method__has_script_signal>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Overridable implementation of :ref:`Script.has_script_signal()<class_Script_method_has_script_signal>`.
 
 .. rst-class:: classref-item-separator
 
@@ -435,9 +382,7 @@ Return the expected argument count for the given ``method``, or ``null`` if it c
 
 :ref:`bool<class_bool>` **_has_source_code**\ (\ ) |virtual| |required| |const| :ref:`🔗<class_ScriptExtension_private_method__has_source_code>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Overridable implementation of :ref:`Script.has_source_code()<class_Script_method_has_source_code>`.
 
 .. rst-class:: classref-item-separator
 
@@ -449,9 +394,7 @@ Return the expected argument count for the given ``method``, or ``null`` if it c
 
 :ref:`bool<class_bool>` **_has_static_method**\ (\ method\: :ref:`StringName<class_StringName>`\ ) |virtual| |required| |const| :ref:`🔗<class_ScriptExtension_private_method__has_static_method>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Returns whether ``method`` is available as a static method of the script.
 
 .. rst-class:: classref-item-separator
 
@@ -463,9 +406,7 @@ Return the expected argument count for the given ``method``, or ``null`` if it c
 
 :ref:`bool<class_bool>` **_inherits_script**\ (\ script\: :ref:`Script<class_Script>`\ ) |virtual| |required| |const| :ref:`🔗<class_ScriptExtension_private_method__inherits_script>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Returns whether this script derives from ``script`` through its script inheritance chain.
 
 .. rst-class:: classref-item-separator
 
@@ -477,9 +418,7 @@ Return the expected argument count for the given ``method``, or ``null`` if it c
 
 ``void*`` **_instance_create**\ (\ for_object\: :ref:`Object<class_Object>`\ ) |virtual| |required| |const| :ref:`🔗<class_ScriptExtension_private_method__instance_create>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Creates a native script instance attached to ``for_object`` and returns its opaque native ``ScriptInstance`` pointer. This pointer-based GDExtension hook is for native language implementations; it cannot be implemented through generated C# or ordinary GDScript bindings.
 
 .. rst-class:: classref-item-separator
 
@@ -492,6 +431,8 @@ Return the expected argument count for the given ``method``, or ``null`` if it c
 :ref:`bool<class_bool>` **_instance_has**\ (\ object\: :ref:`Object<class_Object>`\ ) |virtual| |const| :ref:`🔗<class_ScriptExtension_private_method__instance_has>`
 
 **Deprecated:** This method is not called by the engine.
+
+Overridable implementation of :ref:`Script.instance_has()<class_Script_method_instance_has>`.
 
 .. rst-class:: classref-item-separator
 
@@ -515,9 +456,7 @@ Returns ``true`` if the script is an abstract script. Abstract scripts cannot be
 
 :ref:`bool<class_bool>` **_is_placeholder_fallback_enabled**\ (\ ) |virtual| |required| |const| :ref:`🔗<class_ScriptExtension_private_method__is_placeholder_fallback_enabled>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Returns whether placeholder instances should accept fallback property access while the executable script instance is unavailable.
 
 .. rst-class:: classref-item-separator
 
@@ -529,9 +468,7 @@ Returns ``true`` if the script is an abstract script. Abstract scripts cannot be
 
 :ref:`bool<class_bool>` **_is_tool**\ (\ ) |virtual| |required| |const| :ref:`🔗<class_ScriptExtension_private_method__is_tool>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Overridable implementation of :ref:`Script.is_tool()<class_Script_method_is_tool>`.
 
 .. rst-class:: classref-item-separator
 
@@ -543,9 +480,7 @@ Returns ``true`` if the script is an abstract script. Abstract scripts cannot be
 
 :ref:`bool<class_bool>` **_is_valid**\ (\ ) |virtual| |required| |const| :ref:`🔗<class_ScriptExtension_private_method__is_valid>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Returns whether the script has valid executable code and metadata for its language implementation.
 
 .. rst-class:: classref-item-separator
 
@@ -557,9 +492,7 @@ Returns ``true`` if the script is an abstract script. Abstract scripts cannot be
 
 |void| **_placeholder_erased**\ (\ placeholder\: ``void*``\ ) |virtual| :ref:`🔗<class_ScriptExtension_private_method__placeholder_erased>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Notifies the native language implementation that ``placeholder`` has been removed. Release its bookkeeping and retained reload state without dereferencing a destroyed owner. This pointer-based hook is restricted to native GDExtension language implementations.
 
 .. rst-class:: classref-item-separator
 
@@ -571,9 +504,7 @@ Returns ``true`` if the script is an abstract script. Abstract scripts cannot be
 
 ``void*`` **_placeholder_instance_create**\ (\ for_object\: :ref:`Object<class_Object>`\ ) |virtual| |required| |const| :ref:`🔗<class_ScriptExtension_private_method__placeholder_instance_create>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Creates the native placeholder instance for ``for_object`` used when the script cannot execute, such as during editing or reload failure. Return a compatible native placeholder-instance pointer or a null pointer when unavailable. This pointer-based hook is restricted to native GDExtension language implementations.
 
 .. rst-class:: classref-item-separator
 
@@ -585,9 +516,7 @@ Returns ``true`` if the script is an abstract script. Abstract scripts cannot be
 
 :ref:`Error<enum_@GlobalScope_Error>` **_reload**\ (\ keep_state\: :ref:`bool<class_bool>`\ ) |virtual| |required| :ref:`🔗<class_ScriptExtension_private_method__reload>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Overridable implementation of :ref:`Script.reload()<class_Script_method_reload>`.
 
 .. rst-class:: classref-item-separator
 
@@ -599,9 +528,7 @@ Returns ``true`` if the script is an abstract script. Abstract scripts cannot be
 
 |void| **_set_source_code**\ (\ code\: :ref:`String<class_String>`\ ) |virtual| |required| :ref:`🔗<class_ScriptExtension_private_method__set_source_code>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Overridable setter for :ref:`Script.source_code<class_Script_property_source_code>`.
 
 .. rst-class:: classref-item-separator
 
@@ -613,9 +540,7 @@ Returns ``true`` if the script is an abstract script. Abstract scripts cannot be
 
 |void| **_update_exports**\ (\ ) |virtual| |required| :ref:`🔗<class_ScriptExtension_private_method__update_exports>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Refreshes exported property metadata and editor placeholder properties after source or dependency changes. Preserve compatible existing values when updating placeholders.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
 .. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`

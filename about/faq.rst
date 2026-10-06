@@ -8,6 +8,34 @@
 Frequently asked questions
 ==========================
 
+What changes in EGP?
+--------------------
+
+EGP replaces the scene physics backends with Box2D and Box3D, provides explicit
+Box3D worlds and Yojimbo-based authoritative networking, and adds integrated
+C++ tooling and opted-in runtime reload. Start with :ref:`doc_egp_migration`
+before importing a project that uses Godot's multiplayer or physics APIs.
+
+Where do I find the matching API and supported platforms?
+---------------------------------------------------------
+
+The class reference is generated from EGP's source revision, recorded in
+``egp/source_manifest.json`` in the documentation repository. The
+:ref:`qualification guide <doc_egp_qualification>` links the runtime receipts
+and identifies where further platform, scale or behavior testing is required.
+Use matching editors, export templates and SDK artifacts for that revision.
+
+Do the networking examples provide production authentication?
+-------------------------------------------------------------
+
+The examples demonstrate encrypted token admission, bounded state replication,
+ownership, interest and reconnect handling. A production game must supply its
+own trusted identity service, token issuer and application persistence. See
+:ref:`doc_egp_networking` for the integration contract.
+
+The questions below describe inherited Godot functionality and licensing.
+For changed EGP systems, follow the EGP manual and generated reference.
+
 What can I do with Godot? How much does it cost? What are the license terms?
 ----------------------------------------------------------------------------
 

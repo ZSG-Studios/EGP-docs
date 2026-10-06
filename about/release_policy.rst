@@ -2,8 +2,18 @@
 
 .. _doc_release_policy:
 
-Godot release policy
-====================
+Release policy
+==============
+
+EGP is a development fork based on Godot 4.8-dev. Use a matching editor,
+export templates, native SDK and generated API reference from the same
+qualified engine revision. An upstream version number alone does not establish
+EGP binary or API compatibility. Consult :ref:`doc_egp_qualification` and
+:ref:`doc_egp_migration` for the current scope and changed systems.
+
+The following policy describes **upstream Godot releases**. It is retained
+for context and does not promise an EGP release cadence, support window or
+platform coverage.
 
 Godot's release policy is in constant evolution. The description below
 provides a general idea of what to expect, but what will actually

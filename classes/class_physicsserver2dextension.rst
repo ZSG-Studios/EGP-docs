@@ -242,17 +242,27 @@ Methods
    +-------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | |void|                                                            | :ref:`_joint_disable_collisions_between_bodies<class_PhysicsServer2DExtension_private_method__joint_disable_collisions_between_bodies>`\ (\ joint\: :ref:`RID<class_RID>`, disable\: :ref:`bool<class_bool>`\ ) |virtual| |required|                                                                                                                                                                                                                             |
    +-------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`Dictionary<class_Dictionary>`                               | :ref:`_joint_get_configuration<class_PhysicsServer2DExtension_private_method__joint_get_configuration>`\ (\ joint\: :ref:`RID<class_RID>`\ ) |virtual| |required| |const|                                                                                                                                                                                                                                                                                        |
+   +-------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`Vector2<class_Vector2>`                                     | :ref:`_joint_get_constraint_force<class_PhysicsServer2DExtension_private_method__joint_get_constraint_force>`\ (\ joint\: :ref:`RID<class_RID>`\ ) |virtual| |required| |const|                                                                                                                                                                                                                                                                                  |
+   +-------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`float<class_float>`                                         | :ref:`_joint_get_constraint_torque<class_PhysicsServer2DExtension_private_method__joint_get_constraint_torque>`\ (\ joint\: :ref:`RID<class_RID>`\ ) |virtual| |required| |const|                                                                                                                                                                                                                                                                                |
+   +-------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`float<class_float>`                                         | :ref:`_joint_get_param<class_PhysicsServer2DExtension_private_method__joint_get_param>`\ (\ joint\: :ref:`RID<class_RID>`, param\: :ref:`JointParam<enum_PhysicsServer2D_JointParam>`\ ) |virtual| |required| |const|                                                                                                                                                                                                                                            |
    +-------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`JointType<enum_PhysicsServer2D_JointType>`                  | :ref:`_joint_get_type<class_PhysicsServer2DExtension_private_method__joint_get_type>`\ (\ joint\: :ref:`RID<class_RID>`\ ) |virtual| |required| |const|                                                                                                                                                                                                                                                                                                          |
    +-------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`bool<class_bool>`                                           | :ref:`_joint_is_disabled_collisions_between_bodies<class_PhysicsServer2DExtension_private_method__joint_is_disabled_collisions_between_bodies>`\ (\ joint\: :ref:`RID<class_RID>`\ ) |virtual| |required| |const|                                                                                                                                                                                                                                                |
    +-------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | |void|                                                            | :ref:`_joint_make_configured<class_PhysicsServer2DExtension_private_method__joint_make_configured>`\ (\ joint\: :ref:`RID<class_RID>`, type\: :ref:`JointType<enum_PhysicsServer2D_JointType>`, body_a\: :ref:`RID<class_RID>`, frame_a\: :ref:`Transform2D<class_Transform2D>`, body_b\: :ref:`RID<class_RID>`, frame_b\: :ref:`Transform2D<class_Transform2D>`, configuration\: :ref:`Dictionary<class_Dictionary>`\ ) |virtual| |required|                    |
+   +-------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | |void|                                                            | :ref:`_joint_make_damped_spring<class_PhysicsServer2DExtension_private_method__joint_make_damped_spring>`\ (\ joint\: :ref:`RID<class_RID>`, anchor_a\: :ref:`Vector2<class_Vector2>`, anchor_b\: :ref:`Vector2<class_Vector2>`, body_a\: :ref:`RID<class_RID>`, body_b\: :ref:`RID<class_RID>`\ ) |virtual| |required|                                                                                                                                          |
    +-------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | |void|                                                            | :ref:`_joint_make_groove<class_PhysicsServer2DExtension_private_method__joint_make_groove>`\ (\ joint\: :ref:`RID<class_RID>`, a_groove1\: :ref:`Vector2<class_Vector2>`, a_groove2\: :ref:`Vector2<class_Vector2>`, b_anchor\: :ref:`Vector2<class_Vector2>`, body_a\: :ref:`RID<class_RID>`, body_b\: :ref:`RID<class_RID>`\ ) |virtual| |required|                                                                                                            |
    +-------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | |void|                                                            | :ref:`_joint_make_pin<class_PhysicsServer2DExtension_private_method__joint_make_pin>`\ (\ joint\: :ref:`RID<class_RID>`, anchor\: :ref:`Vector2<class_Vector2>`, body_a\: :ref:`RID<class_RID>`, body_b\: :ref:`RID<class_RID>`\ ) |virtual| |required|                                                                                                                                                                                                          |
+   +-------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | |void|                                                            | :ref:`_joint_set_configuration<class_PhysicsServer2DExtension_private_method__joint_set_configuration>`\ (\ joint\: :ref:`RID<class_RID>`, configuration\: :ref:`Dictionary<class_Dictionary>`\ ) |virtual| |required|                                                                                                                                                                                                                                           |
    +-------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | |void|                                                            | :ref:`_joint_set_param<class_PhysicsServer2DExtension_private_method__joint_set_param>`\ (\ joint\: :ref:`RID<class_RID>`, param\: :ref:`JointParam<enum_PhysicsServer2D_JointParam>`, value\: :ref:`float<class_float>`\ ) |virtual| |required|                                                                                                                                                                                                                 |
    +-------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -274,23 +284,25 @@ Methods
    +-------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`bool<class_bool>`                                           | :ref:`_shape_collide<class_PhysicsServer2DExtension_private_method__shape_collide>`\ (\ shape_A\: :ref:`RID<class_RID>`, xform_A\: :ref:`Transform2D<class_Transform2D>`, motion_A\: :ref:`Vector2<class_Vector2>`, shape_B\: :ref:`RID<class_RID>`, xform_B\: :ref:`Transform2D<class_Transform2D>`, motion_B\: :ref:`Vector2<class_Vector2>`, r_results\: ``void*``, result_max\: :ref:`int<class_int>`, r_result_count\: ``int32_t*``\ ) |virtual| |required| |
    +-------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`float<class_float>`                                         | :ref:`_shape_get_custom_solver_bias<class_PhysicsServer2DExtension_private_method__shape_get_custom_solver_bias>`\ (\ shape\: :ref:`RID<class_RID>`\ ) |virtual| |required| |const|                                                                                                                                                                                                                                                                              |
-   +-------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`Variant<class_Variant>`                                     | :ref:`_shape_get_data<class_PhysicsServer2DExtension_private_method__shape_get_data>`\ (\ shape\: :ref:`RID<class_RID>`\ ) |virtual| |required| |const|                                                                                                                                                                                                                                                                                                          |
    +-------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`ShapeType<enum_PhysicsServer2D_ShapeType>`                  | :ref:`_shape_get_type<class_PhysicsServer2DExtension_private_method__shape_get_type>`\ (\ shape\: :ref:`RID<class_RID>`\ ) |virtual| |required| |const|                                                                                                                                                                                                                                                                                                          |
    +-------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | |void|                                                            | :ref:`_shape_set_custom_solver_bias<class_PhysicsServer2DExtension_private_method__shape_set_custom_solver_bias>`\ (\ shape\: :ref:`RID<class_RID>`, bias\: :ref:`float<class_float>`\ ) |virtual| |required|                                                                                                                                                                                                                                                    |
-   +-------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | |void|                                                            | :ref:`_shape_set_data<class_PhysicsServer2DExtension_private_method__shape_set_data>`\ (\ shape\: :ref:`RID<class_RID>`, data\: :ref:`Variant<class_Variant>`\ ) |virtual| |required|                                                                                                                                                                                                                                                                            |
+   +-------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | |void|                                                            | :ref:`_space_apply_explosion<class_PhysicsServer2DExtension_private_method__space_apply_explosion>`\ (\ space\: :ref:`RID<class_RID>`, position\: :ref:`Vector2<class_Vector2>`, radius\: :ref:`float<class_float>`, falloff\: :ref:`float<class_float>`, impulse_density\: :ref:`float<class_float>`, collision_mask\: :ref:`int<class_int>`\ ) |virtual| |required|                                                                                            |
    +-------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`RID<class_RID>`                                             | :ref:`_space_create<class_PhysicsServer2DExtension_private_method__space_create>`\ (\ ) |virtual| |required|                                                                                                                                                                                                                                                                                                                                                     |
    +-------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`int<class_int>`                                             | :ref:`_space_get_contact_count<class_PhysicsServer2DExtension_private_method__space_get_contact_count>`\ (\ space\: :ref:`RID<class_RID>`\ ) |virtual| |required| |const|                                                                                                                                                                                                                                                                                        |
    +-------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`Array<class_Array>`                                         | :ref:`_space_get_contact_hit_events<class_PhysicsServer2DExtension_private_method__space_get_contact_hit_events>`\ (\ space\: :ref:`RID<class_RID>`\ ) |virtual| |required| |const|                                                                                                                                                                                                                                                                              |
+   +-------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`PackedVector2Array<class_PackedVector2Array>`               | :ref:`_space_get_contacts<class_PhysicsServer2DExtension_private_method__space_get_contacts>`\ (\ space\: :ref:`RID<class_RID>`\ ) |virtual| |required| |const|                                                                                                                                                                                                                                                                                                  |
    +-------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`PhysicsDirectSpaceState2D<class_PhysicsDirectSpaceState2D>` | :ref:`_space_get_direct_state<class_PhysicsServer2DExtension_private_method__space_get_direct_state>`\ (\ space\: :ref:`RID<class_RID>`\ ) |virtual| |required|                                                                                                                                                                                                                                                                                                  |
+   +-------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`Array<class_Array>`                                         | :ref:`_space_get_joint_events<class_PhysicsServer2DExtension_private_method__space_get_joint_events>`\ (\ space\: :ref:`RID<class_RID>`\ ) |virtual| |required| |const|                                                                                                                                                                                                                                                                                          |
    +-------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`float<class_float>`                                         | :ref:`_space_get_param<class_PhysicsServer2DExtension_private_method__space_get_param>`\ (\ space\: :ref:`RID<class_RID>`, param\: :ref:`SpaceParameter<enum_PhysicsServer2D_SpaceParameter>`\ ) |virtual| |required| |const|                                                                                                                                                                                                                                    |
    +-------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -1606,6 +1618,42 @@ Overridable version of :ref:`PhysicsServer2D.joint_disable_collisions_between_bo
 
 ----
 
+.. _class_PhysicsServer2DExtension_private_method__joint_get_configuration:
+
+.. rst-class:: classref-method
+
+:ref:`Dictionary<class_Dictionary>` **_joint_get_configuration**\ (\ joint\: :ref:`RID<class_RID>`\ ) |virtual| |required| |const| :ref:`🔗<class_PhysicsServer2DExtension_private_method__joint_get_configuration>`
+
+Overridable version of :ref:`PhysicsServer2D.joint_get_configuration()<class_PhysicsServer2D_method_joint_get_configuration>`. Required when implementing a custom physics server; preserve the public method's validation, return values, and event schema.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_PhysicsServer2DExtension_private_method__joint_get_constraint_force:
+
+.. rst-class:: classref-method
+
+:ref:`Vector2<class_Vector2>` **_joint_get_constraint_force**\ (\ joint\: :ref:`RID<class_RID>`\ ) |virtual| |required| |const| :ref:`🔗<class_PhysicsServer2DExtension_private_method__joint_get_constraint_force>`
+
+Overridable version of :ref:`PhysicsServer2D.joint_get_constraint_force()<class_PhysicsServer2D_method_joint_get_constraint_force>`. Required when implementing a custom physics server; preserve the public method's validation, return values, and event schema.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_PhysicsServer2DExtension_private_method__joint_get_constraint_torque:
+
+.. rst-class:: classref-method
+
+:ref:`float<class_float>` **_joint_get_constraint_torque**\ (\ joint\: :ref:`RID<class_RID>`\ ) |virtual| |required| |const| :ref:`🔗<class_PhysicsServer2DExtension_private_method__joint_get_constraint_torque>`
+
+Overridable version of :ref:`PhysicsServer2D.joint_get_constraint_torque()<class_PhysicsServer2D_method_joint_get_constraint_torque>`. Required when implementing a custom physics server; preserve the public method's validation, return values, and event schema.
+
+.. rst-class:: classref-item-separator
+
+----
+
 .. _class_PhysicsServer2DExtension_private_method__joint_get_param:
 
 .. rst-class:: classref-method
@@ -1642,6 +1690,18 @@ Overridable version of :ref:`PhysicsServer2D.joint_is_disabled_collisions_betwee
 
 ----
 
+.. _class_PhysicsServer2DExtension_private_method__joint_make_configured:
+
+.. rst-class:: classref-method
+
+|void| **_joint_make_configured**\ (\ joint\: :ref:`RID<class_RID>`, type\: :ref:`JointType<enum_PhysicsServer2D_JointType>`, body_a\: :ref:`RID<class_RID>`, frame_a\: :ref:`Transform2D<class_Transform2D>`, body_b\: :ref:`RID<class_RID>`, frame_b\: :ref:`Transform2D<class_Transform2D>`, configuration\: :ref:`Dictionary<class_Dictionary>`\ ) |virtual| |required| :ref:`🔗<class_PhysicsServer2DExtension_private_method__joint_make_configured>`
+
+Overridable version of :ref:`PhysicsServer2D.joint_make_configured()<class_PhysicsServer2D_method_joint_make_configured>`. Required when implementing a custom physics server; preserve the public method's validation, return values, and event schema.
+
+.. rst-class:: classref-item-separator
+
+----
+
 .. _class_PhysicsServer2DExtension_private_method__joint_make_damped_spring:
 
 .. rst-class:: classref-method
@@ -1673,6 +1733,18 @@ Overridable version of :ref:`PhysicsServer2D.joint_make_groove()<class_PhysicsSe
 |void| **_joint_make_pin**\ (\ joint\: :ref:`RID<class_RID>`, anchor\: :ref:`Vector2<class_Vector2>`, body_a\: :ref:`RID<class_RID>`, body_b\: :ref:`RID<class_RID>`\ ) |virtual| |required| :ref:`🔗<class_PhysicsServer2DExtension_private_method__joint_make_pin>`
 
 Overridable version of :ref:`PhysicsServer2D.joint_make_pin()<class_PhysicsServer2D_method_joint_make_pin>`.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_PhysicsServer2DExtension_private_method__joint_set_configuration:
+
+.. rst-class:: classref-method
+
+|void| **_joint_set_configuration**\ (\ joint\: :ref:`RID<class_RID>`, configuration\: :ref:`Dictionary<class_Dictionary>`\ ) |virtual| |required| :ref:`🔗<class_PhysicsServer2DExtension_private_method__joint_set_configuration>`
+
+Overridable version of :ref:`PhysicsServer2D.joint_set_configuration()<class_PhysicsServer2D_method_joint_set_configuration>`. Required when implementing a custom physics server; preserve the public method's validation, return values, and event schema.
 
 .. rst-class:: classref-item-separator
 
@@ -1800,20 +1872,6 @@ Overridable version of :ref:`PhysicsServer2D<class_PhysicsServer2D>`'s internal 
 
 ----
 
-.. _class_PhysicsServer2DExtension_private_method__shape_get_custom_solver_bias:
-
-.. rst-class:: classref-method
-
-:ref:`float<class_float>` **_shape_get_custom_solver_bias**\ (\ shape\: :ref:`RID<class_RID>`\ ) |virtual| |required| |const| :ref:`🔗<class_PhysicsServer2DExtension_private_method__shape_get_custom_solver_bias>`
-
-Should return the custom solver bias of the given ``shape``, which defines how much bodies are forced to separate on contact when this shape is involved.
-
-Overridable version of :ref:`PhysicsServer2D<class_PhysicsServer2D>`'s internal ``shape_get_custom_solver_bias`` method. Corresponds to :ref:`Shape2D.custom_solver_bias<class_Shape2D_property_custom_solver_bias>`.
-
-.. rst-class:: classref-item-separator
-
-----
-
 .. _class_PhysicsServer2DExtension_private_method__shape_get_data:
 
 .. rst-class:: classref-method
@@ -1838,20 +1896,6 @@ Overridable version of :ref:`PhysicsServer2D.shape_get_type()<class_PhysicsServe
 
 ----
 
-.. _class_PhysicsServer2DExtension_private_method__shape_set_custom_solver_bias:
-
-.. rst-class:: classref-method
-
-|void| **_shape_set_custom_solver_bias**\ (\ shape\: :ref:`RID<class_RID>`, bias\: :ref:`float<class_float>`\ ) |virtual| |required| :ref:`🔗<class_PhysicsServer2DExtension_private_method__shape_set_custom_solver_bias>`
-
-Should set the custom solver bias for the given ``shape``. It defines how much bodies are forced to separate on contact.
-
-Overridable version of :ref:`PhysicsServer2D<class_PhysicsServer2D>`'s internal ``shape_get_custom_solver_bias`` method. Corresponds to :ref:`Shape2D.custom_solver_bias<class_Shape2D_property_custom_solver_bias>`.
-
-.. rst-class:: classref-item-separator
-
-----
-
 .. _class_PhysicsServer2DExtension_private_method__shape_set_data:
 
 .. rst-class:: classref-method
@@ -1859,6 +1903,18 @@ Overridable version of :ref:`PhysicsServer2D<class_PhysicsServer2D>`'s internal 
 |void| **_shape_set_data**\ (\ shape\: :ref:`RID<class_RID>`, data\: :ref:`Variant<class_Variant>`\ ) |virtual| |required| :ref:`🔗<class_PhysicsServer2DExtension_private_method__shape_set_data>`
 
 Overridable version of :ref:`PhysicsServer2D.shape_set_data()<class_PhysicsServer2D_method_shape_set_data>`.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_PhysicsServer2DExtension_private_method__space_apply_explosion:
+
+.. rst-class:: classref-method
+
+|void| **_space_apply_explosion**\ (\ space\: :ref:`RID<class_RID>`, position\: :ref:`Vector2<class_Vector2>`, radius\: :ref:`float<class_float>`, falloff\: :ref:`float<class_float>`, impulse_density\: :ref:`float<class_float>`, collision_mask\: :ref:`int<class_int>`\ ) |virtual| |required| :ref:`🔗<class_PhysicsServer2DExtension_private_method__space_apply_explosion>`
+
+Overridable version of :ref:`PhysicsServer2D.space_apply_explosion()<class_PhysicsServer2D_method_space_apply_explosion>`. Required when implementing a custom physics server; preserve the public method's validation, return values, and event schema.
 
 .. rst-class:: classref-item-separator
 
@@ -1890,6 +1946,18 @@ Overridable version of :ref:`PhysicsServer2D<class_PhysicsServer2D>`'s internal 
 
 ----
 
+.. _class_PhysicsServer2DExtension_private_method__space_get_contact_hit_events:
+
+.. rst-class:: classref-method
+
+:ref:`Array<class_Array>` **_space_get_contact_hit_events**\ (\ space\: :ref:`RID<class_RID>`\ ) |virtual| |required| |const| :ref:`🔗<class_PhysicsServer2DExtension_private_method__space_get_contact_hit_events>`
+
+Overridable version of :ref:`PhysicsServer2D.space_get_contact_hit_events()<class_PhysicsServer2D_method_space_get_contact_hit_events>`. Required when implementing a custom physics server; preserve the public method's validation, return values, and event schema.
+
+.. rst-class:: classref-item-separator
+
+----
+
 .. _class_PhysicsServer2DExtension_private_method__space_get_contacts:
 
 .. rst-class:: classref-method
@@ -1911,6 +1979,18 @@ Overridable version of :ref:`PhysicsServer2D<class_PhysicsServer2D>`'s internal 
 :ref:`PhysicsDirectSpaceState2D<class_PhysicsDirectSpaceState2D>` **_space_get_direct_state**\ (\ space\: :ref:`RID<class_RID>`\ ) |virtual| |required| :ref:`🔗<class_PhysicsServer2DExtension_private_method__space_get_direct_state>`
 
 Overridable version of :ref:`PhysicsServer2D.space_get_direct_state()<class_PhysicsServer2D_method_space_get_direct_state>`.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_PhysicsServer2DExtension_private_method__space_get_joint_events:
+
+.. rst-class:: classref-method
+
+:ref:`Array<class_Array>` **_space_get_joint_events**\ (\ space\: :ref:`RID<class_RID>`\ ) |virtual| |required| |const| :ref:`🔗<class_PhysicsServer2DExtension_private_method__space_get_joint_events>`
+
+Overridable version of :ref:`PhysicsServer2D.space_get_joint_events()<class_PhysicsServer2D_method_space_get_joint_events>`. Required when implementing a custom physics server; preserve the public method's validation, return values, and event schema.
 
 .. rst-class:: classref-item-separator
 

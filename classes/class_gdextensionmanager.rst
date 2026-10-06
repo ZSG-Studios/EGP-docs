@@ -233,7 +233,13 @@ Loads the extension already in address space via the given path and initializati
 
 Reloads the extension at the given file path. The ``path`` needs to point to a valid :ref:`GDExtension<class_GDExtension>`, otherwise this method may return either :ref:`LOAD_STATUS_NOT_LOADED<class_GDExtensionManager_constant_LOAD_STATUS_NOT_LOADED>` or :ref:`LOAD_STATUS_FAILED<class_GDExtensionManager_constant_LOAD_STATUS_FAILED>`.
 
-\ **Note:** You can only reload extensions in the editor. In release builds, this method always fails and returns :ref:`LOAD_STATUS_FAILED<class_GDExtensionManager_constant_LOAD_STATUS_FAILED>`.
+Returns :ref:`LOAD_STATUS_NEEDS_RESTART<class_GDExtensionManager_constant_LOAD_STATUS_NEEDS_RESTART>` if an existing class is not restored, including a removed class or a rejected native-base change. Compatible classes may already have reloaded. Objects belonging to unavailable classes retain their original native parent and saved extension properties. Restore the compatible class and reload to recover its state, or restart to apply the new hierarchy. Parent properties remain editable during recovery.
+
+Changing a method signature invalidates cached native method bindings and prints a diagnostic. Dynamic method lookup uses the new signature; code holding cached method bindings needs a restart.
+
+Calls through cached native method bindings are blocked while their library is reloading or unavailable, including after a missing or invalid library fails to load. Regular calls return ``null`` with an invalid-method error; typed calls and ptrcalls return the declared type's default value. A compatible library reload restores temporarily blocked bindings. Bindings retired by a changed signature or removed class remain invalid; refresh the cache or restart before calling them again.
+
+\ **Note:** Reloading requires an editor build with extension reloading enabled. Running games must opt in with ``debug/hot_reload/enable_runtime=true`` before launch. Export templates always return :ref:`LOAD_STATUS_FAILED<class_GDExtensionManager_constant_LOAD_STATUS_FAILED>`.
 
 .. rst-class:: classref-item-separator
 

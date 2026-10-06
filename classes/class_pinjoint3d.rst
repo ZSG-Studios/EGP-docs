@@ -29,13 +29,11 @@ Properties
 .. table::
    :widths: auto
 
-   +---------------------------+-----------------------------------------------------------------------------+---------+
-   | :ref:`float<class_float>` | :ref:`params/bias<class_PinJoint3D_property_params/bias>`                   | ``0.3`` |
-   +---------------------------+-----------------------------------------------------------------------------+---------+
-   | :ref:`float<class_float>` | :ref:`params/damping<class_PinJoint3D_property_params/damping>`             | ``1.0`` |
-   +---------------------------+-----------------------------------------------------------------------------+---------+
-   | :ref:`float<class_float>` | :ref:`params/impulse_clamp<class_PinJoint3D_property_params/impulse_clamp>` | ``0.0`` |
-   +---------------------------+-----------------------------------------------------------------------------+---------+
+   +---------------------------+---------------------------------------------------------------------+---------+
+   | :ref:`float<class_float>` | :ref:`spring/frequency<class_PinJoint3D_property_spring/frequency>` | ``9.0`` |
+   +---------------------------+---------------------------------------------------------------------+---------+
+   | :ref:`float<class_float>` | :ref:`params/damping<class_PinJoint3D_property_params/damping>`     | ``1.0`` |
+   +---------------------------+---------------------------------------------------------------------+---------+
 
 .. rst-class:: classref-reftable-group
 
@@ -66,11 +64,11 @@ Enumerations
 
 enum **Param**: :ref:`🔗<enum_PinJoint3D_Param>`
 
-.. _class_PinJoint3D_constant_PARAM_BIAS:
+.. _class_PinJoint3D_constant_PARAM_SPRING_HERTZ:
 
 .. rst-class:: classref-enumeration-constant
 
-:ref:`Param<enum_PinJoint3D_Param>` **PARAM_BIAS** = ``0``
+:ref:`Param<enum_PinJoint3D_Param>` **PARAM_SPRING_HERTZ** = ``0``
 
 The force with which the pinned objects stay in positional relation to each other. The higher, the stronger.
 
@@ -82,14 +80,6 @@ The force with which the pinned objects stay in positional relation to each othe
 
 The force with which the pinned objects stay in velocity relation to each other. The higher, the stronger.
 
-.. _class_PinJoint3D_constant_PARAM_IMPULSE_CLAMP:
-
-.. rst-class:: classref-enumeration-constant
-
-:ref:`Param<enum_PinJoint3D_Param>` **PARAM_IMPULSE_CLAMP** = ``2``
-
-If above 0, this value is the maximum value for an impulse that this Joint3D produces.
-
 .. rst-class:: classref-section-separator
 
 ----
@@ -99,11 +89,11 @@ If above 0, this value is the maximum value for an impulse that this Joint3D pro
 Property Descriptions
 ---------------------
 
-.. _class_PinJoint3D_property_params/bias:
+.. _class_PinJoint3D_property_spring/frequency:
 
 .. rst-class:: classref-property
 
-:ref:`float<class_float>` **params/bias** = ``0.3`` :ref:`🔗<class_PinJoint3D_property_params/bias>`
+:ref:`float<class_float>` **spring/frequency** = ``9.0`` :ref:`🔗<class_PinJoint3D_property_spring/frequency>`
 
 .. rst-class:: classref-property-setget
 
@@ -128,23 +118,6 @@ The force with which the pinned objects stay in positional relation to each othe
 - :ref:`float<class_float>` **get_param**\ (\ param\: :ref:`Param<enum_PinJoint3D_Param>`\ ) |const|
 
 The force with which the pinned objects stay in velocity relation to each other. The higher, the stronger.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_PinJoint3D_property_params/impulse_clamp:
-
-.. rst-class:: classref-property
-
-:ref:`float<class_float>` **params/impulse_clamp** = ``0.0`` :ref:`🔗<class_PinJoint3D_property_params/impulse_clamp>`
-
-.. rst-class:: classref-property-setget
-
-- |void| **set_param**\ (\ param\: :ref:`Param<enum_PinJoint3D_Param>`, value\: :ref:`float<class_float>`\ )
-- :ref:`float<class_float>` **get_param**\ (\ param\: :ref:`Param<enum_PinJoint3D_Param>`\ ) |const|
-
-If above 0, this value is the maximum value for an impulse that this Joint3D produces.
 
 .. rst-class:: classref-section-separator
 

@@ -70,8 +70,6 @@ Properties
    +--------------------------------------------------------------+------------------------------------------------------------------------------------+-----------------------+
    | :ref:`int<class_int>`                                        | :ref:`collision_mask<class_GridMap_property_collision_mask>`                       | ``1``                 |
    +--------------------------------------------------------------+------------------------------------------------------------------------------------+-----------------------+
-   | :ref:`float<class_float>`                                    | :ref:`collision_priority<class_GridMap_property_collision_priority>`               | ``1.0``               |
-   +--------------------------------------------------------------+------------------------------------------------------------------------------------+-----------------------+
    | :ref:`DebugVisibilityMode<enum_GridMap_DebugVisibilityMode>` | :ref:`collision_visibility_mode<class_GridMap_property_collision_visibility_mode>` | ``0``                 |
    +--------------------------------------------------------------+------------------------------------------------------------------------------------+-----------------------+
    | :ref:`Color<class_Color>`                                    | :ref:`debug_octant_color<class_GridMap_property_debug_octant_color>`               | ``Color(1, 1, 1, 1)`` |
@@ -401,23 +399,6 @@ GridMaps act as static bodies, meaning they aren't affected by gravity or other 
 - :ref:`int<class_int>` **get_collision_mask**\ (\ )
 
 The physics layers this GridMap detects collisions in. See `Collision layers and masks <../tutorials/physics/physics_introduction.html#collision-layers-and-masks>`__ in the documentation for more information.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_GridMap_property_collision_priority:
-
-.. rst-class:: classref-property
-
-:ref:`float<class_float>` **collision_priority** = ``1.0`` :ref:`🔗<class_GridMap_property_collision_priority>`
-
-.. rst-class:: classref-property-setget
-
-- |void| **set_collision_priority**\ (\ value\: :ref:`float<class_float>`\ )
-- :ref:`float<class_float>` **get_collision_priority**\ (\ )
-
-The priority used to solve colliding when occurring penetration. The higher the priority is, the lower the penetration into the object will be. This can for example be used to prevent the player from breaking through the boundaries of a level.
 
 .. rst-class:: classref-item-separator
 

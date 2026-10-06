@@ -251,7 +251,7 @@ Here's the list of available tags:
 | | ``[Class]``                  | ``Move the [Sprite2D].``                     | Move the :ref:`class_Sprite2D`.                              |
 | | Link to class                |                                              |                                                              |
 +--------------------------------+----------------------------------------------+--------------------------------------------------------------+
-| | ``[annotation Class.name]``  | ``See [annotation @GDScript.@rpc].``         | See :ref:`@GDScript.@rpc <class_@GDScript_annotation_@rpc>`. |
+| | ``[annotation Class.name]``  | ``See [annotation @GDScript.@tool].``        | See :ref:`@tool <class_@GDScript_annotation_@tool>`.         |
 | | Link to annotation           |                                              |                                                              |
 +--------------------------------+----------------------------------------------+--------------------------------------------------------------+
 | | ``[constant Class.name]``    | ``See [constant Color.RED].``                | See :ref:`Color.RED <class_Color_constant_RED>`.             |

@@ -29,23 +29,21 @@ Properties
 .. table::
    :widths: auto
 
-   +----------------------------------------------------+----------------------------------------------------------------------------------------------------+-----------------------------------------------------+
-   | :ref:`bool<class_bool>`                            | :ref:`collide_separation_ray<class_PhysicsTestMotionParameters3D_property_collide_separation_ray>` | ``false``                                           |
-   +----------------------------------------------------+----------------------------------------------------------------------------------------------------+-----------------------------------------------------+
-   | :ref:`Array<class_Array>`\[:ref:`RID<class_RID>`\] | :ref:`exclude_bodies<class_PhysicsTestMotionParameters3D_property_exclude_bodies>`                 | ``[]``                                              |
-   +----------------------------------------------------+----------------------------------------------------------------------------------------------------+-----------------------------------------------------+
-   | :ref:`Array<class_Array>`\[:ref:`int<class_int>`\] | :ref:`exclude_objects<class_PhysicsTestMotionParameters3D_property_exclude_objects>`               | ``[]``                                              |
-   +----------------------------------------------------+----------------------------------------------------------------------------------------------------+-----------------------------------------------------+
-   | :ref:`Transform3D<class_Transform3D>`              | :ref:`from<class_PhysicsTestMotionParameters3D_property_from>`                                     | ``Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)`` |
-   +----------------------------------------------------+----------------------------------------------------------------------------------------------------+-----------------------------------------------------+
-   | :ref:`float<class_float>`                          | :ref:`margin<class_PhysicsTestMotionParameters3D_property_margin>`                                 | ``0.001``                                           |
-   +----------------------------------------------------+----------------------------------------------------------------------------------------------------+-----------------------------------------------------+
-   | :ref:`int<class_int>`                              | :ref:`max_collisions<class_PhysicsTestMotionParameters3D_property_max_collisions>`                 | ``1``                                               |
-   +----------------------------------------------------+----------------------------------------------------------------------------------------------------+-----------------------------------------------------+
-   | :ref:`Vector3<class_Vector3>`                      | :ref:`motion<class_PhysicsTestMotionParameters3D_property_motion>`                                 | ``Vector3(0, 0, 0)``                                |
-   +----------------------------------------------------+----------------------------------------------------------------------------------------------------+-----------------------------------------------------+
-   | :ref:`bool<class_bool>`                            | :ref:`recovery_as_collision<class_PhysicsTestMotionParameters3D_property_recovery_as_collision>`   | ``false``                                           |
-   +----------------------------------------------------+----------------------------------------------------------------------------------------------------+-----------------------------------------------------+
+   +----------------------------------------------------+--------------------------------------------------------------------------------------------------+-----------------------------------------------------+
+   | :ref:`Array<class_Array>`\[:ref:`RID<class_RID>`\] | :ref:`exclude_bodies<class_PhysicsTestMotionParameters3D_property_exclude_bodies>`               | ``[]``                                              |
+   +----------------------------------------------------+--------------------------------------------------------------------------------------------------+-----------------------------------------------------+
+   | :ref:`Array<class_Array>`\[:ref:`int<class_int>`\] | :ref:`exclude_objects<class_PhysicsTestMotionParameters3D_property_exclude_objects>`             | ``[]``                                              |
+   +----------------------------------------------------+--------------------------------------------------------------------------------------------------+-----------------------------------------------------+
+   | :ref:`Transform3D<class_Transform3D>`              | :ref:`from<class_PhysicsTestMotionParameters3D_property_from>`                                   | ``Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)`` |
+   +----------------------------------------------------+--------------------------------------------------------------------------------------------------+-----------------------------------------------------+
+   | :ref:`float<class_float>`                          | :ref:`margin<class_PhysicsTestMotionParameters3D_property_margin>`                               | ``0.001``                                           |
+   +----------------------------------------------------+--------------------------------------------------------------------------------------------------+-----------------------------------------------------+
+   | :ref:`int<class_int>`                              | :ref:`max_collisions<class_PhysicsTestMotionParameters3D_property_max_collisions>`               | ``1``                                               |
+   +----------------------------------------------------+--------------------------------------------------------------------------------------------------+-----------------------------------------------------+
+   | :ref:`Vector3<class_Vector3>`                      | :ref:`motion<class_PhysicsTestMotionParameters3D_property_motion>`                               | ``Vector3(0, 0, 0)``                                |
+   +----------------------------------------------------+--------------------------------------------------------------------------------------------------+-----------------------------------------------------+
+   | :ref:`bool<class_bool>`                            | :ref:`recovery_as_collision<class_PhysicsTestMotionParameters3D_property_recovery_as_collision>` | ``false``                                           |
+   +----------------------------------------------------+--------------------------------------------------------------------------------------------------+-----------------------------------------------------+
 
 .. rst-class:: classref-section-separator
 
@@ -55,25 +53,6 @@ Properties
 
 Property Descriptions
 ---------------------
-
-.. _class_PhysicsTestMotionParameters3D_property_collide_separation_ray:
-
-.. rst-class:: classref-property
-
-:ref:`bool<class_bool>` **collide_separation_ray** = ``false`` :ref:`🔗<class_PhysicsTestMotionParameters3D_property_collide_separation_ray>`
-
-.. rst-class:: classref-property-setget
-
-- |void| **set_collide_separation_ray_enabled**\ (\ value\: :ref:`bool<class_bool>`\ )
-- :ref:`bool<class_bool>` **is_collide_separation_ray_enabled**\ (\ )
-
-If set to ``true``, shapes of type :ref:`PhysicsServer3D.SHAPE_SEPARATION_RAY<class_PhysicsServer3D_constant_SHAPE_SEPARATION_RAY>` are used to detect collisions and can stop the motion. Can be useful when snapping to the ground.
-
-If set to ``false``, shapes of type :ref:`PhysicsServer3D.SHAPE_SEPARATION_RAY<class_PhysicsServer3D_constant_SHAPE_SEPARATION_RAY>` are only used for separation when overlapping with other bodies. That's the main use for separation ray shapes.
-
-.. rst-class:: classref-item-separator
-
-----
 
 .. _class_PhysicsTestMotionParameters3D_property_exclude_bodies:
 

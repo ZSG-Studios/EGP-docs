@@ -65,8 +65,6 @@ Methods
    +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`Variant<class_Variant>`                                    | :ref:`get_property_default_value<class_Script_method_get_property_default_value>`\ (\ property\: :ref:`StringName<class_StringName>`\ ) |
    +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`Variant<class_Variant>`                                    | :ref:`get_rpc_config<class_Script_method_get_rpc_config>`\ (\ ) |const|                                                                 |
-   +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`Dictionary<class_Dictionary>`                              | :ref:`get_script_constant_map<class_Script_method_get_script_constant_map>`\ (\ )                                                       |
    +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`Array<class_Array>`\[:ref:`Dictionary<class_Dictionary>`\] | :ref:`get_script_method_list<class_Script_method_get_script_method_list>`\ (\ )                                                         |
@@ -199,18 +197,6 @@ Returns the script's base type.
 Returns the default value of the specified property.
 
 \ **Note:** In GDScript and C#, this method returns ``null`` outside of editor builds.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_Script_method_get_rpc_config:
-
-.. rst-class:: classref-method
-
-:ref:`Variant<class_Variant>` **get_rpc_config**\ (\ ) |const| :ref:`🔗<class_Script_method_get_rpc_config>`
-
-Returns a :ref:`Dictionary<class_Dictionary>` mapping method names to their RPC configuration defined by this script.
 
 .. rst-class:: classref-item-separator
 

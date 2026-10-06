@@ -288,9 +288,7 @@ Implement to override the behavior of :ref:`PhysicsDirectBodyState2D.center_of_m
 
 :ref:`int<class_int>` **_get_collision_layer**\ (\ ) |virtual| |required| |const| :ref:`🔗<class_PhysicsDirectBodyState2DExtension_private_method__get_collision_layer>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Overridable getter for :ref:`PhysicsDirectBodyState2D.collision_layer<class_PhysicsDirectBodyState2D_property_collision_layer>`.
 
 .. rst-class:: classref-item-separator
 
@@ -302,9 +300,7 @@ Implement to override the behavior of :ref:`PhysicsDirectBodyState2D.center_of_m
 
 :ref:`int<class_int>` **_get_collision_mask**\ (\ ) |virtual| |required| |const| :ref:`🔗<class_PhysicsDirectBodyState2DExtension_private_method__get_collision_mask>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Overridable getter for :ref:`PhysicsDirectBodyState2D.collision_mask<class_PhysicsDirectBodyState2D_property_collision_mask>`.
 
 .. rst-class:: classref-item-separator
 
@@ -640,9 +636,7 @@ Implement to override the behavior of :ref:`PhysicsDirectBodyState2D.angular_vel
 
 |void| **_set_collision_layer**\ (\ layer\: :ref:`int<class_int>`\ ) |virtual| |required| :ref:`🔗<class_PhysicsDirectBodyState2DExtension_private_method__set_collision_layer>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Overridable setter for :ref:`PhysicsDirectBodyState2D.collision_layer<class_PhysicsDirectBodyState2D_property_collision_layer>`.
 
 .. rst-class:: classref-item-separator
 
@@ -654,9 +648,7 @@ Implement to override the behavior of :ref:`PhysicsDirectBodyState2D.angular_vel
 
 |void| **_set_collision_mask**\ (\ mask\: :ref:`int<class_int>`\ ) |virtual| |required| :ref:`🔗<class_PhysicsDirectBodyState2DExtension_private_method__set_collision_mask>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Overridable setter for :ref:`PhysicsDirectBodyState2D.collision_mask<class_PhysicsDirectBodyState2D_property_collision_mask>`.
 
 .. rst-class:: classref-item-separator
 

@@ -22,3 +22,6 @@ sphinxext-opengraph==0.13.0
 
 # `.. video::` directive support to embed videos in documentation pages.
 sphinxcontrib-video==0.4.2
+
+# Canonical EGP engine guides use Markdown.
+myst-parser==4.0.1

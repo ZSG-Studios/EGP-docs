@@ -210,20 +210,9 @@ Godot 4 includes three renderers:
 2D physics
 ----------
 
-**Physics bodies:**
-
-- Static bodies.
-- Animatable bodies (for objects moving only by script or animation, such as doors and platforms).
-- Rigid bodies.
-- Character bodies.
-- Joints.
-- Areas to detect bodies entering or leaving it.
-- :ref:`Physics interpolation <doc_physics_interpolation>`.
-
-**Collision detection:**
-
-- Built-in shapes: line, box, circle, capsule, world boundary (infinite plane).
-- Collision polygons (can be drawn manually or generated from a sprite in the editor).
+Box2D is the sole native backend. Ordinary physics nodes and PhysicsServer2D
+remain the public scene APIs. Read :doc:`/egp/box2d` for deterministic profile
+settings, supported shapes/queries, native joints and remaining parity gates.
 
 3D graphics
 -----------
@@ -469,24 +458,10 @@ improve quality. This can be helpful when
 3D physics
 ----------
 
-**Physics bodies:**
-
-- Static bodies.
-- Animatable bodies (for objects moving only by script or animation, such as doors and platforms).
-- Rigid bodies.
-- Character bodies.
-- Vehicle bodies (intended for arcade physics, not simulation).
-- Joints.
-- :ref:`Soft bodies <doc_soft_body>`.
-- :ref:`Ragdolls <doc_ragdoll_system>`.
-- Areas to detect bodies entering or leaving it.
-- :ref:`Physics interpolation <doc_physics_interpolation>`.
-
-**Collision detection:**
-
-- Built-in shapes: cuboid, sphere, capsule, cylinder, world boundary (infinite plane).
-- Generate triangle collision shapes for any mesh from the editor.
-- Generate one or several convex collision shapes for any mesh from the editor.
+Box3D is the sole native backend. Ordinary physics nodes and PhysicsServer3D
+remain the public scene APIs. Independent EGPBox3DWorld simulations add fixed
+ticks, stable IDs, ordered commands and trusted local snapshots. Read
+:doc:`/egp/box3d` and :doc:`/egp/explicit_world` for compatibility and support.
 
 Shaders
 -------
@@ -663,13 +638,14 @@ Networking
 
    - Supports HTTPS out of the box using bundled certificates.
 
-- :ref:`High-level multiplayer <doc_high_level_multiplayer>` API using UDP and ENet.
+- :doc:`Yojimbo networking </egp/networking>` with encrypted admission and
+  bounded server-authoritative entity replication.
+- Shared GDScript, C# and C++ helpers for registered messages, ownership,
+  interest and scene factories; optional bounded prediction/reconciliation.
+- :doc:`Network lab </egp/network_lab>` for dedicated servers, listen hosts,
+  impairment, explicit reconnect and checkpoint-based replacement.
+- :ref:`WebSocket <doc_websocket>` utilities are separate from EGP multiplayer.
 
-   - Automatic replication using remote procedure calls (RPCs).
-   - Supports unreliable, reliable and ordered transfers.
-
-- :ref:`WebSocket <doc_websocket>` client and server, available on all platforms.
-- :ref:`WebRTC <doc_webrtc>` client and server, available on all platforms.
 - Support for :ref:`UPnP <class_UPNP>` to sidestep the requirement to forward ports
   when hosting a server behind a NAT.
 

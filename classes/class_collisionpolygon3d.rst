@@ -40,8 +40,6 @@ Properties
    +-----------------------------------------------------+-------------------------------------------------------------------+--------------------------+
    | :ref:`bool<class_bool>`                             | :ref:`disabled<class_CollisionPolygon3D_property_disabled>`       | ``false``                |
    +-----------------------------------------------------+-------------------------------------------------------------------+--------------------------+
-   | :ref:`float<class_float>`                           | :ref:`margin<class_CollisionPolygon3D_property_margin>`           | ``0.04``                 |
-   +-----------------------------------------------------+-------------------------------------------------------------------+--------------------------+
    | :ref:`PackedVector2Array<class_PackedVector2Array>` | :ref:`polygon<class_CollisionPolygon3D_property_polygon>`         | ``PackedVector2Array()`` |
    +-----------------------------------------------------+-------------------------------------------------------------------+--------------------------+
 
@@ -119,23 +117,6 @@ Length that the resulting collision extends in either direction perpendicular to
 - :ref:`bool<class_bool>` **is_disabled**\ (\ )
 
 If ``true``, no collision will be produced. This property should be changed with :ref:`Object.set_deferred()<class_Object_method_set_deferred>`.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_CollisionPolygon3D_property_margin:
-
-.. rst-class:: classref-property
-
-:ref:`float<class_float>` **margin** = ``0.04`` :ref:`🔗<class_CollisionPolygon3D_property_margin>`
-
-.. rst-class:: classref-property-setget
-
-- |void| **set_margin**\ (\ value\: :ref:`float<class_float>`\ )
-- :ref:`float<class_float>` **get_margin**\ (\ )
-
-The collision margin for the generated :ref:`Shape3D<class_Shape3D>`. See :ref:`Shape3D.margin<class_Shape3D_property_margin>` for more details.
 
 .. rst-class:: classref-item-separator
 

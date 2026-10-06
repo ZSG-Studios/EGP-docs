@@ -330,14 +330,6 @@ enum **CCDMode**: :ref:`🔗<enum_RigidBody2D_CCDMode>`
 
 Continuous collision detection disabled. This is the fastest way to detect body collisions, but can miss small, fast-moving objects.
 
-.. _class_RigidBody2D_constant_CCD_MODE_CAST_RAY:
-
-.. rst-class:: classref-enumeration-constant
-
-:ref:`CCDMode<enum_RigidBody2D_CCDMode>` **CCD_MODE_CAST_RAY** = ``1``
-
-Continuous collision detection enabled using raycasting. This is faster than shapecasting but less precise.
-
 .. _class_RigidBody2D_constant_CCD_MODE_CAST_SHAPE:
 
 .. rst-class:: classref-enumeration-constant

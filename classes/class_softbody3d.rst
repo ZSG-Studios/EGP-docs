@@ -23,7 +23,7 @@ A deformable 3D physics mesh. Used to create elastic or deformable objects such 
 
 Additionally, **SoftBody3D** is subject to wind forces defined in :ref:`Area3D<class_Area3D>` (see :ref:`Area3D.wind_source_path<class_Area3D_property_wind_source_path>`, :ref:`Area3D.wind_force_magnitude<class_Area3D_property_wind_force_magnitude>`, and :ref:`Area3D.wind_attenuation_factor<class_Area3D_property_wind_attenuation_factor>`).
 
-\ **Note:** It's recommended to use Jolt Physics when using **SoftBody3D** instead of GodotPhysics3D, as Jolt Physics' soft body implementation is faster and more reliable. Jolt Physics is the default for projects created with Godot 4.6 or later. For projects created with older Godot versions, you can switch the physics engine using the :ref:`ProjectSettings.physics/3d/physics_engine<class_ProjectSettings_property_physics/3d/physics_engine>` project setting.
+\ **Note:** EGP uses Box3D, which currently does not implement soft bodies.
 
 .. rst-class:: classref-introduction-group
 

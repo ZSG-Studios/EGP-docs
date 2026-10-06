@@ -12,7 +12,7 @@ PhysicsDirectSpaceState2D
 
 **Inherits:** :ref:`Object<class_Object>`
 
-**Inherited By:** :ref:`PhysicsDirectSpaceState2DExtension<class_PhysicsDirectSpaceState2DExtension>`
+**Inherited By:** :ref:`Box2DDirectSpaceState2D<class_Box2DDirectSpaceState2D>`, :ref:`PhysicsDirectSpaceState2DExtension<class_PhysicsDirectSpaceState2DExtension>`
 
 Provides direct access to a physics space in the :ref:`PhysicsServer2D<class_PhysicsServer2D>`.
 

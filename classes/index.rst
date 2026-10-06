@@ -178,8 +178,6 @@ Nodes
     class_modifierbonetarget3d
     class_multimeshinstance2d
     class_multimeshinstance3d
-    class_multiplayerspawner
-    class_multiplayersynchronizer
     class_navigationagent2d
     class_navigationagent3d
     class_navigationlink2d
@@ -566,12 +564,10 @@ Resources
     class_rectangleshape2d
     class_ribbontrailmesh
     class_richtexteffect
-    class_scenereplicationconfig
     class_script
     class_scriptextension
     class_segmentshape2d
     class_separationrayshape2d
-    class_separationrayshape3d
     class_shader
     class_shaderinclude
     class_shadermaterial
@@ -779,6 +775,8 @@ Other objects
     class_audiostreamplaybackresampled
     class_audiostreamplaybacksynchronized
     class_awaittweener
+    class_box2ddirectspacestate2d
+    class_box2dphysicsserver2d
     class_callbacktweener
     class_camerafeed
     class_cameraserver
@@ -828,10 +826,9 @@ Other objects
     class_editortranslationparserplugin
     class_editorundoredomanager
     class_editorvcsinterface
+    class_egpbox3dworld
+    class_egpnetsession
     class_encodedobjectasid
-    class_enetconnection
-    class_enetmultiplayerpeer
-    class_enetpacketpeer
     class_engine
     class_enginedebugger
     class_engineprofiler
@@ -876,10 +873,6 @@ Other objects
     class_methodtweener
     class_mobilevrinterface
     class_moviewriter
-    class_multiplayerapi
-    class_multiplayerapiextension
-    class_multiplayerpeer
-    class_multiplayerpeerextension
     class_mutex
     class_nativemenu
     class_navigationmeshgenerator
@@ -893,7 +886,6 @@ Other objects
     class_navigationserver3dmanager
     class_node
     class_node3dgizmo
-    class_offlinemultiplayerpeer
     class_oggpacketsequenceplayback
     class_openxranchortracker
     class_openxrandroidthreadsettingsextension
@@ -1044,7 +1036,6 @@ Other objects
     class_resourceloader
     class_resourcesaver
     class_resourceuid
-    class_scenemultiplayer
     class_scenestate
     class_scenetree
     class_scenetreetimer
@@ -1094,12 +1085,6 @@ Other objects
     class_upnpdevice
     class_visionosxrinterface
     class_weakref
-    class_webrtcdatachannel
-    class_webrtcdatachannelextension
-    class_webrtcmultiplayerpeer
-    class_webrtcpeerconnection
-    class_webrtcpeerconnectionextension
-    class_websocketmultiplayerpeer
     class_websocketpeer
     class_webxrinterface
     class_workerthreadpool

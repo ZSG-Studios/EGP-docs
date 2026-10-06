@@ -12,7 +12,7 @@ Node
 
 **Inherits:** :ref:`Object<class_Object>`
 
-**Inherited By:** :ref:`AnimationMixer<class_AnimationMixer>`, :ref:`AudioStreamPlayer<class_AudioStreamPlayer>`, :ref:`CanvasItem<class_CanvasItem>`, :ref:`CanvasLayer<class_CanvasLayer>`, :ref:`EditorFileSystem<class_EditorFileSystem>`, :ref:`EditorPlugin<class_EditorPlugin>`, :ref:`EditorResourcePreview<class_EditorResourcePreview>`, :ref:`HTTPRequest<class_HTTPRequest>`, :ref:`InstancePlaceholder<class_InstancePlaceholder>`, :ref:`MissingNode<class_MissingNode>`, :ref:`MultiplayerSpawner<class_MultiplayerSpawner>`, :ref:`MultiplayerSynchronizer<class_MultiplayerSynchronizer>`, :ref:`NavigationAgent2D<class_NavigationAgent2D>`, :ref:`NavigationAgent3D<class_NavigationAgent3D>`, :ref:`Node3D<class_Node3D>`, :ref:`ResourcePreloader<class_ResourcePreloader>`, :ref:`ShaderGlobalsOverride<class_ShaderGlobalsOverride>`, :ref:`StatusIndicator<class_StatusIndicator>`, :ref:`Timer<class_Timer>`, :ref:`Viewport<class_Viewport>`, :ref:`WorldEnvironment<class_WorldEnvironment>`
+**Inherited By:** :ref:`AnimationMixer<class_AnimationMixer>`, :ref:`AudioStreamPlayer<class_AudioStreamPlayer>`, :ref:`CanvasItem<class_CanvasItem>`, :ref:`CanvasLayer<class_CanvasLayer>`, :ref:`EditorFileSystem<class_EditorFileSystem>`, :ref:`EditorPlugin<class_EditorPlugin>`, :ref:`EditorResourcePreview<class_EditorResourcePreview>`, :ref:`HTTPRequest<class_HTTPRequest>`, :ref:`InstancePlaceholder<class_InstancePlaceholder>`, :ref:`MissingNode<class_MissingNode>`, :ref:`NavigationAgent2D<class_NavigationAgent2D>`, :ref:`NavigationAgent3D<class_NavigationAgent3D>`, :ref:`Node3D<class_Node3D>`, :ref:`ResourcePreloader<class_ResourcePreloader>`, :ref:`ShaderGlobalsOverride<class_ShaderGlobalsOverride>`, :ref:`StatusIndicator<class_StatusIndicator>`, :ref:`Timer<class_Timer>`, :ref:`Viewport<class_Viewport>`, :ref:`WorldEnvironment<class_WorldEnvironment>`
 
 Base class for all scene objects.
 
@@ -41,7 +41,7 @@ Finally, when a node is freed with :ref:`Object.free()<class_Object_method_free>
 
 \ **Groups:** Nodes can be added to as many groups as you want to be easy to manage, you could create groups like "enemies" or "collectables" for example, depending on your game. See :ref:`add_to_group()<class_Node_method_add_to_group>`, :ref:`is_in_group()<class_Node_method_is_in_group>` and :ref:`remove_from_group()<class_Node_method_remove_from_group>`. You can then retrieve all nodes in these groups, iterate them and even call methods on groups via the methods on :ref:`SceneTree<class_SceneTree>`.
 
-\ **Networking with nodes:** After connecting to a server (or making one, see :ref:`ENetMultiplayerPeer<class_ENetMultiplayerPeer>`), it is possible to use the built-in RPC (remote procedure call) system to communicate over the network. By calling :ref:`rpc()<class_Node_method_rpc>` with a method name, it will be called locally and in all connected peers (peers = clients and the server that accepts connections). To identify which node receives the RPC call, Godot will use its :ref:`NodePath<class_NodePath>` (make sure node names are the same on all peers). Also, take a look at the high-level networking tutorial and corresponding demos.
+\ **Networking with nodes:** EGP uses :ref:`EGPNetSession<class_EGPNetSession>` for native networking. The EGPNet GDScript helper provides explicit message handlers, replicated entity handles, ownership-checked inputs, and registered scene factories. See the EGP networking setup guide for the session and helper contracts.
 
 \ **Note:** The ``script`` property is part of the :ref:`Object<class_Object>` class, not **Node**. It isn't exposed like most properties but does have a setter and getter (see :ref:`Object.set_script()<class_Object_method_set_script>` and :ref:`Object.get_script()<class_Object_method_get_script>`).
 
@@ -66,8 +66,6 @@ Properties
    | :ref:`AutoTranslateMode<enum_Node_AutoTranslateMode>`                       | :ref:`auto_translate_mode<class_Node_property_auto_translate_mode>`               | ``0``     |
    +-----------------------------------------------------------------------------+-----------------------------------------------------------------------------------+-----------+
    | :ref:`String<class_String>`                                                 | :ref:`editor_description<class_Node_property_editor_description>`                 | ``""``    |
-   +-----------------------------------------------------------------------------+-----------------------------------------------------------------------------------+-----------+
-   | :ref:`MultiplayerAPI<class_MultiplayerAPI>`                                 | :ref:`multiplayer<class_Node_property_multiplayer>`                               |           |
    +-----------------------------------------------------------------------------+-----------------------------------------------------------------------------------+-----------+
    | :ref:`StringName<class_StringName>`                                         | :ref:`name<class_Node_property_name>`                                             |           |
    +-----------------------------------------------------------------------------+-----------------------------------------------------------------------------------+-----------+
@@ -167,15 +165,11 @@ Methods
    +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`Window<class_Window>`                                      | :ref:`get_last_exclusive_window<class_Node_method_get_last_exclusive_window>`\ (\ ) |const|                                                                                                                                             |
    +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`int<class_int>`                                            | :ref:`get_multiplayer_authority<class_Node_method_get_multiplayer_authority>`\ (\ ) |const|                                                                                                                                             |
-   +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`Node<class_Node>`                                          | :ref:`get_node<class_Node_method_get_node>`\ (\ path\: :ref:`NodePath<class_NodePath>`\ ) |const|                                                                                                                                       |
    +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`Array<class_Array>`                                        | :ref:`get_node_and_resource<class_Node_method_get_node_and_resource>`\ (\ path\: :ref:`NodePath<class_NodePath>`\ )                                                                                                                     |
    +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`Node<class_Node>`                                          | :ref:`get_node_or_null<class_Node_method_get_node_or_null>`\ (\ path\: :ref:`NodePath<class_NodePath>`\ ) |const|                                                                                                                       |
-   +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`Variant<class_Variant>`                                    | :ref:`get_node_rpc_config<class_Node_method_get_node_rpc_config>`\ (\ ) |const|                                                                                                                                                         |
    +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`Array<class_Array>`\[:ref:`int<class_int>`\]               | :ref:`get_orphan_node_ids<class_Node_method_get_orphan_node_ids>`\ (\ ) |static|                                                                                                                                                        |
    +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -216,8 +210,6 @@ Methods
    | :ref:`bool<class_bool>`                                          | :ref:`is_in_group<class_Node_method_is_in_group>`\ (\ group\: :ref:`StringName<class_StringName>`\ ) |const|                                                                                                                            |
    +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`bool<class_bool>`                                          | :ref:`is_inside_tree<class_Node_method_is_inside_tree>`\ (\ ) |const|                                                                                                                                                                   |
-   +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`bool<class_bool>`                                          | :ref:`is_multiplayer_authority<class_Node_method_is_multiplayer_authority>`\ (\ ) |const|                                                                                                                                               |
    +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`bool<class_bool>`                                          | :ref:`is_node_ready<class_Node_method_is_node_ready>`\ (\ ) |const|                                                                                                                                                                     |
    +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -275,19 +267,11 @@ Methods
    +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | |void|                                                           | :ref:`reset_physics_interpolation<class_Node_method_reset_physics_interpolation>`\ (\ )                                                                                                                                                 |
    +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`Error<enum_@GlobalScope_Error>`                            | :ref:`rpc<class_Node_method_rpc>`\ (\ method\: :ref:`StringName<class_StringName>`, ...\ ) |vararg|                                                                                                                                     |
-   +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | |void|                                                           | :ref:`rpc_config<class_Node_method_rpc_config>`\ (\ method\: :ref:`StringName<class_StringName>`, config\: :ref:`Variant<class_Variant>`\ )                                                                                             |
-   +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`Error<enum_@GlobalScope_Error>`                            | :ref:`rpc_id<class_Node_method_rpc_id>`\ (\ peer_id\: :ref:`int<class_int>`, method\: :ref:`StringName<class_StringName>`, ...\ ) |vararg|                                                                                              |
-   +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | |void|                                                           | :ref:`set_deferred_thread_group<class_Node_method_set_deferred_thread_group>`\ (\ property\: :ref:`StringName<class_StringName>`, value\: :ref:`Variant<class_Variant>`\ )                                                              |
    +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | |void|                                                           | :ref:`set_display_folded<class_Node_method_set_display_folded>`\ (\ fold\: :ref:`bool<class_bool>`\ )                                                                                                                                   |
    +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | |void|                                                           | :ref:`set_editable_instance<class_Node_method_set_editable_instance>`\ (\ node\: :ref:`Node<class_Node>`, is_editable\: :ref:`bool<class_bool>`\ )                                                                                      |
-   +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | |void|                                                           | :ref:`set_multiplayer_authority<class_Node_method_set_multiplayer_authority>`\ (\ id\: :ref:`int<class_int>`, recursive\: :ref:`bool<class_bool>` = true\ )                                                                             |
    +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | |void|                                                           | :ref:`set_physics_process<class_Node_method_set_physics_process>`\ (\ enable\: :ref:`bool<class_bool>`\ )                                                                                                                               |
    +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -1261,24 +1245,6 @@ An optional description to the node. It will be displayed as a tooltip when hove
 
 ----
 
-.. _class_Node_property_multiplayer:
-
-.. rst-class:: classref-property
-
-:ref:`MultiplayerAPI<class_MultiplayerAPI>` **multiplayer** :ref:`🔗<class_Node_property_multiplayer>`
-
-.. rst-class:: classref-property-setget
-
-- :ref:`MultiplayerAPI<class_MultiplayerAPI>` **get_multiplayer**\ (\ )
-
-The :ref:`MultiplayerAPI<class_MultiplayerAPI>` instance associated with this node. See :ref:`SceneTree.get_multiplayer()<class_SceneTree_method_get_multiplayer>`.
-
-\ **Note:** Renaming the node, or moving it in the tree, will not move the :ref:`MultiplayerAPI<class_MultiplayerAPI>` to the new path, you will have to update this manually.
-
-.. rst-class:: classref-item-separator
-
-----
-
 .. _class_Node_property_name:
 
 .. rst-class:: classref-property
@@ -2137,18 +2103,6 @@ Returns the :ref:`Window<class_Window>` that contains this node, or the last exc
 
 ----
 
-.. _class_Node_method_get_multiplayer_authority:
-
-.. rst-class:: classref-method
-
-:ref:`int<class_int>` **get_multiplayer_authority**\ (\ ) |const| :ref:`🔗<class_Node_method_get_multiplayer_authority>`
-
-Returns the peer ID of the multiplayer authority for this node. See :ref:`set_multiplayer_authority()<class_Node_method_set_multiplayer_authority>`.
-
-.. rst-class:: classref-item-separator
-
-----
-
 .. _class_Node_method_get_node:
 
 .. rst-class:: classref-method
@@ -2265,20 +2219,6 @@ Fetches a node and its most nested resource as specified by the :ref:`NodePath<c
 :ref:`Node<class_Node>` **get_node_or_null**\ (\ path\: :ref:`NodePath<class_NodePath>`\ ) |const| :ref:`🔗<class_Node_method_get_node_or_null>`
 
 Fetches a node by :ref:`NodePath<class_NodePath>`. Similar to :ref:`get_node()<class_Node_method_get_node>`, but does not generate an error if ``path`` does not point to a valid node.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_Node_method_get_node_rpc_config:
-
-.. rst-class:: classref-method
-
-:ref:`Variant<class_Variant>` **get_node_rpc_config**\ (\ ) |const| :ref:`🔗<class_Node_method_get_node_rpc_config>`
-
-Returns a :ref:`Dictionary<class_Dictionary>` mapping method names to their RPC configuration defined for this node using :ref:`rpc_config()<class_Node_method_rpc_config>`.
-
-\ **Note:** This method only returns the RPC configuration assigned via :ref:`rpc_config()<class_Node_method_rpc_config>`. See :ref:`Script.get_rpc_config()<class_Script_method_get_rpc_config>` to retrieve the RPCs defined by the :ref:`Script<class_Script>`.
 
 .. rst-class:: classref-item-separator
 
@@ -2551,18 +2491,6 @@ Returns ``true`` if this node has been added to the given ``group``. See :ref:`a
 :ref:`bool<class_bool>` **is_inside_tree**\ (\ ) |const| :ref:`🔗<class_Node_method_is_inside_tree>`
 
 Returns ``true`` if this node is currently inside a :ref:`SceneTree<class_SceneTree>`. See also :ref:`get_tree()<class_Node_method_get_tree>`.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_Node_method_is_multiplayer_authority:
-
-.. rst-class:: classref-method
-
-:ref:`bool<class_bool>` **is_multiplayer_authority**\ (\ ) |const| :ref:`🔗<class_Node_method_is_multiplayer_authority>`
-
-Returns ``true`` if the local system is the multiplayer authority of this node.
 
 .. rst-class:: classref-item-separator
 
@@ -2962,58 +2890,6 @@ The notification :ref:`NOTIFICATION_RESET_PHYSICS_INTERPOLATION<class_Node_const
 
 ----
 
-.. _class_Node_method_rpc:
-
-.. rst-class:: classref-method
-
-:ref:`Error<enum_@GlobalScope_Error>` **rpc**\ (\ method\: :ref:`StringName<class_StringName>`, ...\ ) |vararg| :ref:`🔗<class_Node_method_rpc>`
-
-Sends a remote procedure call request for the given ``method`` to peers on the network (and locally), sending additional arguments to the method called by the RPC. The call request will only be received by nodes with the same :ref:`NodePath<class_NodePath>`, including the exact same :ref:`name<class_Node_property_name>`. Behavior depends on the RPC configuration for the given ``method`` (see :ref:`rpc_config()<class_Node_method_rpc_config>` and :ref:`@GDScript.@rpc<class_@GDScript_annotation_@rpc>`). By default, methods are not exposed to RPCs.
-
-May return :ref:`@GlobalScope.OK<class_@GlobalScope_constant_OK>` if the call is successful, :ref:`@GlobalScope.ERR_INVALID_PARAMETER<class_@GlobalScope_constant_ERR_INVALID_PARAMETER>` if the arguments passed in the ``method`` do not match, :ref:`@GlobalScope.ERR_UNCONFIGURED<class_@GlobalScope_constant_ERR_UNCONFIGURED>` if the node's :ref:`multiplayer<class_Node_property_multiplayer>` cannot be fetched (such as when the node is not inside the tree), :ref:`@GlobalScope.ERR_CONNECTION_ERROR<class_@GlobalScope_constant_ERR_CONNECTION_ERROR>` if :ref:`multiplayer<class_Node_property_multiplayer>`'s connection is not available.
-
-\ **Note:** You can only safely use RPCs on clients after you received the :ref:`MultiplayerAPI.connected_to_server<class_MultiplayerAPI_signal_connected_to_server>` signal from the :ref:`MultiplayerAPI<class_MultiplayerAPI>`. You also need to keep track of the connection state, either by the :ref:`MultiplayerAPI<class_MultiplayerAPI>` signals like :ref:`MultiplayerAPI.server_disconnected<class_MultiplayerAPI_signal_server_disconnected>` or by checking (\ ``get_multiplayer().peer.get_connection_status() == CONNECTION_CONNECTED``).
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_Node_method_rpc_config:
-
-.. rst-class:: classref-method
-
-|void| **rpc_config**\ (\ method\: :ref:`StringName<class_StringName>`, config\: :ref:`Variant<class_Variant>`\ ) :ref:`🔗<class_Node_method_rpc_config>`
-
-Changes the RPC configuration for the given ``method``. ``config`` should either be ``null`` to disable the feature (as by default), or a :ref:`Dictionary<class_Dictionary>` containing the following entries:
-
-- ``rpc_mode``: see :ref:`RPCMode<enum_MultiplayerAPI_RPCMode>`;
-
-- ``transfer_mode``: see :ref:`TransferMode<enum_MultiplayerPeer_TransferMode>`;
-
-- ``call_local``: if ``true``, the method will also be called locally;
-
-- ``channel``: an :ref:`int<class_int>` representing the channel to send the RPC on.
-
-\ **Note:** In GDScript, this method corresponds to the :ref:`@GDScript.@rpc<class_@GDScript_annotation_@rpc>` annotation, with various parameters passed (\ ``@rpc(any)``, ``@rpc(authority)``...). See also the :doc:`high-level multiplayer <../tutorials/networking/high_level_multiplayer>` tutorial.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_Node_method_rpc_id:
-
-.. rst-class:: classref-method
-
-:ref:`Error<enum_@GlobalScope_Error>` **rpc_id**\ (\ peer_id\: :ref:`int<class_int>`, method\: :ref:`StringName<class_StringName>`, ...\ ) |vararg| :ref:`🔗<class_Node_method_rpc_id>`
-
-Sends a :ref:`rpc()<class_Node_method_rpc>` to a specific peer identified by ``peer_id`` (see :ref:`MultiplayerPeer.set_target_peer()<class_MultiplayerPeer_method_set_target_peer>`).
-
-May return :ref:`@GlobalScope.OK<class_@GlobalScope_constant_OK>` if the call is successful, :ref:`@GlobalScope.ERR_INVALID_PARAMETER<class_@GlobalScope_constant_ERR_INVALID_PARAMETER>` if the arguments passed in the ``method`` do not match, :ref:`@GlobalScope.ERR_UNCONFIGURED<class_@GlobalScope_constant_ERR_UNCONFIGURED>` if the node's :ref:`multiplayer<class_Node_property_multiplayer>` cannot be fetched (such as when the node is not inside the tree), :ref:`@GlobalScope.ERR_CONNECTION_ERROR<class_@GlobalScope_constant_ERR_CONNECTION_ERROR>` if :ref:`multiplayer<class_Node_property_multiplayer>`'s connection is not available.
-
-.. rst-class:: classref-item-separator
-
-----
-
 .. _class_Node_method_set_deferred_thread_group:
 
 .. rst-class:: classref-method
@@ -3045,22 +2921,6 @@ If set to ``true``, the node appears folded in the Scene dock. As a result, all 
 |void| **set_editable_instance**\ (\ node\: :ref:`Node<class_Node>`, is_editable\: :ref:`bool<class_bool>`\ ) :ref:`🔗<class_Node_method_set_editable_instance>`
 
 Set to ``true`` to allow all nodes owned by ``node`` to be available, and editable, in the Scene dock, even if their :ref:`owner<class_Node_property_owner>` is not the scene root. This method is intended to be used in editor plugins and tools, but it also works in release builds. See also :ref:`is_editable_instance()<class_Node_method_is_editable_instance>`.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_Node_method_set_multiplayer_authority:
-
-.. rst-class:: classref-method
-
-|void| **set_multiplayer_authority**\ (\ id\: :ref:`int<class_int>`, recursive\: :ref:`bool<class_bool>` = true\ ) :ref:`🔗<class_Node_method_set_multiplayer_authority>`
-
-Sets the node's multiplayer authority to the peer with the given peer ``id``. The multiplayer authority is the peer that has authority over the node on the network. Defaults to peer ID 1 (the server). Useful in conjunction with :ref:`rpc_config()<class_Node_method_rpc_config>` and the :ref:`MultiplayerAPI<class_MultiplayerAPI>`.
-
-If ``recursive`` is ``true``, the given peer is recursively set as the authority for all children of this node.
-
-\ **Warning:** This does **not** automatically replicate the new authority to other peers. It is the developer's responsibility to do so. You may replicate the new authority's information using :ref:`MultiplayerSpawner.spawn_function<class_MultiplayerSpawner_property_spawn_function>`, an RPC, or a :ref:`MultiplayerSynchronizer<class_MultiplayerSynchronizer>`. Furthermore, the parent's authority does **not** propagate to newly added children.
 
 .. rst-class:: classref-item-separator
 

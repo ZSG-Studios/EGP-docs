@@ -18,10 +18,14 @@ Introduction
         GD.Print("Hello world!");
     }
 
-Welcome to the official documentation of **Godot Engine**, the free and open source
-community-driven 2D and 3D game engine! Behind this mouthful, you will find a
-powerful yet user-friendly tool that you can use to develop any kind of game,
-for any platform and with no usage restriction whatsoever.
+Welcome to the documentation of **EGP**, ZSG-Studios' open source fork of Godot
+Engine. EGP retains Godot's scene-based editor and rendering architecture,
+and integrates Box2D, Box3D, Yojimbo networking and native C++ development tools.
+
+Begin with the :ref:`EGP manual <doc_egp>` for the fork's systems, APIs and
+:ref:`migration requirements <doc_egp_migration>`. The inherited Godot tutorials
+cover shared editor and game-development concepts; EGP's generated class
+reference describes the APIs available in the documented engine revision.
 
 This page gives a broad overview of the engine and of this documentation,
 so that you know where to start if you are a beginner or
@@ -35,13 +39,18 @@ video tutorials contributed by the community. If you prefer video to text,
 consider checking them out. Otherwise, :ref:`Getting Started <doc_getting_started_intro>`
 is a great starting point.
 
-In case you have trouble with one of the tutorials or your project,
-you can find help on the various `Community channels <https://godotengine.org/community/>`_,
-especially the Godot `Discord <https://discord.gg/godotengine>`_ community and
-`Forum <https://forum.godotengine.org/>`_.
+For EGP-specific problems, report the engine revision, platform, reproduction
+steps and relevant logs in the `EGP issue tracker
+<https://github.com/ZSG-Studios/EGP/issues>`_. Check the
+:ref:`support and qualification guide <doc_egp_qualification>` before relying
+on an inherited platform or feature claim.
 
-About Godot Engine
-------------------
+About EGP and Godot Engine
+--------------------------
+
+EGP is independently maintained by ZSG-Studios. Godot's upstream maintainers
+and Foundation do not provide support or release guarantees for this fork.
+The synopsis below describes the upstream engine on which EGP is based.
 
 A game engine is a complex tool and difficult to present in a few words.
 Here's a quick synopsis, which you are free to reuse
@@ -68,6 +77,8 @@ Organization of the documentation
 
 This documentation is organized into several sections:
 
+- **EGP manual** covers the fork's setup, physics, networking, prediction,
+  native C++ workflow, runtime reload and API compatibility contracts.
 - **About** contains this introduction as well as
   information about the engine, its history, its licensing, authors, etc. It
   also contains the :ref:`doc_faq`.

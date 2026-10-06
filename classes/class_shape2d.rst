@@ -34,18 +34,6 @@ Tutorials
 
 .. rst-class:: classref-reftable-group
 
-Properties
-----------
-
-.. table::
-   :widths: auto
-
-   +---------------------------+----------------------------------------------------------------------+---------+
-   | :ref:`float<class_float>` | :ref:`custom_solver_bias<class_Shape2D_property_custom_solver_bias>` | ``0.0`` |
-   +---------------------------+----------------------------------------------------------------------+---------+
-
-.. rst-class:: classref-reftable-group
-
 Methods
 -------
 
@@ -65,30 +53,6 @@ Methods
    +-----------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`Rect2<class_Rect2>`                           | :ref:`get_rect<class_Shape2D_method_get_rect>`\ (\ ) |const|                                                                                                                                                                                                                                                                                                   |
    +-----------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-
-.. rst-class:: classref-section-separator
-
-----
-
-.. rst-class:: classref-descriptions-group
-
-Property Descriptions
----------------------
-
-.. _class_Shape2D_property_custom_solver_bias:
-
-.. rst-class:: classref-property
-
-:ref:`float<class_float>` **custom_solver_bias** = ``0.0`` :ref:`🔗<class_Shape2D_property_custom_solver_bias>`
-
-.. rst-class:: classref-property-setget
-
-- |void| **set_custom_solver_bias**\ (\ value\: :ref:`float<class_float>`\ )
-- :ref:`float<class_float>` **get_custom_solver_bias**\ (\ )
-
-The shape's custom solver bias. Defines how much bodies react to enforce contact separation when this shape is involved.
-
-When set to ``0``, the default value from :ref:`ProjectSettings.physics/2d/solver/default_contact_bias<class_ProjectSettings_property_physics/2d/solver/default_contact_bias>` is used.
 
 .. rst-class:: classref-section-separator
 

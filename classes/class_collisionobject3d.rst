@@ -38,8 +38,6 @@ Properties
    +--------------------------------------------------------+--------------------------------------------------------------------------------------+-----------+
    | :ref:`int<class_int>`                                  | :ref:`collision_mask<class_CollisionObject3D_property_collision_mask>`               | ``1``     |
    +--------------------------------------------------------+--------------------------------------------------------------------------------------+-----------+
-   | :ref:`float<class_float>`                              | :ref:`collision_priority<class_CollisionObject3D_property_collision_priority>`       | ``1.0``   |
-   +--------------------------------------------------------+--------------------------------------------------------------------------------------+-----------+
    | :ref:`DisableMode<enum_CollisionObject3D_DisableMode>` | :ref:`disable_mode<class_CollisionObject3D_property_disable_mode>`                   | ``0``     |
    +--------------------------------------------------------+--------------------------------------------------------------------------------------+-----------+
    | :ref:`bool<class_bool>`                                | :ref:`input_capture_on_drag<class_CollisionObject3D_property_input_capture_on_drag>` | ``false`` |
@@ -233,23 +231,6 @@ The physics layers this CollisionObject3D **is in**. Collision objects can exist
 The physics layers this CollisionObject3D **scans**. Collision objects can scan one or more of 32 different layers. See also :ref:`collision_layer<class_CollisionObject3D_property_collision_layer>`. For an easier way to change this value from a script, see :ref:`set_collision_mask_value()<class_CollisionObject3D_method_set_collision_mask_value>`.
 
 \ **Note:** Object A can detect a contact with object B only if object B is in any of the layers that object A scans. See `Collision layers and masks <../tutorials/physics/physics_introduction.html#collision-layers-and-masks>`__ in the documentation for more information.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_CollisionObject3D_property_collision_priority:
-
-.. rst-class:: classref-property
-
-:ref:`float<class_float>` **collision_priority** = ``1.0`` :ref:`🔗<class_CollisionObject3D_property_collision_priority>`
-
-.. rst-class:: classref-property-setget
-
-- |void| **set_collision_priority**\ (\ value\: :ref:`float<class_float>`\ )
-- :ref:`float<class_float>` **get_collision_priority**\ (\ )
-
-The priority used to solve colliding when occurring penetration. The higher the priority is, the lower the penetration into the object will be. This can for example be used to prevent the player from breaking through the boundaries of a level.
 
 .. rst-class:: classref-item-separator
 

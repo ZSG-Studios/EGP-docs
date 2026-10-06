@@ -315,3 +315,30 @@ rst_epilog = """
 
 # Needed so the table of contents is created for EPUB
 epub_tocscope = 'includehidden'
+
+
+# EGP overrides. Keep the upstream theme and extensions above for easy merging.
+project = "EGP"
+author = "ZSG-Studios; Juan Linietsky, Ariel Manzur and the Godot community"
+copyright = "2014-present Juan Linietsky, Ariel Manzur and the Godot community (CC BY 3.0); EGP additions by ZSG-Studios"
+extensions.append("myst_parser")
+source_suffix = {".rst": "restructuredtext", ".md": "markdown"}
+myst_heading_anchors = 4
+exclude_patterns += ["README.md", "AUTHORS.md", "**/README.md", "_styleguides", "egp/source_manifest.json"]
+html_title = "EGP documentation"
+ogp_site_name = "EGP documentation"
+html_baseurl = os.getenv("EGP_DOCS_URL", "https://zsg-studios.github.io/EGP-docs/")
+html_context.update({
+    "github_user": "ZSG-Studios", "github_repo": "EGP-docs",
+    "godot_docs_title": "EGP documentation",
+    "godot_docs_basepath": html_baseurl,
+    "godot_title_prefix": "", "godot_is_latest": False,
+    "godot_version": "4.8-dev", "godot_show_article_comments": False,
+    "godot_show_article_status": False,
+})
+html_logo = "_static/egp-logo.svg"
+html_theme_options["collapse_navigation"] = True
+html_favicon = "_static/egp-favicon.svg"
+html_js_files = ["js/custom.js"]
+html_css_files.append("css/egp.css")
+htmlhelp_basename = "EGPdoc"

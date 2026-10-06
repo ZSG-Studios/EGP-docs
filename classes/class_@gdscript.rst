@@ -861,41 +861,6 @@ Mark the following property as assigned when the :ref:`Node<class_Node>` is read
 
 ----
 
-.. _class_@GDScript_annotation_@rpc:
-
-.. rst-class:: classref-annotation
-
-**@rpc**\ (\ mode\: :ref:`String<class_String>` = "authority", sync\: :ref:`String<class_String>` = "call_remote", transfer_mode\: :ref:`String<class_String>` = "reliable", transfer_channel\: :ref:`int<class_int>` = 0\ ) :ref:`🔗<class_@GDScript_annotation_@rpc>`
-
-Mark the following method for remote procedure calls. See :doc:`High-level multiplayer <../tutorials/networking/high_level_multiplayer>`.
-
-If ``mode`` is set as ``"any_peer"``, allows any peer to call this RPC function. Otherwise, only the authority peer is allowed to call it and ``mode`` should be kept as ``"authority"``. When configuring functions as RPCs with :ref:`Node.rpc_config()<class_Node_method_rpc_config>`, each of these modes respectively corresponds to the :ref:`MultiplayerAPI.RPC_MODE_AUTHORITY<class_MultiplayerAPI_constant_RPC_MODE_AUTHORITY>` and :ref:`MultiplayerAPI.RPC_MODE_ANY_PEER<class_MultiplayerAPI_constant_RPC_MODE_ANY_PEER>` RPC modes. See :ref:`RPCMode<enum_MultiplayerAPI_RPCMode>`. If a peer that is not the authority tries to call a function that is only allowed for the authority, the function will not be executed. If the error can be detected locally (when the RPC configuration is consistent between the local and the remote peer), an error message will be displayed on the sender peer. Otherwise, the remote peer will detect the error and print an error there.
-
-If ``sync`` is set as ``"call_remote"``, the function will only be executed on the remote peer, but not locally. To run this function locally too, set ``sync`` to ``"call_local"``. When configuring functions as RPCs with :ref:`Node.rpc_config()<class_Node_method_rpc_config>`, this is equivalent to setting ``call_local`` to ``true``.
-
-The ``transfer_mode`` accepted values are ``"unreliable"``, ``"unreliable_ordered"``, or ``"reliable"``. It sets the transfer mode of the underlying :ref:`MultiplayerPeer<class_MultiplayerPeer>`. See :ref:`MultiplayerPeer.transfer_mode<class_MultiplayerPeer_property_transfer_mode>`.
-
-The ``transfer_channel`` defines the channel of the underlying :ref:`MultiplayerPeer<class_MultiplayerPeer>`. See :ref:`MultiplayerPeer.transfer_channel<class_MultiplayerPeer_property_transfer_channel>`.
-
-The order of ``mode``, ``sync`` and ``transfer_mode`` does not matter, but values related to the same argument must not be used more than once. ``transfer_channel`` always has to be the 4th argument (you must specify 3 preceding arguments).
-
-::
-
-    @rpc
-    func fn(): pass
-
-    @rpc("any_peer", "unreliable_ordered")
-    func fn_update_pos(): pass
-
-    @rpc("authority", "call_remote", "reliable", 0) # Equivalent to @rpc
-    func fn_default(): pass
-
-\ **Note:** Methods annotated with :ref:`@rpc<class_@GDScript_annotation_@rpc>` cannot receive objects which define required parameters in :ref:`Object._init()<class_Object_private_method__init>`. See :ref:`Object._init()<class_Object_private_method__init>` for more details.
-
-.. rst-class:: classref-item-separator
-
-----
-
 .. _class_@GDScript_annotation_@static_unload:
 
 .. rst-class:: classref-annotation

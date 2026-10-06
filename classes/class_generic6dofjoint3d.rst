@@ -19,6 +19,8 @@ A physics joint that allows for complex movement and rotation between two 3D phy
 Description
 -----------
 
+EGP implements this joint with its native Box3D per-axis constraint solver. Numerical equivalence with other physics backends requires separate qualification.
+
 The **Generic6DOFJoint3D** (6 Degrees Of Freedom) joint allows for implementing custom types of joints by locking the rotation and translation of certain axes.
 
 The first 3 DOF represent the linear motion of the physics bodies and the last 3 DOF represent the angular motion of the physics bodies. Each axis can be either locked, or limited.
@@ -334,11 +336,7 @@ The maximum force the linear motor will apply while trying to reach the velocity
 
 :ref:`Param<enum_Generic6DOFJoint3D_Param>` **PARAM_LINEAR_SPRING_STIFFNESS** = ``7``
 
-.. container:: contribute
-
-	There is currently no description for this enum. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
-
-
+Stiffness of the linear spring on the selected joint axis.
 
 .. _class_Generic6DOFJoint3D_constant_PARAM_LINEAR_SPRING_DAMPING:
 
@@ -346,11 +344,7 @@ The maximum force the linear motor will apply while trying to reach the velocity
 
 :ref:`Param<enum_Generic6DOFJoint3D_Param>` **PARAM_LINEAR_SPRING_DAMPING** = ``8``
 
-.. container:: contribute
-
-	There is currently no description for this enum. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
-
-
+Damping coefficient of the linear spring on the selected joint axis.
 
 .. _class_Generic6DOFJoint3D_constant_PARAM_LINEAR_SPRING_EQUILIBRIUM_POINT:
 
@@ -358,11 +352,7 @@ The maximum force the linear motor will apply while trying to reach the velocity
 
 :ref:`Param<enum_Generic6DOFJoint3D_Param>` **PARAM_LINEAR_SPRING_EQUILIBRIUM_POINT** = ``9``
 
-.. container:: contribute
-
-	There is currently no description for this enum. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
-
-
+Equilibrium position of the linear spring on the selected joint axis, in distance units.
 
 .. _class_Generic6DOFJoint3D_constant_PARAM_ANGULAR_LOWER_LIMIT:
 
@@ -444,11 +434,7 @@ Maximum acceleration for the motor at the axes.
 
 :ref:`Param<enum_Generic6DOFJoint3D_Param>` **PARAM_ANGULAR_SPRING_STIFFNESS** = ``19``
 
-.. container:: contribute
-
-	There is currently no description for this enum. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
-
-
+Stiffness of the angular spring on the selected joint axis.
 
 .. _class_Generic6DOFJoint3D_constant_PARAM_ANGULAR_SPRING_DAMPING:
 
@@ -456,11 +442,7 @@ Maximum acceleration for the motor at the axes.
 
 :ref:`Param<enum_Generic6DOFJoint3D_Param>` **PARAM_ANGULAR_SPRING_DAMPING** = ``20``
 
-.. container:: contribute
-
-	There is currently no description for this enum. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
-
-
+Damping coefficient of the angular spring on the selected joint axis.
 
 .. _class_Generic6DOFJoint3D_constant_PARAM_ANGULAR_SPRING_EQUILIBRIUM_POINT:
 
@@ -468,11 +450,7 @@ Maximum acceleration for the motor at the axes.
 
 :ref:`Param<enum_Generic6DOFJoint3D_Param>` **PARAM_ANGULAR_SPRING_EQUILIBRIUM_POINT** = ``21``
 
-.. container:: contribute
-
-	There is currently no description for this enum. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
-
-
+Equilibrium position of the angular spring on the selected joint axis, in radians.
 
 .. _class_Generic6DOFJoint3D_constant_PARAM_LINEAR_DRIVE_FORCE_LIMIT:
 
@@ -484,7 +462,7 @@ The maximum force the joint can apply along this linear axis.
 
 Used by both the spring drive and the linear motor; supersedes :ref:`PARAM_LINEAR_MOTOR_FORCE_LIMIT<class_Generic6DOFJoint3D_constant_PARAM_LINEAR_MOTOR_FORCE_LIMIT>` when set.
 
-\ **Note:** Only for Jolt backend. Other 3D physics backends may ignore this value.
+\ **Note:** This compatibility parameter is not implemented by the Box3D backend.
 
 .. _class_Generic6DOFJoint3D_constant_PARAM_ANGULAR_DRIVE_TORQUE_LIMIT:
 
@@ -496,7 +474,7 @@ The maximum torque the joint can apply around this angular axis.
 
 Used by both the spring drive and the angular motor; supersedes :ref:`PARAM_ANGULAR_MOTOR_FORCE_LIMIT<class_Generic6DOFJoint3D_constant_PARAM_ANGULAR_MOTOR_FORCE_LIMIT>` when set.
 
-\ **Note:** Only for Jolt backend. Other 3D physics backends may ignore this value.
+\ **Note:** This compatibility parameter is not implemented by the Box3D backend.
 
 .. _class_Generic6DOFJoint3D_constant_PARAM_MAX:
 
@@ -538,11 +516,7 @@ If enabled, rotational motion is possible within the given limits.
 
 :ref:`Flag<enum_Generic6DOFJoint3D_Flag>` **FLAG_ENABLE_LINEAR_SPRING** = ``3``
 
-.. container:: contribute
-
-	There is currently no description for this enum. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
-
-
+Enables the linear spring on the selected joint axis.
 
 .. _class_Generic6DOFJoint3D_constant_FLAG_ENABLE_ANGULAR_SPRING:
 
@@ -550,11 +524,7 @@ If enabled, rotational motion is possible within the given limits.
 
 :ref:`Flag<enum_Generic6DOFJoint3D_Flag>` **FLAG_ENABLE_ANGULAR_SPRING** = ``2``
 
-.. container:: contribute
-
-	There is currently no description for this enum. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
-
-
+Enables the angular spring on the selected joint axis.
 
 .. _class_Generic6DOFJoint3D_constant_FLAG_ENABLE_ANGULAR_MOTOR:
 
@@ -612,7 +582,7 @@ Property Descriptions
 
 The maximum torque the joint can apply around the X angular axis. Used by both the spring drive and the angular motor; supersedes :ref:`angular_motor_x/force_limit<class_Generic6DOFJoint3D_property_angular_motor_x/force_limit>` when explicitly set.
 
-\ **Note:** Only for Jolt backend. Other 3D physics backends may ignore this value.
+\ **Note:** This compatibility parameter is not implemented by the Box3D backend.
 
 .. rst-class:: classref-item-separator
 
@@ -631,7 +601,7 @@ The maximum torque the joint can apply around the X angular axis. Used by both t
 
 The maximum torque the joint can apply around the Y angular axis. Used by both the spring drive and the angular motor; supersedes :ref:`angular_motor_y/force_limit<class_Generic6DOFJoint3D_property_angular_motor_y/force_limit>` when explicitly set.
 
-\ **Note:** Only for Jolt backend. Other 3D physics backends may ignore this value.
+\ **Note:** This compatibility parameter is not implemented by the Box3D backend.
 
 .. rst-class:: classref-item-separator
 
@@ -650,7 +620,7 @@ The maximum torque the joint can apply around the Y angular axis. Used by both t
 
 The maximum torque the joint can apply around the Z angular axis. Used by both the spring drive and the angular motor; supersedes :ref:`angular_motor_z/force_limit<class_Generic6DOFJoint3D_property_angular_motor_z/force_limit>` when explicitly set.
 
-\ **Note:** Only for Jolt backend. Other 3D physics backends may ignore this value.
+\ **Note:** This compatibility parameter is not implemented by the Box3D backend.
 
 .. rst-class:: classref-item-separator
 
@@ -1466,7 +1436,7 @@ Target speed for the motor at the Z axis.
 
 The maximum force the joint can apply along the X linear axis. Used by both the spring drive and the linear motor; supersedes :ref:`linear_motor_x/force_limit<class_Generic6DOFJoint3D_property_linear_motor_x/force_limit>` when explicitly set.
 
-\ **Note:** Only for Jolt backend. Other 3D physics backends may ignore this value.
+\ **Note:** This compatibility parameter is not implemented by the Box3D backend.
 
 .. rst-class:: classref-item-separator
 
@@ -1485,7 +1455,7 @@ The maximum force the joint can apply along the X linear axis. Used by both the 
 
 The maximum force the joint can apply along the Y linear axis. Used by both the spring drive and the linear motor; supersedes :ref:`linear_motor_y/force_limit<class_Generic6DOFJoint3D_property_linear_motor_y/force_limit>` when explicitly set.
 
-\ **Note:** Only for Jolt backend. Other 3D physics backends may ignore this value.
+\ **Note:** This compatibility parameter is not implemented by the Box3D backend.
 
 .. rst-class:: classref-item-separator
 
@@ -1504,7 +1474,7 @@ The maximum force the joint can apply along the Y linear axis. Used by both the 
 
 The maximum force the joint can apply along the Z linear axis. Used by both the spring drive and the linear motor; supersedes :ref:`linear_motor_z/force_limit<class_Generic6DOFJoint3D_property_linear_motor_z/force_limit>` when explicitly set.
 
-\ **Note:** Only for Jolt backend. Other 3D physics backends may ignore this value.
+\ **Note:** This compatibility parameter is not implemented by the Box3D backend.
 
 .. rst-class:: classref-item-separator
 
@@ -2238,9 +2208,7 @@ Returns the joint's current angular target as a body-space quaternion. If no exp
 
 :ref:`bool<class_bool>` **get_flag_x**\ (\ flag\: :ref:`Flag<enum_Generic6DOFJoint3D_Flag>`\ ) |const| :ref:`🔗<class_Generic6DOFJoint3D_method_get_flag_x>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Returns the enabled state of ``flag`` for the joint's local X axis. See :ref:`Flag<enum_Generic6DOFJoint3D_Flag>` for supported options.
 
 .. rst-class:: classref-item-separator
 
@@ -2252,9 +2220,7 @@ Returns the joint's current angular target as a body-space quaternion. If no exp
 
 :ref:`bool<class_bool>` **get_flag_y**\ (\ flag\: :ref:`Flag<enum_Generic6DOFJoint3D_Flag>`\ ) |const| :ref:`🔗<class_Generic6DOFJoint3D_method_get_flag_y>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Returns the enabled state of ``flag`` for the joint's local Y axis. See :ref:`Flag<enum_Generic6DOFJoint3D_Flag>` for supported options.
 
 .. rst-class:: classref-item-separator
 
@@ -2266,9 +2232,7 @@ Returns the joint's current angular target as a body-space quaternion. If no exp
 
 :ref:`bool<class_bool>` **get_flag_z**\ (\ flag\: :ref:`Flag<enum_Generic6DOFJoint3D_Flag>`\ ) |const| :ref:`🔗<class_Generic6DOFJoint3D_method_get_flag_z>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Returns the enabled state of ``flag`` for the joint's local Z axis. See :ref:`Flag<enum_Generic6DOFJoint3D_Flag>` for supported options.
 
 .. rst-class:: classref-item-separator
 
@@ -2280,9 +2244,7 @@ Returns the joint's current angular target as a body-space quaternion. If no exp
 
 :ref:`float<class_float>` **get_param_x**\ (\ param\: :ref:`Param<enum_Generic6DOFJoint3D_Param>`\ ) |const| :ref:`🔗<class_Generic6DOFJoint3D_method_get_param_x>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Returns the value of ``param`` for the joint's local X axis. See :ref:`Param<enum_Generic6DOFJoint3D_Param>` for supported options.
 
 .. rst-class:: classref-item-separator
 
@@ -2294,9 +2256,7 @@ Returns the joint's current angular target as a body-space quaternion. If no exp
 
 :ref:`float<class_float>` **get_param_y**\ (\ param\: :ref:`Param<enum_Generic6DOFJoint3D_Param>`\ ) |const| :ref:`🔗<class_Generic6DOFJoint3D_method_get_param_y>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Returns the value of ``param`` for the joint's local Y axis. See :ref:`Param<enum_Generic6DOFJoint3D_Param>` for supported options.
 
 .. rst-class:: classref-item-separator
 
@@ -2308,9 +2268,7 @@ Returns the joint's current angular target as a body-space quaternion. If no exp
 
 :ref:`float<class_float>` **get_param_z**\ (\ param\: :ref:`Param<enum_Generic6DOFJoint3D_Param>`\ ) |const| :ref:`🔗<class_Generic6DOFJoint3D_method_get_param_z>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Returns the value of ``param`` for the joint's local Z axis. See :ref:`Param<enum_Generic6DOFJoint3D_Param>` for supported options.
 
 .. rst-class:: classref-item-separator
 
@@ -2336,7 +2294,7 @@ Returns ``true`` if a quaternion angular target was explicitly set via :ref:`set
 
 Sets the target angular orientation as a body-space quaternion describing the desired orientation of body B relative to body A. Replaces any previously set target and supersedes :ref:`PARAM_ANGULAR_SPRING_EQUILIBRIUM_POINT<class_Generic6DOFJoint3D_constant_PARAM_ANGULAR_SPRING_EQUILIBRIUM_POINT>` until :ref:`clear_angular_target_rotation()<class_Generic6DOFJoint3D_method_clear_angular_target_rotation>` is called.
 
-\ **Note:** Only for Jolt backend. Other 3D physics backends may ignore this value.
+\ **Note:** This compatibility parameter is not implemented by the Box3D backend.
 
 .. rst-class:: classref-item-separator
 
@@ -2348,9 +2306,7 @@ Sets the target angular orientation as a body-space quaternion describing the de
 
 |void| **set_flag_x**\ (\ flag\: :ref:`Flag<enum_Generic6DOFJoint3D_Flag>`, value\: :ref:`bool<class_bool>`\ ) :ref:`🔗<class_Generic6DOFJoint3D_method_set_flag_x>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Sets the enabled state of ``flag`` for the joint's local X axis. See :ref:`Flag<enum_Generic6DOFJoint3D_Flag>` for supported options.
 
 .. rst-class:: classref-item-separator
 
@@ -2362,9 +2318,7 @@ Sets the target angular orientation as a body-space quaternion describing the de
 
 |void| **set_flag_y**\ (\ flag\: :ref:`Flag<enum_Generic6DOFJoint3D_Flag>`, value\: :ref:`bool<class_bool>`\ ) :ref:`🔗<class_Generic6DOFJoint3D_method_set_flag_y>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Sets the enabled state of ``flag`` for the joint's local Y axis. See :ref:`Flag<enum_Generic6DOFJoint3D_Flag>` for supported options.
 
 .. rst-class:: classref-item-separator
 
@@ -2376,9 +2330,7 @@ Sets the target angular orientation as a body-space quaternion describing the de
 
 |void| **set_flag_z**\ (\ flag\: :ref:`Flag<enum_Generic6DOFJoint3D_Flag>`, value\: :ref:`bool<class_bool>`\ ) :ref:`🔗<class_Generic6DOFJoint3D_method_set_flag_z>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Sets the enabled state of ``flag`` for the joint's local Z axis. See :ref:`Flag<enum_Generic6DOFJoint3D_Flag>` for supported options.
 
 .. rst-class:: classref-item-separator
 
@@ -2390,9 +2342,7 @@ Sets the target angular orientation as a body-space quaternion describing the de
 
 |void| **set_param_x**\ (\ param\: :ref:`Param<enum_Generic6DOFJoint3D_Param>`, value\: :ref:`float<class_float>`\ ) :ref:`🔗<class_Generic6DOFJoint3D_method_set_param_x>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Sets the value of ``param`` for the joint's local X axis. See :ref:`Param<enum_Generic6DOFJoint3D_Param>` for supported options.
 
 .. rst-class:: classref-item-separator
 
@@ -2404,9 +2354,7 @@ Sets the target angular orientation as a body-space quaternion describing the de
 
 |void| **set_param_y**\ (\ param\: :ref:`Param<enum_Generic6DOFJoint3D_Param>`, value\: :ref:`float<class_float>`\ ) :ref:`🔗<class_Generic6DOFJoint3D_method_set_param_y>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Sets the value of ``param`` for the joint's local Y axis. See :ref:`Param<enum_Generic6DOFJoint3D_Param>` for supported options.
 
 .. rst-class:: classref-item-separator
 
@@ -2418,9 +2366,7 @@ Sets the target angular orientation as a body-space quaternion describing the de
 
 |void| **set_param_z**\ (\ param\: :ref:`Param<enum_Generic6DOFJoint3D_Param>`, value\: :ref:`float<class_float>`\ ) :ref:`🔗<class_Generic6DOFJoint3D_method_set_param_z>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Sets the value of ``param`` for the joint's local Z axis. See :ref:`Param<enum_Generic6DOFJoint3D_Param>` for supported options.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
 .. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`

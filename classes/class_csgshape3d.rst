@@ -55,8 +55,6 @@ Properties
    +---------------------------------------------+-------------------------------------------------------------------------+-----------+
    | :ref:`int<class_int>`                       | :ref:`collision_mask<class_CSGShape3D_property_collision_mask>`         | ``1``     |
    +---------------------------------------------+-------------------------------------------------------------------------+-----------+
-   | :ref:`float<class_float>`                   | :ref:`collision_priority<class_CSGShape3D_property_collision_priority>` | ``1.0``   |
-   +---------------------------------------------+-------------------------------------------------------------------------+-----------+
    | :ref:`Operation<enum_CSGShape3D_Operation>` | :ref:`operation<class_CSGShape3D_property_operation>`                   | ``0``     |
    +---------------------------------------------+-------------------------------------------------------------------------+-----------+
    | :ref:`float<class_float>`                   | :ref:`smoothing_angle<class_CSGShape3D_property_smoothing_angle>`       | ``50.0``  |
@@ -214,23 +212,6 @@ The physics layers this CSG shape scans for collisions. Only effective if :ref:`
 
 ----
 
-.. _class_CSGShape3D_property_collision_priority:
-
-.. rst-class:: classref-property
-
-:ref:`float<class_float>` **collision_priority** = ``1.0`` :ref:`🔗<class_CSGShape3D_property_collision_priority>`
-
-.. rst-class:: classref-property-setget
-
-- |void| **set_collision_priority**\ (\ value\: :ref:`float<class_float>`\ )
-- :ref:`float<class_float>` **get_collision_priority**\ (\ )
-
-The priority used to solve colliding when occurring penetration. Only effective if :ref:`use_collision<class_CSGShape3D_property_use_collision>` is ``true``. The higher the priority is, the lower the penetration into the object will be. This can for example be used to prevent the player from breaking through the boundaries of a level.
-
-.. rst-class:: classref-item-separator
-
-----
-
 .. _class_CSGShape3D_property_operation:
 
 .. rst-class:: classref-property
@@ -297,7 +278,7 @@ This property does nothing.
 - |void| **set_use_collision**\ (\ value\: :ref:`bool<class_bool>`\ )
 - :ref:`bool<class_bool>` **is_using_collision**\ (\ )
 
-Adds a collision shape to the physics engine for our CSG shape. This will always act like a static body. Note that the collision shape is still active even if the CSG shape itself is hidden. See also :ref:`collision_mask<class_CSGShape3D_property_collision_mask>` and :ref:`collision_priority<class_CSGShape3D_property_collision_priority>`.
+Adds a collision shape to the physics engine for our CSG shape. This will always act like a static body. Note that the collision shape is still active even if the CSG shape itself is hidden. See also :ref:`collision_mask<class_CSGShape3D_property_collision_mask>`.
 
 .. rst-class:: classref-section-separator
 

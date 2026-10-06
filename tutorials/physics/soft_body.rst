@@ -10,15 +10,12 @@ cloth or to create more realistic characters.
 Physics engine considerations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Support for soft bodies is generally more robust in Jolt Physics compared to GodotPhysics3D.
-You can switch physics engines by changing **Physics > 3D > Physics Engine**
-in the Project Settings. Projects created in Godot 4.6 and later use Jolt Physics
-by default, but existing projects will have to be switched over manually.
-
-Additionally, :ref:`physics interpolation <doc_physics_interpolation>` currently
-does not affect soft bodies. If you want soft body simulation to look smoother at
-higher framerates, you'll have to increase the **Physics > Common > Physics Ticks per Second**
-project setting, which comes at a performance cost.
+EGP's Box3D backend includes a soft-body integration with focused Windows
+fixtures. Broader collision and scene parity remain qualification work.
+The inherited setup below describes the scene workflow; verify it with the
+intended EGP binary and consult :doc:`/egp/box3d`. Jolt and Godot Physics 3D
+are not selectable backends in EGP. Tick-rate changes must respect EGP's
+fixed deterministic profile.
 
 Basic setup
 ~~~~~~~~~~~

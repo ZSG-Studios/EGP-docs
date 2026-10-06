@@ -5,9 +5,11 @@
 System requirements
 ===================
 
-This page contains system requirements for the editor and exported projects.
-These specifications are given for informative purposes only, but they can be
-referred to if you're looking to build or upgrade a system to use Godot on.
+This page preserves upstream Godot's hardware guidance for the editor and
+exported projects. EGP's added backends, networking and development tools have
+their own build and platform requirements. Review :ref:`doc_egp_qualification`
+and :ref:`doc_egp_getting_started` for EGP's supported workflow; the upstream
+tables do not establish that every listed platform has been qualified for EGP.
 
 Godot editor
 ------------

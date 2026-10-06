@@ -91,9 +91,9 @@ predefined shapes, depending on Blender's empty draw type:
 
    Choosing a draw type for an Empty on creation in Blender
 
-- Single arrow will create a :ref:`class_SeparationRayShape3D`.
+- Single-arrow separation rays are unsupported in EGP; choose a supported primitive collision shape.
 - Cube will create a :ref:`class_BoxShape3D`.
-- Image will create a :ref:`class_WorldBoundaryShape3D`.
+- Image-based world boundaries require backend support; see :doc:`/egp/box3d` before using them.
 - Sphere (and the others not listed) will create a :ref:`class_SphereShape3D`.
 
 When possible, **try to use a few primitive collision shapes** instead of triangle

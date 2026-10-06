@@ -1,52 +1,47 @@
-# Godot Engine documentation
+# EGP documentation
 
-This repository contains the source files of [Godot Engine](https://godotengine.org)'s documentation, in reStructuredText markup language (reST).
+EGP's manual and class reference, maintained by ZSG-Studios and forked from
+[Godot's official documentation](https://github.com/godotengine/godot-docs).
+The original Sphinx theme, code tabs, copy buttons, search and light/dark styles
+are retained. `egp/` documents the fork-specific systems and migration paths.
 
-They are meant to be parsed with the [Sphinx](https://www.sphinx-doc.org/) documentation builder to build the HTML documentation on [Godot's website](https://docs.godotengine.org).
+## Build
 
-## Download for offline use
+```sh
+python -m venv .venv
+python -m pip install -r requirements.txt
+python -m sphinx -b html -W --keep-going -j 4 . _build/html
+python -m http.server 8070 --directory _build/html
+```
 
-To browse the documentation offline, you can download an HTML copy (updated every Monday):
-[stable](https://nightly.link/godotengine/godot-docs/workflows/build_offline_docs/master/godot-docs-html-stable.zip),
-[latest](https://nightly.link/godotengine/godot-docs/workflows/build_offline_docs/master/godot-docs-html-master.zip),
-[3.6](https://nightly.link/godotengine/godot-docs/workflows/build_offline_docs/master/godot-docs-html-3.6.zip). Extract
-the ZIP archive then open the top-level `index.html` in a web browser.
+Activate the virtual environment first (`.venv/Scripts/Activate.ps1` on Windows
+or `source .venv/bin/activate` on Linux/macOS). The generated HTML is usable offline.
+CI retains the complete HTML artifact. The manually triggered Pages workflow
+publishes a separately checked build.
 
-For mobile devices or e-readers, you can also download an ePub copy (updated every Monday):
-[stable](https://nightly.link/godotengine/godot-docs/workflows/build_offline_docs/master/godot-docs-epub-stable.zip),
-[latest](https://nightly.link/godotengine/godot-docs/workflows/build_offline_docs/master/godot-docs-epub-master.zip),
-[3.6](https://nightly.link/godotengine/godot-docs/workflows/build_offline_docs/master/godot-docs-epub-3.6.zip). Extract
-the ZIP archive then open the `GodotEngine.epub` file in an e-book reader application.
+## Maintain the reference
 
-## Theming
+Native class pages and canonical system guides are generated from the EGP engine.
+Edit the engine XML/manual sources first. From a sibling engine checkout:
 
-The Godot documentation uses the default `sphinx_rtd_theme` with many
-[customizations](_static/) applied on top. It will automatically switch between
-the light and dark theme depending on your browser/OS' theming preference.
+```sh
+python misc/scripts/sync_egp_docs.py --docs ../EGP-docs
+python misc/scripts/sync_egp_docs.py --docs ../EGP-docs --check
+```
 
-If you use Firefox and wish to use the dark theme regardless of your OS
-configuration, you can install the
-[Dark Website Forcer](https://addons.mozilla.org/en-US/firefox/addon/dark-mode-website-switcher/)
-add-on.
+`egp/source_manifest.json` records the exact engine revision and normalized
+source/output SHA256 hashes. CI checks these generated files against that pinned
+engine checkout. Additional tutorials, navigation and presentation are edited
+here. See `egp/documentation.md` for the maintenance contract.
 
-## Contributing
-
-All contributors are welcome to help on the Godot documentation.
-
-To get started, head to the [Contributing documentation](https://contributing.godotengine.org/en/latest/index.html). There, you will find all the information you need to write and submit changes.
-
-Here are some quick links to the areas you might be interested in:
-
-1. [Contributing to the online manual](https://contributing.godotengine.org/en/latest/development/documentation/manual/index.html)
-2. [Contributing to the class reference](https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html)
-3. [Content guidelines](https://contributing.godotengine.org/en/latest/development/documentation/content_guidelines.html)
-4. [Writing guidelines](https://contributing.godotengine.org/en/latest/development/documentation/docs_writing_guidelines.html)
-5. [Building the manual](https://contributing.godotengine.org/en/latest/development/documentation/manual/building_the_manual.html)
-6. [Translating the documentation](https://contributing.godotengine.org/en/latest/development/translations.html)
+Keep an `upstream` remote for `https://github.com/godotengine/godot-docs.git`.
+Review upstream merges for retired multiplayer/physics APIs before synchronizing
+and building. The original upstream class-sync workflow is replaced with EGP's
+manual sync, which exports a reviewable patch instead of overwriting the branch.
 
 ## License
 
-With the exception of the `classes/` folder, all the content of this repository is licensed under the Creative Commons Attribution 3.0 Unported license ([CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)) and is to be attributed to "Juan Linietsky, Ariel Manzur and the Godot community".
-See [LICENSE.txt](/LICENSE.txt) for details.
-
-The files in the `classes/` folder are derived from [Godot's main source repository](https://github.com/godotengine/godot) and are distributed under the MIT license, with the same authors as above.
+The manual retains **CC BY 3.0** attribution to Juan Linietsky, Ariel Manzur and
+the Godot community. Generated class reference files retain the engine's **MIT
+license**. See [LICENSE.txt](LICENSE.txt). EGP additions are maintained by
+ZSG-Studios; this is not the official Godot documentation service.
