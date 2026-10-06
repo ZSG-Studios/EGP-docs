@@ -30,9 +30,9 @@ for the Release archive. See :doc:`cpp_extensions` for the SDK workflow.
 Qualified scope
 ---------------
 
-The published Windows runs pass all 21 validator steps and 93 interop assertions
+The published Windows runs pass all 21 validator steps and 133 interop assertions
 each in the editor, relocated Debug and relocated Release. The fresh fixtures
-supersede the preceding 60-assertion results. Native engine APIs, generated glue
+supersede the preceding 60- and 93-assertion results. Native engine APIs, generated glue
 and external helper declarations are unchanged in this source increment.
 
 The C++ sample's ``poll()`` binding now returns the first high-/low-level native
@@ -57,22 +57,56 @@ attach a fresh entity to the same stable body. Eight new authority ticks advance
 the world from its checkpoint offset. Local snapshots are not sent over the
 network or included in receipts.
 
+Live clients and explicit rejoin
+----------------------------------
+
+High-level C# and C++ fault cycles retain authenticated UDP clients in the same
+local process. During each authority polling gap, the client continues polling
+and stays ``Connected``. The fixture then performs explicit recovery:
+
+1. Observe the authority's native ``FAILED`` result and cleared state.
+2. Stop the client, verify empty baselines and reject input while stopped with
+   ``ERR_UNCONFIGURED``.
+3. Restore the trusted Box3D checkpoint, rebind the authority's original port and
+   attach its physics clock before starting admission.
+4. Issue a fresh token and rejoin using the same retained client native session.
+
+Attaching the physics clock before admission prevents the transport clock from
+advancing while the restored world is detached. Each client records four exact
+``Connecting -> Synchronizing -> Connected -> Stopped`` cycles: its initial
+admission and three rejoins. Across editor/Debug/Release this qualifies 18
+live-client fault recoveries and 24 fresh admissions. The low-level fault cycles
+remain local with no peers.
+
+After rejoin, the client receives only a fresh owned entity mapped to the stable
+physics body, with a tick after the restored checkpoint and continued falling
+motion. Input for the retired handle is rejected; input for the fresh owned
+handle is delivered exactly once. Hiding and showing the entity removes and
+restores its client baseline, with zero invalid input callbacks.
+
+Client outbound simulation uses 20 ms latency, 5 ms jitter and zero loss. This
+bounded simulation does not establish bidirectional WAN behavior or soak.
+Tokens and local snapshots stay outside the receipts.
+
 Evidence and limits
 -------------------
 
 The validator records commands, source hashes, SDK archives, fixture assemblies
 and extensions, exported runtime/PCK hashes and process identities. Its evidence
 reader independently checks session retention, fresh handles, failure cycles,
-physics clock offsets and exact diagnostics. Eight semantic regression tests
-passed for these checks.
+physics clock offsets and exact diagnostics. Sixteen semantic regression tests
+passed, including rejection of paused clients, uncleared baselines, reused
+admission, missing synchronization history, old client physics time, accepted
+retired input and failed visibility restoration.
 
-These repeated-fault cycles are local and have no connected remote peers.
-Client reconnect and hot reload during the faults, larger authoritative worlds,
-arbitrary application/ABI state recovery, other platforms, scale/soak and
-performance require separate qualification. Existing encrypted separate-process
-networking and reload results remain distinct checks.
+Explicit same-process client reset/rejoin is qualified. Automatic recovery,
+independent-process stalled servers, connected low-level session faults, hot
+reload during faults, larger authoritative worlds, arbitrary application/ABI
+state recovery, other platforms, scale/soak and performance require separate
+qualification. Existing encrypted separate-process networking and reload
+results remain distinct checks.
 
 Exact publication receipts and remaining acceptance items are listed in the
 `pinned engine integration record
-<https://github.com/ZSG-Studios/EGP/blob/943a033d076852d0d3c51961a43b360fdc0d31bc/doc/egp_integration_loop.md>`__.
+<https://github.com/ZSG-Studios/EGP/blob/7ba71280836bafc0c3f842cd7d3ac0e1f0b1e718/doc/egp_integration_loop.md>`__.
 See :doc:`qualification`, :doc:`explicit_world` and :doc:`admission_testing`.

@@ -46,17 +46,22 @@ client physics rollback require separate qualification.
 It is an application fixture, not a
 production identity service or automatic server persistence.
 
-Fresh C#/C++ fixtures pass 93 interoperability assertions each in the Windows
+Fresh C#/C++ fixtures pass 133 interoperability assertions each in the Windows
 Mono editor and relocated Debug/Release exports. They include three successive
 clock failures per language on both high-level and low-level sessions: 36 local
 faults across those configurations. Each cycle checks the native failure,
 retained session/port, retired handles and explicit recovery. High-level fixtures
 also restore trusted local Box3D checkpoints and map fresh entities to stable
-bodies. These results supersede the historical 60-assertion fixtures.
+bodies. These results supersede the historical 60- and 93-assertion fixtures.
 
-The repeated-fault cycles have no connected remote peers. Client reconnect and
-hot reload during those faults remain unqualified. See :doc:`language_testing`
-for reproduction, evidence and the distinction from separate-process networking.
+High-level cycles retain live same-process clients through each authority gap,
+then explicitly reset and rejoin them with fresh admission after restoring the
+physics checkpoint. The matrix qualifies 18 live-client fault recoveries and
+24 fresh admissions, including initial joins. Low-level cycles still have no
+peers. Automatic recovery, independent-process stalled servers, connected
+low-level faults and hot reload during faults remain unqualified. See
+:doc:`language_testing` for reproduction, evidence and the distinction from
+separate-process networking.
 
 Admission testing separates listener timestamp protection from key rotation.
 The controlled native/GDScript matrix covers retained zero/nonzero test keys
