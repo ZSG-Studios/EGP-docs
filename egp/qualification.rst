@@ -12,7 +12,7 @@ Published upstream consolidation
 --------------------------------
 
 The documentation is generated from engine revision
-``50b1de309092d009433c6f1db9d4ebff05a902f6``. It includes the sixteen incoming
+``6a3690387ac23323fe94f3c57f558ae543e84f5f``. It includes the sixteen incoming
 official Godot commits through ``3ea0cf3e72699c5e3b35f7956670ac93b9d1d4a0``.
 This is a pinned upstream snapshot; later upstream commits require another
 compatibility review.
@@ -32,7 +32,7 @@ reload, network-lab and admission regressions. Native Debug/Release suites pass
 byte-identical, with matching SDK key ``4bc13481314e7023`` and MSVC 19.51 libraries.
 New native and managed artifacts supersede the previous binary identities.
 Consult the `pinned integration record
-<https://github.com/ZSG-Studios/EGP/blob/50b1de309092d009433c6f1db9d4ebff05a902f6/doc/egp_integration_loop.md>`__
+<https://github.com/ZSG-Studios/EGP/blob/6a3690387ac23323fe94f3c57f558ae543e84f5f/doc/egp_integration_loop.md>`__
 for exact hashes, commands and retained failed controls.
 
 The subsequent C++ helper update adds explicit ``Net``/``Box3D`` ownership
@@ -42,8 +42,11 @@ assertions with retained authenticated local sessions, world/body identities,
 exact solver state during unload and callback/handler resubscription. Final
 helper inputs also pass the 27-stage editor/Debug/Release language matrix.
 Applications pause manual polling at a Godot-thread safe boundary. Automatic or
-in-flight transfer, failed-library ownership recovery and exported-game reload
-remain open. See :ref:`the C++ handoff contract <doc_egp_cpp_owner_handoff>`.
+in-flight transfer, prolonged failed-library ownership recovery and exported-game
+reload remain open. A separate missing/invalid-DLL fixture passes four failed
+loads and two compatible repairs with 158 assertions, at observed 25 ms and
+14 ms fault intervals while polling is paused. See
+:ref:`the C++ handoff contract <doc_egp_cpp_owner_handoff>`.
 
 Inherited scene references in binary exports
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -94,6 +97,25 @@ Vendor-only validation does not establish native or runtime compatibility:
 .. code-block:: console
 
    python misc/scripts/validate_egp_net.py --verify-vendor-only --output .build/vendor-identity-new
+
+Native test cadence across platforms
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The delayed-packet fixture pumps at 10 ms intervals so its configured
+1.0-second latency and 0.6-second jitter fit within the simulator's 512 packet
+slots. The earlier 2 ms cadence can overwrite occupied slots on Linux despite
+zero configured random loss. A frozen Linux baseline reproduces the failure;
+three candidate runs deliver all 128 packets with zero rejection. The
+12-second deadline and delivery, quota, ordering, fragmentation and wire-rejection
+assertions remain unchanged.
+
+Full local native suites pass 120 checks and all ten CTest cases in Windows
+MSVC Debug/Release and Ubuntu WSL/GCC Debug. Final formatted-fixture tests also
+pass in Windows Debug and Linux Debug. This fixture correction changes no
+engine/core/vendor implementation or installed artifact. It qualifies these
+native tests, rather than complete Linux editors, exports, WAN behavior or
+overload performance. Hosted results remain separately identified in the
+pinned integration record.
 
 System support
 --------------

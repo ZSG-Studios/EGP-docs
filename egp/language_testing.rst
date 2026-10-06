@@ -287,5 +287,5 @@ packaged language checks do not establish exported-game ownership reload. See
 
 Exact publication receipts and remaining acceptance items are listed in the
 `pinned engine integration record
-<https://github.com/ZSG-Studios/EGP/blob/50b1de309092d009433c6f1db9d4ebff05a902f6/doc/egp_integration_loop.md>`__.
+<https://github.com/ZSG-Studios/EGP/blob/6a3690387ac23323fe94f3c57f558ae543e84f5f/doc/egp_integration_loop.md>`__.
 See :doc:`qualification`, :doc:`explicit_world` and :doc:`admission_testing`.

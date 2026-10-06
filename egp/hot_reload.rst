@@ -92,7 +92,7 @@ closure persistence, automatic client physics rollback, independent-process
 low-level fault/reload and exported-runtime reload remain unqualified. Raw
 transport ownership does not authorize opaque gameplay messages. Exact receipts
 and remaining scope are in the `pinned engine integration record
-<https://github.com/ZSG-Studios/EGP/blob/50b1de309092d009433c6f1db9d4ebff05a902f6/doc/egp_integration_loop.md>`__.
+<https://github.com/ZSG-Studios/EGP/blob/6a3690387ac23323fe94f3c57f558ae543e84f5f/doc/egp_integration_loop.md>`__.
 See :doc:`language_testing` and :doc:`qualification` for the distinct networking
 fixture evidence.
 
@@ -697,5 +697,22 @@ The final helper inputs also pass all 27 language validator stages and 197
 assertions in each editor/relocated Debug/Release configuration. Those packaged
 checks validate helper behavior; they do not establish exported-game reload.
 No engine rebuild or ABI change was needed. Automatic/in-flight transfer,
-failed-library ownership recovery, independent-process/exported-game reload,
-Release-library recreation and cross-language capsules remain unqualified.
+prolonged failed-library ownership recovery, independent-process/exported-game
+reload, Release-library recreation and cross-language capsules remain unqualified.
+
+Recovery after missing or invalid DLLs
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Add ``--native-recovery`` to the C++ ownership validator command to inject a
+missing DLL and an invalid DLL before each compatible repair. The isolated
+Windows Debug fixture passes four failed loads and two repairs, with 158 runtime
+assertions. It retains the native sessions, world/body mapping, solver tick/hash,
+extension-node identity and parent edits while application polling is paused.
+The ordinary ownership mode also passes separately.
+
+The observed fault intervals were 25 ms and 14 ms. They fit inside the native
+fixed-clock catch-up budget. These results qualify short compatible repair in
+this fixture; they do not establish prolonged outages, automatic ownership
+transfer, clock-fault readmission, arbitrary layouts or independent-process,
+exported-game and Release-library recovery. Keep all application callbacks and
+threads inactive until a compatible library has resumed the saved owners.
