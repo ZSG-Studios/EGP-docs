@@ -38,10 +38,18 @@ The networking lab covers bounded local dedicated/listen-host processes,
 outgoing impairment, fresh admission after reconnect/stalls, same-process
 listener recovery and explicit checkpoint-based server replacement. Server-gap
 receipts check fresh keys/tokens, retired admission and input rejection, new
-ownership and restoration of the fixture's counter. Arbitrary game-state and
-authoritative physics restoration require separate qualification.
+ownership and restoration of the fixture's counter. The opt-in ``--physics``
+fixture adds trusted local Box3D checkpoint restoration, transactional rejection
+of damaged snapshots, six-tick replay and stable entity-to-body mapping.
+Arbitrary game-state restoration, larger/repeated-fault worlds and automatic
+client physics rollback require separate qualification.
 It is an application fixture, not a
 production identity service or automatic server persistence.
+
+Admission evidence qualifies the default generated-key rotation path and a
+retained nonzero-key negative control. The all-zero fixed-key recovery control
+has an open diagnostic; these results do not establish general fixed-key token
+revocation. The integration record below preserves that limitation.
 
 The generated ``source_manifest.json`` records the engine revision and source
 hashes used by this documentation. Runtime evidence and outstanding acceptance

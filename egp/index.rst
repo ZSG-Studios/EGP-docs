@@ -45,4 +45,5 @@ The class reference is generated from EGP's engine sources.
    hot_reload
    fastbuild
    api_contract
+   reference_workflow
    documentation

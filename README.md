@@ -22,17 +22,22 @@ publishes a separately checked build.
 ## Maintain the reference
 
 Native class pages and canonical system guides are generated from the EGP engine.
-Edit the engine XML/manual sources first. From a sibling engine checkout:
+Edit the engine XML/manual sources first. From this documentation checkout,
+with a sibling engine checkout at the exact committed revision:
 
 ```sh
-python misc/scripts/sync_egp_docs.py --docs ../EGP-docs
-python misc/scripts/sync_egp_docs.py --docs ../EGP-docs --check
+python tools/sync_egp_docs.py --engine ../EGP
+python tools/sync_egp_docs.py --engine ../EGP --check
 ```
 
 `egp/source_manifest.json` records the exact engine revision and normalized
-source/output SHA256 hashes. CI checks these generated files against that pinned
+source/output SHA256 hashes, including the documentation generator. The wrapper
+uses the engine's native reference generator and adds complete public C#/C++
+helper declarations, including multiline signatures and defaults. CI checks
+these generated files against that pinned
 engine checkout. Additional tutorials, navigation and presentation are edited
-here. See `egp/documentation.md` for the maintenance contract.
+here. See `egp/reference_workflow.rst` for this fork's complete update workflow
+and `egp/documentation.md` for the engine-source maintenance contract.
 
 Keep an `upstream` remote for `https://github.com/godotengine/godot-docs.git`.
 Review upstream merges for retired multiplayer/physics APIs before synchronizing

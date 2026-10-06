@@ -72,12 +72,30 @@ Secure client admission
 
 After the game's backend authenticates an account, the server issues a token:
 
-.. code-block:: gdscript
+.. tabs::
 
-   var admission := net.issue_token(player_id, "203.0.113.10:10515")
-   if admission.get("error", FAILED) == OK:
-       # Deliver admission.token to that authenticated player through your backend.
-       pass
+   .. code-tab:: gdscript GDScript
+
+      var admission := net.issue_token(player_id, "203.0.113.10:10515")
+      if admission.get("error", FAILED) == OK:
+          # Deliver admission.token to this authenticated player through your backend.
+          pass
+
+   .. code-tab:: csharp C#
+
+      TokenResult admission = net.IssueToken(playerId, "203.0.113.10:10515");
+      if (admission.Error == Error.Ok)
+      {
+          // Deliver admission.Token to this authenticated player through your backend.
+      }
+
+   .. code-tab:: cpp C++
+
+      egp::networking::TokenResult admission =
+          net.issue_token(player_id, "203.0.113.10:10515");
+      if (admission.error == godot::OK) {
+          // Deliver admission.token to this authenticated player through your backend.
+      }
 
 ``203.0.113.10`` is an example address; replace it with the server's reachable
 literal IPv4/IPv6 endpoint. Resolve hostnames in the trusted backend. The client
@@ -96,17 +114,51 @@ Messages and authoritative state
 Register message names and allowed senders explicitly. A handler receives
 ``(peer_id, arguments)``; message names do not invoke arbitrary scene methods.
 
-.. code-block:: gdscript
+Handlers must validate argument sizes, types, permissions and gameplay values.
+Check the returned error when registering and sending. C++ handlers are
+``Callable`` objects bound to registered game methods.
 
-   # Server: accept a client request under a registered contract.
-   net.register_message(&"chat", _on_chat, EGPNet.Sender.CLIENT)
+.. tabs::
 
-   func _on_chat(peer_id: int, arguments: Array) -> void:
-       # Validate size, types, permissions and gameplay values before applying them.
-       pass
+   .. code-tab:: gdscript GDScript
 
-   # Client: server is always peer 0; check the returned Error.
-   # var error := net.send_message(0, &"chat", ["Hello"])
+      func register_chat(net: EGPNet, handler: Callable) -> Error:
+          return net.register_message(&"chat", handler, EGPNet.Sender.CLIENT)
+
+      func send_chat(net: EGPNet) -> Error:
+          # On the client, server is always peer 0.
+          return net.send_message(0, &"chat", ["Hello"])
+
+   .. code-tab:: csharp C#
+
+      using System;
+      using EGP.Networking;
+      using Godot;
+      using Array = Godot.Collections.Array;
+
+      public static class ChatContract
+      {
+          public static Error Register(NetNode net, Action<long, Array> handler)
+              => net.RegisterMessage("chat", Callable.From<long, Array>(handler), Sender.Client);
+
+          public static Error Send(NetNode net)
+              => net.SendMessage(0, "chat", new Array { "Hello" });
+      }
+
+   .. code-tab:: cpp C++
+
+      #include "egp_net.hpp"
+
+      godot::Error register_chat(egp::networking::Net &net,
+              const godot::Callable &handler) {
+          return net.register_message("chat", handler, egp::networking::Sender::Client);
+      }
+
+      godot::Error send_chat(egp::networking::Net &net) {
+          godot::Array arguments;
+          arguments.push_back("Hello");
+          return net.send_message(0, "chat", arguments);
+      }
 
 Only the server may spawn, update or despawn replicated entities. ``spawn()``
 returns ``0`` on failure. States reject serialized objects and have a 4096-byte

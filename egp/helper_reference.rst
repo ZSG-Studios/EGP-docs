@@ -15,7 +15,7 @@ GDScript
 EGPNet
 ~~~~~~
 
-`Source <https://github.com/ZSG-Studios/EGP/blob/f31110a3d2396869741c604ed525cb1ef4801a95/modules/egp_net/gdscript/egp_net.gd>`__
+`Source <https://github.com/ZSG-Studios/EGP/blob/55fa28dc7400208c7c040ddc6028533e1c7c720d/modules/egp_net/gdscript/egp_net.gd>`__
 
 .. code-block:: gdscript
 
@@ -68,12 +68,12 @@ Signals:
 EGPNetBox3D
 ~~~~~~~~~~~
 
-`Source <https://github.com/ZSG-Studios/EGP/blob/f31110a3d2396869741c604ed525cb1ef4801a95/modules/egp_net/gdscript/egp_net_box3d.gd>`__
+`Source <https://github.com/ZSG-Studios/EGP/blob/55fa28dc7400208c7c040ddc6028533e1c7c720d/modules/egp_net/gdscript/egp_net_box3d.gd>`__
 
 .. code-block:: gdscript
 
     func attach(net: Node, world: RefCounted) -> Error
-    func track(entity: int) -> Error
+    func track(entity: int, body_id: int = 0) -> Error
     func untrack(entity: int) -> void
     func detach() -> void
 
@@ -88,7 +88,7 @@ Signals:
 EGPNetEntity2D
 ~~~~~~~~~~~~~~
 
-`Source <https://github.com/ZSG-Studios/EGP/blob/f31110a3d2396869741c604ed525cb1ef4801a95/modules/egp_net/gdscript/egp_net_entity_2d.gd>`__
+`Source <https://github.com/ZSG-Studios/EGP/blob/55fa28dc7400208c7c040ddc6028533e1c7c720d/modules/egp_net/gdscript/egp_net_entity_2d.gd>`__
 
 .. code-block:: gdscript
 
@@ -103,7 +103,7 @@ Signals:
 EGPNetEntity3D
 ~~~~~~~~~~~~~~
 
-`Source <https://github.com/ZSG-Studios/EGP/blob/f31110a3d2396869741c604ed525cb1ef4801a95/modules/egp_net/gdscript/egp_net_entity_3d.gd>`__
+`Source <https://github.com/ZSG-Studios/EGP/blob/55fa28dc7400208c7c040ddc6028533e1c7c720d/modules/egp_net/gdscript/egp_net_entity_3d.gd>`__
 
 .. code-block:: gdscript
 
@@ -118,7 +118,7 @@ Signals:
 EGPNetPrediction
 ~~~~~~~~~~~~~~~~
 
-`Source <https://github.com/ZSG-Studios/EGP/blob/f31110a3d2396869741c604ed525cb1ef4801a95/modules/egp_net/gdscript/egp_net_prediction.gd>`__
+`Source <https://github.com/ZSG-Studios/EGP/blob/55fa28dc7400208c7c040ddc6028533e1c7c720d/modules/egp_net/gdscript/egp_net_prediction.gd>`__
 
 .. code-block:: gdscript
 
@@ -139,193 +139,490 @@ Signals:
 C#
 --
 
-Use the ``EGP.Networking`` namespace. The source files below declare the typed
-options, events, results, ownership and disposal contracts.
+Use ``EGP.Networking``. Public declarations below retain overloads,
+default arguments, events and property accessors; method bodies are omitted.
 
-NetApi
-~~~~~~
+EGP.Networking.Delivery
+~~~~~~~~~~~~~~~~~~~~~~~
 
-`Source <https://github.com/ZSG-Studios/EGP/blob/f31110a3d2396869741c604ed525cb1ef4801a95/modules/egp_net/csharp/NetApi.cs>`__
+`Source <https://github.com/ZSG-Studios/EGP/blob/55fa28dc7400208c7c040ddc6028533e1c7c720d/modules/egp_net/csharp/NetApi.cs>`__
 
 .. code-block:: csharp
 
-    public int TickRate;
-    public int MaxPlayers;
-    public int MaxEntities;
-    public int MessagesPerSecond;
-    public int BytesPerSecond;
-    public int TimeoutSeconds;
-    public int TokenLifetimeSeconds;
-    public string GameProtocol;
-    public string SimulationFingerprint;
-    public bool AllowInsecureLoopback;
-    public byte[]? PrivateKey;
-    public float SimulatedLoss;
-    public float SimulatedLatencyMs;
-    public float SimulatedJitterMs;
-    public Dictionary ToDictionary();
-    public readonly record struct TokenResult(Error Error, byte[] Token);
+    public enum Delivery { ReliableOrdered = 2, Unreliable = 4 }
+
+EGP.Networking.Sender
+~~~~~~~~~~~~~~~~~~~~~
+
+`Source <https://github.com/ZSG-Studios/EGP/blob/55fa28dc7400208c7c040ddc6028533e1c7c720d/modules/egp_net/csharp/NetApi.cs>`__
+
+.. code-block:: csharp
+
+    public enum Sender { Server = 1, Client = 2, Both = 3 }
+
+EGP.Networking.NetOptions
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+`Source <https://github.com/ZSG-Studios/EGP/blob/55fa28dc7400208c7c040ddc6028533e1c7c720d/modules/egp_net/csharp/NetApi.cs>`__
+
+.. code-block:: csharp
+
+    public sealed class NetOptions {
+        public int TickRate { get; set; } = 60;
+        public int MaxPlayers { get; set; } = 32;
+        public int MaxEntities { get; set; } = 1024;
+        public int MessagesPerSecond { get; set; } = 1000;
+        public int BytesPerSecond { get; set; } = 4 * 1024 * 1024;
+        public int TimeoutSeconds { get; set; } = 5;
+        public int TokenLifetimeSeconds { get; set; } = 30;
+        public string GameProtocol { get; set; } = "egp-game-v1";
+        public string SimulationFingerprint { get; set; } = "script-state-v1";
+        public bool AllowInsecureLoopback { get; set; }
+        public byte[]? PrivateKey { get; set; }
+        public float SimulatedLoss { get; set; }
+        public float SimulatedLatencyMs { get; set; }
+        public float SimulatedJitterMs { get; set; }
+        public Dictionary ToDictionary();
+    }
+
+EGP.Networking.TokenResult
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+`Source <https://github.com/ZSG-Studios/EGP/blob/55fa28dc7400208c7c040ddc6028533e1c7c720d/modules/egp_net/csharp/NetApi.cs>`__
+
+.. code-block:: csharp
+
+    public readonly record struct TokenResult(Error Error, byte[] Token) {
+
+    }
+
+EGP.Networking.SpawnResult
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+`Source <https://github.com/ZSG-Studios/EGP/blob/55fa28dc7400208c7c040ddc6028533e1c7c720d/modules/egp_net/csharp/NetApi.cs>`__
+
+.. code-block:: csharp
+
     public readonly record struct SpawnResult(Error Error, long Entity);
+
+EGP.Networking.PeerInfo
+~~~~~~~~~~~~~~~~~~~~~~~
+
+`Source <https://github.com/ZSG-Studios/EGP/blob/55fa28dc7400208c7c040ddc6028533e1c7c720d/modules/egp_net/csharp/NetApi.cs>`__
+
+.. code-block:: csharp
+
     public readonly record struct PeerInfo(long PeerId, long ClientId, float PingMs);
+
+EGP.Networking.RawEntity
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+`Source <https://github.com/ZSG-Studios/EGP/blob/55fa28dc7400208c7c040ddc6028533e1c7c720d/modules/egp_net/csharp/NetApi.cs>`__
+
+.. code-block:: csharp
+
     public readonly record struct RawEntity(long Entity, int Kind, long AuthorityPeer, long Revision, long Tick, byte[] State);
-    public void Dispose();
-    public GodotObject Native;
-    public event Action<string>? StateChanged;
-    public event Action<long>? PeerConnected;
-    public event Action<long>? PeerDisconnected;
-    public event Action<long, byte[]>? ApplicationReceived;
-    public event Action<long, byte[], int, Delivery>? PacketReceived;
-    public event Action<long, bool>? SimulationTick;
-    public event Action<string>? Diagnostic;
-    public NetSession();
-    public Error Configure(NetOptions? options = null);
-    public Error Configure(Dictionary options);
-    public Error Listen(int port = 10515, string bindAddress = "0.0.0.0");
-    public Error ConnectLoopback(string address, int port = 10515);
-    public Error ConnectToken(long clientId, byte[] token, string bindAddress = "0.0.0.0");
-    public TokenResult IssueToken(long clientId, string publicAddress);
-    public Error Poll();
-    public void Stop();
-    public void Close();
-    public string State;
-    public string Fingerprint;
-    public Dictionary Statistics;
-    public Variant Command(StringName operation, Dictionary? arguments = null);
-    public Error SendApplication(long peer, byte[] payload);
-    public Error SendPacket(long peer, byte[] payload, int channel = 0, Delivery delivery = Delivery.ReliableOrdered);
-    public SpawnResult Spawn(int kind, byte[] state, long authorityPeer = -1);
-    public Error UpdateEntity(long entity, byte[] state);
-    public Error Despawn(long entity);
-    public Error SetEntityVisible(long entity, long peer, bool visible);
-    public Error DisconnectPeer(long peer);
-    public PeerInfo[] GetPeers();
-    public RawEntity[] GetEntities();
-    public void Dispose();
 
-NetBox3D
-~~~~~~~~
+EGP.Networking.NetSession
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
-`Source <https://github.com/ZSG-Studios/EGP/blob/f31110a3d2396869741c604ed525cb1ef4801a95/modules/egp_net/csharp/NetBox3D.cs>`__
+`Source <https://github.com/ZSG-Studios/EGP/blob/55fa28dc7400208c7c040ddc6028533e1c7c720d/modules/egp_net/csharp/NetApi.cs>`__
 
 .. code-block:: csharp
 
-    public GodotObject Native;
-    public event Action<long>? BeforeStep;
-    public event Action<long>? AfterStep;
-    public event Action<Error>? Failed;
-    public NetBox3D();
-    public Error Attach(NetNode net, GodotObject world);
-    public Error Track(long entity);
-    public void Untrack(long entity);
-    public void Detach();
-    public void Dispose();
+    public sealed class NetSession : IDisposable {
+        public GodotObject Native { get; }
+        public event Action<string>? StateChanged;
+        public event Action<long>? PeerConnected;
+        public event Action<long>? PeerDisconnected;
+        public event Action<long, byte[]>? ApplicationReceived;
+        public event Action<long, byte[], int, Delivery>? PacketReceived;
+        public event Action<long, bool>? SimulationTick;
+        public event Action<string>? Diagnostic;
+        public NetSession();
+        public Error Configure(NetOptions? options = null);
+        public Error Configure(Dictionary options);
+        public Error Listen(int port = 10515, string bindAddress = "0.0.0.0");
+        public Error ConnectLoopback(string address, int port = 10515);
+        public Error ConnectToken(long clientId, byte[] token, string bindAddress = "0.0.0.0");
+        public TokenResult IssueToken(long clientId, string publicAddress);
+        public Error Poll();
+        public void Stop();
+        public void Close();
+        public string State { get; }
+        public string Fingerprint { get; }
+        public Dictionary Statistics { get; }
+        public Variant Command(StringName operation, Dictionary? arguments = null);
+        public Error SendApplication(long peer, byte[] payload);
+        public Error SendPacket(long peer, byte[] payload, int channel = 0, Delivery delivery = Delivery.ReliableOrdered);
+        public SpawnResult Spawn(int kind, byte[] state, long authorityPeer = -1);
+        public Error UpdateEntity(long entity, byte[] state);
+        public Error Despawn(long entity);
+        public Error SetEntityVisible(long entity, long peer, bool visible);
+        public Error DisconnectPeer(long peer);
+        public PeerInfo[] GetPeers();
+        public RawEntity[] GetEntities();
+        public void Dispose();
+    }
 
-NetEntity2D
-~~~~~~~~~~~
+EGP.Networking.NetBox3D
+~~~~~~~~~~~~~~~~~~~~~~~
 
-`Source <https://github.com/ZSG-Studios/EGP/blob/f31110a3d2396869741c604ed525cb1ef4801a95/modules/egp_net/csharp/NetEntity2D.cs>`__
-
-.. code-block:: csharp
-
-    public Dictionary NetworkState;
-    public event Action<Dictionary>? StateApplied;
-    public void apply_network_state(Dictionary state);
-    public void ApplyNetworkState(Dictionary state);
-    public override void _Process(double delta);
-
-NetEntity3D
-~~~~~~~~~~~
-
-`Source <https://github.com/ZSG-Studios/EGP/blob/f31110a3d2396869741c604ed525cb1ef4801a95/modules/egp_net/csharp/NetEntity3D.cs>`__
-
-.. code-block:: csharp
-
-    public Dictionary NetworkState;
-    public event Action<Dictionary>? StateApplied;
-    public void apply_network_state(Dictionary state);
-    public void ApplyNetworkState(Dictionary state);
-    public override void _Process(double delta);
-
-NetNode
-~~~~~~~
-
-`Source <https://github.com/ZSG-Studios/EGP/blob/f31110a3d2396869741c604ed525cb1ef4801a95/modules/egp_net/csharp/NetNode.cs>`__
+`Source <https://github.com/ZSG-Studios/EGP/blob/55fa28dc7400208c7c040ddc6028533e1c7c720d/modules/egp_net/csharp/NetBox3D.cs>`__
 
 .. code-block:: csharp
 
-    public event Action<string>? StateChanged;
-    public event Action<long>? PeerConnected;
-    public event Action<long>? PeerDisconnected;
-    public event Action<long, int, Dictionary>? EntitySpawned;
-    public event Action<long, Dictionary>? EntityChanged;
-    public event Action<long>? EntityDespawned;
-    public event Action<long, StringName, Array>? MessageReceived;
-    public event Action<long, long, Dictionary>? InputReceived;
-    public event Action<long, byte[], int, Delivery>? PacketReceived;
-    public event Action<long, bool>? SimulationTick;
-    public event Action<string>? Diagnostic;
-    public Node Bridge;
-    public override void _ExitTree();
-    public Error Configure(NetOptions? options = null);
-    public Error Configure(Dictionary options);
-    public Error Host(int port = 10515, string bindAddress = "0.0.0.0");
-    public Error JoinLoopback(string address, int port = 10515);
-    public Error JoinToken(long clientId, byte[] token, string bindAddress = "0.0.0.0");
-    public TokenResult IssueToken(long clientId, string publicAddress);
-    public Error Poll();
-    public void Stop();
-    public void Close();
-    public bool IsServer;
-    public string State;
-    public Dictionary Statistics;
-    public int TickRate;
-    public string SimulationFingerprint;
-    public GodotObject? NativeSession;
-    public Array GetPeers();
-    public long Spawn(int kind, Dictionary? state = null, long authorityPeer = -1);
-    public Error UpdateEntity(long entity, Dictionary state);
-    public Error Despawn(long entity);
-    public Error SetEntityVisible(long entity, long peer, bool visible);
-    public Array GetEntities();
-    public Dictionary GetEntity(long entity);
-    public Error RegisterScene(int kind, PackedScene scene, Node parent);
-    public Error RegisterMessage(StringName name, Callable handler, Sender sender = Sender.Both);
-    public void UnregisterMessage(StringName name);
-    public Error SendMessage(long peer, StringName name, Array? arguments = null);
-    public Error BroadcastMessage(StringName name, Array? arguments = null);
-    public Error SendInput(long entity, Dictionary input);
-    public Error SendPacket(long peer, byte[] payload, int channel = 0, Delivery delivery = Delivery.ReliableOrdered);
-    public Error BroadcastPacket(byte[] payload, int channel = 0, Delivery delivery = Delivery.ReliableOrdered);
-    public Error DisconnectPeer(long peer);
+    public sealed class NetBox3D : IDisposable {
+        public GodotObject Native { get; }
+        public event Action<long>? BeforeStep;
+        public event Action<long>? AfterStep;
+        public event Action<Error>? Failed;
+        public NetBox3D();
+        public Error Attach(NetNode net, GodotObject world);
+        public Error Track(long entity, long bodyId = 0);
+        public void Untrack(long entity);
+        public void Detach();
+        public void Dispose();
+    }
 
-NetPrediction
-~~~~~~~~~~~~~
+EGP.Networking.NetEntity2D
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-`Source <https://github.com/ZSG-Studios/EGP/blob/f31110a3d2396869741c604ed525cb1ef4801a95/modules/egp_net/csharp/NetPrediction.cs>`__
+`Source <https://github.com/ZSG-Studios/EGP/blob/55fa28dc7400208c7c040ddc6028533e1c7c720d/modules/egp_net/csharp/NetEntity2D.cs>`__
 
 .. code-block:: csharp
 
-    public GodotObject Native;
-    public event Action<long, int>? Corrected;
-    public event Action<Error>? ResyncRequired;
-    public NetPrediction();
-    public Error Configure(Func<byte[]> capture, Func<byte[], Error> restore, Func<long, byte[], bool, Error> simulate,;
-    public Error Predict(long tick, byte[] input);
-    public Error Reconcile(long acknowledgedTick, byte[] state);
-    public Error Reset(long tick, byte[] state);
-    public int PendingTicks;
-    public int HistoryBytes;
-    public void Dispose();
+    public partial class NetEntity2D : Node2D {
+        public Dictionary NetworkState { get; set; }
+        public event Action<Dictionary>? StateApplied;
+        public void apply_network_state(Dictionary state);
+        public void ApplyNetworkState(Dictionary state);
+        public override void _Process(double delta);
+    }
+
+EGP.Networking.NetEntity3D
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+`Source <https://github.com/ZSG-Studios/EGP/blob/55fa28dc7400208c7c040ddc6028533e1c7c720d/modules/egp_net/csharp/NetEntity3D.cs>`__
+
+.. code-block:: csharp
+
+    public partial class NetEntity3D : Node3D {
+        public Dictionary NetworkState { get; set; }
+        public event Action<Dictionary>? StateApplied;
+        public void apply_network_state(Dictionary state);
+        public void ApplyNetworkState(Dictionary state);
+        public override void _Process(double delta);
+    }
+
+EGP.Networking.NetNode
+~~~~~~~~~~~~~~~~~~~~~~
+
+`Source <https://github.com/ZSG-Studios/EGP/blob/55fa28dc7400208c7c040ddc6028533e1c7c720d/modules/egp_net/csharp/NetNode.cs>`__
+
+.. code-block:: csharp
+
+    public partial class NetNode : Node {
+        public event Action<string>? StateChanged;
+        public event Action<long>? PeerConnected;
+        public event Action<long>? PeerDisconnected;
+        public event Action<long, int, Dictionary>? EntitySpawned;
+        public event Action<long, Dictionary>? EntityChanged;
+        public event Action<long>? EntityDespawned;
+        public event Action<long, StringName, Array>? MessageReceived;
+        public event Action<long, long, Dictionary>? InputReceived;
+        public event Action<long, byte[], int, Delivery>? PacketReceived;
+        public event Action<long, bool>? SimulationTick;
+        public event Action<string>? Diagnostic;
+        public Node Bridge { get; }
+        public override void _ExitTree();
+        public Error Configure(NetOptions? options = null);
+        public Error Configure(Dictionary options);
+        public Error Host(int port = 10515, string bindAddress = "0.0.0.0");
+        public Error JoinLoopback(string address, int port = 10515);
+        public Error JoinToken(long clientId, byte[] token, string bindAddress = "0.0.0.0");
+        public TokenResult IssueToken(long clientId, string publicAddress);
+        public Error Poll();
+        public void Stop();
+        public void Close();
+        public bool IsServer { get; }
+        public string State { get; }
+        public Dictionary Statistics { get; }
+        public int TickRate { get; }
+        public string SimulationFingerprint { get; }
+        public GodotObject? NativeSession { get; }
+        public Array GetPeers();
+        public long Spawn(int kind, Dictionary? state = null, long authorityPeer = -1);
+        public Error UpdateEntity(long entity, Dictionary state);
+        public Error Despawn(long entity);
+        public Error SetEntityVisible(long entity, long peer, bool visible);
+        public Array GetEntities();
+        public Dictionary GetEntity(long entity);
+        public Error RegisterScene(int kind, PackedScene scene, Node parent);
+        public Error RegisterMessage(StringName name, Callable handler, Sender sender = Sender.Both);
+        public void UnregisterMessage(StringName name);
+        public Error SendMessage(long peer, StringName name, Array? arguments = null);
+        public Error BroadcastMessage(StringName name, Array? arguments = null);
+        public Error SendInput(long entity, Dictionary input);
+        public Error SendPacket(long peer, byte[] payload, int channel = 0, Delivery delivery = Delivery.ReliableOrdered);
+        public Error BroadcastPacket(byte[] payload, int channel = 0, Delivery delivery = Delivery.ReliableOrdered);
+        public Error DisconnectPeer(long peer);
+    }
+
+EGP.Networking.NetPrediction
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+`Source <https://github.com/ZSG-Studios/EGP/blob/55fa28dc7400208c7c040ddc6028533e1c7c720d/modules/egp_net/csharp/NetPrediction.cs>`__
+
+.. code-block:: csharp
+
+    public sealed class NetPrediction : IDisposable {
+        public GodotObject Native { get; }
+        public event Action<long, int>? Corrected;
+        public event Action<Error>? ResyncRequired;
+        public NetPrediction();
+        public Error Configure(Func<byte[]> capture, Func<byte[], Error> restore, Func<long, byte[], bool, Error> simulate, long initialTick = 0, int maxTicks = 128, int maxStateBytes = 65536, int maxHistoryBytes = 8388608);
+        public Error Predict(long tick, byte[] input);
+        public Error Reconcile(long acknowledgedTick, byte[] state);
+        public Error Reset(long tick, byte[] state);
+        public int PendingTicks { get; }
+        public int HistoryBytes { get; }
+        public void Dispose();
+    }
 
 C++
 ---
 
 Include ``addons/egp_net/cpp/egp_net.hpp`` and use ``egp::networking``.
-The header declares ``Options``, ``Session``, ``Net``, ``Prediction``,
-``Box3D``, and 2D/3D presentation helpers. Keep wrappers alive for their
-callbacks; perform calls and destruction on the constructing Godot thread.
+Godot types are used throughout. Public declarations omit inline bodies and
+private fields. Keep wrappers alive for callbacks, and construct, call and
+destroy them on the same Godot thread.
 
-`Complete C++ declarations <https://github.com/ZSG-Studios/EGP/blob/f31110a3d2396869741c604ed525cb1ef4801a95/modules/egp_net/cpp/egp_net.hpp>`__
+egp::networking::Delivery
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Standalone native servers instead include ``modules/egp_net/net_core.h`` and
-use ``egp::net::Session``. This API does not require the GDScript codec.
+`Source <https://github.com/ZSG-Studios/EGP/blob/55fa28dc7400208c7c040ddc6028533e1c7c720d/modules/egp_net/cpp/egp_net.hpp>`__
+
+.. code-block:: cpp
+
+    enum class Delivery : int { ReliableOrdered = 2, Unreliable = 4 };
+
+egp::networking::Sender
+~~~~~~~~~~~~~~~~~~~~~~~
+
+`Source <https://github.com/ZSG-Studios/EGP/blob/55fa28dc7400208c7c040ddc6028533e1c7c720d/modules/egp_net/cpp/egp_net.hpp>`__
+
+.. code-block:: cpp
+
+    enum class Sender : int { Server = 1, Client = 2, Both = 3 };
+
+egp::networking::Options
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+`Source <https://github.com/ZSG-Studios/EGP/blob/55fa28dc7400208c7c040ddc6028533e1c7c720d/modules/egp_net/cpp/egp_net.hpp>`__
+
+.. code-block:: cpp
+
+    struct Options {
+        int tick_rate = 60, max_players = 32, max_entities = 1024;
+        int messages_per_second = 1000, bytes_per_second = 4 * 1024 * 1024;
+        int timeout_seconds = 5, token_lifetime_seconds = 30;
+        String game_protocol = "egp-game-v1", simulation_fingerprint = "script-state-v1";
+        bool allow_insecure_loopback = false;
+        PackedByteArray private_key;
+        float simulated_loss = 0, simulated_latency_ms = 0, simulated_jitter_ms = 0;
+        Dictionary dictionary() const;
+    };
+
+egp::networking::TokenResult
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+`Source <https://github.com/ZSG-Studios/EGP/blob/55fa28dc7400208c7c040ddc6028533e1c7c720d/modules/egp_net/cpp/egp_net.hpp>`__
+
+.. code-block:: cpp
+
+    struct TokenResult {
+        Error error = ERR_UNCONFIGURED;
+        PackedByteArray token;
+        static TokenResult read(const Dictionary &d);
+    };
+
+egp::networking::SpawnResult
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+`Source <https://github.com/ZSG-Studios/EGP/blob/55fa28dc7400208c7c040ddc6028533e1c7c720d/modules/egp_net/cpp/egp_net.hpp>`__
+
+.. code-block:: cpp
+
+    struct SpawnResult {
+        Error error;
+        int64_t entity;
+    };
+
+egp::networking::Session
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+`Source <https://github.com/ZSG-Studios/EGP/blob/55fa28dc7400208c7c040ddc6028533e1c7c720d/modules/egp_net/cpp/egp_net.hpp>`__
+
+.. code-block:: cpp
+
+    class Session {
+    public:
+        Session();
+        ~Session();
+        Session(const Session &) = delete;
+        Session &operator=(const Session &) = delete;
+        Ref<RefCounted> native() const;
+        bool available() const;
+        Error configure(const Options &options = {});
+        Error configure(const Dictionary &options);
+        Error listen(int port = 10515, const String &bind = "0.0.0.0");
+        Error connect_loopback(const String &address, int port = 10515);
+        Error connect_token(int64_t client, const PackedByteArray &token, const String &bind = "0.0.0.0");
+        TokenResult issue_token(int64_t client, const String &address);
+        Error poll();
+        void stop();
+        void close();
+        String state() const;
+        String fingerprint() const;
+        Dictionary statistics() const;
+        Variant command(const StringName &operation, const Dictionary &args = {});
+        Error send_application(int64_t peer, const PackedByteArray &data);
+        Error send_packet(int64_t peer, const PackedByteArray &data, int channel = 0, Delivery delivery = Delivery::ReliableOrdered);
+        SpawnResult spawn(int kind, const PackedByteArray &state, int64_t authority = -1);
+        Error update_entity(int64_t entity, const PackedByteArray &state);
+        Error despawn(int64_t entity);
+        Error set_entity_visible(int64_t entity, int64_t peer, bool visible);
+        Error disconnect_peer(int64_t peer);
+        Array peers();
+        Array entities();
+        Error connect(const StringName &signal, const Callable &callback);
+        void disconnect(const StringName &signal, const Callable &callback);
+    };
+
+egp::networking::Net
+~~~~~~~~~~~~~~~~~~~~
+
+`Source <https://github.com/ZSG-Studios/EGP/blob/55fa28dc7400208c7c040ddc6028533e1c7c720d/modules/egp_net/cpp/egp_net.hpp>`__
+
+.. code-block:: cpp
+
+    class Net {
+    public:
+        explicit Net(Node &parent);
+        Net(const Net &) = delete;
+        Net &operator=(const Net &) = delete;
+        ~Net();
+        Node *bridge() const;
+        bool available() const;
+        Ref<RefCounted> native_session() const;
+        void set_auto_poll(bool enabled);
+        Error configure(const Options &options = {});
+        Error configure(const Dictionary &options);
+        Error host(int port = 10515, const String &bind = "0.0.0.0");
+        Error join_loopback(const String &address, int port = 10515);
+        Error join_token(int64_t client, const PackedByteArray &token, const String &bind = "0.0.0.0");
+        TokenResult issue_token(int64_t client, const String &address);
+        Error poll();
+        void stop();
+        void close();
+        bool is_server() const;
+        String state() const;
+        int tick_rate() const;
+        String simulation_fingerprint() const;
+        Dictionary statistics() const;
+        Array peers() const;
+        int64_t spawn(int kind, const Dictionary &state = {}, int64_t authority = -1);
+        Error update_entity(int64_t entity, const Dictionary &state);
+        Error despawn(int64_t entity);
+        Error set_entity_visible(int64_t entity, int64_t peer, bool visible);
+        Array entities() const;
+        Dictionary entity(int64_t handle) const;
+        Error register_scene(int kind, const Ref<PackedScene> &scene, Node *parent);
+        Error register_message(const StringName &name, const Callable &handler, Sender sender = Sender::Both);
+        void unregister_message(const StringName &name);
+        Error send_message(int64_t peer, const StringName &name, const Array &arguments = {});
+        Error broadcast_message(const StringName &name, const Array &arguments = {});
+        Error send_input(int64_t entity, const Dictionary &input);
+        Error send_packet(int64_t peer, const PackedByteArray &data, int channel = 0, Delivery delivery = Delivery::ReliableOrdered);
+        Error broadcast_packet(const PackedByteArray &data, int channel = 0, Delivery delivery = Delivery::ReliableOrdered);
+        Error disconnect_peer(int64_t peer);
+        Error connect(const StringName &signal, const Callable &callback);
+    };
+
+egp::networking::Prediction
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+`Source <https://github.com/ZSG-Studios/EGP/blob/55fa28dc7400208c7c040ddc6028533e1c7c720d/modules/egp_net/cpp/egp_net.hpp>`__
+
+.. code-block:: cpp
+
+    class Prediction {
+    public:
+        Prediction();
+        Prediction(const Prediction &) = delete;
+        Prediction &operator=(const Prediction &) = delete;
+        Ref<RefCounted> native() const;
+        Error configure(const Callable &capture, const Callable &restore, const Callable &simulate, int64_t initial_tick = 0, int max_ticks = 128, int max_state_bytes = 65536, int max_history_bytes = 8388608);
+        Error predict(int64_t tick, const PackedByteArray &input);
+        Error reconcile(int64_t ack, const PackedByteArray &state);
+        Error reset(int64_t tick, const PackedByteArray &state);
+        int pending_ticks() const;
+        int history_bytes() const;
+    };
+
+egp::networking::Box3D
+~~~~~~~~~~~~~~~~~~~~~~
+
+`Source <https://github.com/ZSG-Studios/EGP/blob/55fa28dc7400208c7c040ddc6028533e1c7c720d/modules/egp_net/cpp/egp_net.hpp>`__
+
+.. code-block:: cpp
+
+    class Box3D {
+    public:
+        Box3D();
+        ~Box3D();
+        Box3D(const Box3D &) = delete;
+        Box3D &operator=(const Box3D &) = delete;
+        Ref<RefCounted> native() const;
+        Error attach(Net &net, const Ref<RefCounted> &world);
+        Error track(int64_t entity, int64_t body_id = 0);
+        void untrack(int64_t entity);
+        void detach();
+    };
+
+egp::networking::EntityPresentation3D
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+`Source <https://github.com/ZSG-Studios/EGP/blob/55fa28dc7400208c7c040ddc6028533e1c7c720d/modules/egp_net/cpp/egp_net.hpp>`__
+
+.. code-block:: cpp
+
+    class EntityPresentation3D {
+    public:
+        double smoothing_speed = 15.0;
+        explicit EntityPresentation3D(Node3D &node);
+        Dictionary state() const;
+        void apply(const Dictionary &state);
+        void process(double delta);
+    };
+
+egp::networking::EntityPresentation2D
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+`Source <https://github.com/ZSG-Studios/EGP/blob/55fa28dc7400208c7c040ddc6028533e1c7c720d/modules/egp_net/cpp/egp_net.hpp>`__
+
+.. code-block:: cpp
+
+    class EntityPresentation2D {
+    public:
+        double smoothing_speed = 15.0;
+        explicit EntityPresentation2D(Node2D &node);
+        Dictionary state() const;
+        void apply(const Dictionary &state);
+        void process(double delta);
+    };
+
+Standalone native servers instead include ``modules/egp_net/net_core.h``
+and use ``egp::net::Session`` without the GDScript codec. See
+:doc:`networking_reference` for its distinct API contract.
