@@ -92,7 +92,7 @@ closure persistence, automatic client physics rollback, independent-process
 low-level fault/reload and exported-runtime reload remain unqualified. Raw
 transport ownership does not authorize opaque gameplay messages. Exact receipts
 and remaining scope are in the `pinned engine integration record
-<https://github.com/ZSG-Studios/EGP/blob/a5146052e8e159ddb7d20a7932c81ee7ca9962ac/doc/egp_integration_loop.md>`__.
+<https://github.com/ZSG-Studios/EGP/blob/153dd599e9127d8c86f81fcafa1bdd4ab8168bb6/doc/egp_integration_loop.md>`__.
 See :doc:`language_testing` and :doc:`qualification` for the distinct networking
 fixture evidence.
 
@@ -117,8 +117,8 @@ admission with 30 ms latency, 5 ms jitter and 5 percent loss.
 
 Live mode requires runtime reload. Run it separately from ``--network-recovery``,
 ``--disable-runtime`` and ``--expect-disabled``. Set simulation options in live
-mode: finite latency/jitter values are in 0–5000 ms and loss is a percentage in
-0–100. Defaults are 30 ms, 5 ms and 5 percent respectively. Nondefault simulation
+mode: finite latency/jitter values are in 0Ã¢â‚¬â€œ5000 ms and loss is a percentage in
+0Ã¢â‚¬â€œ100. Defaults are 30 ms, 5 ms and 5 percent respectively. Nondefault simulation
 values outside live mode and invalid ranges are rejected before creating output.
 
 .. list-table:: Live checkpoints
@@ -153,8 +153,8 @@ and C# callbacks advance exactly from 1 through 6, without duplicates. These
 checks cover transport and ownership metadata; gameplay authorization remains
 the application's responsibility.
 
-The full repair gate also passes. The current evidence suite passes 293 semantic
-tests and fifteen invalid CLI cases, including low-level ownership, physics and
+The full repair gate also passes. The current evidence suite passes 662 semantic
+tests and eighteen invalid CLI cases, including low-level ownership, physics and
 high-level C# node checks.
 Configured loss does not measure actual dropped packets or real WAN behavior;
 poll/tick counts establish fixture continuity, not performance.
@@ -447,8 +447,8 @@ peer/entity handles. Both are one local Windows Debug pair sharing a game proces
 
 Generic corrupted-assembly, blocked-unload and incompatible/missing native-class
 repair checks run before network nodes are created. Those injected failures
-during authenticated ``NetNode`` traffic remain unqualified. High-level C++ and
-physics-adapter ownership, arbitrary captured closures or game/ABI state,
+during authenticated ``NetNode`` traffic remain unqualified. High-level C++
+adapter ownership, arbitrary captured closures or game/ABI state,
 independent-process low-level reload, concurrent/in-flight or exported-runtime
 reload, automatic client physics rollback, platform/scale/soak and performance
 remain open. Configured loss does not measure actual drops or WAN behavior.
@@ -495,10 +495,112 @@ the updated default GDScript sample, low-level facade/Box3D and runtime-default
 regressions. Native engine, SDK/ClassDB/glue and installed binary identities are
 unchanged.
 
-Authenticated-node assembly/unload/ABI failures, high-level C++/physics-adapter
+Authenticated-node assembly/unload/ABI failures, high-level C++ adapter
 ownership, independent-process low-level reload, concurrent/exported-runtime
 reload, automatic client physics rollback, arbitrary closure/game state,
 production admission/checkpoint policy and platform/scale/soak/performance
 remain separate qualification work. Configured impairment does not measure
 actual packet drops or WAN performance. The pinned integration record lists
 exact commands, source/artifact hashes and remaining acceptance items.
+
+C# Box3D adapter ownership
+------------------------------
+
+``NetBox3D.DetachForReload()`` transfers the existing GDScript adapter, attached
+world and stable entity-to-body mapping into a trusted local capsule. The adapter
+keeps its connection to the network clock. The old managed wrapper disconnects
+its three named signal bridges, clears application events and becomes disposed.
+Accessing it again throws ``ObjectDisposedException``; disposing it again cannot
+detach the transferred adapter.
+
+Consume the capsule with ``NetBox3D.ResumeAfterReload(Dictionary)`` on the
+original Godot thread, then resubscribe application handlers. Successful resume
+clears the capsule. Null throws ``ArgumentNullException``; malformed, future,
+foreign or consumed claims throw ``ArgumentException`` without changing them.
+Copies cannot reclaim consumed ownership. Ordinary disposal detaches the adapter;
+the caller retains ownership of the world and network node. Capsules contain
+local object references and are not disk/network checkpoints or client rollback.
+
+.. code-block:: csharp
+
+   using EGP.Networking;
+   using Godot;
+
+   public partial class PhysicsOwner : Node, ISerializationListener
+   {
+       [Export] public Godot.Collections.Dictionary AdapterReload { get; set; } = new();
+       private NetBox3D? adapter;
+
+       // Call once after the application creates its network node and world.
+       public Error AttachWorld(NetNode network, GodotObject world)
+       {
+           adapter?.Dispose();
+           adapter = new NetBox3D();
+           adapter.AfterStep += AfterStep;
+           return adapter.Attach(network, world);
+       }
+
+       private void AfterStep(long tick) { /* Observe the completed world step. */ }
+
+       public void OnBeforeSerialize()
+       {
+           if (adapter == null) return;
+           AdapterReload = adapter.DetachForReload();
+           adapter = null;
+       }
+
+       public void OnAfterDeserialize()
+       {
+           if (AdapterReload.Count == 0) return;
+           adapter = NetBox3D.ResumeAfterReload(AdapterReload);
+           adapter.AfterStep += AfterStep;
+       }
+
+       public override void _ExitTree() => adapter?.Dispose();
+   }
+
+Add ``--network-csharp-box3d`` to either networking reload mode alongside
+``--network-csharp-node``. It is off by default and cannot be combined with
+``--network-physics`` or ``--network-csharp-facade``:
+
+.. code-block:: powershell
+
+   python misc/scripts/validate_egp_hot_reload.py `
+       --engine bin/godot.windows.editor.dev.x86_64.mono.exe `
+       --packages bin/GodotSharp/Tools/nupkgs `
+       --network-live-reload --network-csharp-node --network-csharp-box3d `
+       --assembly-recovery --unload-recovery --native-recovery --native-abi-recovery `
+       --output .build/box3d-live-handoff-new
+
+   python misc/scripts/validate_egp_hot_reload.py `
+       --engine bin/godot.windows.editor.dev.x86_64.mono.exe `
+       --packages bin/GodotSharp/Tools/nupkgs `
+       --network-recovery --network-csharp-node --network-csharp-box3d `
+       --assembly-recovery --unload-recovery --native-recovery --native-abi-recovery `
+       --output .build/box3d-stopped-handoff-new
+
+Fresh live/stopped fixtures retain the same adapter, world and stable body 10000.
+Each completed world tick has one before/after event; all three managed signals
+have one connection, the adapter has one clock connection and no adapter failures
+occur. C++ and C# reads agree on the world state. The live gate covers six reload
+phases; the stopped gate retains unchanged physics through reload, then advances
+after explicit fresh admission. Both cover tree exit/reentry and three new-session
+cycles, remapping the new entity to the retained body. Twenty-two managed capsule
+checks per fixture cover ownership and rejection behavior.
+
+Debugger fixture commands and native reload requests defer until the active
+poll/tick call returns. Preserved failing controls demonstrate that synchronous
+test mutations inside an unfinished tick could overwrite entity state or
+interrupt stepping. These gates qualify operations at that boundary. Arbitrary
+application mutation inside callbacks and general in-flight reload remain open.
+
+Fresh 27-stage trilingual validation passes 197 assertions in each editor,
+Debug and Release configuration. The low-level facade/world and default runtime
+regressions also pass. The native engine, SDK, ClassDB and managed glue retain
+their unchanged identities. Seven GDS-only physics/lab cases and 72 admission
+cases reuse byte-identical executed inputs; fresh C# builds supersede their unused
+historical C# helper manifest entry. Reload remains one local Windows Debug pair
+sharing a game process. High-level C++ adapter ownership, authenticated-node
+assembly/unload/ABI failures, concurrent/exported-runtime reload, automatic client
+rollback, production checkpoint policy and broader platform/scale/performance
+still require qualification.

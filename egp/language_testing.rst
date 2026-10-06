@@ -264,7 +264,18 @@ handles may repeat across distinct native sessions and must retain their issuing
 session identity. Fresh 72-case admission, seven-case physics/network lab and
 default GDScript sample runs replace prior evidence for the changed codec.
 
+The public C# Box3D adapter also transfers its existing world and stable body
+mapping through a local reload capsule. Fresh live/stopped node/adapter fixtures
+verify 22 ownership checks each, three exact managed signal counts, one adapter
+clock connection and one before/after callback per completed world tick. Tree
+reentry and three fresh admissions preserve the adapter/world and remap entity
+ownership to body 10000. Fixture commands execute after the current tick returns;
+arbitrary callback mutation remains unqualified. The latest C# helper inputs pass
+fresh 27-stage editor/Debug/Release builds, alongside low-facade/world and default
+runtime regressions. Native artifacts and prior GDS-only lab/admission inputs
+remain unchanged. See :doc:`hot_reload` for the separate capsule contract.
+
 Exact publication receipts and remaining acceptance items are listed in the
 `pinned engine integration record
-<https://github.com/ZSG-Studios/EGP/blob/a5146052e8e159ddb7d20a7932c81ee7ca9962ac/doc/egp_integration_loop.md>`__.
+<https://github.com/ZSG-Studios/EGP/blob/153dd599e9127d8c86f81fcafa1bdd4ab8168bb6/doc/egp_integration_loop.md>`__.
 See :doc:`qualification`, :doc:`explicit_world` and :doc:`admission_testing`.

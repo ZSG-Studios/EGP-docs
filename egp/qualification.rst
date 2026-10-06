@@ -97,7 +97,7 @@ transactionally rejects damaged bytes, explicitly restores the saved state and
 resumes physics with a checkpoint-to-network clock offset after fresh admission.
 The full physics/facade live/stopped gates pass, with fresh low-level physics live
 and runtime-default regressions at the current source. The focused suite now
-passes 293 semantic tests and fifteen invalid CLI cases.
+passes 662 semantic tests and eighteen invalid CLI cases.
 This local Windows Debug editor-run evidence covers one authority/client pair
 and one body. It does not establish automatic client rollback, general game/ABI
 state persistence, production checkpoint policy or larger-world behavior.
@@ -126,7 +126,7 @@ six checks cover freed codec replacement and polling policy. Reconfigure options
 before fresh host/join and scope saved handles to their issuing session identity.
 Local stale signal injection checks lifetime isolation, not WAN security.
 Generic assembly/unload/ABI repair occurs before authenticated node traffic;
-those failures during such traffic remain open. High-level C++ and physics-adapter
+those failures during such traffic remain open. High-level C++ adapter
 ownership, arbitrary game/closure state and broader reload/platform/scale/performance
 acceptance remain separate work.
 
@@ -136,6 +136,18 @@ lab cases and the updated default GDScript sample. Stop retains the configured
 native session and callbacks; Close disconnects all seven callbacks and releases
 it. Registered handlers remain on the codec. Arbitrary in-flight lifecycle mutation
 and production admission/checkpoint policies remain unqualified.
+
+Public C# ``NetBox3D`` ownership now transfers the existing adapter, world and
+stable body map across reload with explicit application event resubscription.
+Fresh live/stopped fixtures cover 22 capsule checks each, exact three-signal
+counts, before/after events for each completed tick, tree exit/reentry and three
+fresh-session cycles. New entities remap to retained body 10000 and client physics
+advances. Debugger commands defer until the active poll/tick returns; preserved
+failing controls do not qualify arbitrary synchronous callback mutation. Fresh
+27-stage editor/Debug/Release language builds and low-facade/default runtime
+regressions pass. Earlier GDS-only lab/admission inputs remain byte-identical;
+their unused C# manifest entry is superseded by fresh C# checks. See
+:doc:`hot_reload` for ownership, disposal, command and scope details.
 
 Admission testing separates listener timestamp protection from key rotation.
 The controlled native/GDScript matrix covers retained zero/nonzero test keys
