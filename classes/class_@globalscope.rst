@@ -47,6 +47,8 @@ Properties
    +-------------------------------------------------------------------+-----------------------------------------------------------------------------------------+
    | :ref:`AudioServer<class_AudioServer>`                             | :ref:`AudioServer<class_@GlobalScope_property_AudioServer>`                             |
    +-------------------------------------------------------------------+-----------------------------------------------------------------------------------------+
+   | :ref:`Box2DPhysicsServer2D<class_Box2DPhysicsServer2D>`           | :ref:`Box2DPhysicsServer2D<class_@GlobalScope_property_Box2DPhysicsServer2D>`           |
+   +-------------------------------------------------------------------+-----------------------------------------------------------------------------------------+
    | :ref:`CameraServer<class_CameraServer>`                           | :ref:`CameraServer<class_@GlobalScope_property_CameraServer>`                           |
    +-------------------------------------------------------------------+-----------------------------------------------------------------------------------------+
    | :ref:`ClassDB<class_ClassDB>`                                     | :ref:`ClassDB<class_@GlobalScope_property_ClassDB>`                                     |
@@ -95,11 +97,11 @@ Properties
    +-------------------------------------------------------------------+-----------------------------------------------------------------------------------------+
    | :ref:`Performance<class_Performance>`                             | :ref:`Performance<class_@GlobalScope_property_Performance>`                             |
    +-------------------------------------------------------------------+-----------------------------------------------------------------------------------------+
-   | :ref:`PhysicsServer2D<class_PhysicsServer2D>`                     | :ref:`PhysicsServer2D<class_@GlobalScope_property_PhysicsServer2D>`                     |
+   | :ref:`Box2DPhysicsServer2D<class_Box2DPhysicsServer2D>`           | :ref:`PhysicsServer2D<class_@GlobalScope_property_PhysicsServer2D>`                     |
    +-------------------------------------------------------------------+-----------------------------------------------------------------------------------------+
    | :ref:`PhysicsServer2DManager<class_PhysicsServer2DManager>`       | :ref:`PhysicsServer2DManager<class_@GlobalScope_property_PhysicsServer2DManager>`       |
    +-------------------------------------------------------------------+-----------------------------------------------------------------------------------------+
-   | :ref:`PhysicsServer3D<class_PhysicsServer3D>`                     | :ref:`PhysicsServer3D<class_@GlobalScope_property_PhysicsServer3D>`                     |
+   | :ref:`Box3DPhysicsServer3D<class_Box3DPhysicsServer3D>`           | :ref:`PhysicsServer3D<class_@GlobalScope_property_PhysicsServer3D>`                     |
    +-------------------------------------------------------------------+-----------------------------------------------------------------------------------------+
    | :ref:`PhysicsServer3DManager<class_PhysicsServer3DManager>`       | :ref:`PhysicsServer3DManager<class_@GlobalScope_property_PhysicsServer3DManager>`       |
    +-------------------------------------------------------------------+-----------------------------------------------------------------------------------------+
@@ -5039,6 +5041,18 @@ The :ref:`AudioServer<class_AudioServer>` singleton.
 
 ----
 
+.. _class_@GlobalScope_property_Box2DPhysicsServer2D:
+
+.. rst-class:: classref-property
+
+:ref:`Box2DPhysicsServer2D<class_Box2DPhysicsServer2D>` **Box2DPhysicsServer2D** :ref:`🔗<class_@GlobalScope_property_Box2DPhysicsServer2D>`
+
+The :ref:`Box2DPhysicsServer2D<class_Box2DPhysicsServer2D>` singleton, implementing :ref:`PhysicsServer2D<class_PhysicsServer2D>`.
+
+.. rst-class:: classref-item-separator
+
+----
+
 .. _class_@GlobalScope_property_CameraServer:
 
 .. rst-class:: classref-property
@@ -5341,7 +5355,7 @@ The :ref:`Performance<class_Performance>` singleton.
 
 .. rst-class:: classref-property
 
-:ref:`PhysicsServer2D<class_PhysicsServer2D>` **PhysicsServer2D** :ref:`🔗<class_@GlobalScope_property_PhysicsServer2D>`
+:ref:`Box2DPhysicsServer2D<class_Box2DPhysicsServer2D>` **PhysicsServer2D** :ref:`🔗<class_@GlobalScope_property_PhysicsServer2D>`
 
 The :ref:`PhysicsServer2D<class_PhysicsServer2D>` singleton.
 
@@ -5365,7 +5379,7 @@ The :ref:`PhysicsServer2DManager<class_PhysicsServer2DManager>` singleton.
 
 .. rst-class:: classref-property
 
-:ref:`PhysicsServer3D<class_PhysicsServer3D>` **PhysicsServer3D** :ref:`🔗<class_@GlobalScope_property_PhysicsServer3D>`
+:ref:`Box3DPhysicsServer3D<class_Box3DPhysicsServer3D>` **PhysicsServer3D** :ref:`🔗<class_@GlobalScope_property_PhysicsServer3D>`
 
 The :ref:`PhysicsServer3D<class_PhysicsServer3D>` singleton.
 

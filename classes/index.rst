@@ -775,8 +775,12 @@ Other objects
     class_audiostreamplaybackresampled
     class_audiostreamplaybacksynchronized
     class_awaittweener
+    class_box2ddirectbodystate2d
     class_box2ddirectspacestate2d
     class_box2dphysicsserver2d
+    class_box3dphysicsdirectbodystate3d
+    class_box3dphysicsdirectspacestate3d
+    class_box3dphysicsserver3d
     class_callbacktweener
     class_camerafeed
     class_cameraserver

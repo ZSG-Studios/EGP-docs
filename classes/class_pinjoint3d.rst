@@ -30,9 +30,9 @@ Properties
    :widths: auto
 
    +---------------------------+---------------------------------------------------------------------+---------+
-   | :ref:`float<class_float>` | :ref:`spring/frequency<class_PinJoint3D_property_spring/frequency>` | ``9.0`` |
-   +---------------------------+---------------------------------------------------------------------+---------+
    | :ref:`float<class_float>` | :ref:`params/damping<class_PinJoint3D_property_params/damping>`     | ``1.0`` |
+   +---------------------------+---------------------------------------------------------------------+---------+
+   | :ref:`float<class_float>` | :ref:`spring/frequency<class_PinJoint3D_property_spring/frequency>` | ``9.0`` |
    +---------------------------+---------------------------------------------------------------------+---------+
 
 .. rst-class:: classref-reftable-group
@@ -89,23 +89,6 @@ The force with which the pinned objects stay in velocity relation to each other.
 Property Descriptions
 ---------------------
 
-.. _class_PinJoint3D_property_spring/frequency:
-
-.. rst-class:: classref-property
-
-:ref:`float<class_float>` **spring/frequency** = ``9.0`` :ref:`🔗<class_PinJoint3D_property_spring/frequency>`
-
-.. rst-class:: classref-property-setget
-
-- |void| **set_param**\ (\ param\: :ref:`Param<enum_PinJoint3D_Param>`, value\: :ref:`float<class_float>`\ )
-- :ref:`float<class_float>` **get_param**\ (\ param\: :ref:`Param<enum_PinJoint3D_Param>`\ ) |const|
-
-The force with which the pinned objects stay in positional relation to each other. The higher, the stronger.
-
-.. rst-class:: classref-item-separator
-
-----
-
 .. _class_PinJoint3D_property_params/damping:
 
 .. rst-class:: classref-property
@@ -118,6 +101,23 @@ The force with which the pinned objects stay in positional relation to each othe
 - :ref:`float<class_float>` **get_param**\ (\ param\: :ref:`Param<enum_PinJoint3D_Param>`\ ) |const|
 
 The force with which the pinned objects stay in velocity relation to each other. The higher, the stronger.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_PinJoint3D_property_spring/frequency:
+
+.. rst-class:: classref-property
+
+:ref:`float<class_float>` **spring/frequency** = ``9.0`` :ref:`🔗<class_PinJoint3D_property_spring/frequency>`
+
+.. rst-class:: classref-property-setget
+
+- |void| **set_param**\ (\ param\: :ref:`Param<enum_PinJoint3D_Param>`, value\: :ref:`float<class_float>`\ )
+- :ref:`float<class_float>` **get_param**\ (\ param\: :ref:`Param<enum_PinJoint3D_Param>`\ ) |const|
+
+The force with which the pinned objects stay in positional relation to each other. The higher, the stronger.
 
 .. rst-class:: classref-section-separator
 

@@ -32,13 +32,31 @@ Methods
    :widths: auto
 
    +-----------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`Error<enum_@GlobalScope_Error>`         | :ref:`apply_queued_commands<class_EGPBox3DWorld_method_apply_queued_commands>`\ (\ )                                                                                                                                                                                                                                                                             |
+   +-----------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`PackedByteArray<class_PackedByteArray>` | :ref:`capture_snapshot<class_EGPBox3DWorld_method_capture_snapshot>`\ (\ )                                                                                                                                                                                                                                                                                       |
+   +-----------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | |void|                                        | :ref:`clear_pending_commands<class_EGPBox3DWorld_method_clear_pending_commands>`\ (\ )                                                                                                                                                                                                                                                                           |
+   +-----------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`Error<enum_@GlobalScope_Error>`         | :ref:`configure<class_EGPBox3DWorld_method_configure>`\ (\ tick_rate\: :ref:`int<class_int>` = 60, substeps\: :ref:`int<class_int>` = 4, worker_count\: :ref:`int<class_int>` = 1, gravity\: :ref:`Vector3<class_Vector3>` = Vector3(0, -9.8, 0)\ )                                                                                                              |
+   +-----------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`int<class_int>`                         | :ref:`get_body_count<class_EGPBox3DWorld_method_get_body_count>`\ (\ ) |const|                                                                                                                                                                                                                                                                                   |
+   +-----------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`Dictionary<class_Dictionary>`           | :ref:`get_body_state<class_EGPBox3DWorld_method_get_body_state>`\ (\ entity_id\: :ref:`int<class_int>`\ ) |const|                                                                                                                                                                                                                                                |
+   +-----------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`String<class_String>`                   | :ref:`get_simulation_fingerprint<class_EGPBox3DWorld_method_get_simulation_fingerprint>`\ (\ ) |const|                                                                                                                                                                                                                                                           |
+   +-----------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`String<class_String>`                   | :ref:`get_state_hash<class_EGPBox3DWorld_method_get_state_hash>`\ (\ ) |const|                                                                                                                                                                                                                                                                                   |
+   +-----------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`int<class_int>`                         | :ref:`get_tick<class_EGPBox3DWorld_method_get_tick>`\ (\ ) |const|                                                                                                                                                                                                                                                                                               |
+   +-----------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`Error<enum_@GlobalScope_Error>`         | :ref:`queue_body_state<class_EGPBox3DWorld_method_queue_body_state>`\ (\ entity_id\: :ref:`int<class_int>`, sequence\: :ref:`int<class_int>`, position\: :ref:`Vector3<class_Vector3>`, rotation\: :ref:`Quaternion<class_Quaternion>`, linear_velocity\: :ref:`Vector3<class_Vector3>`, angular_velocity\: :ref:`Vector3<class_Vector3>`\ )                     |
    +-----------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`Error<enum_@GlobalScope_Error>`         | :ref:`queue_create_box<class_EGPBox3DWorld_method_queue_create_box>`\ (\ entity_id\: :ref:`int<class_int>`, sequence\: :ref:`int<class_int>`, position\: :ref:`Vector3<class_Vector3>`, half_extents\: :ref:`Vector3<class_Vector3>`, body_type\: :ref:`int<class_int>` = 2, density\: :ref:`float<class_float>` = 1.0\ )                                        |
    +-----------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`Error<enum_@GlobalScope_Error>`         | :ref:`queue_create_sphere<class_EGPBox3DWorld_method_queue_create_sphere>`\ (\ entity_id\: :ref:`int<class_int>`, sequence\: :ref:`int<class_int>`, position\: :ref:`Vector3<class_Vector3>`, radius\: :ref:`float<class_float>`, body_type\: :ref:`int<class_int>` = 2, density\: :ref:`float<class_float>` = 1.0\ )                                            |
-   +-----------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`Error<enum_@GlobalScope_Error>`         | :ref:`queue_create_capsule<class_EGPBox3DWorld_method_queue_create_capsule>`\ (\ entity_id\: :ref:`int<class_int>`, sequence\: :ref:`int<class_int>`, position\: :ref:`Vector3<class_Vector3>`, radius\: :ref:`float<class_float>`, half_height\: :ref:`float<class_float>`, body_type\: :ref:`int<class_int>` = 2, density\: :ref:`float<class_float>` = 1.0\ ) |
+   +-----------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`Error<enum_@GlobalScope_Error>`         | :ref:`queue_create_sphere<class_EGPBox3DWorld_method_queue_create_sphere>`\ (\ entity_id\: :ref:`int<class_int>`, sequence\: :ref:`int<class_int>`, position\: :ref:`Vector3<class_Vector3>`, radius\: :ref:`float<class_float>`, body_type\: :ref:`int<class_int>` = 2, density\: :ref:`float<class_float>` = 1.0\ )                                            |
    +-----------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`Error<enum_@GlobalScope_Error>`         | :ref:`queue_destroy_body<class_EGPBox3DWorld_method_queue_destroy_body>`\ (\ entity_id\: :ref:`int<class_int>`, sequence\: :ref:`int<class_int>`\ )                                                                                                                                                                                                              |
    +-----------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -46,27 +64,9 @@ Methods
    +-----------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`Error<enum_@GlobalScope_Error>`         | :ref:`queue_linear_velocity<class_EGPBox3DWorld_method_queue_linear_velocity>`\ (\ entity_id\: :ref:`int<class_int>`, sequence\: :ref:`int<class_int>`, velocity\: :ref:`Vector3<class_Vector3>`\ )                                                                                                                                                              |
    +-----------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`Error<enum_@GlobalScope_Error>`         | :ref:`queue_body_state<class_EGPBox3DWorld_method_queue_body_state>`\ (\ entity_id\: :ref:`int<class_int>`, sequence\: :ref:`int<class_int>`, position\: :ref:`Vector3<class_Vector3>`, rotation\: :ref:`Quaternion<class_Quaternion>`, linear_velocity\: :ref:`Vector3<class_Vector3>`, angular_velocity\: :ref:`Vector3<class_Vector3>`\ )                     |
-   +-----------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`Error<enum_@GlobalScope_Error>`         | :ref:`apply_queued_commands<class_EGPBox3DWorld_method_apply_queued_commands>`\ (\ )                                                                                                                                                                                                                                                                             |
-   +-----------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | |void|                                        | :ref:`clear_pending_commands<class_EGPBox3DWorld_method_clear_pending_commands>`\ (\ )                                                                                                                                                                                                                                                                           |
-   +-----------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`Error<enum_@GlobalScope_Error>`         | :ref:`step_tick<class_EGPBox3DWorld_method_step_tick>`\ (\ expected_tick\: :ref:`int<class_int>`\ )                                                                                                                                                                                                                                                              |
-   +-----------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`int<class_int>`                         | :ref:`get_tick<class_EGPBox3DWorld_method_get_tick>`\ (\ ) |const|                                                                                                                                                                                                                                                                                               |
-   +-----------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`int<class_int>`                         | :ref:`get_body_count<class_EGPBox3DWorld_method_get_body_count>`\ (\ ) |const|                                                                                                                                                                                                                                                                                   |
-   +-----------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`Dictionary<class_Dictionary>`           | :ref:`get_body_state<class_EGPBox3DWorld_method_get_body_state>`\ (\ entity_id\: :ref:`int<class_int>`\ ) |const|                                                                                                                                                                                                                                                |
-   +-----------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`PackedByteArray<class_PackedByteArray>` | :ref:`capture_snapshot<class_EGPBox3DWorld_method_capture_snapshot>`\ (\ )                                                                                                                                                                                                                                                                                       |
-   +-----------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`Error<enum_@GlobalScope_Error>`         | :ref:`restore_snapshot<class_EGPBox3DWorld_method_restore_snapshot>`\ (\ bytes\: :ref:`PackedByteArray<class_PackedByteArray>`\ )                                                                                                                                                                                                                                |
    +-----------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`String<class_String>`                   | :ref:`get_state_hash<class_EGPBox3DWorld_method_get_state_hash>`\ (\ ) |const|                                                                                                                                                                                                                                                                                   |
-   +-----------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`String<class_String>`                   | :ref:`get_simulation_fingerprint<class_EGPBox3DWorld_method_get_simulation_fingerprint>`\ (\ ) |const|                                                                                                                                                                                                                                                           |
+   | :ref:`Error<enum_@GlobalScope_Error>`         | :ref:`step_tick<class_EGPBox3DWorld_method_step_tick>`\ (\ expected_tick\: :ref:`int<class_int>`\ )                                                                                                                                                                                                                                                              |
    +-----------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 .. rst-class:: classref-section-separator
@@ -78,6 +78,42 @@ Methods
 Method Descriptions
 -------------------
 
+.. _class_EGPBox3DWorld_method_apply_queued_commands:
+
+.. rst-class:: classref-method
+
+:ref:`Error<enum_@GlobalScope_Error>` **apply_queued_commands**\ (\ ) :ref:`🔗<class_EGPBox3DWorld_method_apply_queued_commands>`
+
+Validates the entire sorted batch before applying mutations without advancing the tick. Use for a baseline or authoritative correction before capturing a snapshot.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_EGPBox3DWorld_method_capture_snapshot:
+
+.. rst-class:: classref-method
+
+:ref:`PackedByteArray<class_PackedByteArray>` **capture_snapshot**\ (\ ) :ref:`🔗<class_EGPBox3DWorld_method_capture_snapshot>`
+
+Captures full local solver state and stable body mapping at a boundary with no queued commands. Returns empty bytes on failure. Snapshot size is bounded to 64 MiB.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_EGPBox3DWorld_method_clear_pending_commands:
+
+.. rst-class:: classref-method
+
+|void| **clear_pending_commands**\ (\ ) :ref:`🔗<class_EGPBox3DWorld_method_clear_pending_commands>`
+
+Clears a rejected or cancelled batch.
+
+.. rst-class:: classref-item-separator
+
+----
+
 .. _class_EGPBox3DWorld_method_configure:
 
 .. rst-class:: classref-method
@@ -85,6 +121,78 @@ Method Descriptions
 :ref:`Error<enum_@GlobalScope_Error>` **configure**\ (\ tick_rate\: :ref:`int<class_int>` = 60, substeps\: :ref:`int<class_int>` = 4, worker_count\: :ref:`int<class_int>` = 1, gravity\: :ref:`Vector3<class_Vector3>` = Vector3(0, -9.8, 0)\ ) :ref:`🔗<class_EGPBox3DWorld_method_configure>`
 
 Configures a new world once. Tick rates range from 1 to 240, substeps from 1 to 16, workers from 1 to 32. Uses meters, float32 and fixed SIMD width. Configuration is immutable.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_EGPBox3DWorld_method_get_body_count:
+
+.. rst-class:: classref-method
+
+:ref:`int<class_int>` **get_body_count**\ (\ ) |const| :ref:`🔗<class_EGPBox3DWorld_method_get_body_count>`
+
+Returns the live body count.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_EGPBox3DWorld_method_get_body_state:
+
+.. rst-class:: classref-method
+
+:ref:`Dictionary<class_Dictionary>` **get_body_state**\ (\ entity_id\: :ref:`int<class_int>`\ ) |const| :ref:`🔗<class_EGPBox3DWorld_method_get_body_state>`
+
+Returns position, rotation, linear_velocity and angular_velocity, or an empty dictionary if the entity is absent.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_EGPBox3DWorld_method_get_simulation_fingerprint:
+
+.. rst-class:: classref-method
+
+:ref:`String<class_String>` **get_simulation_fingerprint**\ (\ ) |const| :ref:`🔗<class_EGPBox3DWorld_method_get_simulation_fingerprint>`
+
+Returns the pinned source revision and simulation profile. Networking must reject incompatible profiles. Matching fingerprints alone do not prove cross-platform qualification.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_EGPBox3DWorld_method_get_state_hash:
+
+.. rst-class:: classref-method
+
+:ref:`String<class_String>` **get_state_hash**\ (\ ) |const| :ref:`🔗<class_EGPBox3DWorld_method_get_state_hash>`
+
+Returns a 16-character hexadecimal diagnostic hash of the profile, tick, entity IDs, poses, velocities, body types and awake flags. It does not cover every latent solver field and is not cryptographic.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_EGPBox3DWorld_method_get_tick:
+
+.. rst-class:: classref-method
+
+:ref:`int<class_int>` **get_tick**\ (\ ) |const| :ref:`🔗<class_EGPBox3DWorld_method_get_tick>`
+
+Returns the last completed 64-bit tick. Restoring a snapshot restores its tick.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_EGPBox3DWorld_method_queue_body_state:
+
+.. rst-class:: classref-method
+
+:ref:`Error<enum_@GlobalScope_Error>` **queue_body_state**\ (\ entity_id\: :ref:`int<class_int>`, sequence\: :ref:`int<class_int>`, position\: :ref:`Vector3<class_Vector3>`, rotation\: :ref:`Quaternion<class_Quaternion>`, linear_velocity\: :ref:`Vector3<class_Vector3>`, angular_velocity\: :ref:`Vector3<class_Vector3>`\ ) :ref:`🔗<class_EGPBox3DWorld_method_queue_body_state>`
+
+Queues a pose and velocities for an authoritative correction. Rotation must already be normalized. Does not reconstruct remote contact caches.
 
 .. rst-class:: classref-item-separator
 
@@ -102,18 +210,6 @@ Queues a body with a box hull. Entity ID must be positive. Sequence is a uint32 
 
 ----
 
-.. _class_EGPBox3DWorld_method_queue_create_sphere:
-
-.. rst-class:: classref-method
-
-:ref:`Error<enum_@GlobalScope_Error>` **queue_create_sphere**\ (\ entity_id\: :ref:`int<class_int>`, sequence\: :ref:`int<class_int>`, position\: :ref:`Vector3<class_Vector3>`, radius\: :ref:`float<class_float>`, body_type\: :ref:`int<class_int>` = 2, density\: :ref:`float<class_float>` = 1.0\ ) :ref:`🔗<class_EGPBox3DWorld_method_queue_create_sphere>`
-
-Queues a sphere body.
-
-.. rst-class:: classref-item-separator
-
-----
-
 .. _class_EGPBox3DWorld_method_queue_create_capsule:
 
 .. rst-class:: classref-method
@@ -121,6 +217,18 @@ Queues a sphere body.
 :ref:`Error<enum_@GlobalScope_Error>` **queue_create_capsule**\ (\ entity_id\: :ref:`int<class_int>`, sequence\: :ref:`int<class_int>`, position\: :ref:`Vector3<class_Vector3>`, radius\: :ref:`float<class_float>`, half_height\: :ref:`float<class_float>`, body_type\: :ref:`int<class_int>` = 2, density\: :ref:`float<class_float>` = 1.0\ ) :ref:`🔗<class_EGPBox3DWorld_method_queue_create_capsule>`
 
 Queues a Y-axis capsule. Half height is the positive half length of its central segment.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_EGPBox3DWorld_method_queue_create_sphere:
+
+.. rst-class:: classref-method
+
+:ref:`Error<enum_@GlobalScope_Error>` **queue_create_sphere**\ (\ entity_id\: :ref:`int<class_int>`, sequence\: :ref:`int<class_int>`, position\: :ref:`Vector3<class_Vector3>`, radius\: :ref:`float<class_float>`, body_type\: :ref:`int<class_int>` = 2, density\: :ref:`float<class_float>` = 1.0\ ) :ref:`🔗<class_EGPBox3DWorld_method_queue_create_sphere>`
+
+Queues a sphere body.
 
 .. rst-class:: classref-item-separator
 
@@ -162,102 +270,6 @@ Queues linear velocity.
 
 ----
 
-.. _class_EGPBox3DWorld_method_queue_body_state:
-
-.. rst-class:: classref-method
-
-:ref:`Error<enum_@GlobalScope_Error>` **queue_body_state**\ (\ entity_id\: :ref:`int<class_int>`, sequence\: :ref:`int<class_int>`, position\: :ref:`Vector3<class_Vector3>`, rotation\: :ref:`Quaternion<class_Quaternion>`, linear_velocity\: :ref:`Vector3<class_Vector3>`, angular_velocity\: :ref:`Vector3<class_Vector3>`\ ) :ref:`🔗<class_EGPBox3DWorld_method_queue_body_state>`
-
-Queues a pose and velocities for an authoritative correction. Rotation must already be normalized. Does not reconstruct remote contact caches.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_EGPBox3DWorld_method_apply_queued_commands:
-
-.. rst-class:: classref-method
-
-:ref:`Error<enum_@GlobalScope_Error>` **apply_queued_commands**\ (\ ) :ref:`🔗<class_EGPBox3DWorld_method_apply_queued_commands>`
-
-Validates the entire sorted batch before applying mutations without advancing the tick. Use for a baseline or authoritative correction before capturing a snapshot.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_EGPBox3DWorld_method_clear_pending_commands:
-
-.. rst-class:: classref-method
-
-|void| **clear_pending_commands**\ (\ ) :ref:`🔗<class_EGPBox3DWorld_method_clear_pending_commands>`
-
-Clears a rejected or cancelled batch.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_EGPBox3DWorld_method_step_tick:
-
-.. rst-class:: classref-method
-
-:ref:`Error<enum_@GlobalScope_Error>` **step_tick**\ (\ expected_tick\: :ref:`int<class_int>`\ ) :ref:`🔗<class_EGPBox3DWorld_method_step_tick>`
-
-Applies queued commands and advances exactly one fixed step. Expected tick must equal :ref:`get_tick()<class_EGPBox3DWorld_method_get_tick>` plus one. The initial step is tick 1. Rejected batches do not mutate the world.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_EGPBox3DWorld_method_get_tick:
-
-.. rst-class:: classref-method
-
-:ref:`int<class_int>` **get_tick**\ (\ ) |const| :ref:`🔗<class_EGPBox3DWorld_method_get_tick>`
-
-Returns the last completed 64-bit tick. Restoring a snapshot restores its tick.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_EGPBox3DWorld_method_get_body_count:
-
-.. rst-class:: classref-method
-
-:ref:`int<class_int>` **get_body_count**\ (\ ) |const| :ref:`🔗<class_EGPBox3DWorld_method_get_body_count>`
-
-Returns the live body count.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_EGPBox3DWorld_method_get_body_state:
-
-.. rst-class:: classref-method
-
-:ref:`Dictionary<class_Dictionary>` **get_body_state**\ (\ entity_id\: :ref:`int<class_int>`\ ) |const| :ref:`🔗<class_EGPBox3DWorld_method_get_body_state>`
-
-Returns position, rotation, linear_velocity and angular_velocity, or an empty dictionary if the entity is absent.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_EGPBox3DWorld_method_capture_snapshot:
-
-.. rst-class:: classref-method
-
-:ref:`PackedByteArray<class_PackedByteArray>` **capture_snapshot**\ (\ ) :ref:`🔗<class_EGPBox3DWorld_method_capture_snapshot>`
-
-Captures full local solver state and stable body mapping at a boundary with no queued commands. Returns empty bytes on failure. Snapshot size is bounded to 64 MiB.
-
-.. rst-class:: classref-item-separator
-
-----
-
 .. _class_EGPBox3DWorld_method_restore_snapshot:
 
 .. rst-class:: classref-method
@@ -270,25 +282,13 @@ Restores a trusted local snapshot transactionally, retaining the old world if va
 
 ----
 
-.. _class_EGPBox3DWorld_method_get_state_hash:
+.. _class_EGPBox3DWorld_method_step_tick:
 
 .. rst-class:: classref-method
 
-:ref:`String<class_String>` **get_state_hash**\ (\ ) |const| :ref:`🔗<class_EGPBox3DWorld_method_get_state_hash>`
+:ref:`Error<enum_@GlobalScope_Error>` **step_tick**\ (\ expected_tick\: :ref:`int<class_int>`\ ) :ref:`🔗<class_EGPBox3DWorld_method_step_tick>`
 
-Returns a 16-character hexadecimal diagnostic hash of the profile, tick, entity IDs, poses, velocities, body types and awake flags. It does not cover every latent solver field and is not cryptographic.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_EGPBox3DWorld_method_get_simulation_fingerprint:
-
-.. rst-class:: classref-method
-
-:ref:`String<class_String>` **get_simulation_fingerprint**\ (\ ) |const| :ref:`🔗<class_EGPBox3DWorld_method_get_simulation_fingerprint>`
-
-Returns the pinned source revision and simulation profile. Networking must reject incompatible profiles. Matching fingerprints alone do not prove cross-platform qualification.
+Applies queued commands and advances exactly one fixed step. Expected tick must equal :ref:`get_tick()<class_EGPBox3DWorld_method_get_tick>` plus one. The initial step is tick 1. Rejected batches do not mutate the world.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
 .. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`

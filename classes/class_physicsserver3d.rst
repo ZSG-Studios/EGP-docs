@@ -12,7 +12,7 @@ PhysicsServer3D
 
 **Inherits:** :ref:`Object<class_Object>`
 
-**Inherited By:** :ref:`PhysicsServer3DExtension<class_PhysicsServer3DExtension>`
+**Inherited By:** :ref:`Box3DPhysicsServer3D<class_Box3DPhysicsServer3D>`, :ref:`PhysicsServer3DExtension<class_PhysicsServer3DExtension>`
 
 A server interface for low-level 3D physics access.
 
@@ -588,38 +588,6 @@ The strength with which the pinned objects try to stay in velocity relation to e
 
 enum **HingeJointParam**: :ref:`🔗<enum_PhysicsServer3D_HingeJointParam>`
 
-.. _class_PhysicsServer3D_constant_HINGE_JOINT_LIMIT_UPPER:
-
-.. rst-class:: classref-enumeration-constant
-
-:ref:`HingeJointParam<enum_PhysicsServer3D_HingeJointParam>` **HINGE_JOINT_LIMIT_UPPER** = ``0``
-
-The maximum rotation across the Hinge.
-
-.. _class_PhysicsServer3D_constant_HINGE_JOINT_LIMIT_LOWER:
-
-.. rst-class:: classref-enumeration-constant
-
-:ref:`HingeJointParam<enum_PhysicsServer3D_HingeJointParam>` **HINGE_JOINT_LIMIT_LOWER** = ``1``
-
-The minimum rotation across the Hinge.
-
-.. _class_PhysicsServer3D_constant_HINGE_JOINT_MOTOR_TARGET_VELOCITY:
-
-.. rst-class:: classref-enumeration-constant
-
-:ref:`HingeJointParam<enum_PhysicsServer3D_HingeJointParam>` **HINGE_JOINT_MOTOR_TARGET_VELOCITY** = ``2``
-
-Target speed for the motor.
-
-.. _class_PhysicsServer3D_constant_HINGE_JOINT_MOTOR_MAX_TORQUE:
-
-.. rst-class:: classref-enumeration-constant
-
-:ref:`HingeJointParam<enum_PhysicsServer3D_HingeJointParam>` **HINGE_JOINT_MOTOR_MAX_TORQUE** = ``3``
-
-Maximum torque applied by the native hinge motor.
-
 .. _class_PhysicsServer3D_constant_HINGE_JOINT_SPRING_ENABLED:
 
 .. rst-class:: classref-enumeration-constant
@@ -651,6 +619,38 @@ Native joint spring damping ratio.
 :ref:`HingeJointParam<enum_PhysicsServer3D_HingeJointParam>` **HINGE_JOINT_SPRING_TARGET_ANGLE** = ``7``
 
 Native hinge spring target angle in radians.
+
+.. _class_PhysicsServer3D_constant_HINGE_JOINT_LIMIT_UPPER:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`HingeJointParam<enum_PhysicsServer3D_HingeJointParam>` **HINGE_JOINT_LIMIT_UPPER** = ``0``
+
+The maximum rotation across the Hinge.
+
+.. _class_PhysicsServer3D_constant_HINGE_JOINT_LIMIT_LOWER:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`HingeJointParam<enum_PhysicsServer3D_HingeJointParam>` **HINGE_JOINT_LIMIT_LOWER** = ``1``
+
+The minimum rotation across the Hinge.
+
+.. _class_PhysicsServer3D_constant_HINGE_JOINT_MOTOR_TARGET_VELOCITY:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`HingeJointParam<enum_PhysicsServer3D_HingeJointParam>` **HINGE_JOINT_MOTOR_TARGET_VELOCITY** = ``2``
+
+Target speed for the motor.
+
+.. _class_PhysicsServer3D_constant_HINGE_JOINT_MOTOR_MAX_TORQUE:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`HingeJointParam<enum_PhysicsServer3D_HingeJointParam>` **HINGE_JOINT_MOTOR_MAX_TORQUE** = ``3``
+
+Maximum torque applied by the native hinge motor.
 
 .. rst-class:: classref-item-separator
 
@@ -1236,6 +1236,104 @@ Constant used internally for a soft body shape. Any attempt to create this kind 
 
 ----
 
+.. _enum_PhysicsServer3D_SpaceParameter:
+
+.. rst-class:: classref-enumeration
+
+enum **SpaceParameter**: :ref:`🔗<enum_PhysicsServer3D_SpaceParameter>`
+
+.. _class_PhysicsServer3D_constant_SPACE_PARAM_CONTACT_RECYCLE_RADIUS:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`SpaceParameter<enum_PhysicsServer3D_SpaceParameter>` **SPACE_PARAM_CONTACT_RECYCLE_RADIUS** = ``0``
+
+Distance used to recycle Box3D contact points in meters.
+
+.. _class_PhysicsServer3D_constant_SPACE_PARAM_CONTACT_HERTZ:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`SpaceParameter<enum_PhysicsServer3D_SpaceParameter>` **SPACE_PARAM_CONTACT_HERTZ** = ``1``
+
+Contact stiffness in cycles per second.
+
+.. _class_PhysicsServer3D_constant_SPACE_PARAM_CONTACT_DAMPING_RATIO:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`SpaceParameter<enum_PhysicsServer3D_SpaceParameter>` **SPACE_PARAM_CONTACT_DAMPING_RATIO** = ``2``
+
+Contact damping ratio; 1 is critical damping.
+
+.. _class_PhysicsServer3D_constant_SPACE_PARAM_CONTACT_MAX_PUSH_SPEED:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`SpaceParameter<enum_PhysicsServer3D_SpaceParameter>` **SPACE_PARAM_CONTACT_MAX_PUSH_SPEED** = ``3``
+
+Maximum contact penetration correction speed in world units per second.
+
+.. _class_PhysicsServer3D_constant_SPACE_PARAM_RESTITUTION_THRESHOLD:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`SpaceParameter<enum_PhysicsServer3D_SpaceParameter>` **SPACE_PARAM_RESTITUTION_THRESHOLD** = ``4``
+
+Minimum collision speed for restitution in world units per second.
+
+.. _class_PhysicsServer3D_constant_SPACE_PARAM_MAXIMUM_LINEAR_SPEED:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`SpaceParameter<enum_PhysicsServer3D_SpaceParameter>` **SPACE_PARAM_MAXIMUM_LINEAR_SPEED** = ``5``
+
+Maximum body linear speed in world units per second.
+
+.. _class_PhysicsServer3D_constant_SPACE_PARAM_SLEEP_ENABLED:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`SpaceParameter<enum_PhysicsServer3D_SpaceParameter>` **SPACE_PARAM_SLEEP_ENABLED** = ``6``
+
+Whether native body sleeping is enabled (0 or 1).
+
+.. _class_PhysicsServer3D_constant_SPACE_PARAM_CONTINUOUS_ENABLED:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`SpaceParameter<enum_PhysicsServer3D_SpaceParameter>` **SPACE_PARAM_CONTINUOUS_ENABLED** = ``7``
+
+Whether native continuous collision detection is enabled (0 or 1).
+
+.. _class_PhysicsServer3D_constant_SPACE_PARAM_WARM_STARTING_ENABLED:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`SpaceParameter<enum_PhysicsServer3D_SpaceParameter>` **SPACE_PARAM_WARM_STARTING_ENABLED** = ``8``
+
+Whether cached constraint impulses are reused (0 or 1).
+
+.. _class_PhysicsServer3D_constant_SPACE_PARAM_RESTITUTION_ITERATIONS:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`SpaceParameter<enum_PhysicsServer3D_SpaceParameter>` **SPACE_PARAM_RESTITUTION_ITERATIONS** = ``9``
+
+Number of iterations in the native restitution solver (integer from 1 through 63).
+
+.. _class_PhysicsServer3D_constant_SPACE_PARAM_RESTITUTION_PROPAGATION_ENABLED:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`SpaceParameter<enum_PhysicsServer3D_SpaceParameter>` **SPACE_PARAM_RESTITUTION_PROPAGATION_ENABLED** = ``10``
+
+Whether native restitution propagation is enabled (0 or 1).
+
+.. rst-class:: classref-item-separator
+
+----
+
 .. _enum_PhysicsServer3D_AreaParameter:
 
 .. rst-class:: classref-enumeration
@@ -1779,104 +1877,6 @@ Body angular motion axis Y. Use with :ref:`body_set_axis_lock()<class_PhysicsSer
 :ref:`BodyAxis<enum_PhysicsServer3D_BodyAxis>` **BODY_AXIS_ANGULAR_Z** = ``32``
 
 Body angular motion axis Z. Use with :ref:`body_set_axis_lock()<class_PhysicsServer3D_method_body_set_axis_lock>` and :ref:`body_is_axis_locked()<class_PhysicsServer3D_method_body_is_axis_locked>`.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _enum_PhysicsServer3D_SpaceParameter:
-
-.. rst-class:: classref-enumeration
-
-enum **SpaceParameter**: :ref:`🔗<enum_PhysicsServer3D_SpaceParameter>`
-
-.. _class_PhysicsServer3D_constant_SPACE_PARAM_CONTACT_RECYCLE_RADIUS:
-
-.. rst-class:: classref-enumeration-constant
-
-:ref:`SpaceParameter<enum_PhysicsServer3D_SpaceParameter>` **SPACE_PARAM_CONTACT_RECYCLE_RADIUS** = ``0``
-
-Distance used to recycle Box3D contact points in meters.
-
-.. _class_PhysicsServer3D_constant_SPACE_PARAM_CONTACT_HERTZ:
-
-.. rst-class:: classref-enumeration-constant
-
-:ref:`SpaceParameter<enum_PhysicsServer3D_SpaceParameter>` **SPACE_PARAM_CONTACT_HERTZ** = ``1``
-
-Contact stiffness in cycles per second.
-
-.. _class_PhysicsServer3D_constant_SPACE_PARAM_CONTACT_DAMPING_RATIO:
-
-.. rst-class:: classref-enumeration-constant
-
-:ref:`SpaceParameter<enum_PhysicsServer3D_SpaceParameter>` **SPACE_PARAM_CONTACT_DAMPING_RATIO** = ``2``
-
-Contact damping ratio; 1 is critical damping.
-
-.. _class_PhysicsServer3D_constant_SPACE_PARAM_CONTACT_MAX_PUSH_SPEED:
-
-.. rst-class:: classref-enumeration-constant
-
-:ref:`SpaceParameter<enum_PhysicsServer3D_SpaceParameter>` **SPACE_PARAM_CONTACT_MAX_PUSH_SPEED** = ``3``
-
-Maximum contact penetration correction speed in world units per second.
-
-.. _class_PhysicsServer3D_constant_SPACE_PARAM_RESTITUTION_THRESHOLD:
-
-.. rst-class:: classref-enumeration-constant
-
-:ref:`SpaceParameter<enum_PhysicsServer3D_SpaceParameter>` **SPACE_PARAM_RESTITUTION_THRESHOLD** = ``4``
-
-Minimum collision speed for restitution in world units per second.
-
-.. _class_PhysicsServer3D_constant_SPACE_PARAM_MAXIMUM_LINEAR_SPEED:
-
-.. rst-class:: classref-enumeration-constant
-
-:ref:`SpaceParameter<enum_PhysicsServer3D_SpaceParameter>` **SPACE_PARAM_MAXIMUM_LINEAR_SPEED** = ``5``
-
-Maximum body linear speed in world units per second.
-
-.. _class_PhysicsServer3D_constant_SPACE_PARAM_SLEEP_ENABLED:
-
-.. rst-class:: classref-enumeration-constant
-
-:ref:`SpaceParameter<enum_PhysicsServer3D_SpaceParameter>` **SPACE_PARAM_SLEEP_ENABLED** = ``6``
-
-Whether native body sleeping is enabled (0 or 1).
-
-.. _class_PhysicsServer3D_constant_SPACE_PARAM_CONTINUOUS_ENABLED:
-
-.. rst-class:: classref-enumeration-constant
-
-:ref:`SpaceParameter<enum_PhysicsServer3D_SpaceParameter>` **SPACE_PARAM_CONTINUOUS_ENABLED** = ``7``
-
-Whether native continuous collision detection is enabled (0 or 1).
-
-.. _class_PhysicsServer3D_constant_SPACE_PARAM_WARM_STARTING_ENABLED:
-
-.. rst-class:: classref-enumeration-constant
-
-:ref:`SpaceParameter<enum_PhysicsServer3D_SpaceParameter>` **SPACE_PARAM_WARM_STARTING_ENABLED** = ``8``
-
-Whether cached constraint impulses are reused (0 or 1).
-
-.. _class_PhysicsServer3D_constant_SPACE_PARAM_RESTITUTION_ITERATIONS:
-
-.. rst-class:: classref-enumeration-constant
-
-:ref:`SpaceParameter<enum_PhysicsServer3D_SpaceParameter>` **SPACE_PARAM_RESTITUTION_ITERATIONS** = ``9``
-
-Number of iterations in the native restitution solver (integer from 1 through 63).
-
-.. _class_PhysicsServer3D_constant_SPACE_PARAM_RESTITUTION_PROPAGATION_ENABLED:
-
-.. rst-class:: classref-enumeration-constant
-
-:ref:`SpaceParameter<enum_PhysicsServer3D_SpaceParameter>` **SPACE_PARAM_RESTITUTION_PROPAGATION_ENABLED** = ``10``
-
-Whether native restitution propagation is enabled (0 or 1).
 
 .. rst-class:: classref-section-separator
 

@@ -12,7 +12,7 @@ Published upstream consolidation
 --------------------------------
 
 The documentation is generated from engine revision
-``8367ea997813c12427c04fbfdd5906a94b48d9a5``. It includes the sixteen incoming
+``0783e116211ee76dd117fa11dbc6000e6081d5d2``. It includes the sixteen incoming
 official Godot commits through ``3ea0cf3e72699c5e3b35f7956670ac93b9d1d4a0``.
 This is a pinned upstream snapshot; later upstream commits require another
 compatibility review.
@@ -37,7 +37,7 @@ reload, network-lab and admission regressions. Native Debug/Release suites pass
 byte-identical, with matching SDK key ``4bc13481314e7023`` and MSVC 19.51 libraries.
 New native and managed artifacts supersede the previous binary identities.
 Consult the `pinned integration record
-<https://github.com/ZSG-Studios/EGP/blob/8367ea997813c12427c04fbfdd5906a94b48d9a5/doc/egp_integration_loop.md>`__
+<https://github.com/ZSG-Studios/EGP/blob/0783e116211ee76dd117fa11dbc6000e6081d5d2/doc/egp_integration_loop.md>`__
 for exact hashes, commands and retained failed controls.
 
 The subsequent C++ helper update adds explicit ``Net``/``Box3D`` ownership
@@ -141,6 +141,17 @@ The API compatibility script passes all eight official reference versions from
 4.0 through 4.7 against that editor. Exact documented exceptions cover EGP's
 intentional networking and physics API changes. Unlisted removals, signatures
 and hashes remain failures; retained methods remain in the native lookup test.
+
+The compiled editor's doctool output also matches the synchronized class XML,
+including four concrete Box2D/Box3D backend classes. This verifies reference
+metadata for that compiled profile.
+
+Matching Linux Mono Debug and Release templates from ``0a2186345`` run a pack
+exported by the Windows editor from the same revision. A headless smoke test
+advances a CircleShape2D/RigidBody2D and a SphereShape3D/RigidBody3D under gravity
+for 60 physics ticks, verifies finite positions and confirms EGPNetSession is
+exposed. This primitive physics smoke test does not qualify networking traffic,
+managed scripts, hot reload, graphical behavior or larger worlds.
 
 All 26 Box2D adapter translation units compile under optimized GCC and Clang
 with warnings treated as errors. The cleanup preserves signed index rejection,

@@ -396,6 +396,80 @@ This is the constant for creating concave polygon shapes. A polygon is defined b
 
 ----
 
+.. _enum_PhysicsServer2D_SpaceParameter:
+
+.. rst-class:: classref-enumeration
+
+enum **SpaceParameter**: :ref:`🔗<enum_PhysicsServer2D_SpaceParameter>`
+
+.. _class_PhysicsServer2D_constant_SPACE_PARAM_CONTACT_HERTZ:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`SpaceParameter<enum_PhysicsServer2D_SpaceParameter>` **SPACE_PARAM_CONTACT_HERTZ** = ``0``
+
+Contact stiffness in cycles per second.
+
+.. _class_PhysicsServer2D_constant_SPACE_PARAM_CONTACT_DAMPING_RATIO:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`SpaceParameter<enum_PhysicsServer2D_SpaceParameter>` **SPACE_PARAM_CONTACT_DAMPING_RATIO** = ``1``
+
+Contact damping ratio; 1 is critical damping.
+
+.. _class_PhysicsServer2D_constant_SPACE_PARAM_CONTACT_MAX_PUSH_SPEED:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`SpaceParameter<enum_PhysicsServer2D_SpaceParameter>` **SPACE_PARAM_CONTACT_MAX_PUSH_SPEED** = ``2``
+
+Maximum contact penetration correction speed in world units per second.
+
+.. _class_PhysicsServer2D_constant_SPACE_PARAM_RESTITUTION_THRESHOLD:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`SpaceParameter<enum_PhysicsServer2D_SpaceParameter>` **SPACE_PARAM_RESTITUTION_THRESHOLD** = ``3``
+
+Minimum collision speed for restitution in world units per second.
+
+.. _class_PhysicsServer2D_constant_SPACE_PARAM_MAXIMUM_LINEAR_SPEED:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`SpaceParameter<enum_PhysicsServer2D_SpaceParameter>` **SPACE_PARAM_MAXIMUM_LINEAR_SPEED** = ``4``
+
+Maximum body linear speed in world units per second.
+
+.. _class_PhysicsServer2D_constant_SPACE_PARAM_SLEEP_ENABLED:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`SpaceParameter<enum_PhysicsServer2D_SpaceParameter>` **SPACE_PARAM_SLEEP_ENABLED** = ``5``
+
+Whether native body sleeping is enabled (0 or 1).
+
+.. _class_PhysicsServer2D_constant_SPACE_PARAM_CONTINUOUS_ENABLED:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`SpaceParameter<enum_PhysicsServer2D_SpaceParameter>` **SPACE_PARAM_CONTINUOUS_ENABLED** = ``6``
+
+Whether native continuous collision detection is enabled (0 or 1).
+
+.. _class_PhysicsServer2D_constant_SPACE_PARAM_WARM_STARTING_ENABLED:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`SpaceParameter<enum_PhysicsServer2D_SpaceParameter>` **SPACE_PARAM_WARM_STARTING_ENABLED** = ``7``
+
+Whether cached constraint impulses are reused (0 or 1).
+
+.. rst-class:: classref-item-separator
+
+----
+
 .. _enum_PhysicsServer2D_AreaParameter:
 
 .. rst-class:: classref-enumeration
@@ -782,6 +856,32 @@ Constant to set/get whether the body can sleep.
 
 ----
 
+.. _enum_PhysicsServer2D_JointParam:
+
+.. rst-class:: classref-enumeration
+
+enum **JointParam**: :ref:`🔗<enum_PhysicsServer2D_JointParam>`
+
+.. _class_PhysicsServer2D_constant_JOINT_PARAM_HERTZ:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`JointParam<enum_PhysicsServer2D_JointParam>` **JOINT_PARAM_HERTZ** = ``0``
+
+Native joint constraint frequency in hertz.
+
+.. _class_PhysicsServer2D_constant_JOINT_PARAM_DAMPING_RATIO:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`JointParam<enum_PhysicsServer2D_JointParam>` **JOINT_PARAM_DAMPING_RATIO** = ``1``
+
+Native joint constraint damping ratio.
+
+.. rst-class:: classref-item-separator
+
+----
+
 .. _enum_PhysicsServer2D_JointType:
 
 .. rst-class:: classref-enumeration
@@ -1055,106 +1155,6 @@ Constant to get the number of possible collisions.
 :ref:`ProcessInfo<enum_PhysicsServer2D_ProcessInfo>` **INFO_ISLAND_COUNT** = ``2``
 
 Constant to get the number of space regions where a collision could occur.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _enum_PhysicsServer2D_SpaceParameter:
-
-.. rst-class:: classref-enumeration
-
-enum **SpaceParameter**: :ref:`🔗<enum_PhysicsServer2D_SpaceParameter>`
-
-.. _class_PhysicsServer2D_constant_SPACE_PARAM_CONTACT_HERTZ:
-
-.. rst-class:: classref-enumeration-constant
-
-:ref:`SpaceParameter<enum_PhysicsServer2D_SpaceParameter>` **SPACE_PARAM_CONTACT_HERTZ** = ``0``
-
-Contact stiffness in cycles per second.
-
-.. _class_PhysicsServer2D_constant_SPACE_PARAM_CONTACT_DAMPING_RATIO:
-
-.. rst-class:: classref-enumeration-constant
-
-:ref:`SpaceParameter<enum_PhysicsServer2D_SpaceParameter>` **SPACE_PARAM_CONTACT_DAMPING_RATIO** = ``1``
-
-Contact damping ratio; 1 is critical damping.
-
-.. _class_PhysicsServer2D_constant_SPACE_PARAM_CONTACT_MAX_PUSH_SPEED:
-
-.. rst-class:: classref-enumeration-constant
-
-:ref:`SpaceParameter<enum_PhysicsServer2D_SpaceParameter>` **SPACE_PARAM_CONTACT_MAX_PUSH_SPEED** = ``2``
-
-Maximum contact penetration correction speed in world units per second.
-
-.. _class_PhysicsServer2D_constant_SPACE_PARAM_RESTITUTION_THRESHOLD:
-
-.. rst-class:: classref-enumeration-constant
-
-:ref:`SpaceParameter<enum_PhysicsServer2D_SpaceParameter>` **SPACE_PARAM_RESTITUTION_THRESHOLD** = ``3``
-
-Minimum collision speed for restitution in world units per second.
-
-.. _class_PhysicsServer2D_constant_SPACE_PARAM_MAXIMUM_LINEAR_SPEED:
-
-.. rst-class:: classref-enumeration-constant
-
-:ref:`SpaceParameter<enum_PhysicsServer2D_SpaceParameter>` **SPACE_PARAM_MAXIMUM_LINEAR_SPEED** = ``4``
-
-Maximum body linear speed in world units per second.
-
-.. _class_PhysicsServer2D_constant_SPACE_PARAM_SLEEP_ENABLED:
-
-.. rst-class:: classref-enumeration-constant
-
-:ref:`SpaceParameter<enum_PhysicsServer2D_SpaceParameter>` **SPACE_PARAM_SLEEP_ENABLED** = ``5``
-
-Whether native body sleeping is enabled (0 or 1).
-
-.. _class_PhysicsServer2D_constant_SPACE_PARAM_CONTINUOUS_ENABLED:
-
-.. rst-class:: classref-enumeration-constant
-
-:ref:`SpaceParameter<enum_PhysicsServer2D_SpaceParameter>` **SPACE_PARAM_CONTINUOUS_ENABLED** = ``6``
-
-Whether native continuous collision detection is enabled (0 or 1).
-
-.. _class_PhysicsServer2D_constant_SPACE_PARAM_WARM_STARTING_ENABLED:
-
-.. rst-class:: classref-enumeration-constant
-
-:ref:`SpaceParameter<enum_PhysicsServer2D_SpaceParameter>` **SPACE_PARAM_WARM_STARTING_ENABLED** = ``7``
-
-Whether cached constraint impulses are reused (0 or 1).
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _enum_PhysicsServer2D_JointParam:
-
-.. rst-class:: classref-enumeration
-
-enum **JointParam**: :ref:`🔗<enum_PhysicsServer2D_JointParam>`
-
-.. _class_PhysicsServer2D_constant_JOINT_PARAM_HERTZ:
-
-.. rst-class:: classref-enumeration-constant
-
-:ref:`JointParam<enum_PhysicsServer2D_JointParam>` **JOINT_PARAM_HERTZ** = ``0``
-
-Native joint constraint frequency in hertz.
-
-.. _class_PhysicsServer2D_constant_JOINT_PARAM_DAMPING_RATIO:
-
-.. rst-class:: classref-enumeration-constant
-
-:ref:`JointParam<enum_PhysicsServer2D_JointParam>` **JOINT_PARAM_DAMPING_RATIO** = ``1``
-
-Native joint constraint damping ratio.
 
 .. rst-class:: classref-section-separator
 

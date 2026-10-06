@@ -31,13 +31,17 @@ Properties
 .. table::
    :widths: auto
 
-   +---------------------------------+--------------------------------------------------------------------+------------------+
-   | :ref:`bool<class_bool>`         | :ref:`disable_collision<class_Joint2D_property_disable_collision>` | ``true``         |
-   +---------------------------------+--------------------------------------------------------------------+------------------+
-   | :ref:`NodePath<class_NodePath>` | :ref:`node_a<class_Joint2D_property_node_a>`                       | ``NodePath("")`` |
-   +---------------------------------+--------------------------------------------------------------------+------------------+
-   | :ref:`NodePath<class_NodePath>` | :ref:`node_b<class_Joint2D_property_node_b>`                       | ``NodePath("")`` |
-   +---------------------------------+--------------------------------------------------------------------+------------------+
+   +---------------------------------+----------------------------------------------------------------------------------+------------------+
+   | :ref:`float<class_float>`       | :ref:`constraint_damping_ratio<class_Joint2D_property_constraint_damping_ratio>` | ``2.0``          |
+   +---------------------------------+----------------------------------------------------------------------------------+------------------+
+   | :ref:`float<class_float>`       | :ref:`constraint_hertz<class_Joint2D_property_constraint_hertz>`                 | ``60.0``         |
+   +---------------------------------+----------------------------------------------------------------------------------+------------------+
+   | :ref:`bool<class_bool>`         | :ref:`disable_collision<class_Joint2D_property_disable_collision>`               | ``true``         |
+   +---------------------------------+----------------------------------------------------------------------------------+------------------+
+   | :ref:`NodePath<class_NodePath>` | :ref:`node_a<class_Joint2D_property_node_a>`                                     | ``NodePath("")`` |
+   +---------------------------------+----------------------------------------------------------------------------------+------------------+
+   | :ref:`NodePath<class_NodePath>` | :ref:`node_b<class_Joint2D_property_node_b>`                                     | ``NodePath("")`` |
+   +---------------------------------+----------------------------------------------------------------------------------+------------------+
 
 .. rst-class:: classref-reftable-group
 
@@ -59,6 +63,44 @@ Methods
 
 Property Descriptions
 ---------------------
+
+.. _class_Joint2D_property_constraint_damping_ratio:
+
+.. rst-class:: classref-property
+
+:ref:`float<class_float>` **constraint_damping_ratio** = ``2.0`` :ref:`🔗<class_Joint2D_property_constraint_damping_ratio>`
+
+.. rst-class:: classref-property-setget
+
+- |void| **set_constraint_damping_ratio**\ (\ value\: :ref:`float<class_float>`\ )
+- :ref:`float<class_float>` **get_constraint_damping_ratio**\ (\ )
+
+.. container:: contribute
+
+	There is currently no description for this property. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_Joint2D_property_constraint_hertz:
+
+.. rst-class:: classref-property
+
+:ref:`float<class_float>` **constraint_hertz** = ``60.0`` :ref:`🔗<class_Joint2D_property_constraint_hertz>`
+
+.. rst-class:: classref-property-setget
+
+- |void| **set_constraint_hertz**\ (\ value\: :ref:`float<class_float>`\ )
+- :ref:`float<class_float>` **get_constraint_hertz**\ (\ )
+
+.. container:: contribute
+
+	There is currently no description for this property. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+
+.. rst-class:: classref-item-separator
+
+----
 
 .. _class_Joint2D_property_disable_collision:
 

@@ -29,17 +29,27 @@ Properties
 .. table::
    :widths: auto
 
-   +---------------------------+----------------------------------------------------------------------------------------------+----------+
-   | :ref:`float<class_float>` | :ref:`linear_limit/lower_distance<class_SliderJoint3D_property_linear_limit/lower_distance>` | ``-1.0`` |
-   +---------------------------+----------------------------------------------------------------------------------------------+----------+
-   | :ref:`float<class_float>` | :ref:`linear_limit/upper_distance<class_SliderJoint3D_property_linear_limit/upper_distance>` | ``1.0``  |
-   +---------------------------+----------------------------------------------------------------------------------------------+----------+
-   | :ref:`bool<class_bool>`   | :ref:`linear_limit/enabled<class_SliderJoint3D_property_linear_limit/enabled>`               |          |
-   +---------------------------+----------------------------------------------------------------------------------------------+----------+
-   | :ref:`bool<class_bool>`   | :ref:`motor/enabled<class_SliderJoint3D_property_motor/enabled>`                             |          |
-   +---------------------------+----------------------------------------------------------------------------------------------+----------+
-   | :ref:`bool<class_bool>`   | :ref:`spring/enabled<class_SliderJoint3D_property_spring/enabled>`                           |          |
-   +---------------------------+----------------------------------------------------------------------------------------------+----------+
+   +---------------------------+----------------------------------------------------------------------------------------------+-----------+
+   | :ref:`bool<class_bool>`   | :ref:`linear_limit/enabled<class_SliderJoint3D_property_linear_limit/enabled>`               | ``true``  |
+   +---------------------------+----------------------------------------------------------------------------------------------+-----------+
+   | :ref:`float<class_float>` | :ref:`linear_limit/lower_distance<class_SliderJoint3D_property_linear_limit/lower_distance>` | ``-1.0``  |
+   +---------------------------+----------------------------------------------------------------------------------------------+-----------+
+   | :ref:`float<class_float>` | :ref:`linear_limit/upper_distance<class_SliderJoint3D_property_linear_limit/upper_distance>` | ``1.0``   |
+   +---------------------------+----------------------------------------------------------------------------------------------+-----------+
+   | :ref:`bool<class_bool>`   | :ref:`motor/enabled<class_SliderJoint3D_property_motor/enabled>`                             | ``false`` |
+   +---------------------------+----------------------------------------------------------------------------------------------+-----------+
+   | :ref:`float<class_float>` | :ref:`motor/max_force<class_SliderJoint3D_property_motor/max_force>`                         | ``0.0``   |
+   +---------------------------+----------------------------------------------------------------------------------------------+-----------+
+   | :ref:`float<class_float>` | :ref:`motor/target_velocity<class_SliderJoint3D_property_motor/target_velocity>`             | ``0.0``   |
+   +---------------------------+----------------------------------------------------------------------------------------------+-----------+
+   | :ref:`float<class_float>` | :ref:`spring/damping_ratio<class_SliderJoint3D_property_spring/damping_ratio>`               | ``1.0``   |
+   +---------------------------+----------------------------------------------------------------------------------------------+-----------+
+   | :ref:`bool<class_bool>`   | :ref:`spring/enabled<class_SliderJoint3D_property_spring/enabled>`                           | ``false`` |
+   +---------------------------+----------------------------------------------------------------------------------------------+-----------+
+   | :ref:`float<class_float>` | :ref:`spring/frequency<class_SliderJoint3D_property_spring/frequency>`                       | ``0.0``   |
+   +---------------------------+----------------------------------------------------------------------------------------------+-----------+
+   | :ref:`float<class_float>` | :ref:`spring/target_translation<class_SliderJoint3D_property_spring/target_translation>`     | ``0.0``   |
+   +---------------------------+----------------------------------------------------------------------------------------------+-----------+
 
 .. rst-class:: classref-reftable-group
 
@@ -53,18 +63,6 @@ Methods
    | :ref:`float<class_float>` | :ref:`get_param<class_SliderJoint3D_method_get_param>`\ (\ param\: :ref:`Param<enum_SliderJoint3D_Param>`\ ) |const|                            |
    +---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
    | |void|                    | :ref:`set_param<class_SliderJoint3D_method_set_param>`\ (\ param\: :ref:`Param<enum_SliderJoint3D_Param>`, value\: :ref:`float<class_float>`\ ) |
-   +---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`bool<class_bool>`   | :ref:`is_limit_enabled<class_SliderJoint3D_method_is_limit_enabled>`\ (\ ) |const|                                                              |
-   +---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
-   | |void|                    | :ref:`set_limit_enabled<class_SliderJoint3D_method_set_limit_enabled>`\ (\ enabled\: :ref:`bool<class_bool>`\ )                                 |
-   +---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`bool<class_bool>`   | :ref:`is_motor_enabled<class_SliderJoint3D_method_is_motor_enabled>`\ (\ ) |const|                                                              |
-   +---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
-   | |void|                    | :ref:`set_motor_enabled<class_SliderJoint3D_method_set_motor_enabled>`\ (\ enabled\: :ref:`bool<class_bool>`\ )                                 |
-   +---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`bool<class_bool>`   | :ref:`is_spring_enabled<class_SliderJoint3D_method_is_spring_enabled>`\ (\ ) |const|                                                            |
-   +---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
-   | |void|                    | :ref:`set_spring_enabled<class_SliderJoint3D_method_set_spring_enabled>`\ (\ enabled\: :ref:`bool<class_bool>`\ )                               |
    +---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
 
 .. rst-class:: classref-section-separator
@@ -179,6 +177,23 @@ Represents the size of the :ref:`Param<enum_SliderJoint3D_Param>` enum.
 Property Descriptions
 ---------------------
 
+.. _class_SliderJoint3D_property_linear_limit/enabled:
+
+.. rst-class:: classref-property
+
+:ref:`bool<class_bool>` **linear_limit/enabled** = ``true`` :ref:`🔗<class_SliderJoint3D_property_linear_limit/enabled>`
+
+.. rst-class:: classref-property-setget
+
+- |void| **set_limit_enabled**\ (\ value\: :ref:`bool<class_bool>`\ )
+- :ref:`bool<class_bool>` **is_limit_enabled**\ (\ )
+
+Enables the native joint limit. Use the corresponding frequency, target and force or torque parameters to tune its behavior.
+
+.. rst-class:: classref-item-separator
+
+----
+
 .. _class_SliderJoint3D_property_linear_limit/lower_distance:
 
 .. rst-class:: classref-property
@@ -213,35 +228,75 @@ The maximum difference between the pivot points on their X axis before damping h
 
 ----
 
-.. _class_SliderJoint3D_property_linear_limit/enabled:
+.. _class_SliderJoint3D_property_motor/enabled:
 
 .. rst-class:: classref-property
 
-:ref:`bool<class_bool>` **linear_limit/enabled** :ref:`🔗<class_SliderJoint3D_property_linear_limit/enabled>`
+:ref:`bool<class_bool>` **motor/enabled** = ``false`` :ref:`🔗<class_SliderJoint3D_property_motor/enabled>`
 
 .. rst-class:: classref-property-setget
 
-- |void| **set_limit_enabled**\ (\ enabled\: :ref:`bool<class_bool>`\ )
-- :ref:`bool<class_bool>` **is_limit_enabled**\ (\ ) |const|
+- |void| **set_motor_enabled**\ (\ value\: :ref:`bool<class_bool>`\ )
+- :ref:`bool<class_bool>` **is_motor_enabled**\ (\ )
 
-Enables the native joint limit. Use the corresponding frequency, target and force or torque parameters to tune its behavior.
+Enables the native joint motor. Use the corresponding frequency, target and force or torque parameters to tune its behavior.
 
 .. rst-class:: classref-item-separator
 
 ----
 
-.. _class_SliderJoint3D_property_motor/enabled:
+.. _class_SliderJoint3D_property_motor/max_force:
 
 .. rst-class:: classref-property
 
-:ref:`bool<class_bool>` **motor/enabled** :ref:`🔗<class_SliderJoint3D_property_motor/enabled>`
+:ref:`float<class_float>` **motor/max_force** = ``0.0`` :ref:`🔗<class_SliderJoint3D_property_motor/max_force>`
 
 .. rst-class:: classref-property-setget
 
-- |void| **set_motor_enabled**\ (\ enabled\: :ref:`bool<class_bool>`\ )
-- :ref:`bool<class_bool>` **is_motor_enabled**\ (\ ) |const|
+- |void| **set_param**\ (\ param\: :ref:`Param<enum_SliderJoint3D_Param>`, value\: :ref:`float<class_float>`\ )
+- :ref:`float<class_float>` **get_param**\ (\ param\: :ref:`Param<enum_SliderJoint3D_Param>`\ ) |const|
 
-Enables the native joint motor. Use the corresponding frequency, target and force or torque parameters to tune its behavior.
+.. container:: contribute
+
+	There is currently no description for this property. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_SliderJoint3D_property_motor/target_velocity:
+
+.. rst-class:: classref-property
+
+:ref:`float<class_float>` **motor/target_velocity** = ``0.0`` :ref:`🔗<class_SliderJoint3D_property_motor/target_velocity>`
+
+.. rst-class:: classref-property-setget
+
+- |void| **set_param**\ (\ param\: :ref:`Param<enum_SliderJoint3D_Param>`, value\: :ref:`float<class_float>`\ )
+- :ref:`float<class_float>` **get_param**\ (\ param\: :ref:`Param<enum_SliderJoint3D_Param>`\ ) |const|
+
+.. container:: contribute
+
+	There is currently no description for this property. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_SliderJoint3D_property_spring/damping_ratio:
+
+.. rst-class:: classref-property
+
+:ref:`float<class_float>` **spring/damping_ratio** = ``1.0`` :ref:`🔗<class_SliderJoint3D_property_spring/damping_ratio>`
+
+.. rst-class:: classref-property-setget
+
+- |void| **set_param**\ (\ param\: :ref:`Param<enum_SliderJoint3D_Param>`, value\: :ref:`float<class_float>`\ )
+- :ref:`float<class_float>` **get_param**\ (\ param\: :ref:`Param<enum_SliderJoint3D_Param>`\ ) |const|
+
+.. container:: contribute
+
+	There is currently no description for this property. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
 
 .. rst-class:: classref-item-separator
 
@@ -251,14 +306,52 @@ Enables the native joint motor. Use the corresponding frequency, target and forc
 
 .. rst-class:: classref-property
 
-:ref:`bool<class_bool>` **spring/enabled** :ref:`🔗<class_SliderJoint3D_property_spring/enabled>`
+:ref:`bool<class_bool>` **spring/enabled** = ``false`` :ref:`🔗<class_SliderJoint3D_property_spring/enabled>`
 
 .. rst-class:: classref-property-setget
 
-- |void| **set_spring_enabled**\ (\ enabled\: :ref:`bool<class_bool>`\ )
-- :ref:`bool<class_bool>` **is_spring_enabled**\ (\ ) |const|
+- |void| **set_spring_enabled**\ (\ value\: :ref:`bool<class_bool>`\ )
+- :ref:`bool<class_bool>` **is_spring_enabled**\ (\ )
 
 Enables the native joint spring. Use the corresponding frequency, target and force or torque parameters to tune its behavior.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_SliderJoint3D_property_spring/frequency:
+
+.. rst-class:: classref-property
+
+:ref:`float<class_float>` **spring/frequency** = ``0.0`` :ref:`🔗<class_SliderJoint3D_property_spring/frequency>`
+
+.. rst-class:: classref-property-setget
+
+- |void| **set_param**\ (\ param\: :ref:`Param<enum_SliderJoint3D_Param>`, value\: :ref:`float<class_float>`\ )
+- :ref:`float<class_float>` **get_param**\ (\ param\: :ref:`Param<enum_SliderJoint3D_Param>`\ ) |const|
+
+.. container:: contribute
+
+	There is currently no description for this property. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_SliderJoint3D_property_spring/target_translation:
+
+.. rst-class:: classref-property
+
+:ref:`float<class_float>` **spring/target_translation** = ``0.0`` :ref:`🔗<class_SliderJoint3D_property_spring/target_translation>`
+
+.. rst-class:: classref-property-setget
+
+- |void| **set_param**\ (\ param\: :ref:`Param<enum_SliderJoint3D_Param>`, value\: :ref:`float<class_float>`\ )
+- :ref:`float<class_float>` **get_param**\ (\ param\: :ref:`Param<enum_SliderJoint3D_Param>`\ ) |const|
+
+.. container:: contribute
+
+	There is currently no description for this property. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
 
 .. rst-class:: classref-section-separator
 
@@ -288,78 +381,6 @@ Returns the value of the given parameter.
 |void| **set_param**\ (\ param\: :ref:`Param<enum_SliderJoint3D_Param>`, value\: :ref:`float<class_float>`\ ) :ref:`🔗<class_SliderJoint3D_method_set_param>`
 
 Assigns ``value`` to the given parameter.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_SliderJoint3D_method_is_limit_enabled:
-
-.. rst-class:: classref-method
-
-:ref:`bool<class_bool>` **is_limit_enabled**\ (\ ) |const| :ref:`🔗<class_SliderJoint3D_method_is_limit_enabled>`
-
-Returns whether :ref:`linear_limit/enabled<class_SliderJoint3D_property_linear_limit/enabled>` is enabled.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_SliderJoint3D_method_set_limit_enabled:
-
-.. rst-class:: classref-method
-
-|void| **set_limit_enabled**\ (\ enabled\: :ref:`bool<class_bool>`\ ) :ref:`🔗<class_SliderJoint3D_method_set_limit_enabled>`
-
-Enables or disables :ref:`linear_limit/enabled<class_SliderJoint3D_property_linear_limit/enabled>`. This boolean API updates the corresponding native joint parameter.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_SliderJoint3D_method_is_motor_enabled:
-
-.. rst-class:: classref-method
-
-:ref:`bool<class_bool>` **is_motor_enabled**\ (\ ) |const| :ref:`🔗<class_SliderJoint3D_method_is_motor_enabled>`
-
-Returns whether :ref:`motor/enabled<class_SliderJoint3D_property_motor/enabled>` is enabled.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_SliderJoint3D_method_set_motor_enabled:
-
-.. rst-class:: classref-method
-
-|void| **set_motor_enabled**\ (\ enabled\: :ref:`bool<class_bool>`\ ) :ref:`🔗<class_SliderJoint3D_method_set_motor_enabled>`
-
-Enables or disables :ref:`motor/enabled<class_SliderJoint3D_property_motor/enabled>`. This boolean API updates the corresponding native joint parameter.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_SliderJoint3D_method_is_spring_enabled:
-
-.. rst-class:: classref-method
-
-:ref:`bool<class_bool>` **is_spring_enabled**\ (\ ) |const| :ref:`🔗<class_SliderJoint3D_method_is_spring_enabled>`
-
-Returns whether :ref:`spring/enabled<class_SliderJoint3D_property_spring/enabled>` is enabled.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_SliderJoint3D_method_set_spring_enabled:
-
-.. rst-class:: classref-method
-
-|void| **set_spring_enabled**\ (\ enabled\: :ref:`bool<class_bool>`\ ) :ref:`🔗<class_SliderJoint3D_method_set_spring_enabled>`
-
-Enables or disables :ref:`spring/enabled<class_SliderJoint3D_property_spring/enabled>`. This boolean API updates the corresponding native joint parameter.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
 .. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`

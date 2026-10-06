@@ -42,7 +42,13 @@ Properties
    +---------------------------+---------------------------------------------------------------------------------+----------------+
    | :ref:`float<class_float>` | :ref:`motor/target_velocity<class_HingeJoint3D_property_motor/target_velocity>` | ``1.0``        |
    +---------------------------+---------------------------------------------------------------------------------+----------------+
-   | :ref:`bool<class_bool>`   | :ref:`spring/enabled<class_HingeJoint3D_property_spring/enabled>`               |                |
+   | :ref:`float<class_float>` | :ref:`spring/damping_ratio<class_HingeJoint3D_property_spring/damping_ratio>`   | ``1.0``        |
+   +---------------------------+---------------------------------------------------------------------------------+----------------+
+   | :ref:`bool<class_bool>`   | :ref:`spring/enabled<class_HingeJoint3D_property_spring/enabled>`               | ``false``      |
+   +---------------------------+---------------------------------------------------------------------------------+----------------+
+   | :ref:`float<class_float>` | :ref:`spring/frequency<class_HingeJoint3D_property_spring/frequency>`           | ``0.0``        |
+   +---------------------------+---------------------------------------------------------------------------------+----------------+
+   | :ref:`float<class_float>` | :ref:`spring/target_angle<class_HingeJoint3D_property_spring/target_angle>`     | ``0.0``        |
    +---------------------------+---------------------------------------------------------------------------------+----------------+
 
 .. rst-class:: classref-reftable-group
@@ -61,10 +67,6 @@ Methods
    | |void|                    | :ref:`set_flag<class_HingeJoint3D_method_set_flag>`\ (\ flag\: :ref:`Flag<enum_HingeJoint3D_Flag>`, enabled\: :ref:`bool<class_bool>`\ )      |
    +---------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
    | |void|                    | :ref:`set_param<class_HingeJoint3D_method_set_param>`\ (\ param\: :ref:`Param<enum_HingeJoint3D_Param>`, value\: :ref:`float<class_float>`\ ) |
-   +---------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`bool<class_bool>`   | :ref:`is_spring_enabled<class_HingeJoint3D_method_is_spring_enabled>`\ (\ ) |const|                                                           |
-   +---------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
-   | |void|                    | :ref:`set_spring_enabled<class_HingeJoint3D_method_set_spring_enabled>`\ (\ enabled\: :ref:`bool<class_bool>`\ )                              |
    +---------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
 
 .. rst-class:: classref-section-separator
@@ -299,18 +301,75 @@ Target speed for the motor.
 
 ----
 
+.. _class_HingeJoint3D_property_spring/damping_ratio:
+
+.. rst-class:: classref-property
+
+:ref:`float<class_float>` **spring/damping_ratio** = ``1.0`` :ref:`🔗<class_HingeJoint3D_property_spring/damping_ratio>`
+
+.. rst-class:: classref-property-setget
+
+- |void| **set_param**\ (\ param\: :ref:`Param<enum_HingeJoint3D_Param>`, value\: :ref:`float<class_float>`\ )
+- :ref:`float<class_float>` **get_param**\ (\ param\: :ref:`Param<enum_HingeJoint3D_Param>`\ ) |const|
+
+.. container:: contribute
+
+	There is currently no description for this property. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+
+.. rst-class:: classref-item-separator
+
+----
+
 .. _class_HingeJoint3D_property_spring/enabled:
 
 .. rst-class:: classref-property
 
-:ref:`bool<class_bool>` **spring/enabled** :ref:`🔗<class_HingeJoint3D_property_spring/enabled>`
+:ref:`bool<class_bool>` **spring/enabled** = ``false`` :ref:`🔗<class_HingeJoint3D_property_spring/enabled>`
 
 .. rst-class:: classref-property-setget
 
-- |void| **set_spring_enabled**\ (\ enabled\: :ref:`bool<class_bool>`\ )
-- :ref:`bool<class_bool>` **is_spring_enabled**\ (\ ) |const|
+- |void| **set_spring_enabled**\ (\ value\: :ref:`bool<class_bool>`\ )
+- :ref:`bool<class_bool>` **is_spring_enabled**\ (\ )
 
 Enables the native joint spring. Use the corresponding frequency, target and force or torque parameters to tune its behavior.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_HingeJoint3D_property_spring/frequency:
+
+.. rst-class:: classref-property
+
+:ref:`float<class_float>` **spring/frequency** = ``0.0`` :ref:`🔗<class_HingeJoint3D_property_spring/frequency>`
+
+.. rst-class:: classref-property-setget
+
+- |void| **set_param**\ (\ param\: :ref:`Param<enum_HingeJoint3D_Param>`, value\: :ref:`float<class_float>`\ )
+- :ref:`float<class_float>` **get_param**\ (\ param\: :ref:`Param<enum_HingeJoint3D_Param>`\ ) |const|
+
+.. container:: contribute
+
+	There is currently no description for this property. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_HingeJoint3D_property_spring/target_angle:
+
+.. rst-class:: classref-property
+
+:ref:`float<class_float>` **spring/target_angle** = ``0.0`` :ref:`🔗<class_HingeJoint3D_property_spring/target_angle>`
+
+.. rst-class:: classref-property-setget
+
+- |void| **set_param**\ (\ param\: :ref:`Param<enum_HingeJoint3D_Param>`, value\: :ref:`float<class_float>`\ )
+- :ref:`float<class_float>` **get_param**\ (\ param\: :ref:`Param<enum_HingeJoint3D_Param>`\ ) |const|
+
+.. container:: contribute
+
+	There is currently no description for this property. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
 
 .. rst-class:: classref-section-separator
 
@@ -364,30 +423,6 @@ If ``true``, enables the specified flag.
 |void| **set_param**\ (\ param\: :ref:`Param<enum_HingeJoint3D_Param>`, value\: :ref:`float<class_float>`\ ) :ref:`🔗<class_HingeJoint3D_method_set_param>`
 
 Sets the value of the specified parameter.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_HingeJoint3D_method_is_spring_enabled:
-
-.. rst-class:: classref-method
-
-:ref:`bool<class_bool>` **is_spring_enabled**\ (\ ) |const| :ref:`🔗<class_HingeJoint3D_method_is_spring_enabled>`
-
-Returns whether :ref:`spring/enabled<class_HingeJoint3D_property_spring/enabled>` is enabled.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_HingeJoint3D_method_set_spring_enabled:
-
-.. rst-class:: classref-method
-
-|void| **set_spring_enabled**\ (\ enabled\: :ref:`bool<class_bool>`\ ) :ref:`🔗<class_HingeJoint3D_method_set_spring_enabled>`
-
-Enables or disables :ref:`spring/enabled<class_HingeJoint3D_property_spring/enabled>`. This boolean API updates the corresponding native joint parameter.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
 .. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
