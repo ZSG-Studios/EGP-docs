@@ -109,9 +109,10 @@ thanks to a generous donation from Microsoft.
 C# offers a good tradeoff between performance and ease of use, although you
 should be aware of its garbage collector.
 
-.. note:: You must use the .NET edition of the Godot editor to script in C#. You
-          can download it on the Godot website's `download
-          <https://godotengine.org/download/>`_ page.
+.. note:: EGP C# projects require an EGP Mono editor, matching GodotSharp
+          assemblies and Mono export templates. Follow
+          :ref:`doc_egp_getting_started` for the build workflow. Upstream Godot
+          downloads do not include EGP's changed native and managed APIs.
 
 Since Godot uses .NET 10, in theory, you can use any third-party .NET library or
 framework in Godot, as well as any Common Language Infrastructure-compliant

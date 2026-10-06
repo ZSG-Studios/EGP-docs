@@ -248,18 +248,11 @@ Disabling physics engines
 - **Difficulty:** Easy
 - **Performed in official builds:** No
 
-If your 3D project uses Jolt Physics, you can disable GodotPhysics3D at compile-time as
-it will never be used:
-
-::
-
-    scons target=template_release module_godot_physics_3d_enabled=no
-
-Inversely, if your 3D project uses GodotPhysics3D, you can disable Jolt Physics at compile-time:
-
-::
-
-    scons target=template_release module_jolt_enabled=no
+EGP uses Box2D and Box3D as its sole native scene physics backends. Jolt and
+GodotPhysics backend modules are removed; selecting or disabling them is not
+an EGP build option. Keep the relevant backend enabled whenever your project
+uses scene physics or explicit Box3D worlds. See :doc:`/egp/box2d` and
+:doc:`/egp/box3d` for the build gates and supported profiles.
 
 If your project uses 3D rendering but not physics (or 2D rendering but not physics),
 you can also disable 2D or 3D physics entirely. Most 3D projects can take advantage
@@ -280,7 +273,9 @@ Disabling unwanted modules
 - **Difficulty:** Medium to hard depending on modules
 - **Performed in official builds:** No
 
-A lot of Godot's functions are offered as modules.
+Many engine functions are offered as modules. EGP networking is provided by
+``egp_net``; the removed ENet, scene multiplayer and WebRTC modules cannot be
+selected. Preserve ``egp_net`` for projects using ``EGPNetSession``.
 You can see a list of modules with the following command:
 
 ::
@@ -293,7 +288,7 @@ a lot of them:
 
 ::
 
-    scons target=template_release module_astcenc_enabled=no module_basis_universal_enabled=no module_bcdec_enabled=no module_bmp_enabled=no module_camera_enabled=no module_csg_enabled=no module_dds_enabled=no module_enet_enabled=no module_etcpak_enabled=no module_fbx_enabled=no module_gltf_enabled=no module_gridmap_enabled=no module_hdr_enabled=no module_interactive_music_enabled=no module_jsonrpc_enabled=no module_ktx_enabled=no module_mbedtls_enabled=no module_meshoptimizer_enabled=no module_mp3_enabled=no module_mobile_vr_enabled=no module_msdfgen_enabled=no module_multiplayer_enabled=no module_noise_enabled=no module_navigation_2d_enabled=no module_navigation_3d_enabled=no module_ogg_enabled=no module_openxr_enabled=no module_raycast_enabled=no module_svg_enabled=no module_tga_enabled=no module_theora_enabled=no module_tilemap_enabled=no module_tinyexr_enabled=no module_upnp_enabled=no module_vhacd_enabled=no module_vorbis_enabled=no module_webrtc_enabled=no module_websocket_enabled=no module_webxr_enabled=no module_zip_enabled=no
+    scons target=template_release module_astcenc_enabled=no module_basis_universal_enabled=no module_bcdec_enabled=no module_bmp_enabled=no module_camera_enabled=no module_csg_enabled=no module_dds_enabled=no module_etcpak_enabled=no module_fbx_enabled=no module_gltf_enabled=no module_gridmap_enabled=no module_hdr_enabled=no module_interactive_music_enabled=no module_jsonrpc_enabled=no module_ktx_enabled=no module_mbedtls_enabled=no module_meshoptimizer_enabled=no module_mp3_enabled=no module_mobile_vr_enabled=no module_msdfgen_enabled=no module_noise_enabled=no module_navigation_2d_enabled=no module_navigation_3d_enabled=no module_ogg_enabled=no module_openxr_enabled=no module_raycast_enabled=no module_svg_enabled=no module_tga_enabled=no module_theora_enabled=no module_tilemap_enabled=no module_tinyexr_enabled=no module_upnp_enabled=no module_vhacd_enabled=no module_vorbis_enabled=no module_websocket_enabled=no module_webxr_enabled=no module_zip_enabled=no
 
 If this proves not to work for your use case, you should review the list of
 modules and see which ones you actually still need for your game (e.g. you might
@@ -314,7 +309,6 @@ following:
     module_camera_enabled = "no"
     module_csg_enabled = "no"
     module_dds_enabled = "no"
-    module_enet_enabled = "no"
     module_etcpak_enabled = "no"
     module_fbx_enabled = "no"
     module_gltf_enabled = "no"
@@ -328,7 +322,6 @@ following:
     module_mp3_enabled = "no"
     module_mobile_vr_enabled = "no"
     module_msdfgen_enabled = "no"
-    module_multiplayer_enabled = "no"
     module_noise_enabled = "no"
     module_navigation_2d_enabled = "no"
     module_navigation_3d_enabled = "no"
@@ -343,7 +336,6 @@ following:
     module_upnp_enabled = "no"
     module_vhacd_enabled = "no"
     module_vorbis_enabled = "no"
-    module_webrtc_enabled = "no"
     module_websocket_enabled = "no"
     module_webxr_enabled = "no"
     module_zip_enabled = "no"
