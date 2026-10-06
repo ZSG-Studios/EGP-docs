@@ -12,7 +12,7 @@ Published upstream consolidation
 --------------------------------
 
 The documentation is generated from engine revision
-``4fb5ee619009e4ea2d1acab9d961396454fe21a0``. It includes the sixteen incoming
+``0a2186345debb2f0f33eabc1e52e77160e47d9a3``. It includes the sixteen incoming
 official Godot commits through ``3ea0cf3e72699c5e3b35f7956670ac93b9d1d4a0``.
 This is a pinned upstream snapshot; later upstream commits require another
 compatibility review.
@@ -22,7 +22,9 @@ The Windows Mono editor was compiled from
 compiled from ``c6a6920685b844ff0ba30d2e794117b776edf72a``; the later export fix
 affects the editor only. Later source changes include the compile-time zstd
 guard and repairs to test registration, optional-physics CSG compilation,
-Box2D adapter contracts and Clang floating-point settings. These installed
+Box2D adapter contracts, Clang floating-point settings, SCU generation and
+platform compiler warnings. CSG mesh updates remain scheduled when physics is
+disabled. These installed
 binaries were not rebuilt for those later changes. Actual MSVC zstd probes
 accept the pinned header and an absent macro, and reject an incorrect value;
 a complete engine using system zstd remains unqualified. The published source
@@ -35,7 +37,7 @@ reload, network-lab and admission regressions. Native Debug/Release suites pass
 byte-identical, with matching SDK key ``4bc13481314e7023`` and MSVC 19.51 libraries.
 New native and managed artifacts supersede the previous binary identities.
 Consult the `pinned integration record
-<https://github.com/ZSG-Studios/EGP/blob/4fb5ee619009e4ea2d1acab9d961396454fe21a0/doc/egp_integration_loop.md>`__
+<https://github.com/ZSG-Studios/EGP/blob/0a2186345debb2f0f33eabc1e52e77160e47d9a3/doc/egp_integration_loop.md>`__
 for exact hashes, commands and retained failed controls.
 
 The subsequent C++ helper update adds explicit ``Net``/``Box3D`` ownership
