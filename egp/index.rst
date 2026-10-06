@@ -36,6 +36,7 @@ The class reference is generated from EGP's engine sources.
    networking_reference
    helper_reference
    network_lab
+   admission_testing
 
 .. toctree::
    :maxdepth: 2

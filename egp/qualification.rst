@@ -46,10 +46,17 @@ client physics rollback require separate qualification.
 It is an application fixture, not a
 production identity service or automatic server persistence.
 
-Admission evidence qualifies the default generated-key rotation path and a
-retained nonzero-key negative control. The all-zero fixed-key recovery control
-has an open diagnostic; these results do not establish general fixed-key token
-revocation. The integration record below preserves that limitation.
+Admission testing separates listener timestamp protection from key rotation.
+The controlled native/GDScript matrix covers retained zero/nonzero test keys
+and generated keys, same/cross-second token creation, and clock-failure/graceful
+restart. It passed 24 cases each in the Windows editor and fresh Debug/Release
+exports. Retained keys admit unused same-second tokens; older tokens fail the
+listener's start-time gate. Generated keys reject both timings.
+
+The earlier all-zero-key diagnostic is resolved within this controlled scope.
+Historical probes lacked the timestamps needed to distinguish those causes;
+they do not establish retrospective or general backend revocation guarantees.
+See :doc:`admission_testing` and the integration record for exact evidence.
 
 The generated ``source_manifest.json`` records the engine revision and source
 hashes used by this documentation. Runtime evidence and outstanding acceptance

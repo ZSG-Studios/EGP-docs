@@ -108,6 +108,14 @@ token delivery belong to the game/backend. Keep token bytes and private server
 keys out of logs. Direct ``join()`` connections are restricted to literal
 loopback addresses with ``allow_insecure_loopback=true`` on both endpoints.
 
+Restarting a listener with an explicit ``private_key`` retains that key. Its
+timestamp gate rejects tokens whose expiry precedes the new listener's UTC
+start second plus the configured maximum lifetime, but an unused token issued
+in that same second can still admit. A stop/rebind therefore does not implement
+general token revocation. Use fresh admission, key rotation where required and
+the backend's own revocation policy. See :doc:`admission_testing` for the
+controlled test matrix.
+
 Messages and authoritative state
 --------------------------------
 
