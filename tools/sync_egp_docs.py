@@ -233,6 +233,33 @@ def helper_reference(engine: Path, base: str, revision: str) -> str:
     return "\n".join(lines)
 
 
+def consecutive_headings(text: str) -> str:
+    """Retain Markdown heading hierarchy without skipping rendered levels."""
+    result = []
+    hierarchy: list[tuple[int, int]] = []
+    fence = None
+    for line in text.splitlines(keepends=True):
+        marker = re.match(r"^ {0,3}(`{3,}|~{3,})(.*)", line)
+        if marker:
+            token, suffix = marker.groups()
+            if fence is None:
+                fence = (token[0], len(token))
+            elif token[0] == fence[0] and len(token) >= fence[1] and not suffix.strip():
+                fence = None
+            result.append(line)
+            continue
+        heading = re.match(r"^(#{1,6})[ \t]+", line) if fence is None else None
+        if heading:
+            source_level = len(heading[1])
+            while hierarchy and hierarchy[-1][0] >= source_level:
+                hierarchy.pop()
+            rendered_level = hierarchy[-1][1] + 1 if hierarchy else source_level
+            hierarchy.append((source_level, rendered_level))
+            line = "#" * rendered_level + line[source_level:]
+        result.append(line)
+    return "".join(result)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--engine", type=Path, required=True)
@@ -255,6 +282,11 @@ def main() -> int:
             newline="\n",
         )
         manifest["generated_sha256"]["egp/helper_reference.rst"] = hashlib.sha256(helper.read_bytes()).hexdigest()
+        for name in manifest["generated_sha256"]:
+            if name.endswith(".md"):
+                guide = generated / name
+                guide.write_text(consecutive_headings(guide.read_text(encoding="utf-8")), encoding="utf-8", newline="\n")
+                manifest["generated_sha256"][name] = hashlib.sha256(guide.read_bytes()).hexdigest()
         manifest["documentation_generator_sha256"] = hashlib.sha256(
             Path(__file__).read_text(encoding="utf-8").encode("utf-8")
         ).hexdigest()

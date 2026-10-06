@@ -278,7 +278,14 @@ runtime regressions. The upstream consolidation repeats the lab/admission gates
 against the updated native artifacts. See :doc:`hot_reload` for the separate
 capsule contract and :doc:`qualification` for compiled artifact pins.
 
+The C++ helper's explicit network/Box3D ownership handoff separately passes two
+actual compatible Debug DLL reloads, 60 capsule checks and 138 runtime assertions.
+Its final helper inputs pass the full 27-stage editor/Debug/Release matrix above.
+Application-controlled safe boundaries and manual polling pauses apply; these
+packaged language checks do not establish exported-game ownership reload. See
+:ref:`the C++ handoff contract <doc_egp_cpp_owner_handoff>`.
+
 Exact publication receipts and remaining acceptance items are listed in the
 `pinned engine integration record
-<https://github.com/ZSG-Studios/EGP/blob/8eb540e94d3ce792a79a3d89bcaf0d7464d32747/doc/egp_integration_loop.md>`__.
+<https://github.com/ZSG-Studios/EGP/blob/50b1de309092d009433c6f1db9d4ebff05a902f6/doc/egp_integration_loop.md>`__.
 See :doc:`qualification`, :doc:`explicit_world` and :doc:`admission_testing`.

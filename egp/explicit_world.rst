@@ -242,5 +242,12 @@ restoration after a stopped authority fault. It uses a GDScript clock callback
 and fixture-owned baseline codec. This bounded Windows Debug evidence is distinct
 from automatic client rollback and general game-state persistence.
 
+C++ owners can also transfer the existing network wrapper and Box3D adapter
+through a compatible DLL reload using local single-use capsules. Applications
+store them in bound extension-node Dictionary properties, hand off at a safe
+boundary and resubscribe callbacks after resume. See
+:ref:`the C++ ownership contract <doc_egp_cpp_owner_handoff>` for the tested
+scope, cleanup responsibilities and example.
+
 See :doc:`box3d`, :doc:`prediction` and the
 :ref:`EGPBox3DWorld class reference <class_EGPBox3DWorld>`.

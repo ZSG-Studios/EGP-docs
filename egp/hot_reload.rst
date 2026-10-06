@@ -92,7 +92,7 @@ closure persistence, automatic client physics rollback, independent-process
 low-level fault/reload and exported-runtime reload remain unqualified. Raw
 transport ownership does not authorize opaque gameplay messages. Exact receipts
 and remaining scope are in the `pinned engine integration record
-<https://github.com/ZSG-Studios/EGP/blob/8eb540e94d3ce792a79a3d89bcaf0d7464d32747/doc/egp_integration_loop.md>`__.
+<https://github.com/ZSG-Studios/EGP/blob/50b1de309092d009433c6f1db9d4ebff05a902f6/doc/egp_integration_loop.md>`__.
 See :doc:`language_testing` and :doc:`qualification` for the distinct networking
 fixture evidence.
 
@@ -495,8 +495,8 @@ the updated default GDScript sample, low-level facade/Box3D and runtime-default
 regressions. Native engine, SDK/ClassDB/glue and installed binary identities are
 unchanged.
 
-Authenticated-node assembly/unload/ABI failures, high-level C++ adapter
-ownership, independent-process low-level reload, concurrent/exported-runtime
+Authenticated-node assembly/unload/ABI failures, automatic C++ ownership
+transfer, independent-process low-level reload, concurrent/exported-runtime
 reload, automatic client physics rollback, arbitrary closure/game state,
 production admission/checkpoint policy and platform/scale/soak/performance
 remain separate qualification work. Configured impairment does not measure
@@ -602,7 +602,100 @@ updated Windows artifacts. The captured extension API and matching SDK identity
 remain unchanged; native and managed binary identities are recorded separately
 in :doc:`qualification`. These results supersede the earlier reused GDS-only
 receipts. Reload remains one local Windows Debug pair
-sharing a game process. High-level C++ adapter ownership, authenticated-node
+sharing a game process. Automatic C++ ownership transfer, authenticated-node
 assembly/unload/ABI failures, concurrent/exported-runtime reload, automatic client
 rollback, production checkpoint policy and broader platform/scale/performance
 still require qualification.
+
+.. _doc_egp_cpp_owner_handoff:
+
+C++ network and Box3D ownership
+---------------------------------
+
+``egp::networking::Net`` and ``Box3D`` expose ``detach_for_reload()`` and static
+``resume_after_reload(Dictionary &, Error * = nullptr)``. These APIs transfer
+existing native owners through a compatible DLL reload. The application pauses
+its calls at a safe boundary on the original Godot thread, saves each capsule
+in a bound Dictionary property on the extension node and destroys the detached
+wrapper. After Godot restores the property, the new DLL consumes the capsule
+and registers its callbacks again. The capsule does not serialize arbitrary C++
+members or make an active callback safe to unload.
+
+The ``Net`` capsule retains the tree-owned bridge and native session. Its parent
+must stay alive and must not be queued for deletion. The ``Box3D`` capsule
+retains the adapter, world, stable body mapping and GDScript clock connection.
+Transfer both owners if they belong to the unloading DLL. The detached wrapper
+becomes unavailable; error-returning operations return ``ERR_UNCONFIGURED``,
+repeated detach returns an empty Dictionary, and destroying it cannot close or
+detach the transferred owner.
+
+The following functions illustrate the Box3D handoff. Save ``stored_property``
+through the extension node's bound property before unload; pass the restored
+property to the resume function afterward. The engine does not retain a local
+stack variable across a DLL reload.
+
+.. code-block:: cpp
+
+   #include "egp_net.hpp"
+   #include <memory>
+
+   godot::Error save_physics_owner(
+       std::unique_ptr<egp::networking::Box3D> &owner,
+       godot::Dictionary &stored_property) {
+       if (!owner || !owner->available()) return godot::ERR_UNCONFIGURED;
+       if (!stored_property.is_empty()) return godot::ERR_ALREADY_IN_USE;
+       godot::Dictionary capsule = owner->detach_for_reload();
+       if (capsule.is_empty()) return godot::FAILED;
+       stored_property = capsule;
+       owner.reset(); // Keeps the transferred adapter attached.
+       return godot::OK;
+   }
+
+   godot::Error resume_physics_owner(
+       std::unique_ptr<egp::networking::Box3D> &owner,
+       godot::Dictionary &restored_property,
+       const godot::Callable &after_step) {
+       if (owner) return godot::ERR_ALREADY_IN_USE;
+       godot::Error error;
+       owner = egp::networking::Box3D::resume_after_reload(restored_property, &error);
+       if (!owner) return error; // Invalid capsules remain unchanged.
+       return owner->connect("after_step", after_step);
+   }
+
+Both wrappers expose ``connect`` and ``disconnect`` for tracked signal callbacks.
+Handoff removes wrapper-owned callbacks and registered message handlers.
+Resubscribe from the new DLL before resuming application traffic. Callbacks
+installed directly on ``bridge()`` or ``native()``, scene factories, application
+threads and unrelated closures require application-controlled cleanup.
+
+Capsules carry a version, exact helper-script/type identity and random single-use
+ownership token. Malformed, foreign, forged or consumed claims return null with
+``ERR_INVALID_PARAMETER`` and remain unchanged. Successful resume clears the
+Dictionary and invalidates copied claims. These are local object references,
+not disk/network checkpoints; C# helpers cannot consume C++ capsules. Consume a
+pending capsule or explicitly close/detach its retained object before discarding
+it.
+
+Run the focused ownership validator with matching Debug SDK artifacts:
+
+.. code-block:: powershell
+
+   python misc/scripts/validate_egp_cpp_ownership.py `
+       --engine bin/godot.windows.editor.dev.x86_64.mono.exe `
+       --sdk C:/path/to/matching/sdk `
+       --sdk-library C:/path/to/Debug/egp_godot_cpp.lib `
+       --output .build/cpp-owner-handoff-new
+
+The qualified Windows editor-build fixture performs two actual compatible Debug
+DLL reloads with authenticated, manually polled local server/client sessions.
+Sixty capsule checks and 138 runtime assertions verify retained extension-node,
+bridge/session/adapter/world identities, exact solver tick/hash during unload,
+stable body mapping, advancing replicated physics, one callback per tick and
+message-handler resubscription. Manual polling pauses during unload.
+
+The final helper inputs also pass all 27 language validator stages and 197
+assertions in each editor/relocated Debug/Release configuration. Those packaged
+checks validate helper behavior; they do not establish exported-game reload.
+No engine rebuild or ABI change was needed. Automatic/in-flight transfer,
+failed-library ownership recovery, independent-process/exported-game reload,
+Release-library recreation and cross-language capsules remain unqualified.

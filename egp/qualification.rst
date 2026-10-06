@@ -12,7 +12,7 @@ Published upstream consolidation
 --------------------------------
 
 The documentation is generated from engine revision
-``8eb540e94d3ce792a79a3d89bcaf0d7464d32747``. It includes the sixteen incoming
+``50b1de309092d009433c6f1db9d4ebff05a902f6``. It includes the sixteen incoming
 official Godot commits through ``3ea0cf3e72699c5e3b35f7956670ac93b9d1d4a0``.
 This is a pinned upstream snapshot; later upstream commits require another
 compatibility review.
@@ -32,8 +32,18 @@ reload, network-lab and admission regressions. Native Debug/Release suites pass
 byte-identical, with matching SDK key ``4bc13481314e7023`` and MSVC 19.51 libraries.
 New native and managed artifacts supersede the previous binary identities.
 Consult the `pinned integration record
-<https://github.com/ZSG-Studios/EGP/blob/8eb540e94d3ce792a79a3d89bcaf0d7464d32747/doc/egp_integration_loop.md>`__
+<https://github.com/ZSG-Studios/EGP/blob/50b1de309092d009433c6f1db9d4ebff05a902f6/doc/egp_integration_loop.md>`__
 for exact hashes, commands and retained failed controls.
+
+The subsequent C++ helper update adds explicit ``Net``/``Box3D`` ownership
+handoff without rebuilding those 95 installed artifacts or changing the ABI.
+Two actual compatible Debug DLL reloads pass 60 capsule checks and 138 runtime
+assertions with retained authenticated local sessions, world/body identities,
+exact solver state during unload and callback/handler resubscription. Final
+helper inputs also pass the 27-stage editor/Debug/Release language matrix.
+Applications pause manual polling at a Godot-thread safe boundary. Automatic or
+in-flight transfer, failed-library ownership recovery and exported-game reload
+remain open. See :ref:`the C++ handoff contract <doc_egp_cpp_owner_handoff>`.
 
 Inherited scene references in binary exports
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -206,8 +216,8 @@ six checks cover freed codec replacement and polling policy. Reconfigure options
 before fresh host/join and scope saved handles to their issuing session identity.
 Local stale signal injection checks lifetime isolation, not WAN security.
 Generic assembly/unload/ABI repair occurs before authenticated node traffic;
-those failures during such traffic remain open. High-level C++ adapter
-ownership, arbitrary game/closure state and broader reload/platform/scale/performance
+those failures during such traffic remain open. Automatic C++ ownership
+transfer, arbitrary game/closure state and broader reload/platform/scale/performance
 acceptance remain separate work.
 
 Changed shared-codec inputs also pass fresh 27-stage language builds with 197
