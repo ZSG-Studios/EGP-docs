@@ -58,10 +58,17 @@ High-level cycles retain live same-process clients through each authority gap,
 then explicitly reset and rejoin them with fresh admission after restoring the
 physics checkpoint. The matrix qualifies 18 live-client fault recoveries and
 24 fresh admissions, including initial joins. Low-level cycles still have no
-peers. Automatic recovery, independent-process stalled servers, connected
-low-level faults and hot reload during faults remain unqualified. See
-:doc:`language_testing` for reproduction, evidence and the distinction from
-separate-process networking.
+peers.
+
+Six additional independent authority/client process pairs qualify 18 server
+clock faults/native client disconnects and 24 fresh admissions on local Windows.
+Clients keep polling during the authority gap, discover disconnection and rejoin
+under a test-only trusted token refresh policy. Restored Box3D baselines, fresh
+ownership and one owner input per admission are checked. The complete language
+validator passes 27 steps in editor/Debug/Release. Production admission/backoff
+and recovery policy, connected low-level faults, hot reload during faults,
+process crashes and hard outages remain unqualified. See :doc:`language_testing`
+for reproduction and the exact scope of each fixture.
 
 Admission testing separates listener timestamp protection from key rotation.
 The controlled native/GDScript matrix covers retained zero/nonzero test keys
