@@ -117,8 +117,8 @@ admission with 30 ms latency, 5 ms jitter and 5 percent loss.
 
 Live mode requires runtime reload. Run it separately from ``--network-recovery``,
 ``--disable-runtime`` and ``--expect-disabled``. Set simulation options in live
-mode: finite latency/jitter values are in 0Ã¢â‚¬â€œ5000 ms and loss is a percentage in
-0Ã¢â‚¬â€œ100. Defaults are 30 ms, 5 ms and 5 percent respectively. Nondefault simulation
+mode: finite latency/jitter values range from 0 to 5000 ms and loss ranges from
+0 to 100 percent. Defaults are 30 ms, 5 ms and 5 percent respectively. Nondefault simulation
 values outside live mode and invalid ranges are rejected before creating output.
 
 .. list-table:: Live checkpoints
