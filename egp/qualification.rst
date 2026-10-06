@@ -97,7 +97,7 @@ transactionally rejects damaged bytes, explicitly restores the saved state and
 resumes physics with a checkpoint-to-network clock offset after fresh admission.
 The full physics/facade live/stopped gates pass, with fresh low-level physics live
 and runtime-default regressions at the current source. The focused suite now
-passes 208 semantic tests and fifteen invalid CLI cases.
+passes 293 semantic tests and fifteen invalid CLI cases.
 This local Windows Debug editor-run evidence covers one authority/client pair
 and one body. It does not establish automatic client rollback, general game/ABI
 state persistence, production checkpoint policy or larger-world behavior.
@@ -118,12 +118,24 @@ Owners preserve the node reference in an exported property, resubscribe ordinary
 application events and register named Godot message handlers. Derived serialization
 overrides must call base. Full live/stopped node fixtures check owned inputs,
 exact messages/raw packets and fresh recovery. Tree exit closes the session and
-disconnects forwarding; reentry restores connections but traffic afterward remains
-unqualified. Six managed runtime checks cover freed codec replacement and polling
-policy. Generic assembly/unload/ABI repair occurs before authenticated node traffic;
+disconnects forwarding; current fixtures each pass three fresh-session traffic
+cycles after reentry. Each retired native session has zero callbacks, each fresh
+native signal has one, and all eleven typed forwards remain connected exactly once.
+Eighteen managed checks per fixture verify close/stop state-callback replacement;
+six checks cover freed codec replacement and polling policy. Reconfigure options
+before fresh host/join and scope saved handles to their issuing session identity.
+Local stale signal injection checks lifetime isolation, not WAN security.
+Generic assembly/unload/ABI repair occurs before authenticated node traffic;
 those failures during such traffic remain open. High-level C++ and physics-adapter
 ownership, arbitrary game/closure state and broader reload/platform/scale/performance
 acceptance remain separate work.
+
+Changed shared-codec inputs also pass fresh 27-stage language builds with 197
+assertions each in editor/Debug/Release, 72 admission cases, seven physics/network
+lab cases and the updated default GDScript sample. Stop retains the configured
+native session and callbacks; Close disconnects all seven callbacks and releases
+it. Registered handlers remain on the codec. Arbitrary in-flight lifecycle mutation
+and production admission/checkpoint policies remain unqualified.
 
 Admission testing separates listener timestamp protection from key rotation.
 The controlled native/GDScript matrix covers retained zero/nonzero test keys

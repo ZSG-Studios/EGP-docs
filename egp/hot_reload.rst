@@ -92,7 +92,7 @@ closure persistence, automatic client physics rollback, independent-process
 low-level fault/reload and exported-runtime reload remain unqualified. Raw
 transport ownership does not authorize opaque gameplay messages. Exact receipts
 and remaining scope are in the `pinned engine integration record
-<https://github.com/ZSG-Studios/EGP/blob/b7c02a72753951047e2f4bc5cb3c91825ad69b71/doc/egp_integration_loop.md>`__.
+<https://github.com/ZSG-Studios/EGP/blob/a5146052e8e159ddb7d20a7932c81ee7ca9962ac/doc/egp_integration_loop.md>`__.
 See :doc:`language_testing` and :doc:`qualification` for the distinct networking
 fixture evidence.
 
@@ -153,7 +153,7 @@ and C# callbacks advance exactly from 1 through 6, without duplicates. These
 checks cover transport and ownership metadata; gameplay authorization remains
 the application's responsibility.
 
-The full repair gate also passes. The current evidence suite passes 208 semantic
+The full repair gate also passes. The current evidence suite passes 293 semantic
 tests and fifteen invalid CLI cases, including low-level ownership, physics and
 high-level C# node checks.
 Configured loss does not measure actual dropped packets or real WAN behavior;
@@ -405,13 +405,14 @@ detach and restore its own forwarding. Store application state separately:
 
 Leaving the tree closes the session and disconnects all forwarding callbacks.
 Reentry reconnects the existing codec child exactly once; host or join explicitly
-to start a new session. Replacing a freed codec child restores forwarding and
+to start a new session. Reconfigure custom options before that host/join operation.
+Replacing a freed codec child restores forwarding and
 the ``AutoPoll`` policy. The qualified lifecycle checks require eleven connection
 counts of 1 before exit, 0 after exit and 1 after reentry, the same node/codec
 identities, one child, closed sessions and empty peer/entity caches. Six additional
 managed runtime checks cover codec replacement, event counts, raw packet bytes,
-channel/delivery and retained manual polling. Traffic after tree reentry remains
-unqualified.
+channel/delivery and retained manual polling. The current gate also qualifies
+three explicit fresh-session traffic cycles after reentry, as described below.
 
 Use ``--network-csharp-node`` with either networking reload mode. It is off by
 default and requires ``--network-live-reload`` or ``--network-recovery``. Run it
@@ -451,3 +452,53 @@ physics-adapter ownership, arbitrary captured closures or game/ABI state,
 independent-process low-level reload, concurrent/in-flight or exported-runtime
 reload, automatic client physics rollback, platform/scale/soak and performance
 remain open. Configured loss does not measure actual drops or WAN behavior.
+
+Native session lifetime and reentry
+-----------------------------------
+
+The shared GDScript codec disconnects all seven callbacks when ``close()``
+releases its native session. ``stop()`` retains the configured session and
+callbacks for explicit restart. GDScript ``EGPNet``, C# ``NetNode`` and C++ ``Net``
+share this codec; see :doc:`networking` for the corresponding language APIs.
+Registered message handlers and scene factories remain on the codec.
+
+Each current high-level live/stopped fixture runs three fresh-session cycles
+after tree reentry. They retain the node/codec identities and one codec child,
+reapply options, host on the released port, issue fresh tokens and join. All seven
+callbacks on each retired native session must be zero; each fresh native signal
+has one callback and all eleven typed forwarding connections remain exactly one.
+Every new native session must differ from all retired sessions.
+
+Exact typed messages, named handlers, owned inputs and raw packets must work
+after each admission, with unowned input rejected and native ticks advancing.
+Local stale packet/state injection on a retained retired native reference must
+leave new typed packet counts and the current codec entity cache unchanged.
+This is a local lifetime test, not a remote-attack or WAN security qualification.
+
+Numeric peer/entity IDs can repeat in distinct native sessions. Save their
+issuing session identity and discard ownership commands from retired sessions.
+This differs from restarting a retained native session after a fixed-clock fault,
+which preserves that session's handle generations. Application C# events still
+resubscribe explicitly; named message handlers keep their target on the codec.
+
+Eighteen managed runtime checks per fixture cover replacement from close/stop
+state callbacks: a fresh listening session and its spawned entity must survive
+the outer operation. The six freed-codec replacement checks also pass. This
+qualifies those specific state-callback paths; arbitrary in-flight lifecycle
+mutation remains open.
+
+The commands above exercise the new cycles with current fixture sources. Fresh
+27-stage language validation passes 197 assertions each in Windows editor and
+relocated Debug/Release exports. Fresh evidence also covers 72 admission cases,
+seven physics/network lab cases, visible three-client listen-host/dedicated runs,
+the updated default GDScript sample, low-level facade/Box3D and runtime-default
+regressions. Native engine, SDK/ClassDB/glue and installed binary identities are
+unchanged.
+
+Authenticated-node assembly/unload/ABI failures, high-level C++/physics-adapter
+ownership, independent-process low-level reload, concurrent/exported-runtime
+reload, automatic client physics rollback, arbitrary closure/game state,
+production admission/checkpoint policy and platform/scale/soak/performance
+remain separate qualification work. Configured impairment does not measure
+actual packet drops or WAN performance. The pinned integration record lists
+exact commands, source/artifact hashes and remaining acceptance items.

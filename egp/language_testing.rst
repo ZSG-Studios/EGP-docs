@@ -245,14 +245,26 @@ qualify exported-runtime reload. See :doc:`hot_reload` for the hook example.
 The latest source also adds separate high-level C# ``NetNode`` live/stopped
 reload gates. They verify named message handlers, resubscribed application events,
 owned input, exact raw packet delivery and all eleven forwarding connection counts.
-Tree exit/reentry checks require counts of 1/0/1 and the same codec child; traffic
-after reentry remains unqualified. Six managed checks cover freed codec replacement
+Tree exit/reentry checks require counts of 1/0/1 and the same codec child.
+Current live/stopped fixtures each verify three fresh-session traffic cycles,
+zero callbacks on retired native sessions, one per fresh native signal and
+eleven typed forwarding connections. Local stale packet/state injection must
+leave the new session's traffic and entity cache intact. Eighteen managed checks
+per fixture cover replacement from close/stop state callbacks; arbitrary in-flight
+mutation remains unqualified. Six managed checks cover freed codec replacement
 and manual polling. Generic assembly/unload/ABI repair precedes node admission,
 so those failures during authenticated node traffic remain open. Fresh 27-stage
 language validation passes 197 assertions per editor/Debug/Release configuration
 with the updated helper sources. See :doc:`hot_reload` for reproduction and limits.
 
+The shared codec retains callbacks/session on Stop and disconnects all seven
+native callbacks on Close. Reconfigure custom options before a replacement
+session hosts/joins; registered message handlers remain on the codec. Numeric
+handles may repeat across distinct native sessions and must retain their issuing
+session identity. Fresh 72-case admission, seven-case physics/network lab and
+default GDScript sample runs replace prior evidence for the changed codec.
+
 Exact publication receipts and remaining acceptance items are listed in the
 `pinned engine integration record
-<https://github.com/ZSG-Studios/EGP/blob/b7c02a72753951047e2f4bc5cb3c91825ad69b71/doc/egp_integration_loop.md>`__.
+<https://github.com/ZSG-Studios/EGP/blob/a5146052e8e159ddb7d20a7932c81ee7ca9962ac/doc/egp_integration_loop.md>`__.
 See :doc:`qualification`, :doc:`explicit_world` and :doc:`admission_testing`.

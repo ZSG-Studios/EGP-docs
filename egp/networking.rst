@@ -210,9 +210,43 @@ a key must manage its rotation explicitly.
 
 Retaining the session preserves its peer and entity handle generations.
 Replacing it requires the application to discard old handles and track the new
-authority generation. Clear client replication caches and reject retired entity
+authority generation. Numeric peer/entity IDs may repeat in distinct native
+sessions: keep the issuing session identity with saved handles and ownership
+commands. Clear client replication caches and reject retired entity
 inputs before accepting new owner commands. Restarting transport does not
 restore arbitrary game state or physics.
+
+The high-level helpers share a GDScript codec with these lifetime operations:
+
+.. list-table:: High-level session lifetime APIs
+   :header-rows: 1
+   :widths: 34 33 33
+
+   * - Language/helper
+     - Retain the configured native session
+     - Release the native session
+   * - GDScript ``EGPNet``
+     - ``stop()``
+     - ``close()``
+   * - C# ``EGP.Networking.NetNode``
+     - ``Stop()``
+     - ``Close()``
+   * - C++ ``egp::networking::Net``
+     - ``stop()``
+     - ``close()``
+
+Stop keeps the native session and its callbacks for an explicit restart. Close
+disconnects all seven native callbacks before releasing that session, including
+callbacks on references retained by other code. Registered message handlers and
+scene factories remain on the codec. Reapply custom options before a new host/join
+operation; obtain fresh admission and assign ownership for the new session.
+
+Targeted state-callback tests also verify that close/stop preserve a replacement
+session and its entity cache when the callback closes and configures a fresh
+session. This does not qualify arbitrary mutations from in-flight poll callbacks.
+See :doc:`hot_reload` for explicit tree-reentry traffic and callback-lifetime
+evidence. For editor reload, registered message handlers should use named Godot
+object methods; ordinary C# events are resubscribed in the owner's reload hook.
 
 See :doc:`prediction` for bounded replay and :doc:`network_lab` for dedicated
 servers, listen hosts, impairment, repeated client stalls, same-process server
