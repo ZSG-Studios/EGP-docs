@@ -136,11 +136,28 @@ simulation time stops the endpoint, clears entities/ticks and returns ``FAILED``
 Client simulation time starts after the authoritative baseline completes and
 the session becomes ``Connected``; transport time spent connecting or
 synchronizing does not consume that active simulation budget.
-After polling returns, close/reconfigure the facade, obtain fresh admission and
-receive a new authoritative baseline. Recovery must not occur synchronously
-inside a poll callback. Revoke old ownership and grant it to the new connection.
+For client recovery, close/reconfigure the facade as required, obtain fresh
+admission and receive a new authoritative baseline. Recovery must not occur
+synchronously inside a poll callback. Revoke old ownership and grant it to the
+new connection.
+
+For server recovery, a retained, configured native session can start its
+listener again after the failed poll returns. Restore authoritative application
+state explicitly, create new entities and issue fresh tokens. A secure listener
+configured without an explicit ``private_key`` generates a new key on each
+start, invalidating tokens issued under the previous key. Applications supplying
+a key must manage its rotation explicitly.
+
+Retaining the session preserves its peer and entity handle generations.
+Replacing it requires the application to discard old handles and track the new
+authority generation. Clear client replication caches and reject retired entity
+inputs before accepting new owner commands. Restarting transport does not
+restore arbitrary game state or physics.
 
 See :doc:`prediction` for bounded replay and :doc:`network_lab` for dedicated
-servers, listen hosts, impairment, repeated client stalls and server replacement.
+servers, listen hosts, impairment, repeated client stalls, same-process server
+recovery and server replacement. The lab's ``--server-stall-at`` and
+``--server-stall-ms`` controls verify fresh admission, ownership and checkpoint
+restoration while retaining the original server/host process.
 The complete configuration, commands and result schemas are in
 :doc:`networking_reference` and :ref:`EGPNetSession <class_EGPNetSession>`.

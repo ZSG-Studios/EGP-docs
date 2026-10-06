@@ -35,8 +35,12 @@ not establish runtime behavior or production readiness.
      - Other-platform, release and rendering features require their own receipts
 
 The networking lab covers bounded local dedicated/listen-host processes,
-outgoing impairment, fresh admission after reconnect/stalls and explicit
-checkpoint-based server replacement. It is an application fixture, not a
+outgoing impairment, fresh admission after reconnect/stalls, same-process
+listener recovery and explicit checkpoint-based server replacement. Server-gap
+receipts check fresh keys/tokens, retired admission and input rejection, new
+ownership and restoration of the fixture's counter. Arbitrary game-state and
+authoritative physics restoration require separate qualification.
+It is an application fixture, not a
 production identity service or automatic server persistence.
 
 The generated ``source_manifest.json`` records the engine revision and source

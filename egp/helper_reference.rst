@@ -15,7 +15,7 @@ GDScript
 EGPNet
 ~~~~~~
 
-`Source <https://github.com/ZSG-Studios/EGP/blob/e27546b81eb733de41caf891d09dfa2d361391d6/modules/egp_net/gdscript/egp_net.gd>`__
+`Source <https://github.com/ZSG-Studios/EGP/blob/f31110a3d2396869741c604ed525cb1ef4801a95/modules/egp_net/gdscript/egp_net.gd>`__
 
 .. code-block:: gdscript
 
@@ -68,7 +68,7 @@ Signals:
 EGPNetBox3D
 ~~~~~~~~~~~
 
-`Source <https://github.com/ZSG-Studios/EGP/blob/e27546b81eb733de41caf891d09dfa2d361391d6/modules/egp_net/gdscript/egp_net_box3d.gd>`__
+`Source <https://github.com/ZSG-Studios/EGP/blob/f31110a3d2396869741c604ed525cb1ef4801a95/modules/egp_net/gdscript/egp_net_box3d.gd>`__
 
 .. code-block:: gdscript
 
@@ -88,7 +88,7 @@ Signals:
 EGPNetEntity2D
 ~~~~~~~~~~~~~~
 
-`Source <https://github.com/ZSG-Studios/EGP/blob/e27546b81eb733de41caf891d09dfa2d361391d6/modules/egp_net/gdscript/egp_net_entity_2d.gd>`__
+`Source <https://github.com/ZSG-Studios/EGP/blob/f31110a3d2396869741c604ed525cb1ef4801a95/modules/egp_net/gdscript/egp_net_entity_2d.gd>`__
 
 .. code-block:: gdscript
 
@@ -103,7 +103,7 @@ Signals:
 EGPNetEntity3D
 ~~~~~~~~~~~~~~
 
-`Source <https://github.com/ZSG-Studios/EGP/blob/e27546b81eb733de41caf891d09dfa2d361391d6/modules/egp_net/gdscript/egp_net_entity_3d.gd>`__
+`Source <https://github.com/ZSG-Studios/EGP/blob/f31110a3d2396869741c604ed525cb1ef4801a95/modules/egp_net/gdscript/egp_net_entity_3d.gd>`__
 
 .. code-block:: gdscript
 
@@ -118,7 +118,7 @@ Signals:
 EGPNetPrediction
 ~~~~~~~~~~~~~~~~
 
-`Source <https://github.com/ZSG-Studios/EGP/blob/e27546b81eb733de41caf891d09dfa2d361391d6/modules/egp_net/gdscript/egp_net_prediction.gd>`__
+`Source <https://github.com/ZSG-Studios/EGP/blob/f31110a3d2396869741c604ed525cb1ef4801a95/modules/egp_net/gdscript/egp_net_prediction.gd>`__
 
 .. code-block:: gdscript
 
@@ -145,7 +145,7 @@ options, events, results, ownership and disposal contracts.
 NetApi
 ~~~~~~
 
-`Source <https://github.com/ZSG-Studios/EGP/blob/e27546b81eb733de41caf891d09dfa2d361391d6/modules/egp_net/csharp/NetApi.cs>`__
+`Source <https://github.com/ZSG-Studios/EGP/blob/f31110a3d2396869741c604ed525cb1ef4801a95/modules/egp_net/csharp/NetApi.cs>`__
 
 .. code-block:: csharp
 
@@ -205,7 +205,7 @@ NetApi
 NetBox3D
 ~~~~~~~~
 
-`Source <https://github.com/ZSG-Studios/EGP/blob/e27546b81eb733de41caf891d09dfa2d361391d6/modules/egp_net/csharp/NetBox3D.cs>`__
+`Source <https://github.com/ZSG-Studios/EGP/blob/f31110a3d2396869741c604ed525cb1ef4801a95/modules/egp_net/csharp/NetBox3D.cs>`__
 
 .. code-block:: csharp
 
@@ -223,7 +223,7 @@ NetBox3D
 NetEntity2D
 ~~~~~~~~~~~
 
-`Source <https://github.com/ZSG-Studios/EGP/blob/e27546b81eb733de41caf891d09dfa2d361391d6/modules/egp_net/csharp/NetEntity2D.cs>`__
+`Source <https://github.com/ZSG-Studios/EGP/blob/f31110a3d2396869741c604ed525cb1ef4801a95/modules/egp_net/csharp/NetEntity2D.cs>`__
 
 .. code-block:: csharp
 
@@ -236,7 +236,7 @@ NetEntity2D
 NetEntity3D
 ~~~~~~~~~~~
 
-`Source <https://github.com/ZSG-Studios/EGP/blob/e27546b81eb733de41caf891d09dfa2d361391d6/modules/egp_net/csharp/NetEntity3D.cs>`__
+`Source <https://github.com/ZSG-Studios/EGP/blob/f31110a3d2396869741c604ed525cb1ef4801a95/modules/egp_net/csharp/NetEntity3D.cs>`__
 
 .. code-block:: csharp
 
@@ -249,7 +249,7 @@ NetEntity3D
 NetNode
 ~~~~~~~
 
-`Source <https://github.com/ZSG-Studios/EGP/blob/e27546b81eb733de41caf891d09dfa2d361391d6/modules/egp_net/csharp/NetNode.cs>`__
+`Source <https://github.com/ZSG-Studios/EGP/blob/f31110a3d2396869741c604ed525cb1ef4801a95/modules/egp_net/csharp/NetNode.cs>`__
 
 .. code-block:: csharp
 
@@ -301,7 +301,7 @@ NetNode
 NetPrediction
 ~~~~~~~~~~~~~
 
-`Source <https://github.com/ZSG-Studios/EGP/blob/e27546b81eb733de41caf891d09dfa2d361391d6/modules/egp_net/csharp/NetPrediction.cs>`__
+`Source <https://github.com/ZSG-Studios/EGP/blob/f31110a3d2396869741c604ed525cb1ef4801a95/modules/egp_net/csharp/NetPrediction.cs>`__
 
 .. code-block:: csharp
 
@@ -325,7 +325,7 @@ The header declares ``Options``, ``Session``, ``Net``, ``Prediction``,
 ``Box3D``, and 2D/3D presentation helpers. Keep wrappers alive for their
 callbacks; perform calls and destruction on the constructing Godot thread.
 
-`Complete C++ declarations <https://github.com/ZSG-Studios/EGP/blob/e27546b81eb733de41caf891d09dfa2d361391d6/modules/egp_net/cpp/egp_net.hpp>`__
+`Complete C++ declarations <https://github.com/ZSG-Studios/EGP/blob/f31110a3d2396869741c604ed525cb1ef4801a95/modules/egp_net/cpp/egp_net.hpp>`__
 
 Standalone native servers instead include ``modules/egp_net/net_core.h`` and
 use ``egp::net::Session``. This API does not require the GDScript codec.
