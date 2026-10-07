@@ -34,11 +34,11 @@ Properties
    +-------------------------------------+------------------------------------------------------------------------+-----------+
    | :ref:`StringName<class_StringName>` | :ref:`property<class_SuperpositionProperty_property_property>`         | ``&""``   |
    +-------------------------------------+------------------------------------------------------------------------+-----------+
-   | :ref:`int<class_int>`               | :ref:`value_type<class_SuperpositionProperty_property_value_type>`     | ``3``     |
-   +-------------------------------------+------------------------------------------------------------------------+-----------+
    | :ref:`float<class_float>`           | :ref:`quantization<class_SuperpositionProperty_property_quantization>` | ``0.01``  |
    +-------------------------------------+------------------------------------------------------------------------+-----------+
    | :ref:`bool<class_bool>`             | :ref:`smoothing<class_SuperpositionProperty_property_smoothing>`       | ``false`` |
+   +-------------------------------------+------------------------------------------------------------------------+-----------+
+   | :ref:`int<class_int>`               | :ref:`value_type<class_SuperpositionProperty_property_value_type>`     | ``3``     |
    +-------------------------------------+------------------------------------------------------------------------+-----------+
 
 .. rst-class:: classref-section-separator
@@ -84,23 +84,6 @@ Existing property on the target node.
 
 ----
 
-.. _class_SuperpositionProperty_property_value_type:
-
-.. rst-class:: classref-property
-
-:ref:`int<class_int>` **value_type** = ``3`` :ref:`🔗<class_SuperpositionProperty_property_value_type>`
-
-.. rst-class:: classref-property-setget
-
-- |void| **set_value_type**\ (\ value\: :ref:`int<class_int>`\ )
-- :ref:`int<class_int>` **get_value_type**\ (\ )
-
-Exact Variant type, selected in the Inspector. Defaults to float.
-
-.. rst-class:: classref-item-separator
-
-----
-
 .. _class_SuperpositionProperty_property_quantization:
 
 .. rst-class:: classref-property
@@ -130,6 +113,23 @@ Positive float/vector rounding interval. Zero preserves precision. Server change
 - :ref:`bool<class_bool>` **is_smoothing**\ (\ )
 
 Cosmetic exponential easing for float and Vector3. Discrete values always apply immediately.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_SuperpositionProperty_property_value_type:
+
+.. rst-class:: classref-property
+
+:ref:`int<class_int>` **value_type** = ``3`` :ref:`🔗<class_SuperpositionProperty_property_value_type>`
+
+.. rst-class:: classref-property-setget
+
+- |void| **set_value_type**\ (\ value\: :ref:`int<class_int>`\ )
+- :ref:`int<class_int>` **get_value_type**\ (\ )
+
+Exact Variant type, selected in the Inspector. Defaults to float.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
 .. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`

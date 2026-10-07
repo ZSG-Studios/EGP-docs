@@ -1407,6 +1407,8 @@ Properties
    +-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
    | :ref:`bool<class_bool>`             | :ref:`physics/3d/run_on_separate_thread<class_ProjectSettings_property_physics/3d/run_on_separate_thread>`                                                                                                 | ``false``                                                                                        |
    +-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
+   | :ref:`bool<class_bool>`             | :ref:`physics/box3d/audit_determinism<class_ProjectSettings_property_physics/box3d/audit_determinism>`                                                                                                     | ``false``                                                                                        |
+   +-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
    | :ref:`bool<class_bool>`             | :ref:`physics/common/enable_object_picking<class_ProjectSettings_property_physics/common/enable_object_picking>`                                                                                           | ``true``                                                                                         |
    +-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
    | :ref:`int<class_int>`               | :ref:`physics/common/max_physics_steps_per_frame<class_ProjectSettings_property_physics/common/max_physics_steps_per_frame>`                                                                               | ``8``                                                                                            |
@@ -10771,6 +10773,18 @@ The approach used for 3D scene traversal when physics interpolation is enabled.
 :ref:`bool<class_bool>` **physics/3d/run_on_separate_thread** = ``false`` :ref:`🔗<class_ProjectSettings_property_physics/3d/run_on_separate_thread>`
 
 If ``true``, the 3D physics server runs on a separate thread, making better use of multi-core CPUs. If ``false``, the 3D physics server runs on the main thread. Running the physics server on a separate thread can increase performance, but restricts API access to only physics process.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_ProjectSettings_property_physics/box3d/audit_determinism:
+
+.. rst-class:: classref-property
+
+:ref:`bool<class_bool>` **physics/box3d/audit_determinism** = ``false`` :ref:`🔗<class_ProjectSettings_property_physics/box3d/audit_determinism>`
+
+If ``true``, newly configured :ref:`EGPBox3DWorld<class_EGPBox3DWorld>` instances run a separate native mirror solver and compare diagnostic hashes after commands, fixed steps, and trusted restores. Divergence fails closed with :ref:`@GlobalScope.ERR_INVALID_DATA<class_@GlobalScope_constant_ERR_INVALID_DATA>`. This diagnostic doubles solver work and is disabled by default. Enable it before configuring a world.
 
 .. rst-class:: classref-item-separator
 

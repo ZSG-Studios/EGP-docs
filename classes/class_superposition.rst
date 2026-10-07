@@ -21,9 +21,9 @@ Description
 
 Add this node under the gameplay target. Set :ref:`session_path<class_Superposition_property_session_path>` to a configured EGPNet node, then select supported target properties using the Replicate checkboxes. The selections create :ref:`SuperpositionProperty<class_SuperpositionProperty>` rules in :ref:`config<class_Superposition_property_config>`. Matching server and client scenes share the configuration. An empty key uses the target's scene path; explicit keys must be unique for their entity kind in a session.
 
- States are quantized before change detection and transported using the native reliable entity lifecycle. Unchanged states do not generate updates. Late joining and interest re-entry receive the current baseline. This initial version is suitable for low rate gameplay values; high rate physical motion should use the independent unreliable snapshot stream with :ref:`EGPNetSnapshotInterpolator<class_EGPNetSnapshotInterpolator>`. Property smoothing is cosmetic easing and does not implement physics prediction or rollback.
+States are quantized before change detection and transported using the native reliable entity lifecycle. Unchanged states do not generate updates. Late joining and interest re-entry receive the current baseline. This initial version is suitable for low rate gameplay values; high rate physical motion should use the independent unreliable snapshot stream with :ref:`EGPNetSnapshotInterpolator<class_EGPNetSnapshotInterpolator>`. Property smoothing is cosmetic easing and does not implement physics prediction or rollback.
 
- Received envelopes are bounded to 4096 bytes and 32 typed properties, with objects disabled and whole schema validation before setters. Interest filtering is relevance optimization, not a confidentiality boundary: initial entity creation can precede observer filtering. Unspecified observers see the entity. Assign current observer positions explicitly; remove disconnected observers with :ref:`clear_observer()<class_Superposition_method_clear_observer>`.
+Received envelopes are bounded to 4096 bytes and 32 typed properties, with objects disabled and whole schema validation before setters. Interest filtering is relevance optimization, not a confidentiality boundary: initial entity creation can precede observer filtering. Unspecified observers see the entity. Assign current observer positions explicitly; remove disconnected observers with :ref:`clear_observer()<class_Superposition_method_clear_observer>`.
 
 .. rst-class:: classref-reftable-group
 
@@ -34,17 +34,17 @@ Properties
    :widths: auto
 
    +-------------------------------------------------------+----------------------------------------------------------------------+--------------------+
+   | :ref:`SuperpositionConfig<class_SuperpositionConfig>` | :ref:`config<class_Superposition_property_config>`                   |                    |
+   +-------------------------------------------------------+----------------------------------------------------------------------+--------------------+
    | :ref:`bool<class_bool>`                               | :ref:`enabled<class_Superposition_property_enabled>`                 | ``true``           |
    +-------------------------------------------------------+----------------------------------------------------------------------+--------------------+
-   | :ref:`NodePath<class_NodePath>`                       | :ref:`target_path<class_Superposition_property_target_path>`         | ``NodePath("..")`` |
-   +-------------------------------------------------------+----------------------------------------------------------------------+--------------------+
-   | :ref:`NodePath<class_NodePath>`                       | :ref:`session_path<class_Superposition_property_session_path>`       | ``NodePath("")``   |
-   +-------------------------------------------------------+----------------------------------------------------------------------+--------------------+
-   | :ref:`SuperpositionConfig<class_SuperpositionConfig>` | :ref:`config<class_Superposition_property_config>`                   |                    |
+   | :ref:`int<class_int>`                                 | :ref:`entity_kind<class_Superposition_property_entity_kind>`         | ``32001``          |
    +-------------------------------------------------------+----------------------------------------------------------------------+--------------------+
    | :ref:`String<class_String>`                           | :ref:`replication_key<class_Superposition_property_replication_key>` | ``""``             |
    +-------------------------------------------------------+----------------------------------------------------------------------+--------------------+
-   | :ref:`int<class_int>`                                 | :ref:`entity_kind<class_Superposition_property_entity_kind>`         | ``32001``          |
+   | :ref:`NodePath<class_NodePath>`                       | :ref:`session_path<class_Superposition_property_session_path>`       | ``NodePath("")``   |
+   +-------------------------------------------------------+----------------------------------------------------------------------+--------------------+
+   | :ref:`NodePath<class_NodePath>`                       | :ref:`target_path<class_Superposition_property_target_path>`         | ``NodePath("..")`` |
    +-------------------------------------------------------+----------------------------------------------------------------------+--------------------+
 
 .. rst-class:: classref-reftable-group
@@ -56,23 +56,23 @@ Methods
    :widths: auto
 
    +-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | |void|                                        | :ref:`mark_dirty<class_Superposition_method_mark_dirty>`\ (\ )                                                                                                  |
-   +-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | |void|                                        | :ref:`set_session<class_Superposition_method_set_session>`\ (\ session\: :ref:`EGPNetSession<class_EGPNetSession>`\ )                                           |
-   +-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`EGPNetSession<class_EGPNetSession>`     | :ref:`get_session<class_Superposition_method_get_session>`\ (\ ) |const|                                                                                        |
-   +-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`Error<enum_@GlobalScope_Error>`         | :ref:`replicate_now<class_Superposition_method_replicate_now>`\ (\ )                                                                                            |
+   | :ref:`Error<enum_@GlobalScope_Error>`         | :ref:`apply_state<class_Superposition_method_apply_state>`\ (\ bytes\: :ref:`PackedByteArray<class_PackedByteArray>`\ )                                         |
    +-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`PackedByteArray<class_PackedByteArray>` | :ref:`capture_state<class_Superposition_method_capture_state>`\ (\ )                                                                                            |
    +-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`Error<enum_@GlobalScope_Error>`         | :ref:`apply_state<class_Superposition_method_apply_state>`\ (\ bytes\: :ref:`PackedByteArray<class_PackedByteArray>`\ )                                         |
+   | |void|                                        | :ref:`clear_observer<class_Superposition_method_clear_observer>`\ (\ peer_id\: :ref:`int<class_int>`\ )                                                         |
+   +-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`EGPNetSession<class_EGPNetSession>`     | :ref:`get_session<class_Superposition_method_get_session>`\ (\ ) |const|                                                                                        |
+   +-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`Dictionary<class_Dictionary>`           | :ref:`get_statistics<class_Superposition_method_get_statistics>`\ (\ ) |const|                                                                                  |
+   +-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | |void|                                        | :ref:`mark_dirty<class_Superposition_method_mark_dirty>`\ (\ )                                                                                                  |
+   +-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`Error<enum_@GlobalScope_Error>`         | :ref:`replicate_now<class_Superposition_method_replicate_now>`\ (\ )                                                                                            |
    +-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`Error<enum_@GlobalScope_Error>`         | :ref:`set_observer_position<class_Superposition_method_set_observer_position>`\ (\ peer_id\: :ref:`int<class_int>`, position\: :ref:`Vector3<class_Vector3>`\ ) |
    +-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | |void|                                        | :ref:`clear_observer<class_Superposition_method_clear_observer>`\ (\ peer_id\: :ref:`int<class_int>`\ )                                                         |
-   +-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`Dictionary<class_Dictionary>`           | :ref:`get_statistics<class_Superposition_method_get_statistics>`\ (\ ) |const|                                                                                  |
+   | |void|                                        | :ref:`set_session<class_Superposition_method_set_session>`\ (\ session\: :ref:`EGPNetSession<class_EGPNetSession>`\ )                                           |
    +-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 .. rst-class:: classref-section-separator
@@ -113,6 +113,23 @@ Emitted after a complete valid received state has been accepted.
 Property Descriptions
 ---------------------
 
+.. _class_Superposition_property_config:
+
+.. rst-class:: classref-property
+
+:ref:`SuperpositionConfig<class_SuperpositionConfig>` **config** :ref:`🔗<class_Superposition_property_config>`
+
+.. rst-class:: classref-property-setget
+
+- |void| **set_config**\ (\ value\: :ref:`SuperpositionConfig<class_SuperpositionConfig>`\ )
+- :ref:`SuperpositionConfig<class_SuperpositionConfig>` **get_config**\ (\ )
+
+Reusable property schema and scheduling policy.
+
+.. rst-class:: classref-item-separator
+
+----
+
 .. _class_Superposition_property_enabled:
 
 .. rst-class:: classref-property
@@ -130,52 +147,18 @@ Enables automatic replication and smoothing.
 
 ----
 
-.. _class_Superposition_property_target_path:
+.. _class_Superposition_property_entity_kind:
 
 .. rst-class:: classref-property
 
-:ref:`NodePath<class_NodePath>` **target_path** = ``NodePath("..")`` :ref:`🔗<class_Superposition_property_target_path>`
+:ref:`int<class_int>` **entity_kind** = ``32001`` :ref:`🔗<class_Superposition_property_entity_kind>`
 
 .. rst-class:: classref-property-setget
 
-- |void| **set_target_path**\ (\ value\: :ref:`NodePath<class_NodePath>`\ )
-- :ref:`NodePath<class_NodePath>` **get_target_path**\ (\ )
+- |void| **set_entity_kind**\ (\ value\: :ref:`int<class_int>`\ )
+- :ref:`int<class_int>` **get_entity_kind**\ (\ )
 
-Gameplay node whose selected properties replicate.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_Superposition_property_session_path:
-
-.. rst-class:: classref-property
-
-:ref:`NodePath<class_NodePath>` **session_path** = ``NodePath("")`` :ref:`🔗<class_Superposition_property_session_path>`
-
-.. rst-class:: classref-property-setget
-
-- |void| **set_session_path**\ (\ value\: :ref:`NodePath<class_NodePath>`\ )
-- :ref:`NodePath<class_NodePath>` **get_session_path**\ (\ )
-
-Configured EGPNet node exposing its native session.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_Superposition_property_config:
-
-.. rst-class:: classref-property
-
-:ref:`SuperpositionConfig<class_SuperpositionConfig>` **config** :ref:`🔗<class_Superposition_property_config>`
-
-.. rst-class:: classref-property-setget
-
-- |void| **set_config**\ (\ value\: :ref:`SuperpositionConfig<class_SuperpositionConfig>`\ )
-- :ref:`SuperpositionConfig<class_SuperpositionConfig>` **get_config**\ (\ )
-
-Reusable property schema and scheduling policy.
+Native entity kind reserved by the game for this replication schema.
 
 .. rst-class:: classref-item-separator
 
@@ -198,18 +181,35 @@ Stable server/client identity. Empty uses the target scene path. Duplicate expli
 
 ----
 
-.. _class_Superposition_property_entity_kind:
+.. _class_Superposition_property_session_path:
 
 .. rst-class:: classref-property
 
-:ref:`int<class_int>` **entity_kind** = ``32001`` :ref:`🔗<class_Superposition_property_entity_kind>`
+:ref:`NodePath<class_NodePath>` **session_path** = ``NodePath("")`` :ref:`🔗<class_Superposition_property_session_path>`
 
 .. rst-class:: classref-property-setget
 
-- |void| **set_entity_kind**\ (\ value\: :ref:`int<class_int>`\ )
-- :ref:`int<class_int>` **get_entity_kind**\ (\ )
+- |void| **set_session_path**\ (\ value\: :ref:`NodePath<class_NodePath>`\ )
+- :ref:`NodePath<class_NodePath>` **get_session_path**\ (\ )
 
-Native entity kind reserved by the game for this replication schema.
+Configured EGPNet node exposing its native session.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_Superposition_property_target_path:
+
+.. rst-class:: classref-property
+
+:ref:`NodePath<class_NodePath>` **target_path** = ``NodePath("..")`` :ref:`🔗<class_Superposition_property_target_path>`
+
+.. rst-class:: classref-property-setget
+
+- |void| **set_target_path**\ (\ value\: :ref:`NodePath<class_NodePath>`\ )
+- :ref:`NodePath<class_NodePath>` **get_target_path**\ (\ )
+
+Gameplay node whose selected properties replicate.
 
 .. rst-class:: classref-section-separator
 
@@ -220,49 +220,13 @@ Native entity kind reserved by the game for this replication schema.
 Method Descriptions
 -------------------
 
-.. _class_Superposition_method_mark_dirty:
+.. _class_Superposition_method_apply_state:
 
 .. rst-class:: classref-method
 
-|void| **mark_dirty**\ (\ ) :ref:`🔗<class_Superposition_method_mark_dirty>`
+:ref:`Error<enum_@GlobalScope_Error>` **apply_state**\ (\ bytes\: :ref:`PackedByteArray<class_PackedByteArray>`\ ) :ref:`🔗<class_Superposition_method_apply_state>`
 
-Notifies pushed capture that selected gameplay properties changed. Calls coalesce until the configured update interval. New entities and changed schemas always capture a complete baseline.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_Superposition_method_set_session:
-
-.. rst-class:: classref-method
-
-|void| **set_session**\ (\ session\: :ref:`EGPNetSession<class_EGPNetSession>`\ ) :ref:`🔗<class_Superposition_method_set_session>`
-
-Binds an already configured session. Retires a previously owned server entity before rebinding. Poll the session through your existing EGPNet node.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_Superposition_method_get_session:
-
-.. rst-class:: classref-method
-
-:ref:`EGPNetSession<class_EGPNetSession>` **get_session**\ (\ ) |const| :ref:`🔗<class_Superposition_method_get_session>`
-
-Returns the bound session.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_Superposition_method_replicate_now:
-
-.. rst-class:: classref-method
-
-:ref:`Error<enum_@GlobalScope_Error>` **replicate_now**\ (\ ) :ref:`🔗<class_Superposition_method_replicate_now>`
-
-Captures a server state or applies the client's latest native entity revision. Automatic processing calls this at the configured rate.
+Validates an envelope and applies the selected properties on a replica. Rejects calls when bound to a listening server. This method is not an input RPC.
 
 .. rst-class:: classref-item-separator
 
@@ -280,13 +244,61 @@ Produces a bounded quantized protocol envelope or an empty array on validation f
 
 ----
 
-.. _class_Superposition_method_apply_state:
+.. _class_Superposition_method_clear_observer:
 
 .. rst-class:: classref-method
 
-:ref:`Error<enum_@GlobalScope_Error>` **apply_state**\ (\ bytes\: :ref:`PackedByteArray<class_PackedByteArray>`\ ) :ref:`🔗<class_Superposition_method_apply_state>`
+|void| **clear_observer**\ (\ peer_id\: :ref:`int<class_int>`\ ) :ref:`🔗<class_Superposition_method_clear_observer>`
 
-Validates an envelope and applies the selected properties on a replica. Rejects calls when bound to a listening server. This method is not an input RPC.
+Removes the observer and restores unrestricted visibility when the peer is still connected.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_Superposition_method_get_session:
+
+.. rst-class:: classref-method
+
+:ref:`EGPNetSession<class_EGPNetSession>` **get_session**\ (\ ) |const| :ref:`🔗<class_Superposition_method_get_session>`
+
+Returns the bound session.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_Superposition_method_get_statistics:
+
+.. rst-class:: classref-method
+
+:ref:`Dictionary<class_Dictionary>` **get_statistics**\ (\ ) |const| :ref:`🔗<class_Superposition_method_get_statistics>`
+
+Returns entity, captures, sent, dirty_skips, applied, rejected, last_error and state_bytes, push_skips and priority. Failures also emit :ref:`replication_error<class_Superposition_signal_replication_error>`.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_Superposition_method_mark_dirty:
+
+.. rst-class:: classref-method
+
+|void| **mark_dirty**\ (\ ) :ref:`🔗<class_Superposition_method_mark_dirty>`
+
+Notifies pushed capture that selected gameplay properties changed. Calls coalesce until the configured update interval. New entities and changed schemas always capture a complete baseline.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_Superposition_method_replicate_now:
+
+.. rst-class:: classref-method
+
+:ref:`Error<enum_@GlobalScope_Error>` **replicate_now**\ (\ ) :ref:`🔗<class_Superposition_method_replicate_now>`
+
+Captures a server state or applies the client's latest native entity revision. Automatic processing calls this at the configured rate.
 
 .. rst-class:: classref-item-separator
 
@@ -304,25 +316,13 @@ Sets a finite observer position for spatial interest. At most 64 observers are s
 
 ----
 
-.. _class_Superposition_method_clear_observer:
+.. _class_Superposition_method_set_session:
 
 .. rst-class:: classref-method
 
-|void| **clear_observer**\ (\ peer_id\: :ref:`int<class_int>`\ ) :ref:`🔗<class_Superposition_method_clear_observer>`
+|void| **set_session**\ (\ session\: :ref:`EGPNetSession<class_EGPNetSession>`\ ) :ref:`🔗<class_Superposition_method_set_session>`
 
-Removes the observer and restores unrestricted visibility when the peer is still connected.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_Superposition_method_get_statistics:
-
-.. rst-class:: classref-method
-
-:ref:`Dictionary<class_Dictionary>` **get_statistics**\ (\ ) |const| :ref:`🔗<class_Superposition_method_get_statistics>`
-
-Returns entity, captures, sent, dirty_skips, applied, rejected, last_error and state_bytes, push_skips and priority. Failures also emit :ref:`replication_error<class_Superposition_signal_replication_error>`.
+Binds an already configured session. Retires a previously owned server entity before rebinding. Poll the session through your existing EGPNet node.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
 .. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`

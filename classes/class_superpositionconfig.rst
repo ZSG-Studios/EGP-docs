@@ -30,17 +30,17 @@ Properties
    :widths: auto
 
    +----------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+----------+
-   | :ref:`Array<class_Array>`\[:ref:`SuperpositionProperty<class_SuperpositionProperty>`\] | :ref:`properties<class_SuperpositionConfig_property_properties>`                   | ``[]``   |
+   | :ref:`int<class_int>`                                                                  | :ref:`capture_mode<class_SuperpositionConfig_property_capture_mode>`               | ``0``    |
    +----------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+----------+
-   | :ref:`float<class_float>`                                                              | :ref:`update_rate<class_SuperpositionConfig_property_update_rate>`                 | ``10.0`` |
+   | :ref:`float<class_float>`                                                              | :ref:`interest_hysteresis<class_SuperpositionConfig_property_interest_hysteresis>` | ``2.0``  |
    +----------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+----------+
    | :ref:`float<class_float>`                                                              | :ref:`interest_radius<class_SuperpositionConfig_property_interest_radius>`         | ``0.0``  |
    +----------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+----------+
    | :ref:`int<class_int>`                                                                  | :ref:`priority<class_SuperpositionConfig_property_priority>`                       | ``1``    |
    +----------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+----------+
-   | :ref:`int<class_int>`                                                                  | :ref:`capture_mode<class_SuperpositionConfig_property_capture_mode>`               | ``0``    |
+   | :ref:`Array<class_Array>`\[:ref:`SuperpositionProperty<class_SuperpositionProperty>`\] | :ref:`properties<class_SuperpositionConfig_property_properties>`                   | ``[]``   |
    +----------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+----------+
-   | :ref:`float<class_float>`                                                              | :ref:`interest_hysteresis<class_SuperpositionConfig_property_interest_hysteresis>` | ``2.0``  |
+   | :ref:`float<class_float>`                                                              | :ref:`update_rate<class_SuperpositionConfig_property_update_rate>`                 | ``10.0`` |
    +----------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+----------+
 
 .. rst-class:: classref-section-separator
@@ -52,35 +52,35 @@ Properties
 Property Descriptions
 ---------------------
 
-.. _class_SuperpositionConfig_property_properties:
+.. _class_SuperpositionConfig_property_capture_mode:
 
 .. rst-class:: classref-property
 
-:ref:`Array<class_Array>`\[:ref:`SuperpositionProperty<class_SuperpositionProperty>`\] **properties** = ``[]`` :ref:`🔗<class_SuperpositionConfig_property_properties>`
+:ref:`int<class_int>` **capture_mode** = ``0`` :ref:`🔗<class_SuperpositionConfig_property_capture_mode>`
 
 .. rst-class:: classref-property-setget
 
-- |void| **set_properties**\ (\ value\: :ref:`Array<class_Array>`\[:ref:`SuperpositionProperty<class_SuperpositionProperty>`\]\ )
-- :ref:`Array<class_Array>`\[:ref:`SuperpositionProperty<class_SuperpositionProperty>`\] **get_properties**\ (\ )
+- |void| **set_capture_mode**\ (\ value\: :ref:`int<class_int>`\ )
+- :ref:`int<class_int>` **get_capture_mode**\ (\ )
 
-One to 32 enabled typed properties, with no duplicate names. At most 32 total rules.
+Automatic (0) polls selected properties. Pushed (1) skips target capture until :ref:`Superposition.mark_dirty()<class_Superposition_method_mark_dirty>` is called. Baselines and schema/session changes still capture automatically.
 
 .. rst-class:: classref-item-separator
 
 ----
 
-.. _class_SuperpositionConfig_property_update_rate:
+.. _class_SuperpositionConfig_property_interest_hysteresis:
 
 .. rst-class:: classref-property
 
-:ref:`float<class_float>` **update_rate** = ``10.0`` :ref:`🔗<class_SuperpositionConfig_property_update_rate>`
+:ref:`float<class_float>` **interest_hysteresis** = ``2.0`` :ref:`🔗<class_SuperpositionConfig_property_interest_hysteresis>`
 
 .. rst-class:: classref-property-setget
 
-- |void| **set_update_rate**\ (\ value\: :ref:`float<class_float>`\ )
-- :ref:`float<class_float>` **get_update_rate**\ (\ )
+- |void| **set_interest_hysteresis**\ (\ value\: :ref:`float<class_float>`\ )
+- :ref:`float<class_float>` **get_interest_hysteresis**\ (\ )
 
-Server capture and client application rate from 1 to 30 Hz. Catch-up does not emit bursts.
+Visible objects leave at Radius + Hysteresis; hidden objects re-enter at Radius. Prevents interest boundary churn.
 
 .. rst-class:: classref-item-separator
 
@@ -120,35 +120,35 @@ Native scheduling service weight from 1 to 16. Higher values favor this object u
 
 ----
 
-.. _class_SuperpositionConfig_property_capture_mode:
+.. _class_SuperpositionConfig_property_properties:
 
 .. rst-class:: classref-property
 
-:ref:`int<class_int>` **capture_mode** = ``0`` :ref:`🔗<class_SuperpositionConfig_property_capture_mode>`
+:ref:`Array<class_Array>`\[:ref:`SuperpositionProperty<class_SuperpositionProperty>`\] **properties** = ``[]`` :ref:`🔗<class_SuperpositionConfig_property_properties>`
 
 .. rst-class:: classref-property-setget
 
-- |void| **set_capture_mode**\ (\ value\: :ref:`int<class_int>`\ )
-- :ref:`int<class_int>` **get_capture_mode**\ (\ )
+- |void| **set_properties**\ (\ value\: :ref:`Array<class_Array>`\[:ref:`SuperpositionProperty<class_SuperpositionProperty>`\]\ )
+- :ref:`Array<class_Array>`\[:ref:`SuperpositionProperty<class_SuperpositionProperty>`\] **get_properties**\ (\ )
 
-Automatic (0) polls selected properties. Pushed (1) skips target capture until :ref:`Superposition.mark_dirty()<class_Superposition_method_mark_dirty>` is called. Baselines and schema/session changes still capture automatically.
+One to 32 enabled typed properties, with no duplicate names. At most 32 total rules.
 
 .. rst-class:: classref-item-separator
 
 ----
 
-.. _class_SuperpositionConfig_property_interest_hysteresis:
+.. _class_SuperpositionConfig_property_update_rate:
 
 .. rst-class:: classref-property
 
-:ref:`float<class_float>` **interest_hysteresis** = ``2.0`` :ref:`🔗<class_SuperpositionConfig_property_interest_hysteresis>`
+:ref:`float<class_float>` **update_rate** = ``10.0`` :ref:`🔗<class_SuperpositionConfig_property_update_rate>`
 
 .. rst-class:: classref-property-setget
 
-- |void| **set_interest_hysteresis**\ (\ value\: :ref:`float<class_float>`\ )
-- :ref:`float<class_float>` **get_interest_hysteresis**\ (\ )
+- |void| **set_update_rate**\ (\ value\: :ref:`float<class_float>`\ )
+- :ref:`float<class_float>` **get_update_rate**\ (\ )
 
-Visible objects leave at Radius + Hysteresis; hidden objects re-enter at Radius. Prevents interest boundary churn.
+Server capture and client application rate from 1 to 30 Hz. Catch-up does not emit bursts.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
 .. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`

@@ -30,19 +30,19 @@ Methods
    :widths: auto
 
    +---------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`Error<enum_@GlobalScope_Error>` | :ref:`configure<class_EGPNetSnapshotInterpolator_method_configure>`\ (\ tick_rate\: :ref:`float<class_float>` = 60.0, delay_seconds\: :ref:`float<class_float>` = 0.2, max_extrapolation_seconds\: :ref:`float<class_float>` = 0.1\ ) |
-   +---------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`bool<class_bool>`               | :ref:`submit<class_EGPNetSnapshotInterpolator_method_submit>`\ (\ entity\: :ref:`int<class_int>`, tick\: :ref:`int<class_int>`, pose\: :ref:`Transform3D<class_Transform3D>`, velocity\: :ref:`Vector3<class_Vector3>`\ )             |
-   +---------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`float<class_float>`             | :ref:`advance<class_EGPNetSnapshotInterpolator_method_advance>`\ (\ delta\: :ref:`float<class_float>`\ )                                                                                                                              |
    +---------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`Transform3D<class_Transform3D>` | :ref:`sample<class_EGPNetSnapshotInterpolator_method_sample>`\ (\ entity\: :ref:`int<class_int>`, delta\: :ref:`float<class_float>` = 0.0\ )                                                                                          |
+   | |void|                                | :ref:`clear<class_EGPNetSnapshotInterpolator_method_clear>`\ (\ )                                                                                                                                                                     |
+   +---------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`Error<enum_@GlobalScope_Error>` | :ref:`configure<class_EGPNetSnapshotInterpolator_method_configure>`\ (\ tick_rate\: :ref:`float<class_float>` = 60.0, delay_seconds\: :ref:`float<class_float>` = 0.2, max_extrapolation_seconds\: :ref:`float<class_float>` = 0.1\ ) |
    +---------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`Dictionary<class_Dictionary>`   | :ref:`get_statistics<class_EGPNetSnapshotInterpolator_method_get_statistics>`\ (\ ) |const|                                                                                                                                           |
    +---------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | |void|                                | :ref:`remove<class_EGPNetSnapshotInterpolator_method_remove>`\ (\ entity\: :ref:`int<class_int>`\ )                                                                                                                                   |
    +---------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | |void|                                | :ref:`clear<class_EGPNetSnapshotInterpolator_method_clear>`\ (\ )                                                                                                                                                                     |
+   | :ref:`Transform3D<class_Transform3D>` | :ref:`sample<class_EGPNetSnapshotInterpolator_method_sample>`\ (\ entity\: :ref:`int<class_int>`, delta\: :ref:`float<class_float>` = 0.0\ )                                                                                          |
+   +---------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`bool<class_bool>`               | :ref:`submit<class_EGPNetSnapshotInterpolator_method_submit>`\ (\ entity\: :ref:`int<class_int>`, tick\: :ref:`int<class_int>`, pose\: :ref:`Transform3D<class_Transform3D>`, velocity\: :ref:`Vector3<class_Vector3>`\ )             |
    +---------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 .. rst-class:: classref-section-separator
@@ -53,30 +53,6 @@ Methods
 
 Method Descriptions
 -------------------
-
-.. _class_EGPNetSnapshotInterpolator_method_configure:
-
-.. rst-class:: classref-method
-
-:ref:`Error<enum_@GlobalScope_Error>` **configure**\ (\ tick_rate\: :ref:`float<class_float>` = 60.0, delay_seconds\: :ref:`float<class_float>` = 0.2, max_extrapolation_seconds\: :ref:`float<class_float>` = 0.1\ ) :ref:`🔗<class_EGPNetSnapshotInterpolator_method_configure>`
-
-Sets presentation timing and clears existing history. Rejects invalid or nonfinite values without changing the configuration.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_EGPNetSnapshotInterpolator_method_submit:
-
-.. rst-class:: classref-method
-
-:ref:`bool<class_bool>` **submit**\ (\ entity\: :ref:`int<class_int>`, tick\: :ref:`int<class_int>`, pose\: :ref:`Transform3D<class_Transform3D>`, velocity\: :ref:`Vector3<class_Vector3>`\ ) :ref:`🔗<class_EGPNetSnapshotInterpolator_method_submit>`
-
-Accepts strictly increasing entity ticks and finite poses and velocities. Returns false for stale, invalid, or capacity-exceeding input. All entities must use the same authority tick timeline.
-
-.. rst-class:: classref-item-separator
-
-----
 
 .. _class_EGPNetSnapshotInterpolator_method_advance:
 
@@ -90,13 +66,25 @@ Advances the monotonic presentation clock with bounded rate correction and retur
 
 ----
 
-.. _class_EGPNetSnapshotInterpolator_method_sample:
+.. _class_EGPNetSnapshotInterpolator_method_clear:
 
 .. rst-class:: classref-method
 
-:ref:`Transform3D<class_Transform3D>` **sample**\ (\ entity\: :ref:`int<class_int>`, delta\: :ref:`float<class_float>` = 0.0\ ) :ref:`🔗<class_EGPNetSnapshotInterpolator_method_sample>`
+|void| **clear**\ (\ ) :ref:`🔗<class_EGPNetSnapshotInterpolator_method_clear>`
 
-Samples an entity and decays its presentation correction with delta. Call once per visible entity per frame. Missing entities return identity.
+Clears all histories, clock state, and diagnostics for a fresh connection.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_EGPNetSnapshotInterpolator_method_configure:
+
+.. rst-class:: classref-method
+
+:ref:`Error<enum_@GlobalScope_Error>` **configure**\ (\ tick_rate\: :ref:`float<class_float>` = 60.0, delay_seconds\: :ref:`float<class_float>` = 0.2, max_extrapolation_seconds\: :ref:`float<class_float>` = 0.1\ ) :ref:`🔗<class_EGPNetSnapshotInterpolator_method_configure>`
+
+Sets presentation timing and clears existing history. Rejects invalid or nonfinite values without changing the configuration.
 
 .. rst-class:: classref-item-separator
 
@@ -126,13 +114,25 @@ Removes an entity's history on despawn.
 
 ----
 
-.. _class_EGPNetSnapshotInterpolator_method_clear:
+.. _class_EGPNetSnapshotInterpolator_method_sample:
 
 .. rst-class:: classref-method
 
-|void| **clear**\ (\ ) :ref:`🔗<class_EGPNetSnapshotInterpolator_method_clear>`
+:ref:`Transform3D<class_Transform3D>` **sample**\ (\ entity\: :ref:`int<class_int>`, delta\: :ref:`float<class_float>` = 0.0\ ) :ref:`🔗<class_EGPNetSnapshotInterpolator_method_sample>`
 
-Clears all histories, clock state, and diagnostics for a fresh connection.
+Samples an entity and decays its presentation correction with delta. Call once per visible entity per frame. Missing entities return identity.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_EGPNetSnapshotInterpolator_method_submit:
+
+.. rst-class:: classref-method
+
+:ref:`bool<class_bool>` **submit**\ (\ entity\: :ref:`int<class_int>`, tick\: :ref:`int<class_int>`, pose\: :ref:`Transform3D<class_Transform3D>`, velocity\: :ref:`Vector3<class_Vector3>`\ ) :ref:`🔗<class_EGPNetSnapshotInterpolator_method_submit>`
+
+Accepts strictly increasing entity ticks and finite poses and velocities. Returns false for stale, invalid, or capacity-exceeding input. All entities must use the same authority tick timeline.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
 .. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
