@@ -11,11 +11,11 @@ not establish runtime behavior or production readiness.
 Published upstream consolidation
 --------------------------------
 
-The documentation is generated from engine revision
-``d85fa34538a7a12e3dd9c60cfc29214fe7f3d74e``. It includes the sixteen incoming
+This historical upstream consolidation receipt covers engine revision
+``d85fa34538a7a12e3dd9c60cfc29214fe7f3d74e``, which included the sixteen incoming
 official Godot commits through ``3ea0cf3e72699c5e3b35f7956670ac93b9d1d4a0``.
-This is a pinned upstream snapshot; later upstream commits require another
-compatibility review.
+This receipt describes a pinned upstream snapshot; later upstream commits
+require another compatibility review.
 
 The Windows Mono editor was compiled from
 ``7b57a3b3140cb1c8b0bbcfb6bbe2c1f4eab70161``. Debug and Release templates were
