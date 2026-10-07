@@ -12,7 +12,7 @@ Published upstream consolidation
 --------------------------------
 
 The documentation is generated from engine revision
-``745f2496d364eb4a3495abf949610ecda51e58b1``. It includes the sixteen incoming
+``d85fa34538a7a12e3dd9c60cfc29214fe7f3d74e``. It includes the sixteen incoming
 official Godot commits through ``3ea0cf3e72699c5e3b35f7956670ac93b9d1d4a0``.
 This is a pinned upstream snapshot; later upstream commits require another
 compatibility review.
@@ -37,7 +37,7 @@ reload, network-lab and admission regressions. Native Debug/Release suites pass
 byte-identical, with matching SDK key ``4bc13481314e7023`` and MSVC 19.51 libraries.
 New native and managed artifacts supersede the previous binary identities.
 Consult the `pinned integration record
-<https://github.com/ZSG-Studios/EGP/blob/745f2496d364eb4a3495abf949610ecda51e58b1/doc/egp_integration_loop.md>`__
+<https://github.com/ZSG-Studios/EGP/blob/d85fa34538a7a12e3dd9c60cfc29214fe7f3d74e/doc/egp_integration_loop.md>`__
 for exact hashes, commands and retained failed controls.
 
 The subsequent C++ helper update adds explicit ``Net``/``Box3D`` ownership
@@ -134,8 +134,39 @@ The original compound deadline fails the retained abrupt-outage control.
 This hosted result does not qualify Release, WAN behavior or complete engine
 and managed runtime coverage.
 
+Revision ``d85fa34538`` adds compact reliable messages for entity states up to
+128 bytes; larger states retain the fragmented path through the 4,096-byte
+limit. Local Windows MSVC Release passes 120 native checks and all fourteen
+CTest cases on the final source. The added cases exercise 60 Hz frame-paced
+fairness, abrupt disconnects, exact payload transitions across the 128-byte
+boundary and rejection of invalid client-originated messages. Four focused
+Debug cases also pass. Message and byte budgets and replication deadlines
+remain unchanged.
+
+Updated clients check the admission token's public protocol header against
+their configured wire, game, simulation and tick-rate fingerprint before
+starting transport. The server still authenticates the encrypted token.
+Deploy matching wire versions across peers: older clients do not contain this
+preflight check. Public GDScript, C# and C++ API signatures are unchanged.
+The `six-profile networking run
+<https://github.com/ZSG-Studios/EGP/actions/runs/37550683806>`__ passes Debug and
+Release on Windows, Linux and macOS at this revision. Each profile passes
+120 native checks and all fourteen CTest cases; the retained artifacts match
+the committed source and pinned vendor identities. Current-source engine
+results follow below.
+
 Strict compilation and CI profiles
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The `full engine matrix at revision d85fa34538
+<https://github.com/ZSG-Studios/EGP/actions/runs/37550684051>`__ passes all
+twenty jobs. The Linux Mono editor passes the .NET build and source-generator
+tests, class-reference synchronization, all official API JSON reference checks,
+native method lookup, export and project conversion. Its unit suite passes
+1,420 cases and 423,813 assertions, with three existing skipped cases. The
+single-precision SCU and Clang sanitizer editors each pass 1,419 cases and
+423,804 assertions; the Clang profile also passes the graphical regression
+project. These results qualify the selected CI profiles at that revision.
 
 The engine test runner now requires the configured physics backends instead of
 falling back to removed dummy servers. Standalone Box3D executables retain their
@@ -173,6 +204,14 @@ admission, prediction/replay, lifecycle and separate dedicated-server/client
 process checks in both templates. Matching Windows editor fixtures also pass.
 These checks cover GDScript running in Mono templates; they do not exercise
 C# scripts, graphical rendering, hot reload or production networking scale.
+
+Matching artifacts at ``d85fa34538`` pass seven Windows native-editor steps and
+fifteen Linux Mono Debug/Release packaged GDScript steps. These exercise the
+current wire format through networked Box3D, encrypted admission,
+prediction/replay, lifecycle and independent dedicated-server/client processes.
+The retained runtime receipts identify the editor, templates, exported pack,
+helpers, commands and logs. This adds current-source GDScript runtime evidence;
+managed scripts, hot reload, WAN behavior and scale remain unqualified.
 
 All 26 Box2D adapter translation units compile under optimized GCC and Clang
 with warnings treated as errors. The cleanup preserves signed index rejection,
