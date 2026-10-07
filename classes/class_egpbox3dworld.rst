@@ -23,6 +23,8 @@ Owns a Box3D world independent of the scene physics server. Call :ref:`configure
 
 Snapshots include the solver state and are only for trusted local history on a compatible build. Never restore bytes received from a peer. This class does not replace the physics of :ref:`RigidBody3D<class_RigidBody3D>` or :ref:`CharacterBody3D<class_CharacterBody3D>`.
 
+Enable ``physics/box3d/audit_determinism`` before configuring a world to run a separate native mirror solver. Commands, fixed steps and trusted restores are repeated and their diagnostic hashes compared. Divergence fails closed with :ref:`@GlobalScope.ERR_INVALID_DATA<class_@GlobalScope_constant_ERR_INVALID_DATA>`. Object metadata ``box3d_audit_verified_steps``, ``box3d_audit_verified_boundaries`` and ``box3d_audit_hash_mismatches`` provide evidence. This diagnostic doubles solver work; it is disabled by default and does not implement remote prediction or establish cross-platform determinism.
+
 .. rst-class:: classref-reftable-group
 
 Methods

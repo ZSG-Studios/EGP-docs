@@ -15,7 +15,7 @@ GDScript
 EGPNet
 ~~~~~~
 
-`Source <https://github.com/ZSG-Studios/EGP/blob/d85fa34538a7a12e3dd9c60cfc29214fe7f3d74e/modules/egp_net/gdscript/egp_net.gd>`__
+`Source <https://github.com/ZSG-Studios/EGP/blob/720879b0fc3ca432b643bc5896316c661feb1428/modules/egp_net/gdscript/egp_net.gd>`__
 
 .. code-block:: gdscript
 
@@ -68,7 +68,7 @@ Signals:
 EGPNetBox3D
 ~~~~~~~~~~~
 
-`Source <https://github.com/ZSG-Studios/EGP/blob/d85fa34538a7a12e3dd9c60cfc29214fe7f3d74e/modules/egp_net/gdscript/egp_net_box3d.gd>`__
+`Source <https://github.com/ZSG-Studios/EGP/blob/720879b0fc3ca432b643bc5896316c661feb1428/modules/egp_net/gdscript/egp_net_box3d.gd>`__
 
 .. code-block:: gdscript
 
@@ -85,10 +85,33 @@ Signals:
     signal after_step(tick: int)
     signal failed(error: Error)
 
+EGPNetDeterministicReplay
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+`Source <https://github.com/ZSG-Studios/EGP/blob/720879b0fc3ca432b643bc5896316c661feb1428/modules/egp_net/gdscript/egp_net_deterministic_replay.gd>`__
+
+.. code-block:: gdscript
+
+    func configure(capture: Callable, restore: Callable, simulate: Callable, state_hash: Callable, initial_tick: int = 0, max_ticks: int = 128, max_state_bytes: int = 1048576, max_bytes: int = 33554432) -> Error
+    func predict(tick: int, input: PackedByteArray) -> Error
+    func accept(frames: Array) -> Error
+    func get_tick() -> int
+    func get_acknowledged_tick() -> int
+    func get_acknowledged_hash() -> String
+    func get_pending_ticks() -> int
+    func get_history_bytes() -> int
+
+Signals:
+
+.. code-block:: gdscript
+
+    signal corrected(first_tick: int, replayed_ticks: int)
+    signal resync_required(error: Error)
+
 EGPNetEntity2D
 ~~~~~~~~~~~~~~
 
-`Source <https://github.com/ZSG-Studios/EGP/blob/d85fa34538a7a12e3dd9c60cfc29214fe7f3d74e/modules/egp_net/gdscript/egp_net_entity_2d.gd>`__
+`Source <https://github.com/ZSG-Studios/EGP/blob/720879b0fc3ca432b643bc5896316c661feb1428/modules/egp_net/gdscript/egp_net_entity_2d.gd>`__
 
 .. code-block:: gdscript
 
@@ -103,7 +126,7 @@ Signals:
 EGPNetEntity3D
 ~~~~~~~~~~~~~~
 
-`Source <https://github.com/ZSG-Studios/EGP/blob/d85fa34538a7a12e3dd9c60cfc29214fe7f3d74e/modules/egp_net/gdscript/egp_net_entity_3d.gd>`__
+`Source <https://github.com/ZSG-Studios/EGP/blob/720879b0fc3ca432b643bc5896316c661feb1428/modules/egp_net/gdscript/egp_net_entity_3d.gd>`__
 
 .. code-block:: gdscript
 
@@ -118,7 +141,7 @@ Signals:
 EGPNetPrediction
 ~~~~~~~~~~~~~~~~
 
-`Source <https://github.com/ZSG-Studios/EGP/blob/d85fa34538a7a12e3dd9c60cfc29214fe7f3d74e/modules/egp_net/gdscript/egp_net_prediction.gd>`__
+`Source <https://github.com/ZSG-Studios/EGP/blob/720879b0fc3ca432b643bc5896316c661feb1428/modules/egp_net/gdscript/egp_net_prediction.gd>`__
 
 .. code-block:: gdscript
 
@@ -145,7 +168,7 @@ default arguments, events and property accessors; method bodies are omitted.
 EGP.Networking.Delivery
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-`Source <https://github.com/ZSG-Studios/EGP/blob/d85fa34538a7a12e3dd9c60cfc29214fe7f3d74e/modules/egp_net/csharp/NetApi.cs>`__
+`Source <https://github.com/ZSG-Studios/EGP/blob/720879b0fc3ca432b643bc5896316c661feb1428/modules/egp_net/csharp/NetApi.cs>`__
 
 .. code-block:: csharp
 
@@ -154,7 +177,7 @@ EGP.Networking.Delivery
 EGP.Networking.Sender
 ~~~~~~~~~~~~~~~~~~~~~
 
-`Source <https://github.com/ZSG-Studios/EGP/blob/d85fa34538a7a12e3dd9c60cfc29214fe7f3d74e/modules/egp_net/csharp/NetApi.cs>`__
+`Source <https://github.com/ZSG-Studios/EGP/blob/720879b0fc3ca432b643bc5896316c661feb1428/modules/egp_net/csharp/NetApi.cs>`__
 
 .. code-block:: csharp
 
@@ -163,7 +186,7 @@ EGP.Networking.Sender
 EGP.Networking.NetOptions
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-`Source <https://github.com/ZSG-Studios/EGP/blob/d85fa34538a7a12e3dd9c60cfc29214fe7f3d74e/modules/egp_net/csharp/NetApi.cs>`__
+`Source <https://github.com/ZSG-Studios/EGP/blob/720879b0fc3ca432b643bc5896316c661feb1428/modules/egp_net/csharp/NetApi.cs>`__
 
 .. code-block:: csharp
 
@@ -188,7 +211,7 @@ EGP.Networking.NetOptions
 EGP.Networking.TokenResult
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-`Source <https://github.com/ZSG-Studios/EGP/blob/d85fa34538a7a12e3dd9c60cfc29214fe7f3d74e/modules/egp_net/csharp/NetApi.cs>`__
+`Source <https://github.com/ZSG-Studios/EGP/blob/720879b0fc3ca432b643bc5896316c661feb1428/modules/egp_net/csharp/NetApi.cs>`__
 
 .. code-block:: csharp
 
@@ -199,7 +222,7 @@ EGP.Networking.TokenResult
 EGP.Networking.SpawnResult
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-`Source <https://github.com/ZSG-Studios/EGP/blob/d85fa34538a7a12e3dd9c60cfc29214fe7f3d74e/modules/egp_net/csharp/NetApi.cs>`__
+`Source <https://github.com/ZSG-Studios/EGP/blob/720879b0fc3ca432b643bc5896316c661feb1428/modules/egp_net/csharp/NetApi.cs>`__
 
 .. code-block:: csharp
 
@@ -208,7 +231,7 @@ EGP.Networking.SpawnResult
 EGP.Networking.PeerInfo
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-`Source <https://github.com/ZSG-Studios/EGP/blob/d85fa34538a7a12e3dd9c60cfc29214fe7f3d74e/modules/egp_net/csharp/NetApi.cs>`__
+`Source <https://github.com/ZSG-Studios/EGP/blob/720879b0fc3ca432b643bc5896316c661feb1428/modules/egp_net/csharp/NetApi.cs>`__
 
 .. code-block:: csharp
 
@@ -217,7 +240,7 @@ EGP.Networking.PeerInfo
 EGP.Networking.RawEntity
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-`Source <https://github.com/ZSG-Studios/EGP/blob/d85fa34538a7a12e3dd9c60cfc29214fe7f3d74e/modules/egp_net/csharp/NetApi.cs>`__
+`Source <https://github.com/ZSG-Studios/EGP/blob/720879b0fc3ca432b643bc5896316c661feb1428/modules/egp_net/csharp/NetApi.cs>`__
 
 .. code-block:: csharp
 
@@ -226,7 +249,7 @@ EGP.Networking.RawEntity
 EGP.Networking.NetSession
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-`Source <https://github.com/ZSG-Studios/EGP/blob/d85fa34538a7a12e3dd9c60cfc29214fe7f3d74e/modules/egp_net/csharp/NetApi.cs>`__
+`Source <https://github.com/ZSG-Studios/EGP/blob/720879b0fc3ca432b643bc5896316c661feb1428/modules/egp_net/csharp/NetApi.cs>`__
 
 .. code-block:: csharp
 
@@ -264,13 +287,14 @@ EGP.Networking.NetSession
         public Error DisconnectPeer(long peer);
         public PeerInfo[] GetPeers();
         public RawEntity[] GetEntities();
+        public RawEntity? GetEntity(long entity);
         public void Dispose();
     }
 
 EGP.Networking.NetBox3D
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-`Source <https://github.com/ZSG-Studios/EGP/blob/d85fa34538a7a12e3dd9c60cfc29214fe7f3d74e/modules/egp_net/csharp/NetBox3D.cs>`__
+`Source <https://github.com/ZSG-Studios/EGP/blob/720879b0fc3ca432b643bc5896316c661feb1428/modules/egp_net/csharp/NetBox3D.cs>`__
 
 .. code-block:: csharp
 
@@ -292,7 +316,7 @@ EGP.Networking.NetBox3D
 EGP.Networking.NetEntity2D
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-`Source <https://github.com/ZSG-Studios/EGP/blob/d85fa34538a7a12e3dd9c60cfc29214fe7f3d74e/modules/egp_net/csharp/NetEntity2D.cs>`__
+`Source <https://github.com/ZSG-Studios/EGP/blob/720879b0fc3ca432b643bc5896316c661feb1428/modules/egp_net/csharp/NetEntity2D.cs>`__
 
 .. code-block:: csharp
 
@@ -307,7 +331,7 @@ EGP.Networking.NetEntity2D
 EGP.Networking.NetEntity3D
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-`Source <https://github.com/ZSG-Studios/EGP/blob/d85fa34538a7a12e3dd9c60cfc29214fe7f3d74e/modules/egp_net/csharp/NetEntity3D.cs>`__
+`Source <https://github.com/ZSG-Studios/EGP/blob/720879b0fc3ca432b643bc5896316c661feb1428/modules/egp_net/csharp/NetEntity3D.cs>`__
 
 .. code-block:: csharp
 
@@ -322,7 +346,7 @@ EGP.Networking.NetEntity3D
 EGP.Networking.NetNode
 ~~~~~~~~~~~~~~~~~~~~~~
 
-`Source <https://github.com/ZSG-Studios/EGP/blob/d85fa34538a7a12e3dd9c60cfc29214fe7f3d74e/modules/egp_net/csharp/NetNode.cs>`__
+`Source <https://github.com/ZSG-Studios/EGP/blob/720879b0fc3ca432b643bc5896316c661feb1428/modules/egp_net/csharp/NetNode.cs>`__
 
 .. code-block:: csharp
 
@@ -379,7 +403,7 @@ EGP.Networking.NetNode
 EGP.Networking.NetPrediction
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-`Source <https://github.com/ZSG-Studios/EGP/blob/d85fa34538a7a12e3dd9c60cfc29214fe7f3d74e/modules/egp_net/csharp/NetPrediction.cs>`__
+`Source <https://github.com/ZSG-Studios/EGP/blob/720879b0fc3ca432b643bc5896316c661feb1428/modules/egp_net/csharp/NetPrediction.cs>`__
 
 .. code-block:: csharp
 
@@ -408,7 +432,7 @@ destroy them on the same Godot thread.
 egp::networking::Delivery
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-`Source <https://github.com/ZSG-Studios/EGP/blob/d85fa34538a7a12e3dd9c60cfc29214fe7f3d74e/modules/egp_net/cpp/egp_net.hpp>`__
+`Source <https://github.com/ZSG-Studios/EGP/blob/720879b0fc3ca432b643bc5896316c661feb1428/modules/egp_net/cpp/egp_net.hpp>`__
 
 .. code-block:: cpp
 
@@ -417,7 +441,7 @@ egp::networking::Delivery
 egp::networking::Sender
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-`Source <https://github.com/ZSG-Studios/EGP/blob/d85fa34538a7a12e3dd9c60cfc29214fe7f3d74e/modules/egp_net/cpp/egp_net.hpp>`__
+`Source <https://github.com/ZSG-Studios/EGP/blob/720879b0fc3ca432b643bc5896316c661feb1428/modules/egp_net/cpp/egp_net.hpp>`__
 
 .. code-block:: cpp
 
@@ -426,7 +450,7 @@ egp::networking::Sender
 egp::networking::Options
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-`Source <https://github.com/ZSG-Studios/EGP/blob/d85fa34538a7a12e3dd9c60cfc29214fe7f3d74e/modules/egp_net/cpp/egp_net.hpp>`__
+`Source <https://github.com/ZSG-Studios/EGP/blob/720879b0fc3ca432b643bc5896316c661feb1428/modules/egp_net/cpp/egp_net.hpp>`__
 
 .. code-block:: cpp
 
@@ -444,7 +468,7 @@ egp::networking::Options
 egp::networking::TokenResult
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-`Source <https://github.com/ZSG-Studios/EGP/blob/d85fa34538a7a12e3dd9c60cfc29214fe7f3d74e/modules/egp_net/cpp/egp_net.hpp>`__
+`Source <https://github.com/ZSG-Studios/EGP/blob/720879b0fc3ca432b643bc5896316c661feb1428/modules/egp_net/cpp/egp_net.hpp>`__
 
 .. code-block:: cpp
 
@@ -457,7 +481,7 @@ egp::networking::TokenResult
 egp::networking::SpawnResult
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-`Source <https://github.com/ZSG-Studios/EGP/blob/d85fa34538a7a12e3dd9c60cfc29214fe7f3d74e/modules/egp_net/cpp/egp_net.hpp>`__
+`Source <https://github.com/ZSG-Studios/EGP/blob/720879b0fc3ca432b643bc5896316c661feb1428/modules/egp_net/cpp/egp_net.hpp>`__
 
 .. code-block:: cpp
 
@@ -469,7 +493,7 @@ egp::networking::SpawnResult
 egp::networking::Session
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-`Source <https://github.com/ZSG-Studios/EGP/blob/d85fa34538a7a12e3dd9c60cfc29214fe7f3d74e/modules/egp_net/cpp/egp_net.hpp>`__
+`Source <https://github.com/ZSG-Studios/EGP/blob/720879b0fc3ca432b643bc5896316c661feb1428/modules/egp_net/cpp/egp_net.hpp>`__
 
 .. code-block:: cpp
 
@@ -503,6 +527,7 @@ egp::networking::Session
         Error disconnect_peer(int64_t peer);
         Array peers();
         Array entities();
+        Dictionary entity(int64_t handle);
         Error connect(const StringName &signal, const Callable &callback);
         void disconnect(const StringName &signal, const Callable &callback);
     };
@@ -510,7 +535,7 @@ egp::networking::Session
 egp::networking::Net
 ~~~~~~~~~~~~~~~~~~~~
 
-`Source <https://github.com/ZSG-Studios/EGP/blob/d85fa34538a7a12e3dd9c60cfc29214fe7f3d74e/modules/egp_net/cpp/egp_net.hpp>`__
+`Source <https://github.com/ZSG-Studios/EGP/blob/720879b0fc3ca432b643bc5896316c661feb1428/modules/egp_net/cpp/egp_net.hpp>`__
 
 .. code-block:: cpp
 
@@ -563,7 +588,7 @@ egp::networking::Net
 egp::networking::Prediction
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-`Source <https://github.com/ZSG-Studios/EGP/blob/d85fa34538a7a12e3dd9c60cfc29214fe7f3d74e/modules/egp_net/cpp/egp_net.hpp>`__
+`Source <https://github.com/ZSG-Studios/EGP/blob/720879b0fc3ca432b643bc5896316c661feb1428/modules/egp_net/cpp/egp_net.hpp>`__
 
 .. code-block:: cpp
 
@@ -584,7 +609,7 @@ egp::networking::Prediction
 egp::networking::Box3D
 ~~~~~~~~~~~~~~~~~~~~~~
 
-`Source <https://github.com/ZSG-Studios/EGP/blob/d85fa34538a7a12e3dd9c60cfc29214fe7f3d74e/modules/egp_net/cpp/egp_net.hpp>`__
+`Source <https://github.com/ZSG-Studios/EGP/blob/720879b0fc3ca432b643bc5896316c661feb1428/modules/egp_net/cpp/egp_net.hpp>`__
 
 .. code-block:: cpp
 
@@ -609,7 +634,7 @@ egp::networking::Box3D
 egp::networking::EntityPresentation3D
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-`Source <https://github.com/ZSG-Studios/EGP/blob/d85fa34538a7a12e3dd9c60cfc29214fe7f3d74e/modules/egp_net/cpp/egp_net.hpp>`__
+`Source <https://github.com/ZSG-Studios/EGP/blob/720879b0fc3ca432b643bc5896316c661feb1428/modules/egp_net/cpp/egp_net.hpp>`__
 
 .. code-block:: cpp
 
@@ -625,7 +650,7 @@ egp::networking::EntityPresentation3D
 egp::networking::EntityPresentation2D
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-`Source <https://github.com/ZSG-Studios/EGP/blob/d85fa34538a7a12e3dd9c60cfc29214fe7f3d74e/modules/egp_net/cpp/egp_net.hpp>`__
+`Source <https://github.com/ZSG-Studios/EGP/blob/720879b0fc3ca432b643bc5896316c661feb1428/modules/egp_net/cpp/egp_net.hpp>`__
 
 .. code-block:: cpp
 

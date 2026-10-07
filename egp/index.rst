@@ -34,6 +34,9 @@ The class reference is generated from EGP's engine sources.
    networking
    prediction
    networking_reference
+   superposition
+   physics_arena
+   deterministic_demo
    helper_reference
    network_lab
    admission_testing

@@ -28,6 +28,7 @@ jobs:
             modules
             platform
             misc
+            demos
       - name: Verify generated reference and guide freshness
         run: python tools/sync_egp_docs.py --engine .engine-src --check
       - name: Check public declaration extraction

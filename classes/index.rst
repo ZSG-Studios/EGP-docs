@@ -274,6 +274,7 @@ Nodes
     class_statusindicator
     class_subviewport
     class_subviewportcontainer
+    class_superposition
     class_tabbar
     class_tabcontainer
     class_textedit
@@ -598,6 +599,8 @@ Resources
     class_styleboxflat
     class_styleboxline
     class_styleboxtexture
+    class_superpositionconfig
+    class_superpositionproperty
     class_syntaxhighlighter
     class_systemfont
     class_textmesh
@@ -832,6 +835,7 @@ Other objects
     class_editorvcsinterface
     class_egpbox3dworld
     class_egpnetsession
+    class_egpnetsnapshotinterpolator
     class_encodedobjectasid
     class_engine
     class_enginedebugger

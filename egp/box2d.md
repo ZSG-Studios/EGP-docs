@@ -46,7 +46,7 @@ The initial cutover's native Windows editor passed twelve scene runs, including 
 300-tick one/four-worker trajectories and old-backend migration. Repeat those
 checks for each newly qualified executable. Current combined-engine source,
 binary identities, expanded scene results and Debug/Release export receipts are
-recorded in [the integration checklist](https://github.com/ZSG-Studios/EGP/blob/d85fa34538a7a12e3dd9c60cfc29214fe7f3d74e/doc/egp_integration_loop.md):
+recorded in [the integration checklist](https://github.com/ZSG-Studios/EGP/blob/720879b0fc3ca432b643bc5896316c661feb1428/doc/egp_integration_loop.md):
 
 ```powershell
 python misc/scripts/validate_box2d_scene.py --engine <editor.exe> --output .build/box2d-scene-cutover
@@ -67,8 +67,12 @@ five runtime fixtures and separate authenticated server/client processes.
 
 ## Remaining parity gates
 
-The inherited adapter does not implement infinite world boundaries or separation
-rays. Native contact tuning, speed bounds, sleep, continuous collision and warm
+The adapter does not implement infinite world boundary collisions. A
+`WorldBoundaryShape2D` resource can be inspected, serialized and freed normally;
+attaching it to an active physics body or using it in a query reports the
+unsupported operation and creates no collision fixture. Use finite segment or
+rectangle boundaries. This is resource compatibility, not infinite-plane physics
+support. Separation rays remain subject to their documented backend limits. Native contact tuning, speed bounds, sleep, continuous collision and warm
 starting are exposed as space parameters; broader tuning behavior still requires
 qualification. Ray CCD was removed; shape CCD remains supported. One-way rigid-body
 penetration margins and moving-platform behavior need further qualification.

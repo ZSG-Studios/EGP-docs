@@ -179,6 +179,8 @@ Performs a low-level operation. All operations belong to the creating thread. Be
 
 \ ``entities``: returns an :ref:`Array<class_Array>` of dictionaries containing ``entity``, ``revision``, ``tick``, ``kind``, ``authority_peer``, and ``state`` (:ref:`PackedByteArray<class_PackedByteArray>`).
 
+\ ``entity``: argument ``entity``; returns the same dictionary fields for one handle, or an empty dictionary if absent. Copies only the requested entity, preserving immediate mutation readback without copying the whole world. Available to every language through :ref:`command()<class_EGPNetSession_method_command>`.
+
 \ ``spawn``: server-only; arguments ``kind`` (nonnegative integer), ``state`` (:ref:`PackedByteArray<class_PackedByteArray>`, at most 4096 bytes, default empty), and ``authority_peer`` (default ``-1`` for server ownership). Returns a dictionary with ``error`` and ``entity``; use the entity handle only when the error is :ref:`@GlobalScope.OK<class_@GlobalScope_constant_OK>`. A client owner must be a current connected peer.
 
 \ ``update_entity``: server-only; arguments ``entity`` and ``state`` (at most 4096 bytes). Returns an :ref:`Error<enum_@GlobalScope_Error>`; changes are replicated by subsequent polling.
@@ -188,6 +190,12 @@ Performs a low-level operation. All operations belong to the creating thread. Be
 \ ``disconnect``: argument ``peer``. A server disconnects that client; a client uses ``0`` to stop. Returns an :ref:`Error<enum_@GlobalScope_Error>`.
 
 \ ``set_visible``: server-only; arguments ``entity``, ``peer``, and ``visible`` (Boolean, default ``true``). Returns an :ref:`Error<enum_@GlobalScope_Error>`. Hiding removes that entity from the selected client's replicated view; showing restores its current state.
+
+\ ``set_replication_priority``: server-only; integer arguments ``entity`` and ``priority`` (1 to 16). Returns an :ref:`Error<enum_@GlobalScope_Error>`. Changes the weighted service preference for queued gameplay state while preserving waiting lower-priority flows. Baseline creation remains independent of update priority.
+
+\ ``set_peer_replication_budget``: server-only; integer arguments ``peer`` and ``bytes_per_second``. Zero disables the gameplay update subbudget; positive rates must not exceed the existing session byte quota. The token bucket allows a burst of ``max(rate, 4160)`` envelope bytes, so a maximum-sized state can fit. Initial/new membership baselines and teardown bypass this update subbudget, but remain subject to the existing transport quotas. This measures admitted gameplay envelopes, not UDP or retransmission bytes. Returns an :ref:`Error<enum_@GlobalScope_Error>`. Policies expire with the connection generation.
+
+\ ``replication_peer_statistics``: argument ``peer``; returns a server-side dictionary with ``bytes_per_second``, ``available_bytes``, ``sent_updates``, ``sent_bytes``, and ``budget_deferrals``. Missing peers, clients and wrong-thread calls return an empty dictionary. Counts exclude membership creation/removal; deferrals count scheduling attempts that could not admit the next update.
 
 \ ``send_packet``: arguments ``peer``, ``payload`` (:ref:`PackedByteArray<class_PackedByteArray>`), ``channel`` (0 to 3, default 0), and ``delivery`` (2 for reliable ordered, 4 for unreliable unordered, default 2). Payload limits are 4096 and 900 bytes respectively. Returns an :ref:`Error<enum_@GlobalScope_Error>`; the receiver emits :ref:`packet_received<class_EGPNetSession_signal_packet_received>`.
 
