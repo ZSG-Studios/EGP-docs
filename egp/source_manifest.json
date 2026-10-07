@@ -2,7 +2,7 @@
   "class_count": 1105,
   "documentation_generator_sha256": "447055a5625282b6c64331f323780e113210a57e79688df240c6c4a6cd5ccf97",
   "engine_repository": "ZSG-Studios/EGP",
-  "engine_revision": "720879b0fc3ca432b643bc5896316c661feb1428",
+  "engine_revision": "3b4617e86208e9e5d16f92c80720b77705bf8f96",
   "generated_sha256": {
     "classes/class_@gdscript.rst": "6b264fc48ea2b0962ae3a70f53863f50779b9d529c0be1c679d9b0c4fcef8ad6",
     "classes/class_@globalscope.rst": "02b993ec0f010d9c53941021502126a48cb9dd64ca91e5a20c85b31b932d408b",
@@ -1111,17 +1111,17 @@
     "classes/class_zipreader.rst": "37f2d7996c927d58aa025ded46feb86ae7e5f75775ccca0b571b0054315b7244",
     "classes/index.rst": "6dff3667e2bb24b37ad2857cfcd24a24f2dfb5f38d8e2549c19dad8505421973",
     "egp/api_contract.md": "8aa81a391f9e147f3640c882f447943bb3c491d5197bcc0e48f4537b5a07e6d7",
-    "egp/box2d.md": "6228b5eb859d402ae149f3cfb52ed32a1a5ddef66e4ce440dc2a8d602e77af92",
+    "egp/box2d.md": "3776e9803ecee6858bce16a56240f84fd41a248afbf84ea0ecf56b3d5a637f0f",
     "egp/box3d.md": "bd8e389ab12c93180eabd32769611c0dc4738006eeab3de83280e6bdb08c54db",
     "egp/cpp_extensions.md": "1840b51814961f262dc42193ed3dd2860aebbd4aa8cc8027666d1a23665d4126",
     "egp/deterministic_demo.md": "494b22e65e8b625626f8d3c3208d3dabc3be157afa4a48727a592c1b6889f76f",
     "egp/documentation.md": "81ccb6c12a9429da81f452e4b4f25d3183ee824f7c53638b1fe1bdcb60827262",
     "egp/fastbuild.md": "eabd5f270960199e92744cb84f653f9334027cbcedec416e99566d16e2e4bdae",
-    "egp/helper_reference.rst": "d0d6c137bf8806eea22f5e65a4914a1535d2f6273e9a2ee68a37f1f9de91a56a",
+    "egp/helper_reference.rst": "cac1556c4c66e419d0c63f3309f9f002db5032b4cdb77021bc9cb11db5c2a846",
     "egp/network_lab.md": "545752a48185d7e3d70b7c05994f8a153ca7cec32f4aae4d1fe60f856f5afcd5",
     "egp/networking_reference.md": "09ebd4c01b4842092b47fedc656c78cea009c59b50b6669f96f6971d812d59a4",
     "egp/physics_arena.md": "13792888edac97d9f462fef0e18573a13eb30414bd28cdf3653c905edadbb8b9",
-    "egp/superposition.md": "51f25b17c20e800d73e19bd393dde1159467510a89c9d4eea39b28797e77956e"
+    "egp/superposition.md": "68b4a7617f357fc2229756bb5f61252a8bcdcf71774b49efeb63e57684890588"
   },
   "schema_version": 1,
   "source_sha256": {
