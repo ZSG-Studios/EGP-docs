@@ -8,6 +8,110 @@ systems below; qualification applies to the binaries, platforms and fixtures
 identified in the engine's receipts. Build success and API exposure alone do
 not establish runtime behavior or production readiness.
 
+Native xmake qualification
+--------------------------
+
+This documentation follows published engine revision ``36ca84ecbe02``. The
+completed build and runtime receipts below retain their tested revision,
+``ed0e5c443b4d``. The later cleanup removes two empty, unused Mono Python
+package markers; all other tracked source files and build recipes are identical.
+
+At ``ed0e5c443b4d``, the `native CI matrix
+<https://github.com/ZSG-Studios/EGP/actions/runs/37813507787>`__ passes all
+23 jobs across Windows, Linux, macOS, Android, iOS, visionOS and Web. The
+native contracts pass 41 suites and 2,094 checks on Windows, and 35 suites
+and 1,657 checks on Ubuntu. Fourteen jobs complete their native unit suites
+with positive test and assertion
+summaries. The Windows UCRT64 GCC template passes 1,391 cases and 318,582
+assertions. Linux startup controls also verify missing cache directories and
+reject blocked cache initialization rather than reporting an empty suite as
+successful.
+
+The `C++ qualification workflow
+<https://github.com/ZSG-Studios/EGP/actions/runs/37813508100>`__ passes all
+three Windows, Linux and macOS jobs. Each passes 17 native networking cases
+and 124 checks, the engine runtime fixtures, typed C++ API compilation,
+Debug and Release extension builds and exports, and all nine headless editor
+panel stages. The panel checks include deliberate compiler failure, terminal
+control sanitization, wrapped diagnostic navigation, source editing, reload,
+descriptor failure recovery and Release publication.
+
+These desktop CI builds use extension API hash ``23ac1572ca9acc10``. Their
+SDK receipts retain separate platform identities:
+
+.. list-table:: C++ SDKs tested by the desktop CI workflow
+   :header-rows: 1
+   :widths: 20 40 40
+
+   * - Platform
+     - SDK archive hash
+     - SDK source fingerprint
+   * - Windows
+     - ``dbe86aa960d46fcf``
+     - ``c3de068e47edb8fe``
+   * - Linux
+     - ``db58355728d338e4``
+     - ``9c0f7accec4ac86b``
+   * - macOS
+     - ``6a78ee70551efe33``
+     - ``5c6018c44ef38c68``
+
+The same ``ed0e5c443b4d`` revision passes all 18 Windows, Linux and macOS
+Debug and Release profiles in the `networking
+<https://github.com/ZSG-Studios/EGP/actions/runs/37813507360>`__, `Box2D
+<https://github.com/ZSG-Studios/EGP/actions/runs/37813507490>`__ and `Box3D
+<https://github.com/ZSG-Studios/EGP/actions/runs/37813507364>`__ workflows.
+
+At engine revision ``14899a3ce526``, the `native contract jobs
+<https://github.com/ZSG-Studios/EGP/actions/runs/37795548676>`__ pass 39 suites
+and 2,043 checks on Windows, and 33 suites and 1,618 checks on Ubuntu. These
+cover build configuration, generators, platform flags, linking, SDK packaging
+and fixture source selection. Full engine and runtime results have separate
+source and artifact identities.
+
+A clean checkout of ``45f78653c9d7`` passes 41 suites and 2,094 checks on
+Windows. The additional controls exercise standalone build-helper runtime
+isolation and require complete passing native unit-test summaries. The
+``14899a3ce526`` `networking workflow
+<https://github.com/ZSG-Studios/EGP/actions/runs/37795547958>`__ passes all six
+Windows, Linux and macOS Debug and Release profiles.
+
+The later completion-aware delta fixture passes ten isolated cases using the
+qualified ``d606dfac3007`` engine: eight with the original 35 ms latency,
+10 ms jitter and 8% loss, plus two delayed late-peer controls. All 39 check
+statements remain unchanged. The original polling intervals are minimum
+durations; completion has one absolute 28-second deadline within the existing
+30-second process watchdog. This qualifies asynchronous completion, not a
+per-phase latency guarantee or a native protocol change.
+
+The C++ diagnostic correction passes 25 native regular-expression controls
+for source paths with xmake severity prefixes. Fresh standalone Release
+fairness and state-encoding tests pass against the same native core as
+``14899a3ce526``. The current ``ed0e5c443b4d`` native CI tests also pass both
+cases on all three desktop platforms. Earlier failed runs remain retained;
+the later passes do not identify the cause of those intermittent failures.
+
+The Windows Mono editor and both native export templates from
+``d606dfac3007`` pass all three builds. Five metadata commands run successfully
+without managed assemblies present; the managed build then passes with
+.NET SDK 10.0.401. The same artifacts pass all 17 isolated networking and
+physics runtime sections. Exported GDScript, C# and C++ projects pass 27
+language checks, with 15 Box2D and 21 Box3D checks across the editor and matching
+Debug and Release templates. The receipts retain unchanged protocol settings,
+assertions and timing bounds.
+
+That editor's freshly generated typed C# and C++ APIs use extension API hash
+``ed0406e0d8608e91``. Its embedded C++ SDK archive is
+``3c02ccc3b2744596``, with source fingerprint ``5560e10762d7033f``. The matching
+SDK's full cold Debug and Release library builds, normal cache publication,
+headless editor panel, failure recovery and rendered panel captures passed
+against ``acc96949fd91``. The later ``d606dfac3007`` validation verifies the
+same SDK payload and libraries with its fresh editor and API; it does not
+repeat those cold SDK builds or captures.
+
+These bounded results do not establish WAN scale, gameplay performance or
+production readiness.
+
 Published upstream consolidation
 --------------------------------
 
