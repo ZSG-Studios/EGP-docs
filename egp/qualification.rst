@@ -11,7 +11,7 @@ not establish runtime behavior or production readiness.
 Native xmake qualification
 --------------------------
 
-This documentation follows published engine revision ``94799cef115c``, which
+This documentation follows published engine revision ``e31c7e7abb22``, which
 includes the upstream integration through ``65e8d16951d6`` and the later
 Forward+-only renderer changes. Rendered projects require a supported
 RenderingDevice driver: Vulkan, Direct3D 12 or Metal, depending on the
@@ -28,19 +28,35 @@ explicitly unsupported. The retained OpenXR frame synthesis API is also
 unsupported by EGP's Forward+ renderer, even when the XR runtime advertises
 support. No physical visionOS device qualification is implied.
 
-Current native builds, renderer runtime behavior, extension API fingerprints,
-C++ SDKs and matching Mono assemblies require fresh qualification at this
-revision. These gates are pending. Earlier build and runtime receipts do not
-qualify the changed renderer, and no older API or SDK hash is presented as a
-current artifact identity.
+The native contracts, minimal template, Linux Mono editor and Windows
+startup controls below are verified at this revision. The full platform
+matrix and C++ SDK qualification are still pending. Renderer performance and
+physical device support require separate runtime evidence. Earlier receipts
+do not qualify changed renderer behavior, and no older API or SDK hash is
+presented as a current artifact identity.
 
 At this revision, the native Xmake contracts pass 35 suites and 16,332 checks
 on Linux, and 41 suites and 16,742 checks on Windows. The minimal Linux
 template passes 1,150 native test cases and 252,813 assertions, plus its
 startup control. These results are recorded in the `current native workflow
-<https://github.com/ZSG-Studios/EGP-Engine/actions/runs/37847543471>`__. They
+<https://github.com/ZSG-Studios/EGP-Engine/actions/runs/37853288740>`__. They
 cover build contracts and the minimal template; the full engine matrix, C++
-SDK/API and Mono artifact gates remain pending.
+SDK/API gates remain pending.
+
+The current Linux Mono editor job passes 1,420 native cases and 424,745
+assertions, extension JSON compatibility, legacy method loading and project
+export. A typed C# API probe compiles with no warnings or errors. Its managed
+assembly matches the downloaded Mono artifact used for seven metadata
+controls: the removed contact shadow opacity property, accessors and enum
+members are absent, contact shadow blur is 21, and the parameter maxima are
+22. The compatibility policy declares only the intentionally retired
+``WebXRInterface``; unrelated removals remain failures.
+
+The matching Windows editor artifact passes an offscreen startup control:
+project settings load, the Windows display driver creates a native window,
+and the process exits cleanly with no stderr. This uses the dummy rendering
+backend and does not establish graphical performance or physical input
+behavior.
 
 The earlier ``b25aa87b4dbc`` integration removes
 ``Light3D.shadow_contact_shadows_opacity`` and the corresponding Light3D and
