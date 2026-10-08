@@ -76,12 +76,12 @@ after detection in the above example:
         "type": "build_profile"
     }
 
-This file can be passed as a SCons option when :ref:`compiling <doc_compiling_index>`
+This file can be passed as a xmake option when :ref:`compiling <doc_compiling_index>`
 export templates:
 
 ::
 
-    scons target=template_release build_profile=/path/to/profile.gdbuild
+    xmake lua misc/scripts/build_egp.lua <platform> template_release 8 .build/xmake-cache "build_profile=/path/to/profile.gdbuild"
 
 The buildsystem will use this to disable unused classes and reduce binary size as a result.
 

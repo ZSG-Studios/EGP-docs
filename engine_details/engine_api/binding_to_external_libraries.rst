@@ -70,9 +70,8 @@ need to be created:
     register_types.h
     register_types.cpp
 
-.. important::
-    These files must be in the top-level folder of your module (next to your
-    ``SCsub`` and ``config.py`` files) for the module to be registered properly.
+Keep the registration files in the module source directory. Build metadata lives
+in ``build/xmake/recipes/modules/tts/``.
 
 These files should contain the following:
 
@@ -102,16 +101,19 @@ These files should contain the following:
         // Nothing to do here in this example.
     }
 
-Next, you need to create an ``SCsub`` file so the build system compiles
-this module:
+Add a native Lua recipe to compile the module's sources:
 
-.. code-block:: python
-    :caption: godot/modules/tts/SCsub
+.. code-block:: lua
+    :caption: build/xmake/recipes/modules/tts/recipe.lua
 
-    Import('env')
+    function main(graph)
+        local env = graph:use("env")
+        local tts = graph:use("env_modules"):clone()
+        tts:sources(env.modules_sources, "*.cpp")
+    end
 
-    env_tts = env.Clone()
-    env_tts.add_source_files(env.modules_sources, "*.cpp") # Add all cpp files to the build
+Register the module's enable option in ``build/xmake/options.lua`` and provide
+``config.lua`` alongside the recipe, following an existing module's metadata.
 
 You'll need to install the external library on your machine to get the .a library files. See the library's official
 documentation for specific instructions on how to do this for your operating system. We've included the
@@ -153,60 +155,30 @@ can link to them instead by adding them as submodules (from within the modules/t
     use submodules. If your module doesn't get merged in, you can always try to implement
     the external library as a GDExtension.
 
-To add include directories for the compiler to look at you can append it to the
-environment's paths:
+Configure include paths on the module clone and link libraries on the engine
+environment. Resolve paths against ``graph.root`` so the recipe does not depend
+on the caller's working directory:
 
-.. code-block:: python
-    :caption: godot/modules/tts/SCsub
+.. code-block:: lua
+    :caption: build/xmake/recipes/modules/tts/recipe.lua
 
-    # These paths are relative to /modules/tts/
-    env_tts.Append(CPPPATH=["speech_tools/include", "festival/src/include"])
+    function main(graph)
+        local env = graph:use("env")
+        local tts = graph:use("env_modules"):clone()
+        tts:add({CPPPATH = {
+            path.join(graph.root, "modules/tts/speech_tools/include"),
+            path.join(graph.root, "modules/tts/festival/src/include")
+        }})
+        tts:sources(env.modules_sources, "*.cpp")
+        env:add({
+            LIBPATH = {path.join(graph.root, "modules/tts/libpath")},
+            LIBS = {"Festival", "estools", "estbase", "eststring"}
+        })
+    end
 
-    # LIBPATH and LIBS need to be set on the real "env" (not the clone)
-    # to link the specified libraries to the Godot executable.
-
-    # This is an absolute path where your .a libraries reside.
-    # If using a relative path, you must convert it to a
-    # full path using a utility function, such as `Dir('...').abspath`.
-    env.Append(LIBPATH=[Dir('libpath').abspath])
-
-    # Check with the documentation of the external library to see which library
-    # files should be included/linked.
-    env.Append(LIBS=['Festival', 'estools', 'estbase', 'eststring'])
-
-If you want to add custom compiler flags when building your module, you need to clone
-``env`` first, so it won't add those flags to whole Godot build (which can cause errors).
-Example ``SCsub`` with custom flags:
-
-.. code-block:: python
-    :caption: godot/modules/tts/SCsub
-
-    Import('env')
-
-    env_tts = env.Clone()
-    env_tts.add_source_files(env.modules_sources, "*.cpp")
-    # Append CCFLAGS flags for both C and C++ code.
-    env_tts.Append(CCFLAGS=['-O2'])
-    # If you need to, you can:
-    # - Append CFLAGS for C code only.
-    # - Append CXXFLAGS for C++ code only.
-
-The final module should look like this:
-
-.. code-block:: none
-
-    godot/modules/tts/festival/
-    godot/modules/tts/libpath/libestbase.a
-    godot/modules/tts/libpath/libestools.a
-    godot/modules/tts/libpath/libeststring.a
-    godot/modules/tts/libpath/libFestival.a
-    godot/modules/tts/speech_tools/
-    godot/modules/tts/config.py
-    godot/modules/tts/tts.h
-    godot/modules/tts/tts.cpp
-    godot/modules/tts/register_types.h
-    godot/modules/tts/register_types.cpp
-    godot/modules/tts/SCsub
+Library binaries must match the target architecture, compiler and runtime.
+Keep any module-specific compiler flags on the cloned environment; validate
+platform-specific flags before adding them to ``CFLAGS`` or ``CXXFLAGS``.
 
 Using the module
 ----------------

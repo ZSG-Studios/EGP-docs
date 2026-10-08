@@ -10,24 +10,24 @@ C++ SDK. C# projects also require the matching GodotSharp assemblies and package
 Building the editor
 -------------------
 
-Clone the `engine repository <https://github.com/ZSG-Studios/EGP>`__ and
-initialize its pinned C++ SDK dependency:
+Clone the `engine repository <https://github.com/ZSG-Studios/EGP>`__. Its pinned
+C++ SDK sources are included in the repository:
 
 .. code-block:: powershell
 
-   git clone --recurse-submodules https://github.com/ZSG-Studios/EGP.git
+   git clone https://github.com/ZSG-Studios/EGP.git
    cd EGP
    .\misc\scripts\build_egp.ps1 -Setup
-   .\misc\scripts\build_egp.ps1 -Local -Target editor
+   .\misc\scripts\build_egp.ps1 -Target editor
 
 On Windows, install Visual Studio's C++ desktop workload, the Windows SDK
 and the .NET SDK first. The launcher builds the native editor, embeds bindings
 for its actual extension API, then generates and builds managed assemblies.
-See :doc:`fastbuild` for export templates and distributed compilation.
+See :doc:`xmake` for native engine builds and export templates.
 
-For a native editor on another desktop platform, use Godot's inherited
-:ref:`compilation instructions <doc_compiling_index>` and
-``misc/scripts/build_egp_cpp_editor.py`` to embed the exact EGP API.
+For a native editor on another desktop platform, follow the
+:ref:`platform compilation instructions <doc_compiling_index>`. The native xmake
+graph captures the editor's actual extension API and embeds the matching SDK.
 Check the :doc:`qualification` page before relying on a platform or feature.
 
 The current physics backends require single-precision x86_64 or arm64 desktop

@@ -170,7 +170,7 @@ project. These results qualify the selected CI profiles at that revision.
 
 The engine test runner now requires the configured physics backends instead of
 falling back to removed dummy servers. Standalone Box3D executables retain their
-own CMake/CTest targets and are excluded from the engine's doctest source list.
+own xmake/CTest targets and are excluded from the engine's doctest source list.
 The viewport test bodies and their existing assertions remain present.
 
 The hosted Windows editor built from ``0a2186345`` passes all 1,414 unit test

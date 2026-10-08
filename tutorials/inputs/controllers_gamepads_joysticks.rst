@@ -352,7 +352,7 @@ Linux
 
 If you're using a self-compiled engine binary, make sure it was compiled with
 udev support. This is enabled by default, but it is possible to disable udev
-support by specifying ``udev=no`` on the SCons command line. If you're using an
+support by specifying ``udev=no`` on the xmake command line. If you're using an
 engine binary supplied by a Linux distribution, double-check whether it was
 compiled with udev support.
 

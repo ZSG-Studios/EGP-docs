@@ -1,112 +1,41 @@
 .. _doc_configuring_an_ide_rider:
 
-JetBrains Rider
-===============
+Rider
+=====
 
-`JetBrains Rider <https://www.jetbrains.com/rider/>`_ is a commercial
-`JetBrains <https://www.jetbrains.com/>`_ IDE for C++, C# and GDScript that uses the same solution system as Visual Studio.
+These instructions configure the native engine source. For GDScript and C# game
+editing, see :ref:`doc_external_editor` and :ref:`doc_c_sharp_setup_external_editor`.
 
-.. note::
+Prepare a configuration
+-----------------------
 
-    This documentation is for contributing to the game engine, not for using
-    JetBrains Rider as a C# or GDScript editor. To code C# or GDScript in an external editor, see
-    :ref:`the C# guide to configure an external editor <doc_c_sharp_setup_external_editor>`.
+Install the platform compiler and SDK, then build a developer editor and export
+its exact compilation database from the engine root:
 
-Importing the project
----------------------
+.. code-block:: shell
 
-.. tip:: If you already use Visual Studio as your main IDE, you can use the same solution file in Rider.
-         Rider and Visual Studio use the same solution format, so you can switch between the two IDEs without rebuilding the solution file.
-         Debug configurations need to be changed when going from one IDE to another.
+    xmake lua misc/scripts/build_egp.lua windows editor 8 .build/xmake-cache "dev_build=y compiledb=y"
 
-If you are starting from the scratch, please follow :ref:`instructions<doc_compiling_index>`, specifically:
+The ``compiledb=y`` option generates ``compile_commands.json`` through xmake's
+native project exporter. Import that database where the IDE supports it, or
+configure its C++ language service to use the generated compile commands. Select
+the compiler matching the database's target and architecture. Regenerate the
+database when changing native configuration options.
 
-- Install all the dependencies.
-- Figure out the scons command for compiling to target a specific platform.
+Build and debug
+---------------
 
-Provide scons with additional arguments to request a solution file generation:
+Create an external/custom build task with:
 
-- Add ``vsproj=yes dev_build=yes`` to the scons command
+- Program: ``xmake`` or its absolute installed path.
+- Working directory: the engine repository root.
+- Arguments: ``lua misc/scripts/build_egp.lua windows editor 8 .build/xmake-cache "dev_build=y compiledb=y"``.
 
-The ``vsproj`` parameter signals that you want Visual Studio solution generated.
-The ``dev_build`` parameter ensures the debug symbols are included, allowing to e.g. step through code using breakpoints.
+Choose the final executable published under ``bin/`` for the debugger and keep
+its symbols from the same build. Set the working directory to the engine root
+or pass ``--path <game-project>`` when debugging a game. The API bootstrap editor
+is an internal build input and is not the application to debug.
 
-.. note:: Each SCons run only generates the ``.generated.props`` file for a single
-          Solution Configuration. Please run SCons once per target you plan to use:
-
-          .. code-block:: shell
-
-             scons vsproj=yes dev_build=yes target=editor
-             scons vsproj=yes dev_build=yes target=template_debug
-             scons vsproj=yes dev_build=yes target=template_release
-
-- Open the generated ``godot.sln`` in Rider.
-
-.. note:: Ensure that the appropriate Solution configuration is selected on the
-          Rider toolbar. It affects resolve of the SDKs, code analysis, build, run,
-          etc.
-
-Compiling and debugging the project
------------------------------------
-Rider comes with a built-in debugger that can be used to debug the Godot project. You can launch the debugger
-by pressing the **Debug** icon at the top of the screen, this only works for the Project Manager,
-if you want to debug the editor, you need to configure the debugger first.
-
-.. figure:: img/rider_run_debug.webp
-   :align: center
-
-- Click on the **Godot > Edit Configurations** option at the top of the screen.
-
-.. figure:: img/rider_configurations.webp
-   :align: center
-
-- Ensure the following values for the C++ Project Run Configuration:
-
-    - Exe Path : ``$(LocalDebuggerCommand)``
-    - Program Arguments: ``-e --path <path to the Godot project>``
-    - Working Directory: ``$(LocalDebuggerWorkingDirectory)``
-    - Before Launch has a value of "Build Project"
-
-This will tell the executable to debug the specified project without opening the Project Manager.
-Use the root path to the project folder, not ``project.godot`` file path.
-
-.. figure:: img/rider_configurations_changed.webp
-   :align: center
-
-- Finally click on "Apply" and "OK" to save the changes.
-
-- When you press the **Debug** icon at the top of the screen, JetBrains Rider will launch the Godot editor with the debugger attached.
-
-Alternatively you can use **Run > Attach to Process** to attach the debugger to a running Godot instance.
-
-.. figure:: img/rider_attach_to_process.webp
-   :align: center
-
-- You can find the Godot instance by searching for ``godot.editor`` and then clicking ``Attach with LLDB``
-
-.. figure:: img/rider_attach_to_process_dialog.webp
-   :align: center
-
-|
-
-Debug visualizers
------------------
-Debug visualizers customize how complex data structures are displayed during debugging.
-The "natvis" (short for "Native Visualization") files built-in with Godot are automatically used.
-
-.. note:: On macOS and Linux, natvis support requires Rider 2026.2 or later.
-
-Unit testing
-------------
-Leverage Rider :ref:`doctest<doc_unit_testing>` support.
-Please refer to `the instructions <https://github.com/JetBrains/godot-support/wiki/Godot-doctest-Unit-Tests>`_.
-
-Profiling
----------
-Please refer to `the profiling instructions <https://github.com/JetBrains/godot-support/wiki/Profiling-Godot-engine-(native-code)-with-dotTrace-or-JetBrains-Rider>`_.
-
-Please consult the `JetBrains Rider documentation <https://www.jetbrains.com/rider/documentation/>`_ for any specific information about the JetBrains IDE.
-
-Known issues
-------------
-Debugging Windows MinGV build - symbols are not loaded. Reported `RIDER-106816 <https://youtrack.jetbrains.com/issue/RIDER-106816/Upgrade-LLDB-to-actual-version>`_.
+Use a separate native variant cache for different architectures, sanitizers,
+precision, or feature sets. See :ref:`doc_introduction_to_the_buildsystem` for
+native options and :ref:`doc_compiling_with_dotnet` for managed builds.

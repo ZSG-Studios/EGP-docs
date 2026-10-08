@@ -6,96 +6,22 @@ Getting started
 Workflow overview
 -----------------
 
-As a GDExtension, godot-cpp is more complicated to use than :ref:`GDScript <doc_gdscript>` and :ref:`C# <doc_c_sharp>`.
-If you decide to work with it, here's what to expect your workflow to look like:
-
-* Create a new godot-cpp project (from the `template <https://github.com/godotengine/godot-cpp-template>`__, or from scratch, as explained below).
-* Develop your code with your :ref:`favorite IDE <toc-devel-configuring_an_ide>` locally.
-* Build and test your code with the earliest compatible Godot version.
-* Create builds for all platforms you want to support (e.g. using `GitHub Actions <https://github.com/godotengine/godot-cpp-template/blob/main/.github/workflows/make_build.yml>`__).
-* Optional: Publish on the `Godot Asset Store <https://store.godotengine.org/>`__.
-
-Example project
----------------
-
-For your first godot-cpp project, we recommend starting with this guide to understand the technology involved with
-godot-cpp. After you're done, you can use the `godot-cpp template <https://github.com/godotengine/godot-cpp-template>`__,
-which has better coverage of features, such as a GitHub action pipeline and useful ``SConstruct`` boilerplate code.
-However, the template does not explain itself to a high level of detail, which is why we recommend going through this
-guide first.
+The EGP C++ editor tools create and build extensions against the SDK embedded
+in your engine. This keeps generated bindings, method hashes and compatibility
+metadata aligned with the exact engine API.
 
 Setting up the project
 ----------------------
 
-There are a few prerequisites you'll need:
+Install a C++ compiler and xmake 3.1.1. Open your project in EGP, create an
+extension in the C++ panel, and extract its matching SDK for command-line builds.
+Keep that SDK separate from your extension sources. This tutorial uses
+``gdextension_cpp_example/src`` for code, ``project`` for the test game, and an
+absolute SDK path supplied through ``--egp_cpp_sdk``.
 
-- A Godot 4 executable.
-- A C++ compiler.
-- SCons as a build tool.
-- A copy of the `godot-cpp repository <https://github.com/godotengine/godot-cpp>`__.
-
-See also :ref:`Configuring an IDE <toc-devel-configuring_an_ide>`
-and :ref:`Compiling <toc-devel-compiling>` as the build tools are identical
-to the ones you need to compile Godot from source.
-
-You can download the `godot-cpp repository <https://github.com/godotengine/godot-cpp>`__ from GitHub or let Git do the work for you.
-Note that this repository has different branches for different versions
-of Godot. GDExtensions will not work in older versions of Godot (only Godot 4 and up) and vice versa, so make sure you download the correct branch.
-
-.. note::
-    To use `GDExtension <https://godotengine.org/article/introducing-gd-extensions>`__
-    you need to use the godot-cpp branch that matches the version of Godot that you are
-    targeting. For example, if you're targeting Godot 4.1, use the ``4.1`` branch. Throughout
-    this tutorial we use ``4.x``, which will need to be replaced with the version of Godot you
-    are targeting.
-
-    The ``master`` branch is the development branch which is updated regularly
-    to work with Godot's ``master`` branch.
-
-.. warning::
-    GDExtensions targeting an earlier version of Godot should work in later
-    minor versions, but not vice-versa. For example, a GDExtension targeting Godot 4.2
-    should work just fine in Godot 4.3, but one targeting Godot 4.3 won't work in Godot 4.2.
-
-    There is one exception to this: extensions targeting Godot 4.0 will **not** work with
-    Godot 4.1 and later (see :ref:`updating_your_gdextension_for_godot_4_1`).
-
-If you are versioning your project using Git, it is recommended to add it as
-a Git submodule:
-
-.. code-block:: none
-
-    mkdir gdextension_cpp_example
-    cd gdextension_cpp_example
-    git init
-    git submodule add -b 4.x https://github.com/godotengine/godot-cpp
-    cd godot-cpp
-    git submodule update --init
-
-Alternatively, you can also clone it to the project folder:
-
-.. code-block:: none
-
-    mkdir gdextension_cpp_example
-    cd gdextension_cpp_example
-    git clone -b 4.x https://github.com/godotengine/godot-cpp
-
-.. note::
-
-    If you decide to download the repository or clone it into your folder,
-    make sure to keep the folder layout the same as we've setup here. Much of
-    the code we'll be showcasing here assumes the project has this layout.
-
-If you cloned the example from the link specified in the introduction, the
-submodules are not automatically initialized. You will need to execute the
-following commands:
-
-.. code-block:: none
-
-    cd gdextension_cpp_example
-    git submodule update --init
-
-This will initialize the repository in your project folder.
+The generated extension includes ``xmake.lua`` and a ``.gdextension`` descriptor.
+Use the engine's matching SDK rather than an upstream SDK snapshot: fork-specific
+classes and method signatures require matching bindings.
 
 Creating a simple plugin
 ------------------------
@@ -112,8 +38,7 @@ we'll save it as ``main.tscn``. We'll come back to that later.
 Back in the top-level GDExtension module folder, we're also going to create a
 subfolder called ``src`` in which we'll place our source files.
 
-You should now have ``project``, ``godot-cpp``, and ``src``
-directories in your GDExtension module.
+You should now have ``project`` and ``src`` directories in your extension.
 
 Your folder structure should now look like this:
 
@@ -123,7 +48,7 @@ Your folder structure should now look like this:
     |
     +--project/                  # game example/demo to test the extension
     |
-    +--godot-cpp/             # C++ bindings
+    +--sdk/             # C++ bindings
     |
     +--src/                   # source code of the extension we are building
 
@@ -294,38 +219,50 @@ At last, we need the header file for the ``register_types.cpp`` named
 Compiling the plugin
 --------------------
 
-To compile the project we need to define how SCons should compile it
-using an ``SConstruct`` file which references the one in ``godot-cpp``.
-Writing it from scratch is outside the scope of this tutorial, but you can download
-:download:`the SConstruct file we prepared <files/cpp_example/SConstruct>`.
-We'll cover a more customizable, detailed example on how to use these
-build files in a subsequent tutorial.
+Use the matching pre-generated SDK from EGP's editor. Create an ``xmake.lua``
+project using :doc:`the native extension workflow </egp/cpp_extensions>`.
+The tutorial's C++ implementation files remain under ``src/``; configure the
+shared-library basename and output directory to match the descriptor below.
 
-.. note::
+A standalone project can include the SDK directly:
 
-    This ``SConstruct`` file was written to be used with the latest ``godot-cpp``
-    master, you may need to make small changes using it with older versions or
-    refer to the ``SConstruct`` file in the Godot 4.x documentation.
+.. code-block:: lua
 
-Once you've downloaded the ``SConstruct`` file, place it in your GDExtension folder
-structure alongside ``godot-cpp``, ``src``, and ``project``, then run:
+    add_rules("mode.debug", "mode.release")
+    option("egp_cpp_sdk") set_showmenu(true) option_end()
+    local sdk = get_config("egp_cpp_sdk")
+    if sdk then includes(path.join(sdk, "xmake.lua")) end
+    target("extension")
+        set_kind("shared")
+        set_languages("cxx17")
+        if is_plat("windows") then
+            set_runtimes(is_mode("debug") and "MDd" or "MD")
+            set_prefixname("")
+        else
+            set_prefixname("lib")
+        end
+        local platform = is_plat("macosx") and "macos" or get_config("plat")
+        local architecture = get_config("arch") == "x64" and "x86_64" or get_config("arch")
+        local mode = is_mode("debug") and "template_debug" or "template_release"
+        local suffix = is_plat("macosx") and "" or "." .. architecture
+        set_basename("gdexample." .. platform .. "." .. mode .. suffix)
+        set_targetdir("project/bin")
+        add_files("src/*.cpp")
+        add_includedirs("src")
+        add_deps("godot-cpp")
+    target_end()
 
-.. code-block:: bash
+From this extension directory, run:
 
-    scons platform=<platform>
+.. code-block:: shell
 
-You can omit the ``platform`` option if you are compiling for the platform you
-are currently using. The list of available ``platform`` options depends on which
-platform dependencies are set up (use ``platform=list`` to see all available platforms).
-See :ref:`doc_introduction_to_the_buildsystem` for details.
+    xmake f --egp_cpp_sdk=/absolute/matching-sdk -p windows -a x64 -m debug
+    xmake -b extension
 
-You should now be able to find the compiled library in ``project/bin/``.
-
-.. note::
-
-    Here, we've compiled both godot-cpp and our gdexample library as debug
-    builds, which is the default. For optimized builds, you should compile
-    them using the ``target=template_release`` option.
+Choose the actual target platform/architecture and ``release`` mode when building
+another variant. The descriptor's filenames must agree with the shared libraries
+published under ``project/bin``. Test against the matching EGP editor and export
+templates; use the editor's Reload action only at a supported runtime boundary.
 
 Using the GDExtension module
 ----------------------------
@@ -387,7 +324,7 @@ Here is another overview to check the correct file structure:
     |       |
     |       +--gdexample.gdextension
     |
-    +--godot-cpp/             # C++ bindings
+    +--sdk/             # C++ bindings
     |
     +--src/                   # source code of the extension we are building
     |   |
@@ -663,6 +600,6 @@ Next steps
 We hope the above example showed you the basics. You can build upon this example to create full-fledged scripts
 to control nodes in Godot using C++!
 
-Instead of basing your project off the above example setup, we recommend to restart now by cloning the
-`godot-cpp template <https://github.com/godotengine/godot-cpp-template>`__, and base your project off of that.
-It has better coverage of features, such as a GitHub build action and additional useful ``SConstruct`` boilerplate.
+Create further extensions from EGP's C++ panel to keep the native build layout
+and SDK compatibility checks consistent. Extend this example with your own
+nodes, resources and signals, then qualify each target platform independently.

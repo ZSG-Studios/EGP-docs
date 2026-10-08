@@ -10,5 +10,5 @@ Compiling for visionOS
 
 Compiling instructions for visionOS are currently identical to
 :ref:`doc_compiling_for_ios`, except you should replace instances of
-``platform=ios`` with ``platform=visionos`` in the SCons options.
+the ``ios`` platform argument with ``visionos`` in the native launcher command.
 See the linked page for details.

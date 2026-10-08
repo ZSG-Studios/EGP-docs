@@ -184,7 +184,7 @@ having to export the project every time.
 
 See the :ref:`Compiling <toc-devel-compiling>` section for compiling
 instructions for each target platform. You will need to add the ``precision=double``
-SCons option when compiling the editor and export templates.
+xmake option when compiling the editor and export templates.
 
 The resulting binaries will be named with a ``.double`` suffix to distinguish
 them from single-precision binaries (which lack any precision suffix). You can

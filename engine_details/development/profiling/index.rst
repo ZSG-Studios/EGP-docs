@@ -51,7 +51,7 @@ build that includes debugging symbols. Official binaries do not include debuggin
 symbols, since these would make the download size significantly larger.
 
 To get profiling data that best matches the production environment (but with debugging symbols),
-you should compile binaries with the ``production=yes debug_symbols=yes`` SCons options.
+you should compile binaries with the ``production=yes debug_symbols=yes`` xmake options.
 
 It is possible to run a profiler on less optimized builds (e.g. ``target=template_debug`` without LTO),
 but results will naturally be less representative of real world conditions.
@@ -97,7 +97,7 @@ In order to use either of them, you'll need to build the engine from source.
 If you've never done this before, please read
 :ref:`these docs <doc_compiling_index>` for the platform you want to profile on.
 You'll need to perform the same steps here, but with some additional arguments
-for ``scons``.
+for ``xmake lua misc/scripts/build_egp.lua <platform> editor 8 .build/xmake-cache``.
 
 All recommended profilers
 -------------------------

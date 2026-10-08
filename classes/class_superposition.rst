@@ -19,11 +19,11 @@ Inspector configured, server authoritative gameplay property replication.
 Description
 -----------
 
-Add this node under the gameplay target. Set :ref:`session_path<class_Superposition_property_session_path>` to a configured EGPNet node, then select supported target properties using the Replicate checkboxes. The selections create :ref:`SuperpositionProperty<class_SuperpositionProperty>` rules in :ref:`config<class_Superposition_property_config>`. Matching server and client scenes share the configuration. An empty key uses the target's scene path; explicit keys must be unique for their entity kind in a session.
+Replicates selected gameplay properties from the authoritative server. Add below a :ref:`SuperpositionWorld<class_SuperpositionWorld>`, choose the gameplay target, and select Replicate checkboxes in the Inspector. Selections create :ref:`SuperpositionProperty<class_SuperpositionProperty>` resources in :ref:`config<class_Superposition_property_config>`. An explicit :ref:`session_path<class_Superposition_property_session_path>` or :ref:`set_session()<class_Superposition_method_set_session>` also supports existing session owners. Matching peers share the schema. An empty key uses the target scene path; explicit keys must be unique for the entity kind in the session. Spawned scenes receive stable instance keys from :ref:`SuperpositionSpawner<class_SuperpositionSpawner>`.
 
-States are quantized before change detection and transported using the native reliable entity lifecycle. Unchanged states do not generate updates. Late joining and interest re-entry receive the current baseline. This initial version is suitable for low rate gameplay values; high rate physical motion should use the independent unreliable snapshot stream with :ref:`EGPNetSnapshotInterpolator<class_EGPNetSnapshotInterpolator>`. Property smoothing is cosmetic easing and does not implement physics prediction or rollback.
+States are validated and quantized before change detection and use the native reliable entity lifecycle. Unchanged states do not generate updates. Optional :ref:`SuperpositionConfig.delta_replication<class_SuperpositionConfig_property_delta_replication>` sends acknowledgment-dependent byte patches with full-baseline recovery. Use this stream for gameplay values; independently send high-rate physical poses on the unreliable snapshot stream and present them with :ref:`EGPNetSnapshotInterpolator<class_EGPNetSnapshotInterpolator>`. Property easing is cosmetic and does not modify deterministic physics. :ref:`SuperpositionPrediction<class_SuperpositionPrediction>` separately journals complete local simulation state and input reconciliation.
 
-Received envelopes are bounded to 4096 bytes and 32 typed properties, with objects disabled and whole schema validation before setters. Interest filtering is relevance optimization, not a confidentiality boundary: initial entity creation can precede observer filtering. Unspecified observers see the entity. Assign current observer positions explicitly; remove disconnected observers with :ref:`clear_observer()<class_Superposition_method_clear_observer>`.
+Envelopes are bounded to 4096 bytes and 32 typed properties, with object decoding disabled and the whole schema validated before setters. Supported values are Boolean, integer, finite float, String, Vector2, Vector3 and Color. Spatial interest is relevance optimization, not a confidentiality boundary: initial creation may precede observer filtering. Unspecified observers see the entity. Supply current observer positions explicitly and discard disconnected observers. Inspect the read-only Status fields or :ref:`get_statistics()<class_Superposition_method_get_statistics>` for errors.
 
 .. rst-class:: classref-reftable-group
 
@@ -192,7 +192,7 @@ Stable server/client identity. Empty uses the target scene path. Duplicate expli
 - |void| **set_session_path**\ (\ value\: :ref:`NodePath<class_NodePath>`\ )
 - :ref:`NodePath<class_NodePath>` **get_session_path**\ (\ )
 
-Configured EGPNet node exposing its native session.
+Optional node providing get_session() or a session property. With an empty path, discovers the nearest ancestor session provider, normally :ref:`SuperpositionWorld<class_SuperpositionWorld>`. Provider references are refreshed each frame so replacement sessions retire stale bindings.
 
 .. rst-class:: classref-item-separator
 
@@ -226,7 +226,7 @@ Method Descriptions
 
 :ref:`Error<enum_@GlobalScope_Error>` **apply_state**\ (\ bytes\: :ref:`PackedByteArray<class_PackedByteArray>`\ ) :ref:`🔗<class_Superposition_method_apply_state>`
 
-Validates an envelope and applies the selected properties on a replica. Rejects calls when bound to a listening server. This method is not an input RPC.
+Validates the complete bounded envelope before applying selected replica properties. Rejects calls on a listening server; recursive property operations return :ref:`@GlobalScope.ERR_BUSY<class_@GlobalScope_constant_ERR_BUSY>`. If a custom getter or setter destroys/removes the target or component, changes the session/configuration, or invalidates the schema, aborts remaining writes with :ref:`@GlobalScope.ERR_UNAVAILABLE<class_@GlobalScope_constant_ERR_UNAVAILABLE>`. Already invoked setter side effects cannot be rolled back. This method is not an input RPC.
 
 .. rst-class:: classref-item-separator
 
@@ -238,7 +238,7 @@ Validates an envelope and applies the selected properties on a replica. Rejects 
 
 :ref:`PackedByteArray<class_PackedByteArray>` **capture_state**\ (\ ) :ref:`🔗<class_Superposition_method_capture_state>`
 
-Produces a bounded quantized protocol envelope or an empty array on validation failure.
+Produces a bounded quantized protocol envelope. Returns an empty array for invalid values, recursive property operations, or a getter that invalidates the target, session or schema during capture. Custom property callbacks must keep gameplay side effects separate from serialization.
 
 .. rst-class:: classref-item-separator
 
@@ -322,7 +322,7 @@ Sets a finite observer position for spatial interest. At most 64 observers are s
 
 |void| **set_session**\ (\ session\: :ref:`EGPNetSession<class_EGPNetSession>`\ ) :ref:`🔗<class_Superposition_method_set_session>`
 
-Binds an already configured session. Retires a previously owned server entity before rebinding. Poll the session through your existing EGPNet node.
+Explicitly binds a native session, retiring any previously owned entity. A nonnull assignment takes precedence over automatic providers, even when it equals the currently discovered session. Target or schema changes preserve this binding mode. Assign null to resume provider discovery; changing :ref:`session_path<class_Superposition_property_session_path>` also clears the explicit binding.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
 .. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`

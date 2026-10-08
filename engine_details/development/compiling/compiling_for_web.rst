@@ -16,13 +16,12 @@ Requirements
 To compile export templates for the Web, the following is required:
 
 - `Emscripten 6.0.1+ <https://emscripten.org>`__.
-- `Python 3.10+ <https://www.python.org/>`__.
-- `SCons 4.4+ <https://scons.org/pages/download.html>`__ build system.
+- xmake 3.1.1 build system.
 
 .. seealso:: To get the Godot source code for compiling, see
              :ref:`doc_getting_source`.
 
-             For a general overview of SCons usage for Godot, see
+             For a general overview of xmake usage for Godot, see
              :ref:`doc_introduction_to_the_buildsystem`.
 
 Building export templates
@@ -33,13 +32,13 @@ usually configured by the Emscripten SDK, e.g. when invoking ``emsdk activate``
 and ``source ./emsdk_env.sh``/``emsdk_env.bat``.
 
 Open a terminal and navigate to the root directory of the engine source code.
-Then instruct SCons to build the Web platform. Specify ``target`` as
+Then instruct xmake to build the Web platform. Specify ``target`` as
 either ``template_release`` for a release build or ``template_debug`` for a debug build:
 
 ::
 
-    scons platform=web target=template_release
-    scons platform=web target=template_debug
+    xmake lua misc/scripts/build_egp.lua web template_release 8 .build/xmake-cache
+    xmake lua misc/scripts/build_egp.lua web template_debug 8 .build/xmake-cache
 
 By default, the :ref:`JavaScriptBridge singleton <doc_web_javascript_bridge>` will be built
 into the engine. Official export templates also have the JavaScript singleton
@@ -48,16 +47,16 @@ enabled. Since ``eval()`` calls can be a security concern, the
 
 ::
 
-    scons platform=web target=template_release javascript_eval=no
-    scons platform=web target=template_debug javascript_eval=no
+    xmake lua misc/scripts/build_egp.lua web template_release 8 .build/xmake-cache "javascript_eval=no"
+    xmake lua misc/scripts/build_egp.lua web template_debug 8 .build/xmake-cache "javascript_eval=no"
 
 By default, WebWorker threads support is enabled. To disable it and only use a single thread,
 the ``threads`` option can be used to build the web template without threads support:
 
 ::
 
-    scons platform=web target=template_release threads=no
-    scons platform=web target=template_debug threads=no
+    xmake lua misc/scripts/build_egp.lua web template_release 8 .build/xmake-cache "threads=no"
+    xmake lua misc/scripts/build_egp.lua web template_debug 8 .build/xmake-cache "threads=no"
 
 The engine will now be compiled to WebAssembly by Emscripten. Once finished,
 the resulting file will be placed in the ``bin`` subdirectory. Its name is
@@ -89,8 +88,8 @@ to enable GDExtension support:
 
 ::
 
-    scons platform=web dlink_enabled=yes target=template_release
-    scons platform=web dlink_enabled=yes target=template_debug
+    xmake lua misc/scripts/build_egp.lua web template_release 8 .build/xmake-cache "dlink_enabled=yes"
+    xmake lua misc/scripts/build_egp.lua web template_debug 8 .build/xmake-cache "dlink_enabled=yes"
 
 Once finished, the resulting file will be placed in the ``bin`` subdirectory.
 Its name will have ``_dlink`` added.
@@ -112,7 +111,7 @@ over the native build. You can build the editor with:
 
 ::
 
-    scons platform=web target=editor
+    xmake lua misc/scripts/build_egp.lua web editor 8 .build/xmake-cache
 
 Once finished, the resulting file will be placed in the ``bin`` subdirectory.
 Its name will be ``godot.web.editor.wasm32.zip``. You can upload the

@@ -120,8 +120,7 @@ then run it with the ``--dump-extension-api`` flag:
 .. code-block:: shell
 
     git switch master
-    scons
-    godot --dump-extension-api
+    xmake lua misc/scripts/build_egp.lua <platform> editor 8 .build/xmake-cache
 
 This will create a file named ``extension_api.json`` in your current directory. Switch to your feature branch, recompile Godot,
 and then run it with the ``--validate-extension-api`` flag followed by the path to the ``extension_api.json`` file you just generated:
@@ -129,8 +128,7 @@ and then run it with the ``--validate-extension-api`` flag followed by the path 
 .. code-block:: shell
 
     git switch my-feature-branch
-    scons
-    godot --validate-extension-api /path/to/extension_api.json
+    xmake lua misc/scripts/build_egp.lua <platform> editor 8 .build/xmake-cache
 
 This will generate some lines starting with ``Validate extension JSON`` like so:
 

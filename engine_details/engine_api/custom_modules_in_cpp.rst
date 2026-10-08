@@ -15,7 +15,7 @@ Modules are located in the ``modules/`` subdirectory of the build system.
 By default, dozens of modules are enabled, such as GDScript (which, yes,
 is not part of the base engine), GridMap support, a regular expressions
 module, and others. As many new modules as desired can be
-created and combined. The SCons build system will take care of it
+created and combined. The xmake build system will take care of it
 transparently.
 
 What for?
@@ -120,7 +120,7 @@ need to be created:
 
 .. important::
     These files must be in the top-level folder of your module (next to your
-    ``SCsub`` and ``config.py`` files) for the module to be registered properly.
+    Lua source-selection and configuration recipes) for the module to be registered properly.
 
 These files should contain the following:
 
@@ -155,83 +155,40 @@ These files should contain the following:
        // Nothing to do here in this example.
     }
 
-Next, we need to create an ``SCsub`` file so the build system compiles
-this module:
+Add the module's Lua source-selection recipe under
+``build/xmake/recipes/modules/summator/recipe.lua``:
 
-.. code-block:: python
-    :caption: godot/modules/summator/SCsub
+.. code-block:: lua
 
-    # SCsub
+    function main(graph)
+        local env = graph:use("env")
+        local module_env = graph:use("env_modules"):clone()
+        module_env:sources(env.modules_sources, "*.cpp")
+    end
 
-    Import('env')
+Keep module-specific flags and include directories on ``module_env``:
 
-    env.add_source_files(env.modules_sources, "*.cpp") # Add all cpp files to the build
+.. code-block:: lua
 
-With multiple sources, you can also add each file individually to a Python
-string list:
+    module_env:add({CPPPATH = {"mylib/include"}, CPPDEFINES = {"MY_FEATURE"}})
 
-.. code-block:: python
+Add ``build/xmake/recipes/modules/summator/config.lua``:
 
-    src_list = ["summator.cpp", "other.cpp", "etc.cpp"]
-    env.add_source_files(env.modules_sources, src_list)
+.. code-block:: lua
 
-This allows for powerful possibilities using Python to construct the file list
-using loops and logic statements. Look at some modules that ship with Godot by
-default for examples.
+    function can_build(env, platform)
+        return true
+    end
 
-To add include directories for the compiler to look at you can append it to the
-environment's paths:
+    function configure(env)
+    end
 
-.. code-block:: python
-
-    env.Append(CPPPATH=["mylib/include"]) # this is a relative path
-    env.Append(CPPPATH=["#myotherlib/include"]) # this is an 'absolute' path
-
-If you want to add custom compiler flags when building your module, you need to clone
-``env`` first, so it won't add those flags to whole Godot build (which can cause errors).
-Example ``SCsub`` with custom flags:
-
-.. code-block:: python
-    :caption: godot/modules/summator/SCsub
-
-    Import('env')
-
-    module_env = env.Clone()
-    module_env.add_source_files(env.modules_sources, "*.cpp")
-    # Append CCFLAGS flags for both C and C++ code.
-    module_env.Append(CCFLAGS=['-O2'])
-    # If you need to, you can:
-    # - Append CFLAGS for C code only.
-    # - Append CXXFLAGS for C++ code only.
-
-And finally, the configuration file for the module, this is a
-Python script that must be named ``config.py``:
-
-.. code-block:: python
-    :caption: godot/modules/summator/config.py
-
-    # config.py
-
-    def can_build(env, platform):
-        return True
-
-    def configure(env):
-        pass
-
-The module is asked if it's OK to build for the specific platform (in
-this case, ``True`` means it will build for every platform).
-
-And that's it. Hope it was not too complex! Your module should look like
-this:
-
-.. code-block:: none
-
-    godot/modules/summator/config.py
-    godot/modules/summator/summator.h
-    godot/modules/summator/summator.cpp
-    godot/modules/summator/register_types.h
-    godot/modules/summator/register_types.cpp
-    godot/modules/summator/SCsub
+Declare ``module_summator_enabled`` in ``build/xmake/options.lua`` and follow
+the existing module option defaults. The graph uses the configuration to select
+platform support and dependencies, then compiles the recipe's sources into the
+module library. The module source folder contains the C++ implementation and
+``register_types.h``/``register_types.cpp``; Lua metadata lives beside the other
+native recipes. New external module locations require graph registration.
 
 You can then zip it and share the module with everyone else. When
 building for every platform (instructions in the previous sections),
@@ -296,23 +253,21 @@ take our "summator" module and move it to the engine's parent directory:
     mkdir ../modules
     mv modules/summator ../modules
 
-Compile the engine with our module by providing ``custom_modules`` build option
-which accepts a comma-separated list of directory paths containing custom C++
-modules, similar to the following:
+For an external module, put ``config.lua`` and ``recipe.lua`` beside its
+``register_types.h`` and source files. The configuration must implement
+``can_build(env, platform)`` and ``configure(env)``. Duplicate module names and
+missing native metadata are rejected during configuration.
+
+Pass one directory or a comma-separated list to the native launcher:
 
 .. code-block:: shell
 
-    scons custom_modules=../modules
+    xmake lua misc/scripts/build_egp.lua <platform> editor 8 .build/xmake-cache "custom_modules=../modules"
 
-The build system shall detect all modules under the ``../modules`` directory
-and compile them accordingly, including our "summator" module.
-
-.. warning::
-
-    Any path passed to ``custom_modules`` will be converted to an absolute path
-    internally as a way to distinguish between custom and built-in modules. It
-    means that things like generating module documentation may rely on a
-    specific path structure on your machine.
+The graph discovers native module configurations directly under the supplied
+directory. Use ``custom_modules_recursive=y`` for nested directories. Paths are
+resolved relative to the engine root. Keep documentation and include paths
+relative to the external module's declared recipe context.
 
 .. seealso::
 
@@ -406,17 +361,17 @@ There are several steps in order to setup custom docs for the module:
 1. Make a new directory in the root of the module. The directory name can be
    anything, but we'll be using the ``doc_classes`` name throughout this section.
 
-2. Now, we need to edit ``config.py``, add the following snippet:
+2. Now, we need to edit ``config.lua``, add the following snippet:
 
-   .. code-block:: python
+   .. code-block:: lua
 
-        def get_doc_path():
+        function get_doc_path()
             return "doc_classes"
+        end
 
-        def get_doc_classes():
-            return [
-                "Summator",
-            ]
+        function get_doc_classes()
+            return {"Summator"}
+        end
 
 The ``get_doc_path()`` function is used by the build system to determine
 the location of the docs. In this case, they will be located in the
@@ -546,7 +501,7 @@ The procedure is the following:
 
     } // namespace TestSummator
 
-4. Compile the engine with ``scons tests=yes``, and run the tests with the
+4. Compile the engine with ``xmake lua misc/scripts/build_egp.lua <platform> editor 8 .build/xmake-cache "tests=yes"``, and run the tests with the
    following command:
 
 .. code-block:: console
@@ -576,13 +531,8 @@ Once you've created your icon(s), proceed with the following steps:
 3. Recompile the engine and run the editor. Now the icon(s) will appear in
    editor's interface where appropriate.
 
-If you'd like to store your icons somewhere else within your module,
-add the following code snippet to ``config.py`` to override the default path:
-
-   .. code-block:: python
-
-       def get_icons_path():
-           return "path/to/icons"
+Keep module icons in the module's ``icons/`` directory so the native metadata
+graph can discover them.
 
 Summing up
 ----------

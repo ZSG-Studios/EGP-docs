@@ -23,7 +23,7 @@ time of writing) using Git:
 
 This will create a ``tracy`` directory - you can place this anywhere.
 
-Next, build the release templates for your platform using ``scons``, but adding
+Next, build the release templates for your platform using ``xmake lua misc/scripts/build_egp.lua <platform> editor 8 .build/xmake-cache``, but adding
 the ``profiler=tracy profiler_path=path/to/tracy`` arguments with the real path
 to the ``tracy`` directory, as well as ``debug_symbols=yes`` to allow Tracy's
 sampling features to work.
@@ -39,7 +39,7 @@ For example, to build release templates for Windows:
 
 .. code-block:: shell
 
-    scons platform=windows target=template_release debug_symbols=yes profiler=tracy profiler_path=path/to/tracy
+    xmake lua misc/scripts/build_egp.lua windows template_release 8 .build/xmake-cache "debug_symbols=yes profiler=tracy profiler_path=path/to/tracy"
 
 Get the Tracy "server"
 ----------------------
@@ -59,25 +59,13 @@ source yourself.
     If you do use a pre-built binary, be sure to use the same version that
     you used when building Godot.
 
-Build the Tracy server from source
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Install the matching Tracy profiler
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In order to build Tracy, you'll need to install ``cmake``, which can be
-downloaded from the `CMake website <https://cmake.org/download/>`_, or
-possibly installed via a package manager (like ``brew`` or ``nix``).
-
-The full instructions for building Tracy from source can be found in the
-`Tracy manual <https://github.com/wolfpld/tracy/releases/latest/download/tracy.pdf>`_,
-but here is the TL;DR:
-
-.. code-block:: shell
-
-    # On Linux, Tracy uses Wayland by default, so if you use X11 add -DLEGACY=1
-    cmake -B profiler/build -S profiler -DCMAKE_BUILD_TYPE=Release
-    cmake --build profiler/build --config Release --parallel
-
-This will place the binary at ``tracy/profiler/build/tracy-profiler`` or
-``tracy/profiler/build/tracy-profiler.exe`` (on Windows).
+Use a Tracy profiler distribution compatible with the client version bundled
+in EGP. Keep the profiler and engine client versions matched, then launch the
+profiler executable to receive or inspect captures. The profiler is an external
+tool; it does not replace EGP's native xmake engine build.
 
 Record a trace
 --------------

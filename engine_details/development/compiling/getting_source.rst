@@ -8,7 +8,7 @@ Getting the source
 Downloading the Godot source code
 ---------------------------------
 
-Before :ref:`getting into the SCons build system <doc_introduction_to_the_buildsystem>`
+Before :ref:`getting into the xmake build system <doc_introduction_to_the_buildsystem>`
 and compiling Godot, you need to actually download the Godot source code.
 
 The source code is available on `GitHub <https://github.com/godotengine/godot>`__

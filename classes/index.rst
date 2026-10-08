@@ -275,6 +275,9 @@ Nodes
     class_subviewport
     class_subviewportcontainer
     class_superposition
+    class_superpositionrpc
+    class_superpositionspawner
+    class_superpositionworld
     class_tabbar
     class_tabcontainer
     class_textedit
@@ -601,6 +604,8 @@ Resources
     class_styleboxtexture
     class_superpositionconfig
     class_superpositionproperty
+    class_superpositionrpcmethod
+    class_superpositionscene
     class_syntaxhighlighter
     class_systemfont
     class_textmesh
@@ -1063,6 +1068,7 @@ Other objects
     class_streampeertls
     class_streampeeruds
     class_subtweentweener
+    class_superpositionprediction
     class_surfacetool
     class_tcpserver
     class_textline

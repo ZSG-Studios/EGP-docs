@@ -27,7 +27,7 @@ tests are not compiled as part of the engine by default:
 
 .. code-block:: shell
 
-    scons tests=yes
+    xmake lua misc/scripts/build_egp.lua <platform> editor 8 .build/xmake-cache "tests=yes"
 
 Once the build is done, run the tests with a ``--test`` command-line option:
 
@@ -48,7 +48,7 @@ arguments for doctest.
 
 .. note::
 
-    Tests are compiled automatically if you use the ``dev_mode=yes`` SCons option.
+    Tests are compiled automatically if you use the ``dev_mode=yes`` xmake option.
     ``dev_mode=yes`` is recommended if you plan on contributing to the engine
     development as it will automatically treat compilation warnings as errors.
     The continuous integration system will fail if any compilation warnings are

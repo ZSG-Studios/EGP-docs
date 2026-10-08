@@ -26,8 +26,7 @@ Requirements
 
 For compiling under Windows, Linux or macOS, the following is required:
 
-- `Python 3.9+ <https://www.python.org/downloads/>`_.
-- `SCons 4.4+ <https://scons.org/pages/download.html>`_ build system.
+- xmake 3.1.1 build system.
 - Android SDK
 
    - To install the Android SDK, follow the steps `here <https://docs.godotengine.org/en/stable/tutorials/export/exporting_for_android.html>`_.
@@ -42,7 +41,7 @@ For compiling under Windows, Linux or macOS, the following is required:
 .. seealso:: To get the Godot source code for compiling, see
              :ref:`doc_getting_source`.
 
-             For a general overview of SCons usage for Godot, see
+             For a general overview of xmake usage for Godot, see
              :ref:`doc_introduction_to_the_buildsystem`.
 
 .. _doc_android_setting_up_the_buildsystem:
@@ -66,7 +65,7 @@ Setting up the buildsystem
    **restart your terminal** to apply the changes. If you are using
    an IDE with an integrated terminal, you need to restart the IDE.
 
--  Run ``scons platform=android``. If this fails, go back and check the steps.
+-  Run ``xmake lua misc/scripts/build_egp.lua android editor 8 .build/xmake-cache``. If this fails, go back and check the steps.
    If you completed the setup correctly, the NDK will begin downloading.
    If you are trying to compile GDExtension, you need to first compile
    the engine to download the NDK, then you can compile GDExtension.
@@ -80,22 +79,22 @@ and the Gradle build template (``android_source.zip``).
 As Google requires all APKs to include ARMv8 (64-bit) libraries since August 2019,
 the commands below build templates containing both ARMv7 and ARMv8 libraries.
 
-Compiling the standard export templates is done by calling SCons from the Godot
+Compiling the standard export templates is done by calling xmake from the Godot
 root directory with the following arguments:
 
 -  Release template (used when exporting with **Debugging Enabled** unchecked)
 
 ::
 
-    scons platform=android target=template_release arch=arm32
-    scons platform=android target=template_release arch=arm64 generate_android_binaries=yes
+    xmake lua misc/scripts/build_egp.lua android template_release 8 .build/xmake-cache "arch=arm32"
+    xmake lua misc/scripts/build_egp.lua android template_release 8 .build/xmake-cache "arch=arm64 generate_android_binaries=yes"
 
 -  Debug template (used when exporting with **Debugging Enabled** checked)
 
 ::
 
-    scons platform=android target=template_debug arch=arm32
-    scons platform=android target=template_debug arch=arm64 generate_android_binaries=yes
+    xmake lua misc/scripts/build_egp.lua android template_debug 8 .build/xmake-cache "arch=arm32"
+    xmake lua misc/scripts/build_egp.lua android template_debug 8 .build/xmake-cache "arch=arm64 generate_android_binaries=yes"
 
 The resulting templates will be located under the ``bin`` directory:
 
@@ -107,9 +106,9 @@ The resulting templates will be located under the ``bin`` directory:
 
    - If you are changing the list of architectures you're building, remember to add ``generate_android_binaries=yes`` to the *last* architecture you're building, so that the template files are generated after the build.
 
-   - To enable dev build (for use when troubleshooting) in the generated templates, add the ``dev_build=yes`` parameters to the SCons command.
+   - To enable dev build (for use when troubleshooting) in the generated templates, add the ``dev_build=yes`` parameters to the xmake command.
 
-   - To include debug symbols in the generated templates, add the ``debug_symbols=yes`` parameters to the SCons command.
+   - To include debug symbols in the generated templates, add the ``debug_symbols=yes`` parameters to the xmake command.
 
        - Note that you can include ``separate_debug_symbols=yes`` to generate the debug symbols in a separate ``*-native-debug-symbols.zip`` file.
 
@@ -121,17 +120,17 @@ The resulting templates will be located under the ``bin`` directory:
 Adding support for x86 devices
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-If you also want to include support for x86 and x86_64 devices, run the SCons
+If you also want to include support for x86 and x86_64 devices, run the xmake
 command a third and fourth time with the ``arch=x86_32``, and
 ``arch=x86_64`` arguments before building the APK with Gradle. For
 example, for the release template:
 
 ::
 
-    scons platform=android target=template_release arch=arm32
-    scons platform=android target=template_release arch=arm64
-    scons platform=android target=template_release arch=x86_32
-    scons platform=android target=template_release arch=x86_64 generate_android_binaries=yes
+    xmake lua misc/scripts/build_egp.lua android template_release 8 .build/xmake-cache "arch=arm32"
+    xmake lua misc/scripts/build_egp.lua android template_release 8 .build/xmake-cache "arch=arm64"
+    xmake lua misc/scripts/build_egp.lua android template_release 8 .build/xmake-cache "arch=x86_32"
+    xmake lua misc/scripts/build_egp.lua android template_release 8 .build/xmake-cache "arch=x86_64 generate_android_binaries=yes"
 
 This will create template binaries that work on all platforms.
 The final binary size of exported projects will depend on the platforms you choose
@@ -174,7 +173,7 @@ with their respective names. The templates folder can be located in:
 -  macOS: ``$HOME/Library/Application Support/Godot/export_templates/<version>/``
 
 ``<version>`` is of the form ``major.minor[.patch].status`` using values from
-``version.py`` in your Godot source repository (e.g. ``4.1.3.stable`` or ``4.2.dev``).
+``version.lua`` in your engine source repository (e.g. ``4.8.dev``).
 You also need to write this same version string to a ``version.txt`` file located
 next to your export templates.
 
@@ -194,15 +193,15 @@ referenced.
 Building the Godot editor
 -------------------------
 
-Compiling the editor is done by calling SCons from the Godot
+Compiling the editor is done by calling xmake from the Godot
 root directory with the following arguments:
 
 ::
 
-   scons platform=android arch=arm32 production=yes target=editor
-   scons platform=android arch=arm64 production=yes target=editor
-   scons platform=android arch=x86_32 production=yes target=editor
-   scons platform=android arch=x86_64 production=yes target=editor generate_android_binaries=yes
+   xmake lua misc/scripts/build_egp.lua android editor 8 .build/xmake-cache "arch=arm32 production=yes"
+   xmake lua misc/scripts/build_egp.lua android editor 8 .build/xmake-cache "arch=arm64 production=yes"
+   xmake lua misc/scripts/build_egp.lua android editor 8 .build/xmake-cache "arch=x86_32 production=yes"
+   xmake lua misc/scripts/build_egp.lua android editor 8 .build/xmake-cache "arch=x86_64 production=yes generate_android_binaries=yes"
 
 - You can add the ``dev_build=yes`` parameter to generate a dev build of the Godot editor.
 
@@ -242,11 +241,11 @@ Open up a Terminal/Command Prompt and run the following commands from the root d
 Troubleshooting
 ---------------
 
-Platform doesn't appear in SCons
+Platform doesn't appear in xmake
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Double-check that you've set the ``ANDROID_HOME``
-environment variable. This is required for the platform to appear in SCons'
+environment variable. This is required for the platform to appear in xmake'
 list of detected platforms.
 See :ref:`Setting up the buildsystem <doc_android_setting_up_the_buildsystem>`
 for more information.

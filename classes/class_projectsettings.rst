@@ -11508,7 +11508,7 @@ Supported values are:
 
 - ``opengl3_es``, OpenGL ES 3.0 on Linux/BSD.
 
-\ **Note:** The availability of these options depends on whether the engine was compiled with support for them (determined by SCons options ``opengl3`` and ``angle_libs``).
+\ **Note:** The availability of these options depends on whether the engine was compiled with support for them (determined by build options ``opengl3`` and ``angle_libs``).
 
 \ **Note:** The actual rendering driver may be automatically changed by the engine as a result of a fallback, or a user-specified command line argument. To get the actual rendering driver that is used at runtime, use :ref:`RenderingServer.get_current_rendering_driver_name()<class_RenderingServer_method_get_current_rendering_driver_name>` instead of reading this project setting's value.
 
@@ -12676,7 +12676,7 @@ Supported values are:
 
 - ``d3d12``, Direct3D 12 (supported on Windows).
 
-\ **Note:** The availability of these options depends on whether the engine was compiled with support for them (determined by SCons options ``vulkan``, ``metal``, and ``d3d12``).
+\ **Note:** The availability of these options depends on whether the engine was compiled with support for them (determined by build options ``vulkan``, ``metal``, and ``d3d12``).
 
 \ **Note:** If a given platform has no registered drivers, it can fall back to the Compatibility renderer (OpenGL 3) if :ref:`rendering/rendering_device/fallback_to_opengl3<class_ProjectSettings_property_rendering/rendering_device/fallback_to_opengl3>` is enabled. This fallback happens automatically for the Web platform regardless of that property.
 

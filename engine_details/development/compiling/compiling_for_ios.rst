@@ -13,8 +13,7 @@ Compiling for iOS
 Requirements
 ------------
 
-- `Python 3.9+ <https://www.python.org/downloads/macos/>`_.
-- `SCons 4.4+ <https://scons.org/pages/download.html>`_ build system.
+- xmake 3.1.1 build system.
 - `Xcode <https://apps.apple.com/us/app/xcode/id497799835>`_.
     - Launch Xcode once and install iOS support. If you have already launched
       Xcode and need to install iOS support, go to *Xcode -> Settings... -> Platforms*.
@@ -24,27 +23,19 @@ Requirements
    from the `MoltenVK SDK <https://github.com/KhronosGroup/MoltenVK#fetching-moltenvk-source-code>`__.
 
 .. note:: If you have `Homebrew <https://brew.sh/>`_ installed, you can easily
-          install SCons using the following command:
+          install xmake using the following command:
 
           ::
 
-              brew install scons
+              brew install xmake
 
           Installing Homebrew will also fetch the Command Line Tools
           for Xcode automatically if you don't have them already.
 
-          Similarly, if you have `MacPorts <https://www.macports.org/>`_
-          installed, you can easily install SCons using the
-          following command:
-
-          ::
-
-              sudo port install scons
-
 .. seealso:: To get the Godot source code for compiling, see
              :ref:`doc_getting_source`.
 
-             For a general overview of SCons usage for Godot, see
+             For a general overview of xmake usage for Godot, see
              :ref:`doc_introduction_to_the_buildsystem`.
 
 Compiling
@@ -55,13 +46,13 @@ the following to compile a debug build:
 
 ::
 
-    scons platform=ios target=template_debug generate_bundle=yes
+    xmake lua misc/scripts/build_egp.lua ios template_debug 8 .build/xmake-cache "generate_bundle=yes"
 
 To compile a release build:
 
 ::
 
-    scons platform=ios target=template_release generate_bundle=yes
+    xmake lua misc/scripts/build_egp.lua ios template_release 8 .build/xmake-cache "generate_bundle=yes"
 
 To create an Xcode project like in the official builds, you need to use the
 template located in ``misc/dist/apple_embedded_xcode``. The release and debug libraries
@@ -69,7 +60,7 @@ should be placed in ``libgodot.ios.debug.xcframework`` and
 ``libgodot.ios.release.xcframework`` respectively. Camera module libraries
 should be placed in ``libgodot_camera.ios.debug.xcframework`` and
 ``libgodot_camera.ios.release.xcframework``. This process can be automated
-by using the ``generate_bundle=yes`` option on the *last* SCons command used to
+by using the ``generate_bundle=yes`` option on the *last* xmake command used to
 build export templates (so that all binaries can be included).
 
 The MoltenVK static ``.xcframework`` folder must also be placed in the

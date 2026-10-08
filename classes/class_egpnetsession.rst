@@ -193,9 +193,11 @@ Performs a low-level operation. All operations belong to the creating thread. Be
 
 \ ``set_replication_priority``: server-only; integer arguments ``entity`` and ``priority`` (1 to 16). Returns an :ref:`Error<enum_@GlobalScope_Error>`. Changes the weighted service preference for queued gameplay state while preserving waiting lower-priority flows. Baseline creation remains independent of update priority.
 
+\ ``set_entity_delta_replication``: server-only; exact integer ``entity`` and Boolean ``enabled`` arguments. Opts one native entity into acknowledged-baseline byte patches. Default is full-state replication. A baseline advances only after acknowledgment, so skipped/coalesced updates never create a chained dependency on an unsent revision. Join, reconnect, interest re-entry, changed state length, nonbeneficial patches and exhausted retained snapshot capacity use a full frame. Acknowledged and pending snapshots are bounded to 1 MiB per peer; disabling the policy releases retained snapshots. Returns an :ref:`Error<enum_@GlobalScope_Error>`.
+
 \ ``set_peer_replication_budget``: server-only; integer arguments ``peer`` and ``bytes_per_second``. Zero disables the gameplay update subbudget; positive rates must not exceed the existing session byte quota. The token bucket allows a burst of ``max(rate, 4160)`` envelope bytes, so a maximum-sized state can fit. Initial/new membership baselines and teardown bypass this update subbudget, but remain subject to the existing transport quotas. This measures admitted gameplay envelopes, not UDP or retransmission bytes. Returns an :ref:`Error<enum_@GlobalScope_Error>`. Policies expire with the connection generation.
 
-\ ``replication_peer_statistics``: argument ``peer``; returns a server-side dictionary with ``bytes_per_second``, ``available_bytes``, ``sent_updates``, ``sent_bytes``, and ``budget_deferrals``. Missing peers, clients and wrong-thread calls return an empty dictionary. Counts exclude membership creation/removal; deferrals count scheduling attempts that could not admit the next update.
+\ ``replication_peer_statistics``: argument ``peer``; returns a server-side dictionary with ``bytes_per_second``, ``available_bytes``, ``sent_updates``, ``sent_bytes``, and ``budget_deferrals``, plus ``delta_updates``, ``delta_bytes_saved``, ``full_state_updates`` and ``baseline_bytes``. The latter counts retained acknowledged and pending full snapshots; delta/full counters include membership baselines, while sent_updates and sent_bytes exclude membership creation. Missing peers, clients and wrong-thread calls return an empty dictionary. Counts exclude membership creation/removal; deferrals count scheduling attempts that could not admit the next update.
 
 \ ``send_packet``: arguments ``peer``, ``payload`` (:ref:`PackedByteArray<class_PackedByteArray>`), ``channel`` (0 to 3, default 0), and ``delivery`` (2 for reliable ordered, 4 for unreliable unordered, default 2). Payload limits are 4096 and 900 bytes respectively. Returns an :ref:`Error<enum_@GlobalScope_Error>`; the receiver emits :ref:`packet_received<class_EGPNetSession_signal_packet_received>`.
 
@@ -219,7 +221,7 @@ Accepted ``options`` keys and defaults:
 
 \ ``tick_rate = 60``: integer from 1 to 240. ``max_players = 32``: integer from 1 to 64. ``max_entities = 1024``: integer from 1 to 4096.
 
-\ ``messages_per_second = 1000``: integer of at least 32. ``bytes_per_second = 4194304``: integer of at least 8192. These bound each peer's outgoing admission and incoming delivery in separate one-second windows. Outgoing quota exhaustion returns :ref:`@GlobalScope.ERR_BUSY<class_@GlobalScope_constant_ERR_BUSY>`; valid incoming bursts wait in bounded queues and channels advance in rounds. Byte charges estimate payload plus 64 bytes for entity states or 32 bytes for other messages, excluding UDP headers, fragmentation and retransmissions. Incoming delivery quotas do not cap all transport decoding work or replace gameplay abuse policies. Malformed or unauthorized envelopes still cause rejection; sustained valid excess traffic can exhaust transport queues.
+\ ``messages_per_second = 1000``: integer of at least 32. ``bytes_per_second = 4194304``: integer of at least 8192. These bound each peer's outgoing admission and incoming delivery in separate one-second windows. Outgoing quota exhaustion returns :ref:`@GlobalScope.ERR_BUSY<class_@GlobalScope_constant_ERR_BUSY>`; valid incoming bursts wait in bounded queues and channels advance in rounds. Byte charges estimate payload plus 64 bytes for full entity states, 72 bytes for delta states or 32 bytes for other messages, excluding UDP headers, fragmentation and retransmissions. Incoming delivery quotas do not cap all transport decoding work or replace gameplay abuse policies. Malformed or unauthorized envelopes still cause rejection; sustained valid excess traffic can exhaust transport queues.
 
 \ ``timeout_seconds = 5``: integer from 1 to 60. ``token_lifetime_seconds = 30``: integer from 1 to 120.
 
@@ -263,7 +265,7 @@ Starts an asynchronous secure connection using the 2048-byte encrypted connect `
 
 :ref:`String<class_String>` **get_fingerprint**\ (\ ) |const| :ref:`🔗<class_EGPNetSession_method_get_fingerprint>`
 
-Returns the protocol compatibility fingerprint incorporating the native wire version, game protocol, simulation fingerprint, and tick rate. Returns an empty string before configuration. Matching fingerprints are necessary for admission and do not establish deterministic gameplay or physics equivalence.
+Returns the protocol compatibility fingerprint incorporating native wire version 3 (acknowledged entity deltas), game protocol, simulation fingerprint, and tick rate. Returns an empty string before configuration. Matching fingerprints are necessary for admission and do not establish deterministic gameplay or physics equivalence.
 
 .. rst-class:: classref-item-separator
 

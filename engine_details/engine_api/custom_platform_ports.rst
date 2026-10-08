@@ -68,7 +68,7 @@ Required features of a platform port
 
 At the very least, a platform port must have methods from the :ref:`class_OS`
 singleton implemented to be buildable and usable for headless operation.
-A ``logo.svg`` (32×32) vector image must also be present within the platform
+A ``logo.svg`` (32Ã—32) vector image must also be present within the platform
 folder. This logo is displayed in the Export dialog for each export preset
 targeting the platform in question.
 
@@ -86,28 +86,19 @@ for reference.
     `Windows port <https://github.com/godotengine/godot/blob/master/platform/windows/os_windows.cpp>`__
     as a reference.
 
-**detect.py file**
+Native platform build policy
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-A ``detect.py`` file must be created within the platform's folder with all
-methods implemented. This file is required for SCons to detect the platform as a
-valid option for compiling. See the
-`detect.py file <https://github.com/godotengine/godot/blob/master/platform/linuxbsd/detect.py>`__
-for the Linux/\*BSD platform as an example.
+EGP platform configuration uses Lua metadata in ``build/xmake/platforms/`` and
+source recipes in ``build/xmake/recipes/platform/``. Use the Linux/BSD or Windows
+policy as a reference for compiler selection, SDK checks, definitions, system
+libraries and architecture restrictions. Register the new platform in the
+engine graph and native launcher; adding a source directory alone does not
+make it a supported build target.
 
-All methods should be implemented within ``detect.py`` as follows:
-
-- ``is_active()``: Can be used to temporarily disable building for a platform.
-  This should generally always return ``True``.
-- ``get_name()``: Returns the platform's user-visible name as a string.
-- ``can_build()``: Return ``True`` if the host system is able to build for the
-  target platform, ``False`` otherwise. Do not put slow checks here, as this is
-  queried when the list of platforms is requested by the user. Use
-  ``configure()`` for extensive dependency checks instead.
-- ``get_opts()``: Returns the list of SCons build options that can be defined by
-  the user for this platform.
-- ``get_flags()``: Returns the list of overridden SCons flags for this platform.
-- ``configure()``: Perform build configuration, such as selecting compiler
-  options depending on SCons options chosen.
+A port needs both native compilation and runtime qualification. Verify generated
+headers, resource embedding, editor and template linkage, packaging and debugger
+startup before advertising the platform to projects.
 
 Optional features of a platform port
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -154,7 +145,7 @@ games.
   export template binary directly by renaming it to match the PCK file. See the
   `EditorExportPlatform header <https://github.com/godotengine/godot/blob/master/editor/export/editor_export_platform.h>`__
   for reference.
-  ``run_icon.svg`` (16×16) should be present within the platform folder if
+  ``run_icon.svg`` (16Ã—16) should be present within the platform folder if
   :ref:`doc_one-click_deploy` is implemented for the target platform. This icon
   is displayed at the top of the editor when one-click deploy is set up for the
   target platform.
@@ -181,7 +172,7 @@ Platform ports are designed to be as self-contained as possible. Most of the
 code can be kept within a single folder located in ``platform/``. Like
 :ref:`doc_custom_modules_in_cpp`, this allows for streamlining the build process
 by making it possible to ``git clone`` a platform folder within a Godot repository
-clone's ``platform/`` folder, then run ``scons platform=<name>``. No other steps are
+clone's ``platform/`` folder, then run ``xmake lua misc/scripts/build_egp.lua <name> editor 8 .build/xmake-cache``. No other steps are
 necessary for building, unless third-party platform-specific dependencies need
 to be installed first.
 

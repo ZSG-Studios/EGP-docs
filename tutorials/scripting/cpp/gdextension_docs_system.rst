@@ -30,19 +30,17 @@ After running this command, you should find XML files for your registered GDExte
 folder in your GDExtension project. You could edit them now, but for this tutorial, the empty files will suffice.
 
 Now that you have XML files containing your documentation, the next step is to include them in your GDExtension binary.
-Assuming you are using SCons as your build system, you can add the following lines to your ``SConstruct`` file. If you
-are using `godot-cpp-template <https://github.com/godotengine/godot-cpp-template>`__, your file already contains code
-for this.
+Use the native extension helper to compile documentation alongside the
+extension. Run this from the engine checkout, with absolute project and SDK paths:
 
-.. code-block:: py
+.. code-block:: shell
 
-    if env["target"] in ["editor", "template_debug"]:
-        doc_data = env.GodotCPPDocData("src/gen/doc_data.gen.cpp", source=Glob("doc_classes/*.xml"))
-        sources.append(doc_data)
+    xmake lua misc/scripts/build_egp_cpp_extension.lua --project <extension> --sdk <matching-sdk> --build-dir <build-cache> --output-dir <project-bin> --name <library-basename> --mode debug --doc-classes <doc_classes> --compressor <egp_compress>
 
-The ``if`` statement avoids adding the documentation to release builds of your GDExtension, where it is not needed.
-SCons then loads all the XML files inside the ``doc_classes`` directory, and appends the resulting targets
-to the ``sources`` array, to be included in your GDExtension build.
+``egp_compress`` is the native host tool produced by the engine's xmake graph.
+The SDK's Lua documentation generator reads the XML, emits a compressed C++
+registration unit, and adds it to the real extension target. Documentation is
+included for debug builds; release builds omit this editor-only data.
 
 After building, launch your Godot project again. You can open the documentation of one of your extension
 classes either using :kbd:`Ctrl + Click` on a class name in the script editor, or inside by finding it in the Editor
@@ -67,12 +65,12 @@ The most important step is to build reStructuredText (``.rst``) files from your 
 
 .. code-block:: shell
 
-    # You need a version.py file, so download it first.
-    curl -sSLO https://raw.githubusercontent.com/godotengine/godot/refs/heads/master/version.py
+    # Run the documentation converter from the matching EGP engine checkout.
+    python3 <engine>/doc/tools/make_rst.py -o "docs/classes" -l "en" doc_classes
 
-    # Edit version.py according to your project before proceeding.
-    # Then, run the rst generator. You'll need to have Python installed for this command to work.
-    curl -sSL https://raw.githubusercontent.com/godotengine/godot/master/doc/tools/make_rst.py | python3 - -o "docs/classes" -l "en" doc_classes
+The converter reads ``version.lua`` from that engine checkout. Python is needed
+for this website documentation step; native engine and extension builds use
+xmake's Lua generators.
 
 Your ``.rst`` files will now be available in ``docs/classes/``. From here, you can use
 any documentation builder that supports reStructuredText syntax to create a website from them.

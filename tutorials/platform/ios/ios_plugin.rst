@@ -60,7 +60,7 @@ To build an iOS plugin:
 
     - Download the Godot engine source from the `Godot GitHub page <https://github.com/godotengine/godot>`_.
 
-    - Run SCons to generate headers. You can learn the process by reading :ref:`doc_compiling_for_ios`. You don't have to wait for compilation to complete to move forward as headers are generated before the engine starts to compile.
+    - Run xmake to generate headers. You can learn the process by reading :ref:`doc_compiling_for_ios`. You don't have to wait for compilation to complete to move forward as headers are generated before the engine starts to compile.
 
     - You should use the same header files for iOS plugins and for the iOS export template.
 
@@ -70,7 +70,7 @@ To build an iOS plugin:
 
     -DPTRCALL_ENABLED -DDEBUG_ENABLED -DDEBUG_MEMORY_ALLOC -DDISABLE_FORCED_INLINE -DTYPED_METHOD_BIND
 
-4. Add the required logic for your plugin and build your library to generate a ``.a`` file. You will probably need to build both ``debug`` and ``release`` target ``.a`` files. Depending on your needs, pick either or both. If you need both debug and release ``.a`` files, their name should match following pattern: ``[PluginName].[TargetType].a``. You can also build the static library with your SCons configuration.
+4. Add the required logic for your plugin and build your library to generate a ``.a`` file. You will probably need to build both ``debug`` and ``release`` target ``.a`` files. Depending on your needs, pick either or both. If you need both debug and release ``.a`` files, their name should match following pattern: ``[PluginName].[TargetType].a``. You can also build the static library with your xmake configuration.
 
 5. The iOS plugin system also supports ``.xcframework`` files. To generate one, you can use a command such as:
 

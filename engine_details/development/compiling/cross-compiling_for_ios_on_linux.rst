@@ -91,7 +91,7 @@ Build cctools:
     cd cctools-port/usage_examples/ios_toolchain
     ./build.sh /path/iPhoneOS${IOS_SDK_VERSION}.sdk.tar.xz arm64
 
-Copy the tools to a nicer place. Note that the SCons scripts for
+Copy the tools to a nicer place. Note that the xmake scripts for
 building will look under ``usr/bin`` inside the directory you provide
 for the toolchain binaries, so you must copy to such subdirectory, akin
 to the following commands:
@@ -110,7 +110,7 @@ Compiling Godot for iPhone
 Once you've done the above steps, you should keep two things in your
 environment: the built toolchain and the iPhoneOS SDK directory. Those
 can stay anywhere you want since you have to provide their paths to the
-SCons build command.
+xmake build command.
 
 For the iPhone platform to be detected, you need the ``OSXCROSS_IOS``
 environment variable defined to anything.
@@ -119,9 +119,9 @@ environment variable defined to anything.
 
     export OSXCROSS_IOS="anything"
 
-Now you can compile for iPhone using SCons like the standard Godot
+Now you can compile for iPhone using xmake like the standard Godot
 way, with some additional arguments to provide the correct paths:
 
 ::
 
-    scons platform=ios arch=arm64 target=template_release IOS_SDK_PATH="/path/to/iPhoneSDK" IOS_TOOLCHAIN_PATH="/path/to/iostoolchain" ios_triple="arm-apple-darwin11-"
+    xmake lua misc/scripts/build_egp.lua ios template_release 8 .build/xmake-cache "arch=arm64 IOS_SDK_PATH=/path/to/iPhoneSDK IOS_TOOLCHAIN_PATH=/path/to/iostoolchain ios_triple=arm-apple-darwin11-"

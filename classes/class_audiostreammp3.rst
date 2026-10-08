@@ -21,7 +21,7 @@ Description
 
 MP3 audio stream driver. See :ref:`data<class_AudioStreamMP3_property_data>` if you want to load an MP3 file at run-time. More info can be found in :ref:`ResourceImporterMP3<class_ResourceImporterMP3>`.
 
-\ **Note:** This class can optionally support legacy MP1 and MP2 formats, provided that the engine is compiled with the ``minimp3_extra_formats=yes`` SCons option. These extra formats are not enabled by default.
+\ **Note:** This class can optionally support legacy MP1 and MP2 formats, provided that the engine is compiled with the ``minimp3_extra_formats=yes`` build option. These extra formats are not enabled by default.
 
 .. rst-class:: classref-introduction-group
 

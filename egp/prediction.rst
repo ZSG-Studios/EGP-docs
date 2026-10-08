@@ -3,6 +3,96 @@
 Prediction and reconciliation
 =============================
 
+Superposition deterministic prediction
+--------------------------------------
+
+:ref:`SuperpositionPrediction <class_SuperpositionPrediction>` is the native
+prediction journal shared by GDScript, C# and C++. It predicts complete local
+world inputs and reconciles authoritative input/hash frames. Corrections restore
+a trusted snapshot captured locally and replay the affected ticks. Peers never
+supply solver snapshots to restore.
+
+Supply ``capture() -> PackedByteArray``, ``restore(local_snapshot) -> Error``,
+``simulate(tick, input, replay) -> Error`` and ``state_hash() -> String`` callbacks.
+The hash contains 16 hexadecimal digits. Simulation applies complete canonical
+input and steps the world exactly once; suppress presentation effects in replay.
+
+After matching genesis and simulation profiles, configure the journal and predict
+consecutive ticks. Call ``accept(frames, epoch)`` with consecutive
+``{tick, input, hash}`` dictionaries from the authority. Input differences trigger
+replay. Hash mismatch or callback failure disables prediction and emits
+``resync_required``. Establish fresh trusted local genesis, then defer
+``reset(new_epoch, initial_tick)`` until the current callback completes.
+
+.. tabs::
+
+   .. code-tab:: gdscript GDScript
+
+      var journal := SuperpositionPrediction.new()
+      var error := journal.configure(capture, restore, simulate, state_hash)
+      # Check each returned Error before advancing gameplay.
+      error = journal.predict(tick, canonical_input)
+      error = journal.accept(authoritative_frames, epoch)
+
+   .. code-tab:: csharp C#
+
+      using Godot;
+      using Godot.Collections;
+
+      using var journal = new SuperpositionPrediction();
+      Error error = journal.Configure(capture, restore, simulate, stateHash);
+      // Callbacks are Godot.Callable values; check each returned Error.
+      error = journal.Predict(tick, canonicalInput);
+      error = journal.Accept(authoritativeFrames, epoch);
+
+   .. code-tab:: cpp C++
+
+      #include <godot_cpp/classes/superposition_prediction.hpp>
+
+      godot::Ref<godot::SuperpositionPrediction> journal;
+      journal.instantiate();
+      godot::Error error = journal->configure(capture, restore, simulate, state_hash);
+      // Check each returned Error before advancing gameplay.
+      error = journal->predict(tick, canonical_input);
+      error = journal->accept(authoritative_frames, epoch);
+
+Default bounds are 128 pending ticks, 1 MiB per snapshot and 32 MiB total history.
+Maximums are 512 ticks and 64 MiB total. Capacity pressure refuses prediction
+before invoking simulation. Epochs increase when the authority restores a
+checkpoint or changes the simulation timeline. Old frames cannot correct a new
+epoch. Statistics expose history, corrections, replayed ticks and hash failures.
+Methods belong to the creating thread and reject recursive mutations.
+
+Inspector Box3D adapter
+-----------------------
+
+Install the helpers with ``python misc/scripts/install_egp_net_helpers.py
+--project /path/to/game``, then attach
+``addons/egp_net/egp_net_box3d_prediction.gd`` to a node. Set the explicit world
+provider, predicted body and optional presentation paths. The default World
+Provider and Hook Node paths both select the parent (``..``). The provider must
+expose the local ``EGPBox3DWorld`` through the configured World Property, which
+defaults to ``world``. A parent
+:ref:`SuperpositionWorld <class_SuperpositionWorld>` provides the session
+automatically; create and supply the Box3D world separately. The adapter
+delegates its history to the native journal.
+
+Implement ``input_for_tick(tick) -> PackedByteArray`` and
+``apply_input(world, tick, input, replay) -> Error``. The latter queues commands;
+the adapter owns the fixed step. Its standard six-byte schema contains two
+signed axes and a 16-bit button mask. Custom fixed-size schemas require a
+validation callback. The server validates identity, input bounds and tick
+windows, chooses canonical world input and publishes input/hash frames.
+
+All interacting bodies, lifecycle events, random state and relevant gameplay
+must share the same deterministic state/input contract. Predicting one body
+against a different collision world cannot guarantee matching hashes. Reconnects
+and history expiry require fresh trusted genesis. See :doc:`superposition` for
+the session, spawning and RPC workflow.
+
+Snapshot-state prediction helper
+--------------------------------
+
 ``EGPNetPrediction`` stores bounded local input/state history and replays it
 after an authoritative correction. C# ``NetPrediction`` and C++ ``Prediction``
 execute the same implementation. The game supplies complete state capture,
@@ -116,7 +206,8 @@ authoritative wire-state design.
 
 An explicit Box3D world can supply trusted local solver snapshots, but complete
 game state includes authoritative lifecycle, gameplay data and application
-acknowledgments too. Scene-level physics rollback, lag-compensated hit tests and
-collision correction convergence remain separate integration work.
+acknowledgments too. Lag-compensated hit tests and collision correction
+convergence remain separate gameplay integration work. The native deterministic
+journal supports complete-world replay with matching genesis and canonical input.
 
 See :doc:`explicit_world`, :doc:`helper_reference` and :doc:`networking_reference`.

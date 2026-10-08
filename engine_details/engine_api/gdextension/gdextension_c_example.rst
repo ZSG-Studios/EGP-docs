@@ -25,7 +25,7 @@ There are a few prerequisites you'll need:
 
 - a Godot 4.2 (or later) executable,
 - a C compiler,
-- SCons as a build tool.
+- xmake as a build tool.
 
 Since this is using the API directly, there's no need to use the
 `godot-cpp repository <https://github.com/godotengine/godot-cpp>`__.
@@ -76,48 +76,27 @@ Buildsystem
 -----------
 
 Using a buildsystem makes our life a lot easier when dealing with C code. For
-the sake of convenience, we'll use SCons since it's the same as what Godot
+the sake of convenience, we'll use xmake since it's the same as what Godot
 itself uses.
 
-The following ``SConstruct`` file is a simple one that will build your extension
-to the current platform that you are using, be it Linux, macOS, or Windows. This
-will be a non-optimized build for debugging purposes. It also assumes a 64-bit
-build, which is relevant for some parts of the example code. Making other build
-types and cross-compilation is out of the scope of this tutorial. Save this file
-to the root folder.
+Create ``xmake.lua`` at the extension root. This target builds the C example
+and publishes the shared library to the existing descriptor's directory:
 
-.. code-block:: python
+.. code-block:: lua
 
-    #!/bin/env python
-    from SCons.Script import Environment
-    from os import path
-    import sys
+    add_rules("mode.debug", "mode.release")
+    target("extension")
+        set_kind("shared")
+        set_basename("gdexample")
+        set_languages("c11")
+        set_targetdir("project/bin")
+        add_includedirs("src")
+        add_files("src/*.c")
+    target_end()
 
-    env = Environment()
-
-    # Set the target path and name.
-    target_path = "project/bin/"
-    target_name = "libgdexample"
-
-    # Set the compiler and flags.
-    env.Append(CPPPATH=["src"])  # Add the src folder to the include path.
-    env.Append(CFLAGS=["-O0", "-g"])  # Make it a debug build.
-
-    # Use Clang on macOS.
-    if sys.platform == "darwin":
-        env["CC"] = "clang"
-
-    # Add all C files in "src" folder as sources.
-    sources = env.Glob("src/*.c")
-
-    # Create a shared library.
-    library = env.SharedLibrary(
-        target=path.join(target_path, target_name),
-        source=sources,
-    )
-
-    # Set the library as the default target.
-    env.Default(library)
+Configure the host architecture and build with ``xmake f -m debug`` followed
+by ``xmake -b extension``. Keep the descriptor's library filename consistent
+with the platform's shared-library prefix and suffix.
 
 This will include all C files in the ``src`` folder, so we don't need to change
 this file when adding new source files.
@@ -508,7 +487,7 @@ As mentioned in the comment, the sizes can be found in the
 ``extension_api.json`` file that we generated earlier, under the
 ``builtin_class_sizes`` property. The ``BUILD_32`` is never defined, as we
 assume we are working with a 64-bits build of Godot here, but if you need it you
-can add ``env.Append(CPPDEFINES=["BUILD_32"])`` to your ``SConstruct`` file.
+can add ``add_defines("BUILD_32")`` to your ``xmake.lua`` file.
 
 The ``// Types.`` comment foreshadows that we'll be adding more types to this
 file. Let's leave that for later.
@@ -644,7 +623,7 @@ this warning this time.
 
 If you didn't compile the extension yet, it is the time to do it now. To do
 that, open a terminal or command prompt, navigate to the root folder of the
-extension and run ``scons``. It should compile quickly since the extension is
+extension and run ``xmake lua misc/scripts/build_egp.lua <platform> editor 8 .build/xmake-cache``. It should compile quickly since the extension is
 very simple.
 
 Then, create a file called ``gdexample.gdextension`` inside the ``project`` folder.
@@ -1411,7 +1390,7 @@ With this done, we can extend the ``gdexample_class_bind_methods()`` function in
         bind_property("GDExample", "speed", GDEXTENSION_VARIANT_TYPE_FLOAT, "get_speed", "set_speed");
     }
 
-If you build the extension with ``scons``, you'll see in the Godot editor the new property shown
+If you build the extension with ``xmake lua misc/scripts/build_egp.lua <platform> editor 8 .build/xmake-cache``, you'll see in the Godot editor the new property shown
 not only on the documentation page for the custom class but also in the Inspector dock when the
 ``GDExample`` node is selected.
 

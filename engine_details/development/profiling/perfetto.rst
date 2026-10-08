@@ -59,7 +59,7 @@ the latest version of the Perfetto SDK under ``thirdparty/perfetto``:
     python misc/scripts/install_perfetto.py
 
 Next, build the Android debug or release templates for your architecture using
-``scons`` (per :ref:`Compiling for Android <doc_compiling_for_android>`), but
+``xmake lua misc/scripts/build_egp.lua <platform> editor 8 .build/xmake-cache`` (per :ref:`Compiling for Android <doc_compiling_for_android>`), but
 adding the ``profiler=perfetto`` argument.
 
 .. note::
@@ -74,7 +74,7 @@ For example, to build the release templates for arm64:
 
 .. code-block:: shell
 
-    scons platform=android target=template_release arch=arm64 generate_android_binaries=yes profiler=perfetto
+    xmake lua misc/scripts/build_egp.lua android template_release 8 .build/xmake-cache "arch=arm64 generate_android_binaries=yes profiler=perfetto"
 
 .. _doc_profiler_perfetto_configuration:
 

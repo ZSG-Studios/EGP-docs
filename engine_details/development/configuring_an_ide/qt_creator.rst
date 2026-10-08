@@ -3,105 +3,39 @@
 Qt Creator
 ==========
 
-`Qt Creator <https://doc.qt.io/qtcreator/index.html>`_ is a free, open source IDE for all desktop platforms.
+These instructions configure the native engine source. For GDScript and C# game
+editing, see :ref:`doc_external_editor` and :ref:`doc_c_sharp_setup_external_editor`.
 
-Importing the project
----------------------
+Prepare a configuration
+-----------------------
 
-- From the Qt Creator's main screen select **New Project > Import Project > Import Existing Project**.
+Install the platform compiler and SDK, then build a developer editor and export
+its exact compilation database from the engine root:
 
-.. figure:: img/qtcreator-new-project.png
-   :figclass: figure-w480
-   :align: center
+.. code-block:: shell
 
-- Under **Location** select the Godot root folder.
+    xmake lua misc/scripts/build_egp.lua linuxbsd editor 8 .build/xmake-cache "dev_build=y compiledb=y"
 
-.. figure:: img/qtcreator-set-project-path.png
-   :figclass: figure-w480
-   :align: center
+The ``compiledb=y`` option generates ``compile_commands.json`` through xmake's
+native project exporter. Import that database where the IDE supports it, or
+configure its C++ language service to use the generated compile commands. Select
+the compiler matching the database's target and architecture. Regenerate the
+database when changing native configuration options.
 
-- Next, you can choose which folders and files will be visible to the project.
-  While C/C++ files are added automatically, other extensions can be potentially useful:
-  ``*.glsl`` for shader files, ``*.py`` for buildsystem files,
-  ``*.java`` for Android platform development, ``*.mm`` for macOS platform development.
+Build and debug
+---------------
 
-.. figure:: img/qtcreator-apply-import-filter.png
-   :figclass: figure-w480
-   :align: center
+Create an external/custom build task with:
 
-.. note:: You can change this configuration later by right-clicking on your project
-          and selecting the **Edit Files...** option.
+- Program: ``xmake`` or its absolute installed path.
+- Working directory: the engine repository root.
+- Arguments: ``lua misc/scripts/build_egp.lua linuxbsd editor 8 .build/xmake-cache "dev_build=y compiledb=y"``.
 
-          .. figure:: img/qtcreator-edit-files-menu.png
-            :figclass: figure-w480
-            :align: center
+Choose the final executable published under ``bin/`` for the debugger and keep
+its symbols from the same build. Set the working directory to the engine root
+or pass ``--path <game-project>`` when debugging a game. The API bootstrap editor
+is an internal build input and is not the application to debug.
 
-
-- Finish the import.
-- Open the ``project_name.includes`` file and add a line containing ``.`` to it
-  to correctly enable the code completion.
-
-.. figure:: img/qtcreator-project-name-includes.png
-   :figclass: figure-w480
-   :align: center
-
-- From the left-side menu select **Projects** and open the **Build** tab.
-- Delete the predefined ``make`` build step.
-
-.. figure:: img/qtcreator-projects-build.png
-   :figclass: figure-w480
-   :align: center
-
-- Click **Add Build Step > Custom Process Step** to add a new build step
-  with the following settings:
-
-  +-----------+------------------------------------------------------------------------------+
-  | Command   | **scons**                                                                    |
-  +-----------+------------------------------------------------------------------------------+
-  | Arguments | See :ref:`doc_introduction_to_the_buildsystem` for a full list of arguments. |
-  +-----------+------------------------------------------------------------------------------+
-
-.. figure:: img/qtcreator-set-scons-command.webp
-   :figclass: figure-w480
-   :align: center
-
-.. note:: If the build fails with ``Could not start process "scons"``, it can mean that ``scons``
-          is not in your ``PATH`` environment variable. In this case, you'll have to specify the
-          full path to the SCons binary.
-
-Debugging the project
----------------------
-
-- From the left-side menu select **Projects** and open the **Run** tab.
-- Under **Executable** specify the path to your executable located in
-  the ``<Godot root directory>/bin`` folder. The name depends on your build configuration,
-  e.g. ``godot.linuxbsd.editor.dev.x86_64`` for 64-bit LinuxBSD platform with
-  ``platform=editor`` and ``dev_build=yes``.
-  You can use ``%{buildDir}`` to reference the project root, e.g., ``%{buildDir}/bin/godot.linuxbsd.editor.dev.x86_64``.
-- If you want to run a specific project, specify its root folder under **Working directory**.
-- If you want to run the editor, add ``-e`` to the **Command line arguments** field.
-
-.. figure:: img/qtcreator-run-command.png
-   :figclass: figure-w480
-   :align: center
-
-To learn more about command line arguments, refer to the
-:ref:`command line tutorial <doc_command_line_tutorial>`.
-
-Code style configuration
-------------------------
-
-Developers must follow the project's `code style <https://contributing.godotengine.org/en/latest/development/engine/cpp_usage_guidelines.html>`__
-and the IDE should help them follow it.
-
-- Open **Preferences > C++ > Code Style**.
-- Set the **Formatting mode** to **Full formatting** to instruct Qt Creator to use the ``.clang-format`` file supplied in Godot's root folder:
-
-.. figure:: img/qtcreator-options-cpp.webp
-   :figclass: figure-w480
-   :align: center
-
-- Specify when you want ``clang-format`` to run (either while typing or when you saving the file). It is recommended to enable formatting on save at least.
-
-If you run into any issues, ask for help in one of
-`Godot's community channels <https://godotengine.org/community>`__.
+Use a separate native variant cache for different architectures, sanitizers,
+precision, or feature sets. See :ref:`doc_introduction_to_the_buildsystem` for
+native options and :ref:`doc_compiling_with_dotnet` for managed builds.

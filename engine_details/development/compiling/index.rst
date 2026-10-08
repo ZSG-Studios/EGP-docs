@@ -8,15 +8,14 @@ Building from source
 .. highlight:: shell
 
 Godot prides itself on being very easy to build, by C++ project standards.
-:ref:`Godot uses the SCons build system <doc_faq_why_scons>`, and after the initial
+:ref:`Godot uses the xmake build system <doc_faq_why_xmake>`, and after the initial
 setup compiling the engine for your current platform should be as easy as running:
 
 ::
 
-    scons
+    xmake lua misc/scripts/build_egp.lua <platform> editor 8 .build/xmake-cache
 
-But you will probably need to use at least some of the available options to configure
-the build to match your specific needs, be it a custom engine fork, a lightweight build
+Configure the build to match your project, whether you need a custom engine fork, a lightweight build
 stripped of extra modules, or an executable targeting engine development.
 
 The articles below should help you navigate the configuration options available, as well as

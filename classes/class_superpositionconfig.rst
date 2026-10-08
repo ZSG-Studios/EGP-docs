@@ -19,7 +19,7 @@ Reusable Superposition property schema and update policy.
 Description
 -----------
 
-Save as a resource shared by matching server/client scenes. Select supported target properties through :ref:`Superposition<class_Superposition>` checkboxes, then edit type, quantization and smoothing on each rule. This initial reliable gameplay state slice provides change suppression and update scheduling rather than a general prediction or RPC framework.
+Reusable property schema and reliable gameplay update policy for :ref:`Superposition<class_Superposition>`. Replicate checkboxes create typed rules automatically; save the resource and use matching configurations on all peers. Quantization runs before dirty detection, scheduling and optional byte-delta encoding. Prediction, scene lifecycle and RPCs are supplied by separate Superposition components.
 
 .. rst-class:: classref-reftable-group
 
@@ -29,19 +29,21 @@ Properties
 .. table::
    :widths: auto
 
-   +----------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+----------+
-   | :ref:`int<class_int>`                                                                  | :ref:`capture_mode<class_SuperpositionConfig_property_capture_mode>`               | ``0``    |
-   +----------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+----------+
-   | :ref:`float<class_float>`                                                              | :ref:`interest_hysteresis<class_SuperpositionConfig_property_interest_hysteresis>` | ``2.0``  |
-   +----------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+----------+
-   | :ref:`float<class_float>`                                                              | :ref:`interest_radius<class_SuperpositionConfig_property_interest_radius>`         | ``0.0``  |
-   +----------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+----------+
-   | :ref:`int<class_int>`                                                                  | :ref:`priority<class_SuperpositionConfig_property_priority>`                       | ``1``    |
-   +----------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+----------+
-   | :ref:`Array<class_Array>`\[:ref:`SuperpositionProperty<class_SuperpositionProperty>`\] | :ref:`properties<class_SuperpositionConfig_property_properties>`                   | ``[]``   |
-   +----------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+----------+
-   | :ref:`float<class_float>`                                                              | :ref:`update_rate<class_SuperpositionConfig_property_update_rate>`                 | ``10.0`` |
-   +----------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+----------+
+   +----------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+-----------+
+   | :ref:`int<class_int>`                                                                  | :ref:`capture_mode<class_SuperpositionConfig_property_capture_mode>`               | ``0``     |
+   +----------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+-----------+
+   | :ref:`bool<class_bool>`                                                                | :ref:`delta_replication<class_SuperpositionConfig_property_delta_replication>`     | ``false`` |
+   +----------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+-----------+
+   | :ref:`float<class_float>`                                                              | :ref:`interest_hysteresis<class_SuperpositionConfig_property_interest_hysteresis>` | ``2.0``   |
+   +----------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+-----------+
+   | :ref:`float<class_float>`                                                              | :ref:`interest_radius<class_SuperpositionConfig_property_interest_radius>`         | ``0.0``   |
+   +----------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+-----------+
+   | :ref:`int<class_int>`                                                                  | :ref:`priority<class_SuperpositionConfig_property_priority>`                       | ``1``     |
+   +----------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+-----------+
+   | :ref:`Array<class_Array>`\[:ref:`SuperpositionProperty<class_SuperpositionProperty>`\] | :ref:`properties<class_SuperpositionConfig_property_properties>`                   | ``[]``    |
+   +----------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+-----------+
+   | :ref:`float<class_float>`                                                              | :ref:`update_rate<class_SuperpositionConfig_property_update_rate>`                 | ``10.0``  |
+   +----------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+-----------+
 
 .. rst-class:: classref-section-separator
 
@@ -64,6 +66,23 @@ Property Descriptions
 - :ref:`int<class_int>` **get_capture_mode**\ (\ )
 
 Automatic (0) polls selected properties. Pushed (1) skips target capture until :ref:`Superposition.mark_dirty()<class_Superposition_method_mark_dirty>` is called. Baselines and schema/session changes still capture automatically.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_SuperpositionConfig_property_delta_replication:
+
+.. rst-class:: classref-property
+
+:ref:`bool<class_bool>` **delta_replication** = ``false`` :ref:`🔗<class_SuperpositionConfig_property_delta_replication>`
+
+.. rst-class:: classref-property-setget
+
+- |void| **set_delta_replication**\ (\ value\: :ref:`bool<class_bool>`\ )
+- :ref:`bool<class_bool>` **is_delta_replication**\ (\ )
+
+Enables optional native byte-run patches against each peer's acknowledged full state. Acknowledgment, not merely queueing a revision, advances the baseline. Late join, reconnect and interest re-entry receive a full baseline; size changes, nonbeneficial patches and exhausted snapshot capacity also use full state. Acknowledged and pending snapshot storage is bounded to 1 MiB per peer. This optimizes serialized quantized snapshots, not individual semantic fields. Native wire version 3 peers are required; the default preserves full-state behavior.
 
 .. rst-class:: classref-item-separator
 

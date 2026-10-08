@@ -71,7 +71,7 @@ Download and install the Android SDK using `the Android CLI <https://developer.a
 
 ::
 
-    android sdk install platform-tools build-tools/36.1.0 platforms/android-36 cmdline-tools/latest ndk/29.0.14206865 cmake/3.22.1
+    android sdk install platform-tools build-tools/36.1.0 platforms/android-36 cmdline-tools/latest ndk/29.0.14206865
 
 .. note::
 

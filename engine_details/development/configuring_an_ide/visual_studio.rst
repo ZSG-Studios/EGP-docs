@@ -3,74 +3,39 @@
 Visual Studio
 =============
 
-`Visual Studio Community <https://visualstudio.microsoft.com>`__ is a Windows-only IDE
-by `Microsoft <https://microsoft.com>`_ that's free for individual use or non-commercial use within organizations.
-It has many useful features, such as memory view, performance view, source
-control and more.
+These instructions configure the native engine source. For GDScript and C# game
+editing, see :ref:`doc_external_editor` and :ref:`doc_c_sharp_setup_external_editor`.
 
-.. note::
+Prepare a configuration
+-----------------------
 
-    This documentation is for contributions to the game engine, and not using
-    Visual Studio as a C# editor. To code C# in an external editor, see
-    :ref:`the C# guide to configure an external editor <doc_c_sharp_setup_external_editor>`.
+Install the platform compiler and SDK, then build a developer editor and export
+its exact compilation database from the engine root:
 
-Importing the project
----------------------
+.. code-block:: shell
 
-Visual Studio requires a solution file to work on a project. While Godot does not come
-with the solution file, it can be generated using SCons.
+    xmake lua misc/scripts/build_egp.lua windows editor 8 .build/xmake-cache "dev_build=y compiledb=y"
 
-- Navigate to the Godot root folder and open a Command Prompt or PowerShell window.
-- | Run ``scons platform=windows vsproj=yes dev_build=yes`` to generate the solution with debug symbols.
-  | The ``vsproj`` parameter signals that you want Visual Studio solution generated.
-  | The ``dev_build`` parameter makes sure the debug symbols are included, allowing to e.g. step through code using breakpoints.
-- You can now open the project by double-clicking on the ``godot.sln`` in the project root
-  or by using the **Open a project or solution** option inside of the Visual Studio.
-- Use the **Build** top menu to build the project.
+The ``compiledb=y`` option generates ``compile_commands.json`` through xmake's
+native project exporter. Import that database where the IDE supports it, or
+configure its C++ language service to use the generated compile commands. Select
+the compiler matching the database's target and architecture. Regenerate the
+database when changing native configuration options.
 
-.. warning:: Visual Studio must be configured with the C++ package. It can be selected
-             in the installer:
+Build and debug
+---------------
 
-             .. figure:: img/vs_1_install_cpp_package.png
-                :align: center
+Create an external/custom build task with:
 
-Debugging the project
----------------------
+- Program: ``xmake`` or its absolute installed path.
+- Working directory: the engine repository root.
+- Arguments: ``lua misc/scripts/build_egp.lua windows editor 8 .build/xmake-cache "dev_build=y compiledb=y"``.
 
-Visual Studio features a powerful debugger. This allows the user to examine Godot's
-source code, stop at specific points in the code, inspect the current execution context,
-and make live changes to the codebase.
+Choose the final executable published under ``bin/`` for the debugger and keep
+its symbols from the same build. Set the working directory to the engine root
+or pass ``--path <game-project>`` when debugging a game. The API bootstrap editor
+is an internal build input and is not the application to debug.
 
-You can launch the project with the debugger attached using the **Debug > Start Debugging**
-option from the top menu. However, unless you want to debug the Project Manager specifically,
-you'd need to configure debugging options first. This is due to the fact that when the Godot
-Project Manager opens a project, the initial process is terminated and the debugger gets detached.
-
-- To configure the launch options to use with the debugger use **Project > Properties**
-  from the top menu:
-
-.. figure:: img/vs_2_project_properties.png
-   :align: center
-
-- Open the **Debugging** section and under **Command Arguments** add two new arguments:
-  the ``-e`` flag opens the editor instead of the Project Manager, and the ``--path`` argument
-  tells the executable to open the specified project (must be provided as an *absolute* path
-  to the project root, not the ``project.godot`` file; if the path contains spaces be sure to pass it inside double quotation marks).
-
-.. figure:: img/vs_3_debug_command_line.webp
-   :align: center
-
-To learn more about command line arguments, refer to the
-:ref:`command line tutorial <doc_command_line_tutorial>`.
-
-Even if you start the project without a debugger attached it can still be connected to the running
-process using **Debug > Attach to Process...** menu.
-
-To check that everything is working, put a breakpoint in ``main.cpp`` and press :kbd:`F5` to
-start debugging.
-
-.. figure:: img/vs_4_debugging_main.png
-   :align: center
-
-If you run into any issues, ask for help in one of
-`Godot's community channels <https://godotengine.org/community>`__.
+Use a separate native variant cache for different architectures, sanitizers,
+precision, or feature sets. See :ref:`doc_introduction_to_the_buildsystem` for
+native options and :ref:`doc_compiling_with_dotnet` for managed builds.

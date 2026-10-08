@@ -3,86 +3,39 @@
 KDevelop
 ========
 
-`KDevelop <https://www.kdevelop.org>`_ is a free, open source IDE for all desktop platforms.
+These instructions configure the native engine source. For GDScript and C# game
+editing, see :ref:`doc_external_editor` and :ref:`doc_c_sharp_setup_external_editor`.
 
-Importing the project
----------------------
+Prepare a configuration
+-----------------------
 
-- From the KDevelop's main screen select **Open Project**.
+Install the platform compiler and SDK, then build a developer editor and export
+its exact compilation database from the engine root:
 
-.. figure:: img/kdevelop_newproject.webp
-   :figclass: figure-w480
-   :align: center
+.. code-block:: shell
 
-   KDevelop's main screen.
+    xmake lua misc/scripts/build_egp.lua linuxbsd editor 8 .build/xmake-cache "dev_build=y compiledb=y"
 
-- Navigate to the Godot root folder and select it.
-- On the next screen, choose **Custom Build System** for the **Project Manager**.
+The ``compiledb=y`` option generates ``compile_commands.json`` through xmake's
+native project exporter. Import that database where the IDE supports it, or
+configure its C++ language service to use the generated compile commands. Select
+the compiler matching the database's target and architecture. Regenerate the
+database when changing native configuration options.
 
-.. figure:: img/kdevelop_custombuild.webp
-   :figclass: figure-w480
-   :align: center
+Build and debug
+---------------
 
-- After the project has been imported, open the project configuration by right-clicking
-  on it in the **Projects** panel and selecting **Open Configuration..** option.
+Create an external/custom build task with:
 
-.. figure:: img/kdevelop_openconfig.webp
-   :figclass: figure-w480
-   :align: center
+- Program: ``xmake`` or its absolute installed path.
+- Working directory: the engine repository root.
+- Arguments: ``lua misc/scripts/build_egp.lua linuxbsd editor 8 .build/xmake-cache "dev_build=y compiledb=y"``.
 
-- Under **Language Support** open the **Includes/Imports** tab and add the following paths:
+Choose the final executable published under ``bin/`` for the debugger and keep
+its symbols from the same build. Set the working directory to the engine root
+or pass ``--path <game-project>`` when debugging a game. The API bootstrap editor
+is an internal build input and is not the application to debug.
 
-  .. code-block:: none
-
-     .  // A dot, to indicate the root of the Godot project
-     core/
-     core/os/
-     core/math/
-     drivers/
-     platform/<your_platform>/  // Replace <your_platform> with a folder
-                                   corresponding to your current platform
-
-.. figure:: img/kdevelop_addincludes.webp
-   :figclass: figure-w480
-   :align: center
-
-- Apply the changes.
-- Under **Custom Build System** add a new build configuration with the following settings:
-
-  +-----------------+------------------------------------------------------------------------------+
-  | Build Directory | *blank*                                                                      |
-  +-----------------+------------------------------------------------------------------------------+
-  | Enable          | **True**                                                                     |
-  +-----------------+------------------------------------------------------------------------------+
-  | Executable      | **scons**                                                                    |
-  +-----------------+------------------------------------------------------------------------------+
-  | Arguments       | See :ref:`doc_introduction_to_the_buildsystem` for a full list of arguments. |
-  +-----------------+------------------------------------------------------------------------------+
-
-.. figure:: img/kdevelop_buildconfig.webp
-   :figclass: figure-w480
-   :align: center
-
-- Apply the changes and close the configuration window.
-
-Debugging the project
----------------------
-
-- Select **Run > Configure Launches...** from the top menu.
-
-.. figure:: img/kdevelop_configlaunches.webp
-   :figclass: figure-w480
-   :align: center
-
-- Click **Add** to create a new launch configuration.
-- Select **Executable** option and specify the path to your executable located in
-  the ``<Godot root directory>/bin`` folder. The name depends on your build configuration,
-  e.g. ``godot.linuxbsd.editor.dev.x86_64`` for 64-bit LinuxBSD platform with
-  ``platform=linuxbsd``, ``target=editor``, and ``dev_build=yes``.
-
-.. figure:: img/kdevelop_configlaunches2.webp
-   :figclass: figure-w480
-   :align: center
-
-If you run into any issues, ask for help in one of
-`Godot's community channels <https://godotengine.org/community>`__.
+Use a separate native variant cache for different architectures, sanitizers,
+precision, or feature sets. See :ref:`doc_introduction_to_the_buildsystem` for
+native options and :ref:`doc_compiling_with_dotnet` for managed builds.

@@ -7136,7 +7136,7 @@ Sets the resource name for ``id`` to ``name``. This is used for debugging with t
 
 The following types of resources can be named: texture, sampler, vertex buffer, index buffer, uniform buffer, texture buffer, storage buffer, uniform set buffer, shader, render pipeline and compute pipeline. Framebuffers cannot be named. Attempting to name an incompatible resource type will print an error.
 
-\ **Note:** Resource names are only set when the engine runs in verbose mode (:ref:`OS.is_stdout_verbose()<class_OS_method_is_stdout_verbose>` = ``true``), or when using an engine build compiled with the ``dev_mode=yes`` SCons option. The graphics driver must also support the ``VK_EXT_DEBUG_UTILS_EXTENSION_NAME`` Vulkan extension for named resources to work.
+\ **Note:** Resource names are only set when the engine runs in verbose mode (:ref:`OS.is_stdout_verbose()<class_OS_method_is_stdout_verbose>` = ``true``), or when using an engine build compiled with the ``dev_mode=yes`` build option. The graphics driver must also support the ``VK_EXT_DEBUG_UTILS_EXTENSION_NAME`` Vulkan extension for named resources to work.
 
 .. rst-class:: classref-item-separator
 

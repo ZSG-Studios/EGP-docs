@@ -27,24 +27,24 @@ Your exported template and its native debug symbols must come from the **same bu
 so you can use the official symbols only if you are using the **official export templates**.
 If you are building **custom export templates**, you need to generate matching symbol files yourself.
 
-To do so, add ``debug_symbols=yes separate_debug_symbols=yes`` to your scons build command.
+To do so, add ``debug_symbols=yes separate_debug_symbols=yes`` to your xmake build command.
 This will generate a file named ``android-template-release-native-symbols.zip`` containing the native debug symbols for your custom build.
 
 For example,
 
 ::
 
-    scons platform=android target=template_release debug_symbols=yes separate_debug_symbols=yes generate_android_binaries=yes
+    xmake lua misc/scripts/build_egp.lua android template_release 8 .build/xmake-cache "debug_symbols=yes separate_debug_symbols=yes generate_android_binaries=yes"
 
 If you are building for multiple architectures, you should include the ``separate_debug_symbols=yes`` only in the last build command,
 similar to how ``generate_android_binaries=yes`` is used.
 
 ::
 
-    scons platform=android arch=arm32 target=template_release debug_symbols=yes
-    scons platform=android arch=arm64 target=template_release debug_symbols=yes
-    scons platform=android arch=x86_32 target=template_release debug_symbols=yes
-    scons platform=android arch=x86_64 target=template_release debug_symbols=yes separate_debug_symbols=yes generate_android_binaries=yes
+    xmake lua misc/scripts/build_egp.lua android template_release 8 .build/xmake-cache "arch=arm32 debug_symbols=yes"
+    xmake lua misc/scripts/build_egp.lua android template_release 8 .build/xmake-cache "arch=arm64 debug_symbols=yes"
+    xmake lua misc/scripts/build_egp.lua android template_release 8 .build/xmake-cache "arch=x86_32 debug_symbols=yes"
+    xmake lua misc/scripts/build_egp.lua android template_release 8 .build/xmake-cache "arch=x86_64 debug_symbols=yes separate_debug_symbols=yes generate_android_binaries=yes"
 
 Uploading Symbols to Google Play Console
 ----------------------------------------

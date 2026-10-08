@@ -95,7 +95,7 @@ Existing property on the target node.
 - |void| **set_quantization**\ (\ value\: :ref:`float<class_float>`\ )
 - :ref:`float<class_float>` **get_quantization**\ (\ )
 
-Positive float/vector rounding interval. Zero preserves precision. Server change detection uses the quantized value.
+Numeric rounding interval applied to float, Vector2, Vector3 and Color components before dirty detection. Zero preserves component precision; a positive interval must lie from 1e-9 to 1e6. The normalized result must remain finite and within type bounds. Strings and discrete values are not rounded.
 
 .. rst-class:: classref-item-separator
 
@@ -112,7 +112,7 @@ Positive float/vector rounding interval. Zero preserves precision. Server change
 - |void| **set_smoothing**\ (\ value\: :ref:`bool<class_bool>`\ )
 - :ref:`bool<class_bool>` **is_smoothing**\ (\ )
 
-Cosmetic exponential easing for float and Vector3. Discrete values always apply immediately.
+Cosmetic exponential easing for float, Vector2, Vector3 and Color values. Boolean, integer and String values apply immediately. This affects presentation properties, not authoritative physics or deterministic replay.
 
 .. rst-class:: classref-item-separator
 
@@ -129,7 +129,7 @@ Cosmetic exponential easing for float and Vector3. Discrete values always apply 
 - |void| **set_value_type**\ (\ value\: :ref:`int<class_int>`\ )
 - :ref:`int<class_int>` **get_value_type**\ (\ )
 
-Exact Variant type, selected in the Inspector. Defaults to float.
+Exact supported Variant type of the target property: Boolean, integer, float, String, Vector2, Vector3 or Color. Replicate checkboxes infer this automatically. Both peers must use the same type; numeric coercion is not performed.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
 .. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`

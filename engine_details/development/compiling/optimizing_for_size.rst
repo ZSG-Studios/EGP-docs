@@ -37,7 +37,7 @@ distribution then running:
 
 On Windows, ``strip.exe`` is included in most MinGW toolchain setups.
 
-This will reduce the size of compiled binaries by a factor between 5× and 10×.
+This will reduce the size of compiled binaries by a factor between 5Ã— and 10Ã—.
 The downside is that crash backtraces will no longer provide accurate information
 (which is useful for troubleshooting the cause of a crash).
 :ref:`C++ profilers <doc_using_cpp_profilers>` will also no longer be able to display
@@ -47,7 +47,7 @@ function names (this does not affect the built-in GDScript profiler).
 
     The above command will not work on Windows binaries compiled with MSVC
     and platforms such as Android and Web. Instead, pass ``debug_symbols=no``
-    on the SCons command line when compiling.
+    on the xmake command line when compiling.
 
 Compiling with link-time optimization
 -------------------------------------
@@ -63,7 +63,7 @@ and MSVC compilers:
 
 ::
 
-    scons target=template_release lto=full
+    xmake lua misc/scripts/build_egp.lua <platform> template_release 8 .build/xmake-cache "lto=full"
 
 Linking becomes much slower and more RAM-consuming with this option,
 so it should be used only for release builds. You need to have at least
@@ -83,7 +83,7 @@ To enable this, set the ``optimize`` flag to ``size``:
 
 ::
 
-    scons target=template_release optimize=size
+    xmake lua misc/scripts/build_egp.lua <platform> template_release 8 .build/xmake-cache "optimize=size"
 
 Some platforms such as WebAssembly already use this mode by default.
 
@@ -91,7 +91,7 @@ Godot 4.5 introduced the ``size_extra`` option, which can further reduce size.
 
 ::
 
-    scons target=template_release optimize=size_extra
+    xmake lua misc/scripts/build_egp.lua <platform> template_release 8 .build/xmake-cache "optimize=size_extra"
 
 Detecting used features from the current project and disabling unused features
 ------------------------------------------------------------------------------
@@ -102,11 +102,11 @@ Detecting used features from the current project and disabling unused features
 
 Godot features an :ref:`doc_engine_compilation_configuration_editor` tool that can detect
 the features used in the current project and create a build profile. Once saved,
-this build profile can then be passed to SCons when compiling custom export templates:
+this build profile can then be passed to xmake when compiling custom export templates:
 
 ::
 
-    scons target=template_release build_profile=/path/to/profile.gdbuild
+    xmake lua misc/scripts/build_egp.lua <platform> template_release 8 .build/xmake-cache "build_profile=/path/to/profile.gdbuild"
 
 Note that for certain projects, the feature detection may be too aggressive and disable
 features that are actually needed at runtime. This can occur if certain features are used
@@ -137,7 +137,7 @@ server:
 
 ::
 
-    scons target=template_release module_text_server_adv_enabled=no module_text_server_fb_enabled=yes
+    xmake lua misc/scripts/build_egp.lua <platform> template_release 8 .build/xmake-cache "module_text_server_adv_enabled=no module_text_server_fb_enabled=yes"
 
 If you only intend on supporting Latin, Greek and Cyrillic-based languages in
 your project, the fallback text server should suffice.
@@ -166,7 +166,7 @@ Because of this, there is a build flag to disable it:
 
 ::
 
-    scons target=template_release disable_3d=yes
+    xmake lua misc/scripts/build_egp.lua <platform> template_release 8 .build/xmake-cache "disable_3d=yes"
 
 This can only be used for export template builds, as the editor is not designed
 to operate without 3D support. With 3D disabled, the binary size can be reduced
@@ -185,7 +185,7 @@ Because of this, there is a build flag to disable it:
 
 ::
 
-    scons target=template_release disable_2d=yes
+    xmake lua misc/scripts/build_egp.lua <platform> template_release 8 .build/xmake-cache "disable_2d=yes"
 
 This disables all 2D nodes derived from :ref:`class_Node2D`.
 GUI nodes derived from :ref:`class_Control` are still available.
@@ -206,7 +206,7 @@ TextEdit or GraphEdit. They can be disabled using a build flag:
 
 ::
 
-    scons target=template_release disable_advanced_gui=yes
+    xmake lua misc/scripts/build_egp.lua <platform> template_release 8 .build/xmake-cache "disable_advanced_gui=yes"
 
 This is everything that will be disabled:
 
@@ -260,11 +260,11 @@ of this, as they don't make use of 2D physics:
 
 ::
 
-    scons target=template_release disable_physics_2d=yes
+    xmake lua misc/scripts/build_egp.lua <platform> template_release 8 .build/xmake-cache "disable_physics_2d=yes"
 
 ::
 
-    scons target=template_release disable_physics_3d=yes
+    xmake lua misc/scripts/build_egp.lua <platform> template_release 8 .build/xmake-cache "disable_physics_3d=yes"
 
 Disabling unwanted modules
 --------------------------
@@ -280,7 +280,7 @@ You can see a list of modules with the following command:
 
 ::
 
-    scons --help
+    xmake f --help
 
 The list of modules that can be disabled will appear, together with all
 build options. If you are working on a simple 2D game, you could disable
@@ -288,57 +288,16 @@ a lot of them:
 
 ::
 
-    scons target=template_release module_astcenc_enabled=no module_basis_universal_enabled=no module_bcdec_enabled=no module_bmp_enabled=no module_camera_enabled=no module_csg_enabled=no module_dds_enabled=no module_etcpak_enabled=no module_fbx_enabled=no module_gltf_enabled=no module_gridmap_enabled=no module_hdr_enabled=no module_interactive_music_enabled=no module_jsonrpc_enabled=no module_ktx_enabled=no module_mbedtls_enabled=no module_meshoptimizer_enabled=no module_mp3_enabled=no module_mobile_vr_enabled=no module_msdfgen_enabled=no module_noise_enabled=no module_navigation_2d_enabled=no module_navigation_3d_enabled=no module_ogg_enabled=no module_openxr_enabled=no module_raycast_enabled=no module_svg_enabled=no module_tga_enabled=no module_theora_enabled=no module_tilemap_enabled=no module_tinyexr_enabled=no module_upnp_enabled=no module_vhacd_enabled=no module_vorbis_enabled=no module_websocket_enabled=no module_webxr_enabled=no module_zip_enabled=no
+    xmake lua misc/scripts/build_egp.lua <platform> template_release 8 .build/xmake-cache "module_astcenc_enabled=no module_basis_universal_enabled=no module_bcdec_enabled=no module_bmp_enabled=no module_camera_enabled=no module_csg_enabled=no module_dds_enabled=no module_etcpak_enabled=no module_fbx_enabled=no module_gltf_enabled=no module_gridmap_enabled=no module_hdr_enabled=no module_interactive_music_enabled=no module_jsonrpc_enabled=no module_ktx_enabled=no module_mbedtls_enabled=no module_meshoptimizer_enabled=no module_mp3_enabled=no module_mobile_vr_enabled=no module_msdfgen_enabled=no module_noise_enabled=no module_navigation_2d_enabled=no module_navigation_3d_enabled=no module_ogg_enabled=no module_openxr_enabled=no module_raycast_enabled=no module_svg_enabled=no module_tga_enabled=no module_theora_enabled=no module_tilemap_enabled=no module_tinyexr_enabled=no module_upnp_enabled=no module_vhacd_enabled=no module_vorbis_enabled=no module_websocket_enabled=no module_webxr_enabled=no module_zip_enabled=no"
 
 If this proves not to work for your use case, you should review the list of
 modules and see which ones you actually still need for your game (e.g. you might
 want to keep networking-related modules, tilemaps for 2D levels,
 ``mp3``/``ogg``/``vorbis`` to play music, or ``theora`` to play videos).
 
-Alternatively, you can supply a list of disabled modules by creating
-``custom.py`` at the root of the source, with the contents similar to the
-following:
-
-.. code-block:: python
-    :caption: custom.py
-
-    module_astcenc_enabled = "no"
-    module_basis_universal_enabled = "no"
-    module_bcdec_enabled = "no"
-    module_bmp_enabled = "no"
-    module_camera_enabled = "no"
-    module_csg_enabled = "no"
-    module_dds_enabled = "no"
-    module_etcpak_enabled = "no"
-    module_fbx_enabled = "no"
-    module_gltf_enabled = "no"
-    module_gridmap_enabled = "no"
-    module_hdr_enabled = "no"
-    module_interactive_music_enabled = "no"
-    module_jsonrpc_enabled = "no"
-    module_ktx_enabled = "no"
-    module_mbedtls_enabled = "no"
-    module_meshoptimizer_enabled = "no"
-    module_mp3_enabled = "no"
-    module_mobile_vr_enabled = "no"
-    module_msdfgen_enabled = "no"
-    module_noise_enabled = "no"
-    module_navigation_2d_enabled = "no"
-    module_navigation_3d_enabled = "no"
-    module_ogg_enabled = "no"
-    module_openxr_enabled = "no"
-    module_raycast_enabled = "no"
-    module_svg_enabled = "no"
-    module_tga_enabled = "no"
-    module_theora_enabled = "no"
-    module_tilemap_enabled = "no"
-    module_tinyexr_enabled = "no"
-    module_upnp_enabled = "no"
-    module_vhacd_enabled = "no"
-    module_vorbis_enabled = "no"
-    module_websocket_enabled = "no"
-    module_webxr_enabled = "no"
-    module_zip_enabled = "no"
+Keep reusable option sets in your own shell or Lua launcher, passing the same
+explicit ``KEY=VALUE`` options to the native build entrypoint. See the build
+options guide for the supported flags.
 
 .. seealso::
 

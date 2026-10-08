@@ -3998,7 +3998,7 @@ If enabled, displays an icon in the top-right corner of the editor that spins wh
 
 Consider enabling this if you are developing editor plugins to ensure they only make the editor redraw when required.
 
-The default **Auto** value will only enable this if the editor was compiled with the ``dev_build=yes`` SCons option (the default is ``dev_build=no``).
+The default **Auto** value will only enable this if the editor was compiled with the ``dev_build=yes`` build option (the default is ``dev_build=no``).
 
 \ **Note:** If :ref:`interface/editor/display/update_continuously<class_EditorSettings_property_interface/editor/display/update_continuously>` is ``true``, the spinner icon displays in red.
 
@@ -4102,7 +4102,7 @@ If ``true``, the editor's Script tab will have a separate distraction mode setti
 
 If enabled, displays internal engine errors in toast notifications (toggleable by clicking the "bell" icon at the bottom of the editor). No matter the value of this setting, non-internal engine errors will always be visible in toast notifications.
 
-The default **Auto** value will only enable this if the editor was compiled with the ``dev_build=yes`` SCons option (the default is ``dev_build=no``).
+The default **Auto** value will only enable this if the editor was compiled with the ``dev_build=yes`` build option (the default is ``dev_build=no``).
 
 .. rst-class:: classref-item-separator
 

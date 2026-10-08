@@ -1596,7 +1596,7 @@ Loads an image from the binary contents of a BMP file.
 
 \ **Note:** Godot's BMP module doesn't support 16-bit per pixel images. Only 1-bit, 4-bit, 8-bit, 24-bit, and 32-bit per pixel images are supported.
 
-\ **Note:** This method is only available in engine builds with the BMP module enabled. By default, the BMP module is enabled, but it can be disabled at build-time using the ``module_bmp_enabled=no`` SCons option.
+\ **Note:** This method is only available in engine builds with the BMP module enabled. By default, the BMP module is enabled, but it can be disabled at build-time using the ``module_bmp_enabled=no`` build option.
 
 .. rst-class:: classref-item-separator
 
@@ -1610,7 +1610,7 @@ Loads an image from the binary contents of a BMP file.
 
 Loads an image from the binary contents of a DDS file.
 
-\ **Note:** This method is only available in engine builds with the DDS module enabled. By default, the DDS module is enabled, but it can be disabled at build-time using the ``module_dds_enabled=no`` SCons option.
+\ **Note:** This method is only available in engine builds with the DDS module enabled. By default, the DDS module is enabled, but it can be disabled at build-time using the ``module_dds_enabled=no`` build option.
 
 .. rst-class:: classref-item-separator
 
@@ -1662,7 +1662,7 @@ Loads an image from the binary contents of a `KTX <https://github.com/KhronosGro
 
 \ **Note:** Godot's libktx implementation only supports 2D images. Cubemaps, texture arrays, and de-padding are not supported.
 
-\ **Note:** This method is only available in engine builds with the KTX module enabled. By default, the KTX module is enabled, but it can be disabled at build-time using the ``module_ktx_enabled=no`` SCons option.
+\ **Note:** This method is only available in engine builds with the KTX module enabled. By default, the KTX module is enabled, but it can be disabled at build-time using the ``module_ktx_enabled=no`` build option.
 
 .. rst-class:: classref-item-separator
 
@@ -1690,7 +1690,7 @@ Loads an image from the UTF-8 binary contents of an **uncompressed** SVG file (*
 
 \ **Note:** Beware when using compressed SVG files (like **.svgz**), they need to be ``decompressed`` before loading.
 
-\ **Note:** This method is only available in engine builds with the SVG module enabled. By default, the SVG module is enabled, but it can be disabled at build-time using the ``module_svg_enabled=no`` SCons option.
+\ **Note:** This method is only available in engine builds with the SVG module enabled. By default, the SVG module is enabled, but it can be disabled at build-time using the ``module_svg_enabled=no`` build option.
 
 .. rst-class:: classref-item-separator
 
@@ -1704,7 +1704,7 @@ Loads an image from the UTF-8 binary contents of an **uncompressed** SVG file (*
 
 Loads an image from the string contents of an SVG file (**.svg**).
 
-\ **Note:** This method is only available in engine builds with the SVG module enabled. By default, the SVG module is enabled, but it can be disabled at build-time using the ``module_svg_enabled=no`` SCons option.
+\ **Note:** This method is only available in engine builds with the SVG module enabled. By default, the SVG module is enabled, but it can be disabled at build-time using the ``module_svg_enabled=no`` build option.
 
 .. rst-class:: classref-item-separator
 
@@ -1718,7 +1718,7 @@ Loads an image from the string contents of an SVG file (**.svg**).
 
 Loads an image from the binary contents of a TGA file.
 
-\ **Note:** This method is only available in engine builds with the TGA module enabled. By default, the TGA module is enabled, but it can be disabled at build-time using the ``module_tga_enabled=no`` SCons option.
+\ **Note:** This method is only available in engine builds with the TGA module enabled. By default, the TGA module is enabled, but it can be disabled at build-time using the ``module_tga_enabled=no`` build option.
 
 .. rst-class:: classref-item-separator
 
