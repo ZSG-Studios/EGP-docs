@@ -28,20 +28,57 @@ explicitly unsupported. The retained OpenXR frame synthesis API is also
 unsupported by EGP's Forward+ renderer, even when the XR runtime advertises
 support. No physical visionOS device qualification is implied.
 
-The native contracts, minimal template, Linux Mono editor and Windows
-startup controls below are verified at this revision. The full platform
-matrix and C++ SDK qualification are still pending. Renderer performance and
-physical device support require separate runtime evidence. Earlier receipts
-do not qualify changed renderer behavior, and no older API or SDK hash is
-presented as a current artifact identity.
+The native contracts, complete platform matrix, desktop C++ SDK, Linux
+Mono editor and Windows startup controls below are verified at this revision.
+Renderer performance, physical device support and WAN gameplay require
+separate runtime evidence. Earlier receipts do not qualify changed renderer
+behavior; the current API and SDK identities are recorded separately below.
 
 At this revision, the native Xmake contracts pass 35 suites and 16,332 checks
 on Linux, and 41 suites and 16,742 checks on Windows. The minimal Linux
 template passes 1,150 native test cases and 252,813 assertions, plus its
 startup control. These results are recorded in the `current native workflow
 <https://github.com/ZSG-Studios/EGP-Engine/actions/runs/37853288740>`__. They
-cover build contracts and the minimal template; the full engine matrix, C++
-SDK/API gates remain pending.
+cover build contracts and the minimal template. All 21 jobs in this native
+matrix pass; fourteen jobs complete their full native unit suites with
+positive test and assertion summaries.
+
+The current `desktop C++ qualification workflow
+<https://github.com/ZSG-Studios/EGP-Engine/actions/runs/37853288485>`__ passes
+all three Windows, Linux and macOS jobs. Each passes thirteen CLI and export
+controls, including Debug and Release builds, exported game startup and four
+deliberate CLI rejection controls. Each also passes typed C++ API compilation,
+17 native networking cases and 124 checks, runtime replication and physics
+replay fixtures, and seven headless editor workflow stages. Linux and Windows
+add two isolated SDK cache recovery controls; macOS does not run those
+isolated cache controls.
+
+Windows additionally passes a deeply nested external SDK project: a full
+cold SDK build of more than 1,000 objects, an unchanged warm build, canonical
+source dependency recompilation, project import and actual extension runtime
+startup. These are build and headless runtime controls, not graphical
+performance or physical input qualification.
+
+The tested desktop extension API hash is
+``d7dce50aa1dce6eb``. SDK archive and source fingerprints retain separate platform
+identities:
+
+.. list-table:: C++ SDKs tested at e31c7e7abb22
+   :header-rows: 1
+   :widths: 20 40 40
+
+   * - Platform
+     - SDK archive hash
+     - SDK source fingerprint
+   * - Windows
+     - ``2764bf5c9efbe56c``
+     - ``47e69b736942c613``
+   * - Linux
+     - ``7640581f1121ca42``
+     - ``135679f1bb386ed9``
+   * - macOS
+     - ``cbe8ebcf046df406``
+     - ``0eafb48081506caa``
 
 The current Linux Mono editor job passes 1,420 native cases and 424,745
 assertions, extension JSON compatibility, legacy method loading and project
