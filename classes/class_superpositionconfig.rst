@@ -116,7 +116,7 @@ Visible objects leave at Radius + Hysteresis; hidden objects re-enter at Radius.
 - |void| **set_interest_radius**\ (\ value\: :ref:`float<class_float>`\ )
 - :ref:`float<class_float>` **get_interest_radius**\ (\ )
 
-Radius around a Node3D target used for explicitly supplied observer positions. Zero disables spatial relevance filtering. Unspecified observers remain visible.
+Radius around a Node3D target used for explicitly supplied observer positions. Zero disables spatial relevance filtering. Unspecified observers remain visible. Builds with 3D disabled require a zero radius; positive radii are unsupported.
 
 .. rst-class:: classref-item-separator
 
