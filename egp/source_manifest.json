@@ -1,5 +1,6 @@
 {
   "class_count": 1111,
+  "documentation_generator_sha256": "447055a5625282b6c64331f323780e113210a57e79688df240c6c4a6cd5ccf97",
   "engine_repository": "ZSG-Studios/EGP",
   "engine_revision": "36ca84ecbe02da6df788d569da3bd9fd4a48a8f0",
   "generated_sha256": {
@@ -1121,7 +1122,7 @@
     "egp/cpp_extensions.md": "98b3b8ec9216f3576a80c77a804dfb22acc496f4a4479a402aee9c3428f2895a",
     "egp/deterministic_demo.md": "494b22e65e8b625626f8d3c3208d3dabc3be157afa4a48727a592c1b6889f76f",
     "egp/documentation.md": "6e88b76083eace9e1d8b5e843bdf3aa5124599c7e8152ba7f64ce582966e4001",
-    "egp/helper_reference.rst": "cd6c81342a116a048a066ad10e01ff43834a0e147a04c4a370e2c166a4a795d4",
+    "egp/helper_reference.rst": "2e7d6e892f9bbef8c154b5f299d55ea13eb6655bf81aba6bbc29f9b6d2a87d5b",
     "egp/network_lab.md": "8b3ffdf8a772afa878e7205975fbf0bae295ff792cae84ac01cf691efdfd3934",
     "egp/networking_reference.md": "b5ac95bb2242199e64fdd82bb1e5b02b3fb4261c6d54b03b1289cb4a939e3745",
     "egp/physics_arena.md": "a3f87d9ecbdcd784d707cc1c78177e127e16bcf8554e6210ad211fa0f4326834",
