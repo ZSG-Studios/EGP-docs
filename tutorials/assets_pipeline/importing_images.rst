@@ -93,9 +93,7 @@ It is possible to choose other types of imported resources in the Import dock:
   between the cubemap's sides (seamless cubemaps), which can be sampled in
   custom shaders.
 - **CubemapArray:** Import the texture as a collection of 6-sided cubemaps,
-  which can be sampled in custom shaders. This resource type can only be
-  displayed when using the Forward+ or Mobile renderers, not the Compatibility
-  renderer.
+  which can be sampled in custom shaders with the Forward+ renderer.
 - **DPITexture:** Only available for SVG images. Similar to Texture2D, but can be
   re-rasterized at different scales in the editor and at runtime without needing
   to be reimported.
@@ -276,18 +274,14 @@ Compress > High Quality
 
 .. note::
 
-    High-quality VRAM texture compression is only supported in the Forward+ and
-    Mobile renderers.
-
-    When using the Compatibility renderer, this option is always considered
-    disabled.
+    High-quality VRAM texture compression is supported in the Forward+ renderer.
 
 If enabled, uses BPTC compression on desktop platforms and :abbr:`ASTC (Adaptive
 Scalable Texture Compression)` compression on mobile platforms. When using BPTC,
 BC7 is used for SDR textures and BC6H is used for HDR textures.
 
 If disabled (default), uses the faster but lower-quality S3TC compression on
-desktop platforms and ETC2 on mobile/web platforms. When using S3TC, DXT1 (BC1)
+desktop platforms and ETC2 on mobile platforms. When using S3TC, DXT1 (BC1)
 is used for opaque textures and DXT5 (BC3) is used for transparent or normal map
 (:abbr:`RGTC (Red-Green Texture Compression)`) textures.
 
@@ -535,8 +529,8 @@ shorter dimension scaled to preserve aspect ratio. Resizing is performed using
 cubic interpolation.
 
 This can be used to reduce memory usage without affecting the source images, or
-avoid issues with textures not displaying on mobile/web platforms (as these
-usually can't display textures larger than 4096×4096).
+avoid issues with textures exceeding the size supported by the target GPU.
+Mobile GPUs often have lower maximum texture sizes than desktop GPUs.
 
 .. _doc_importing_images_detect_3d_compress_to:
 

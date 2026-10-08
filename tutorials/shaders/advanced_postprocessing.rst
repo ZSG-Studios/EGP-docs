@@ -104,7 +104,7 @@ inverse of the projection matrix, which in Godot, is accessible with the variabl
 
 Firstly, take the screen space coordinates and transform them into normalized device
 coordinates (NDC). NDC run ``-1.0`` to ``1.0`` in ``x`` and ``y`` directions and
-from ``0.0`` to ``1.0`` in the ``z`` direction when using the Vulkan backend.
+from ``0.0`` to ``1.0`` in the ``z`` direction with Forward+.
 Reconstruct the NDC using ``SCREEN_UV`` for the ``x`` and ``y`` axis, and
 the depth value for ``z``.
 
@@ -118,25 +118,9 @@ the depth value for ``z``.
 
 .. note::
 
-  This tutorial assumes the use of the Forward+ or Mobile renderers, which both
-  use Vulkan NDCs with a Z-range of ``[0.0, 1.0]``. In contrast, the Compatibility
-  renderer uses OpenGL NDCs with a Z-range of ``[-1.0, 1.0]``. For the Compatibility
-  renderer, replace the NDC calculation with this instead:
-
-  .. code-block:: glsl
-
-    vec3 ndc = vec3(SCREEN_UV, depth) * 2.0 - 1.0;
-
-  You can also use the ``CURRENT_RENDERER`` and ``RENDERER_COMPATIBILITY``
-  built-in defines for a shader that will work in all renderers:
-
-  .. code-block:: glsl
-
-    #if CURRENT_RENDERER == RENDERER_COMPATIBILITY
-    vec3 ndc = vec3(SCREEN_UV, depth) * 2.0 - 1.0;
-    #else
-    vec3 ndc = vec3(SCREEN_UV * 2.0 - 1.0, depth);
-    #endif
+  Forward+ uses NDCs with a Z-range of ``[0.0, 1.0]`` for its platform-enabled
+  Vulkan, Direct3D 12, and Metal drivers. Use the calculation above when
+  reconstructing view or world positions from the depth texture.
 
 Convert NDC to view space by multiplying the NDC by ``INV_PROJECTION_MATRIX``.
 Recall that view space gives positions relative to the camera, so the ``z`` value will give us

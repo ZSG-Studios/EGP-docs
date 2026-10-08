@@ -65,20 +65,7 @@ an omni light, a spot light, an area light, a :ref:`decal <doc_using_decals>`, o
 :ref:`Max Clustered Elements<class_ProjectSettings_property_rendering/limits/cluster_builder/max_clustered_elements>`
 in **Project Settings > Rendering > Limits > Cluster Builder**.
 
-When using the Mobile renderer, there is a limitation of 8 OmniLights + 8 SpotLights
-per mesh resource. There is also a limit of 256 OmniLights + 256 SpotLights that
-can be rendered in the current camera view. These limits currently cannot be changed.
-
-When using the Compatibility renderer, up to 8 OmniLights + 8 SpotLights can be
-rendered per mesh resource. This limit can be increased in the advanced Project
-Settings by adjusting
-:ref:`Max Renderable Elements<class_ProjectSettings_property_rendering/limits/opengl/max_renderable_elements>`
-and/or :ref:`Max Lights per Object<class_ProjectSettings_property_rendering/limits/opengl/max_lights_per_object>`
-in **Rendering > Limits > OpenGL**, at the cost of performance and longer shader
-compilation times. The limit can also be decreased to reduce shader compilation
-times and improve performance slightly.
-
-With all rendering methods, up to 8 DirectionalLights can be visible at a time.
+With Forward+, up to 8 DirectionalLights can be visible at a time.
 However, each additional DirectionalLight with shadows enabled will reduce the
 effective shadow resolution of each DirectionalLight. This is because
 directional shadow atlas is shared between all lights.
@@ -482,9 +469,6 @@ node as a child of the area light for visualization purposes.
     allows for a greater number of area lights to be rendered (clustered
     lighting).
 
-    In Mobile and Compatibility, only objects that are reached by an area light
-    incur an additional performance cost.
-
 Area lights can also cast shadows, with variable penumbra simulated using
 :ref:`PCSS <doc_lights_and_shadows_pcss_recommendations>` by default. The size
 of this penumbra can be controlled with the Light3D **Size** property. This
@@ -555,8 +539,6 @@ smoothly.
     texture changes. The textures don't necessarily have to be square to be
     optimal. Examples of optimal texture sizes include 32×64, 128×128, and
     256×384.
-
-    Textured area lights are not supported in the Compatibility renderer.
 
 .. _doc_lights_and_shadows_shadow_atlas:
 

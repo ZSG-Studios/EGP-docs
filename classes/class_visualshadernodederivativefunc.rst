@@ -230,7 +230,7 @@ A type of operands and returned value.
 - |void| **set_precision**\ (\ value\: :ref:`Precision<enum_VisualShaderNodeDerivativeFunc_Precision>`\ )
 - :ref:`Precision<enum_VisualShaderNodeDerivativeFunc_Precision>` **get_precision**\ (\ )
 
-Sets the level of precision to use for the derivative function. When using the Compatibility renderer, this setting has no effect.
+Sets the level of precision to use for the derivative function.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
 .. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`

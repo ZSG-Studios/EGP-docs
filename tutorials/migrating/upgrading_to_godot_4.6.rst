@@ -3,6 +3,12 @@
 Upgrading from Godot 4.5 to Godot 4.6
 =====================================
 
+.. note::
+
+    This page records historical upstream Godot changes. References to the
+    Compatibility and Mobile renderers describe those upstream releases.
+    EGP uses Forward+; see :ref:`doc_renderers` for current renderer support.
+
 For most games and apps made with 4.5 it should be relatively safe to migrate to 4.6.
 This page intends to cover everything you need to pay attention to when migrating
 your project.

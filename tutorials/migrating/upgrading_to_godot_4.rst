@@ -3,6 +3,13 @@
 Upgrading from Godot 3 to Godot 4
 =================================
 
+.. note::
+
+    This page records the historical upstream Godot 3-to-4 migration. References
+    to Compatibility, OpenGL, and browser exports describe those upstream
+    releases. EGP uses Forward+ and does not support those rendering or export
+    paths. See :ref:`doc_renderers` for current EGP renderer support.
+
 Should I upgrade to Godot 4?
 ----------------------------
 

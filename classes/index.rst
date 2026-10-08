@@ -1100,7 +1100,6 @@ Other objects
     class_visionosxrinterface
     class_weakref
     class_websocketpeer
-    class_webxrinterface
     class_workerthreadpool
     class_xmlparser
     class_xrbodytracker

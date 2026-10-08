@@ -4160,9 +4160,7 @@ If ``true``, redraws the editor every frame even if nothing has changed on scree
 
 Sets the V-Sync mode for the editor. Does not affect the project when run from the editor (this is controlled by :ref:`ProjectSettings.display/window/vsync/vsync_mode<class_ProjectSettings_property_display/window/vsync/vsync_mode>`).
 
-Depending on the platform and used renderer, the engine will fall back to **Enabled** if the desired mode is not supported.
-
-\ **Note:** V-Sync modes other than **Enabled** are only supported in the Forward+ and Mobile rendering methods, not Compatibility.
+Depending on the platform and rendering driver, the engine will fall back to **Enabled** if the desired mode is not supported.
 
 .. rst-class:: classref-item-separator
 
@@ -5381,7 +5379,7 @@ If ``true``, enable TLSv1.3 negotiation.
 
 :ref:`String<class_String>` **project_manager/default_renderer** :ref:`🔗<class_EditorSettings_property_project_manager/default_renderer>`
 
-The renderer type that will be checked off by default when creating a new project. Accepted strings are "forward_plus", "mobile" or "gl_compatibility".
+EGP creates all rendered projects with ``forward_plus``.
 
 .. rst-class:: classref-item-separator
 

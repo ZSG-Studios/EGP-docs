@@ -5,11 +5,10 @@ Using decals
 
 .. note::
 
-    Decals are only supported in the Forward+ and Mobile renderers, not the
-    Compatibility renderer.
+    Decals are supported in the Forward+ renderer.
 
-    If using the Compatibility renderer, consider using Sprite3D as an alternative
-    for projecting decals onto (mostly) flat surfaces.
+    For mostly flat surfaces, Sprite3D can also be used as an alternative to
+    projecting decals.
 
 Decals are projected textures that apply on opaque or transparent surfaces in
 3D. This projection happens in real-time and doesn't rely on mesh generation.
@@ -266,7 +265,3 @@ an omni light, a spot light, an area light, a :ref:`decal <doc_using_decals>`, o
 :ref:`reflection probe <doc_reflection_probes>`. This limit can be increased by adjusting
 :ref:`Max Clustered Elements<class_ProjectSettings_property_rendering/limits/cluster_builder/max_clustered_elements>`
 in **Project Settings > Rendering > Limits > Cluster Builder**.
-
-When using the Mobile renderer, only 8 decals can be applied on each
-individual Mesh *resource*. If there are more decals affecting a single mesh,
-not all of them will be rendered on the mesh.

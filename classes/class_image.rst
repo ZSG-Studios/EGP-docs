@@ -563,7 +563,7 @@ Same format as :ref:`FORMAT_ASTC_8x8<class_Image_constant_FORMAT_ASTC_8x8>`, but
 
 OpenGL texture format ``GL_R16`` where there's one component, a 16-bit unsigned normalized integer value. Since the value is normalized, each component is clamped between ``0.0`` and ``1.0`` (inclusive).
 
-\ **Note:** Due to limited hardware support, it is mainly recommended to be used on desktop or console devices. It may be unsupported on mobile or web, and will consequently be converted to :ref:`FORMAT_RF<class_Image_constant_FORMAT_RF>`.
+\ **Note:** Due to limited hardware support, it is mainly recommended to be used on desktop or console devices. If unsupported by the device, it will be converted to :ref:`FORMAT_RF<class_Image_constant_FORMAT_RF>`.
 
 .. _class_Image_constant_FORMAT_RG16:
 
@@ -573,7 +573,7 @@ OpenGL texture format ``GL_R16`` where there's one component, a 16-bit unsigned 
 
 OpenGL texture format ``GL_RG16`` where there are two components, each a 16-bit unsigned normalized integer value. Since the value is normalized, each component is clamped between ``0.0`` and ``1.0`` (inclusive).
 
-\ **Note:** Due to limited hardware support, it is mainly recommended to be used on desktop or console devices. It may be unsupported on mobile or web, and will consequently be converted to :ref:`FORMAT_RGF<class_Image_constant_FORMAT_RGF>`.
+\ **Note:** Due to limited hardware support, it is mainly recommended to be used on desktop or console devices. If unsupported by the device, it will be converted to :ref:`FORMAT_RGF<class_Image_constant_FORMAT_RGF>`.
 
 .. _class_Image_constant_FORMAT_RGB16:
 
@@ -583,7 +583,7 @@ OpenGL texture format ``GL_RG16`` where there are two components, each a 16-bit 
 
 OpenGL texture format ``GL_RGB16`` where there are three components, each a 16-bit unsigned normalized integer value. Since the value is normalized, each component is clamped between ``0.0`` and ``1.0`` (inclusive).
 
-\ **Note:** Due to limited hardware support, it is mainly recommended to be used on desktop or console devices. It may be unsupported on mobile or web, and will consequently be converted to :ref:`FORMAT_RGBF<class_Image_constant_FORMAT_RGBF>`.
+\ **Note:** Due to limited hardware support, it is mainly recommended to be used on desktop or console devices. If unsupported by the device, it will be converted to :ref:`FORMAT_RGBF<class_Image_constant_FORMAT_RGBF>`.
 
 .. _class_Image_constant_FORMAT_RGBA16:
 
@@ -593,7 +593,7 @@ OpenGL texture format ``GL_RGB16`` where there are three components, each a 16-b
 
 OpenGL texture format ``GL_RGBA16`` where there are four components, each a 16-bit unsigned normalized integer value. Since the value is normalized, each component is clamped between ``0.0`` and ``1.0`` (inclusive).
 
-\ **Note:** Due to limited hardware support, it is mainly recommended to be used on desktop or console devices. It may be unsupported on mobile or web, and will consequently be converted to :ref:`FORMAT_RGBAF<class_Image_constant_FORMAT_RGBAF>`.
+\ **Note:** Due to limited hardware support, it is mainly recommended to be used on desktop or console devices. If unsupported by the device, it will be converted to :ref:`FORMAT_RGBAF<class_Image_constant_FORMAT_RGBAF>`.
 
 .. _class_Image_constant_FORMAT_R16I:
 
@@ -603,7 +603,7 @@ OpenGL texture format ``GL_RGBA16`` where there are four components, each a 16-b
 
 OpenGL texture format ``GL_R16UI`` where there's one component, a 16-bit unsigned integer value. Each component is clamped between ``0`` and ``65535`` (inclusive).
 
-\ **Note:** When used in a shader, the texture requires usage of ``usampler`` samplers. Additionally, it only supports nearest-neighbor filtering under the Compatibility renderer.
+\ **Note:** When used in a shader, the texture requires usage of ``usampler`` samplers.
 
 \ **Note:** When sampling using :ref:`get_pixel()<class_Image_method_get_pixel>`, returned :ref:`Color<class_Color>`\ s have to be divided by ``65535`` to get the correct color value.
 
@@ -615,7 +615,7 @@ OpenGL texture format ``GL_R16UI`` where there's one component, a 16-bit unsigne
 
 OpenGL texture format ``GL_RG16UI`` where there are two components, each a 16-bit unsigned integer value. Each component is clamped between ``0`` and ``65535`` (inclusive).
 
-\ **Note:** When used in a shader, the texture requires usage of ``usampler`` samplers. Additionally, it only supports nearest-neighbor filtering under the Compatibility renderer.
+\ **Note:** When used in a shader, the texture requires usage of ``usampler`` samplers.
 
 \ **Note:** When sampling using :ref:`get_pixel()<class_Image_method_get_pixel>`, returned :ref:`Color<class_Color>`\ s have to be divided by ``65535`` to get the correct color value.
 
@@ -627,7 +627,7 @@ OpenGL texture format ``GL_RG16UI`` where there are two components, each a 16-bi
 
 OpenGL texture format ``GL_RGB16UI`` where there are three components, each a 16-bit unsigned integer value. Each component is clamped between ``0`` and ``65535`` (inclusive).
 
-\ **Note:** When used in a shader, the texture requires usage of ``usampler`` samplers. Additionally, it only supports nearest-neighbor filtering under the Compatibility renderer.
+\ **Note:** When used in a shader, the texture requires usage of ``usampler`` samplers.
 
 \ **Note:** When sampling using :ref:`get_pixel()<class_Image_method_get_pixel>`, returned :ref:`Color<class_Color>`\ s have to be divided by ``65535`` to get the correct color value.
 
@@ -639,7 +639,7 @@ OpenGL texture format ``GL_RGB16UI`` where there are three components, each a 16
 
 OpenGL texture format ``GL_RGBA16UI`` where there are four components, each a 16-bit unsigned integer value. Each component is clamped between ``0`` and ``65535`` (inclusive).
 
-\ **Note:** When used in a shader, the texture requires usage of ``usampler`` samplers. Additionally, it only supports nearest-neighbor filtering under the Compatibility renderer.
+\ **Note:** When used in a shader, the texture requires usage of ``usampler`` samplers.
 
 \ **Note:** When sampling using :ref:`get_pixel()<class_Image_method_get_pixel>`, returned :ref:`Color<class_Color>`\ s have to be divided by ``65535`` to get the correct color value.
 

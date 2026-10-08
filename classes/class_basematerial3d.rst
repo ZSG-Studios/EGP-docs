@@ -1037,7 +1037,7 @@ Set ``ALBEDO`` to the per-vertex color specified in the mesh.
 
 Vertex colors are considered to be stored in nonlinear sRGB encoding and are converted to linear encoding during rendering. See also :ref:`vertex_color_is_srgb<class_BaseMaterial3D_property_vertex_color_is_srgb>`.
 
-\ **Note:** Only effective when using the Forward+ and Mobile rendering methods.
+\ **Note:** Requires the Forward+ rendering method.
 
 .. _class_BaseMaterial3D_constant_FLAG_USE_POINT_SIZE:
 
@@ -1284,8 +1284,6 @@ enum **SpecularMode**: :ref:`🔗<enum_BaseMaterial3D_SpecularMode>`
 Default specular blob.
 
 \ **Note:** Forward+ uses multiscattering for more accurate reflections, although the impact of multiscattering is more noticeable on rough metallic surfaces than on smooth, non-metallic surfaces.
-
-\ **Note:** Mobile and Compatibility don't perform multiscattering for performance reasons. Instead, they perform single scattering, which means rough metallic surfaces may look slightly darker than intended.
 
 .. _class_BaseMaterial3D_constant_SPECULAR_TOON:
 
@@ -3926,7 +3924,7 @@ If ``true``, triplanar mapping for ``UV2`` is calculated in world space rather t
 
 If ``true``, vertex colors are considered to be stored in nonlinear sRGB encoding and are converted to linear encoding during rendering. If ``false``, vertex colors are considered to be stored in linear encoding and are rendered as-is. See also :ref:`albedo_texture_force_srgb<class_BaseMaterial3D_property_albedo_texture_force_srgb>`.
 
-\ **Note:** Only effective when using the Forward+ and Mobile rendering methods, not Compatibility.
+\ **Note:** Requires the Forward+ rendering method.
 
 .. rst-class:: classref-item-separator
 

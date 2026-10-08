@@ -12,14 +12,16 @@ OpenXRFrameSynthesisExtension
 
 **Inherits:** :ref:`OpenXRExtensionWrapper<class_OpenXRExtensionWrapper>` **<** :ref:`Object<class_Object>`
 
-The OpenXR Frame synthesis extension allows for advanced reprojection at low(er) framerates.
+Retained OpenXR frame synthesis API. Frame synthesis is unsupported in EGP.
 
 .. rst-class:: classref-introduction-group
 
 Description
 -----------
 
-This class implements the `OpenXR Frame synthesis extension <https://registry.khronos.org/OpenXR/specs/1.1/html/xrspec.html#XR_EXT_frame_synthesis>`__. When enabled in the project settings and supported by the XR runtime in use, frame synthesis uses advanced reprojection techniques to inject additional frames so that your XR experience hits the full frame rate of the device.
+This class exposes the `OpenXR Frame synthesis extension <https://registry.khronos.org/OpenXR/specs/1.1/html/xrspec.html#XR_EXT_frame_synthesis>`__ API. The upstream extension uses advanced reprojection techniques to inject additional frames at reduced application framerates.
+
+\ **Note:** Frame synthesis is unsupported by EGP's Forward+ renderer. Enabling the extension does not provide frame synthesis in EGP, even when the XR runtime supports it.
 
 .. rst-class:: classref-reftable-group
 
@@ -69,7 +71,7 @@ Property Descriptions
 - |void| **set_enabled**\ (\ value\: :ref:`bool<class_bool>`\ )
 - :ref:`bool<class_bool>` **is_enabled**\ (\ )
 
-Enable frame synthesis. When ``true`` motion vector and depth data is provided to the XR runtime.
+Requests frame synthesis when supported by the renderer and XR runtime. EGP's Forward+ renderer does not support this feature.
 
 .. rst-class:: classref-item-separator
 
@@ -103,7 +105,7 @@ Method Descriptions
 
 :ref:`bool<class_bool>` **is_available**\ (\ ) |const| :ref:`🔗<class_OpenXRFrameSynthesisExtension_method_is_available>`
 
-Returns ``true`` if frame synthesis is enabled in the project settings and the current XR runtime supports frame synthesis. The value returned will only be valid once OpenXR has been initialized.
+Returns ``true`` if frame synthesis is enabled in the project settings and supported by the renderer and current XR runtime. EGP's Forward+ renderer does not support frame synthesis. The value returned will only be valid once OpenXR has been initialized.
 
 .. rst-class:: classref-item-separator
 

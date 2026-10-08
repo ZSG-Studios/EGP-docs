@@ -25,9 +25,9 @@ When used in a :ref:`WorldEnvironment<class_WorldEnvironment>`, it provides defa
 
 The default values are intended for use in an outdoor environment; tips for values to use in an indoor environment can be found in each setting's documentation.
 
-\ **Note:** Depth of field blur is only supported in the Forward+ and Mobile rendering methods, not Compatibility.
+\ **Note:** Depth of field blur requires the Forward+ rendering method.
 
-\ **Note:** Auto-exposure is only supported in the Forward+ rendering method, not Mobile or Compatibility.
+\ **Note:** Auto-exposure requires the Forward+ rendering method.
 
 .. rst-class:: classref-introduction-group
 

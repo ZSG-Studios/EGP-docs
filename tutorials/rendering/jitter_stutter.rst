@@ -81,20 +81,12 @@ when a shader needs to be compiled when a new material or particle effect is spa
 for the first time in a game. This kind of stuttering generally only happens on the first
 playthrough, or after a graphics driver update when the shader cache is invalidated.
 
-Since Godot 4.4, when using the Forward+ or Mobile renderers, the engine tries to
+When using Forward+, the engine tries to
 avoid shader compilation stutter using an ubershader approach.
 For this approach to be most effective, care must be taken
 when designing scenes and resources so that Godot can gather as much information as
 possible when the scene/resource is loaded, as opposed as to when it's being drawn
 for the first time. See :ref:`doc_pipeline_compilations` for more information.
-
-However, when using the Compatibility renderer, it is not possible to use this
-ubershader approach due to technical limitations in OpenGL. Therefore, to avoid
-shader compilation stutter in the Compatibility renderer, you need to spawn every
-mesh and visual effect in front of the camera for a single frame when the level is loading.
-This will ensure the shader is compiled when the level is loaded, as opposed to
-occurring during gameplay. This can be done behind solid 2D UI (such as a fullscreen
-:ref:`class_ColorRect` node) so that it's not visible to the player.
 
 .. note::
 
@@ -199,7 +191,7 @@ noticeable by disabling V-Sync in the project settings. This will however cause
 tearing to appear, especially on monitors with low refresh rates. It's suggested
 to make V-Sync available as an option for players to toggle.
 
-When using the Forward+ or Mobile rendering methods, another way to reduce
+When using Forward+, another way to reduce
 visual latency when V-Sync is enabled is to use double-buffered V-Sync instead
 of the default triple-buffered V-Sync. Since Godot 4.3, this can be achieved by
 reducing the **Display > Window > V-Sync > Swapchain Image Count** project

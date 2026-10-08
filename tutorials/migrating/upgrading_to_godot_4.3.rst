@@ -3,6 +3,13 @@
 Upgrading from Godot 4.2 to Godot 4.3
 =====================================
 
+.. note::
+
+    This page records historical upstream Godot changes. WebXR and alternative
+    renderer references describe those releases, not current EGP support.
+    See :ref:`doc_renderers` for EGP's Forward+ renderer and native graphics
+    drivers.
+
 For most games and apps made with 4.2 it should be relatively safe to migrate to 4.3.
 This page intends to cover everything you need to pay attention to when migrating
 your project.

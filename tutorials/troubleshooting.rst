@@ -5,11 +5,6 @@ Troubleshooting
 
 This page lists common issues encountered when using Godot and possible solutions.
 
-.. seealso::
-
-    See :ref:`doc_using_the_web_editor` for caveats specific to the Web version
-    of the Godot editor.
-
 The editor runs slowly and uses all my CPU and GPU resources, making my computer noisy
 --------------------------------------------------------------------------------------
 
@@ -60,7 +55,7 @@ There are several workarounds for this:
 The editor or project takes a very long time to start
 -----------------------------------------------------
 
-When using one of the RenderingDevice-based renderers (Forward+ or Mobile), the first
+When using Forward+, the first
 startup is expected to be relatively long. This is because shaders
 need to be compiled before they can be cached. Shaders also need to be cached
 again after updating Godot, after updating graphics drivers or after switching
@@ -153,7 +148,7 @@ The editor or project appears overly sharp or blurry
    Correct appearance (left), oversharpened appearance due to graphics driver sharpening (right)
 
 If the editor or project appears overly sharp, this is likely due to image
-sharpening being forced on all Vulkan or OpenGL applications by your graphics
+sharpening being forced on applications by your graphics
 driver. You can disable this behavior in the graphics driver's control panel:
 
 - **NVIDIA (Windows):** Open the start menu and choose **NVIDIA Control Panel**.
@@ -164,8 +159,8 @@ driver. You can disable this behavior in the graphics driver's control panel:
   disable **Radeon Image Sharpening**.
 
 If the editor or project appears overly blurry, this is likely due to
-:abbr:`FXAA (Fast Approximate AntiAliasing)` being forced on all Vulkan or
-OpenGL applications by your graphics driver.
+:abbr:`FXAA (Fast Approximate AntiAliasing)` being forced on applications by
+your graphics driver.
 
 - **NVIDIA (Windows):** Open the start menu and choose **NVIDIA Control Panel**.
   Open the **Manage 3D settings** tab on the left. In the list in the middle,
@@ -195,9 +190,7 @@ The editor/project freezes or displays glitched visuals after resuming the PC fr
 
 This is a known issue on Linux with NVIDIA graphics when using the proprietary
 driver. There is no definitive fix yet, as suspend on Linux + NVIDIA is often
-buggy when OpenGL or Vulkan is involved. The Compatibility rendering method
-(which uses OpenGL) is generally less prone to suspend-related issues compared
-to the Forward+ and Mobile renderers (which use Vulkan).
+buggy when Vulkan is involved.
 
 The NVIDIA driver offers an *experimental*
 `option to preserve video memory after suspend <https://wiki.archlinux.org/title/NVIDIA/Tips_and_tricks#Preserve_video_memory_after_suspend>`__

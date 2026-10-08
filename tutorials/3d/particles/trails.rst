@@ -5,8 +5,7 @@
 
 .. note::
 
-     Particle trails are only supported in the Forward+ and Mobile renderers,
-     not Compatibility.
+     Particle trails are supported in the Forward+ renderer.
 
 .. figure:: img/particle_trails.webp
    :alt: Particle trails

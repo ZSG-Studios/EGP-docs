@@ -109,13 +109,6 @@ Converts color from linear encoding to nonlinear sRGB encoding using the followi
     const vec3 a = vec3(0.055f);
     return mix((vec3(1.0f) + a) * pow(c.rgb, vec3(1.0f / 2.4f)) - a, 12.92f * c.rgb, lessThan(c.rgb, vec3(0.0031308f)));
 
-The Compatibility renderer uses a simpler formula that may produce undefined behavior with negative input values:
-
-::
-
-    vec3 c = input;
-    return max(vec3(1.055) * pow(c, vec3(0.416666667)) - vec3(0.055), vec3(0.0));
-
 .. _class_VisualShaderNodeColorFunc_constant_FUNC_SRGB_TO_LINEAR:
 
 .. rst-class:: classref-enumeration-constant
@@ -128,13 +121,6 @@ Converts color from nonlinear sRGB encoding to linear encoding using the followi
 
     vec3 c = input;
     return mix(pow((c.rgb + vec3(0.055)) * (1.0 / (1.0 + 0.055)), vec3(2.4)), c.rgb * (1.0 / 12.92), lessThan(c.rgb, vec3(0.04045)));
-
-The Compatibility renderer uses a simpler formula that behaves poorly with negative input values:
-
-::
-
-    vec3 c = input;
-    return c * (c * (c * 0.305306011 + 0.682171111) + 0.012522878);
 
 .. _class_VisualShaderNodeColorFunc_constant_FUNC_MAX:
 

@@ -4197,7 +4197,7 @@ When duplicating a resource with :ref:`Resource.duplicate()<class_Resource_metho
 
 :ref:`PropertyUsageFlags<enum_@GlobalScope_PropertyUsageFlags>` **PROPERTY_USAGE_HIGH_END_GFX** = ``2097152``
 
-The property is only shown in the editor if modern renderers are supported (the Compatibility rendering method is excluded).
+The property is only shown in the editor when :ref:`RenderingDevice<class_RenderingDevice>` features are available. EGP uses Forward+ for rendered output.
 
 .. _class_@GlobalScope_constant_PROPERTY_USAGE_NODE_PATH_FROM_SCENE_ROOT:
 

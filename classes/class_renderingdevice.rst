@@ -21,13 +21,13 @@ Description
 
 **RenderingDevice** is an abstraction for working with modern low-level graphics APIs such as Vulkan. Compared to :ref:`RenderingServer<class_RenderingServer>` (which works with Godot's own rendering subsystems), **RenderingDevice** is much lower-level and allows working more directly with the underlying graphics APIs. **RenderingDevice** is used in Godot to provide support for several modern low-level graphics APIs while reducing the amount of code duplication required. **RenderingDevice** can also be used in your own projects to perform things that are not exposed by :ref:`RenderingServer<class_RenderingServer>` or high-level nodes, such as using compute shaders.
 
-On startup, Godot creates a global **RenderingDevice** which can be retrieved using :ref:`RenderingServer.get_rendering_device()<class_RenderingServer_method_get_rendering_device>`. This global **RenderingDevice** performs drawing to the screen.
+On startup, rendered EGP applications create a global **RenderingDevice** which can be retrieved using :ref:`RenderingServer.get_rendering_device()<class_RenderingServer_method_get_rendering_device>`. This global **RenderingDevice** performs drawing to the screen.
 
 \ **Local RenderingDevices:** Using :ref:`RenderingServer.create_local_rendering_device()<class_RenderingServer_method_create_local_rendering_device>`, you can create "secondary" rendering devices to perform drawing and GPU compute operations on separate threads.
 
 \ **Note:** **RenderingDevice** assumes intermediate knowledge of modern graphics APIs such as Vulkan, Direct3D 12, Metal or WebGPU. These graphics APIs are lower-level than OpenGL or Direct3D 11, requiring you to perform what was previously done by the graphics driver itself. If you have difficulty understanding the concepts used in this class, follow the `Vulkan Tutorial <https://vulkan-tutorial.com/>`__ or `Vulkan Guide <https://vkguide.dev/>`__. It's recommended to have existing modern OpenGL or Direct3D 11 knowledge before attempting to learn a low-level graphics API.
 
-\ **Note:** **RenderingDevice** is not available when running in headless mode or when using the Compatibility rendering method.
+\ **Note:** EGP uses **RenderingDevice** with Forward+ through Vulkan, Direct3D 12, or Metal, depending on the drivers enabled for the target platform. **RenderingDevice** is not available when running in headless mode.
 
 .. rst-class:: classref-introduction-group
 
@@ -459,6 +459,8 @@ The specific family the main queue belongs to (\ ``rid`` parameter is ignored).
 
 - D3D12: ``ID3D12Resource``.
 
+- Metal: ``MTLTexture``.
+
 .. _class_RenderingDevice_constant_DRIVER_RESOURCE_TEXTURE_VIEW:
 
 .. rst-class:: classref-enumeration-constant
@@ -470,6 +472,8 @@ The view of an owned or shared texture.
 - Vulkan: ``VkImageView``.
 
 - D3D12: ``ID3D12Resource``.
+
+- Metal: ``MTLTexture``.
 
 .. _class_RenderingDevice_constant_DRIVER_RESOURCE_TEXTURE_DATA_FORMAT:
 
@@ -4854,7 +4858,7 @@ Support for high dynamic range (HDR) output.
 
 :ref:`Features<enum_RenderingDevice_Features>` **SUPPORTS_RASTERIZATION_RATE_MAP** = ``14``
 
-Support for rasterization rate maps. The current implementation targets Metal on Apple platforms. This allows for foveated rendering, which is used by the visionOS XR module.
+Support for rasterization rate maps. The current implementation targets Metal on Apple platforms. These maps can be used for foveated rendering.
 
 .. rst-class:: classref-item-separator
 
@@ -7441,7 +7445,7 @@ Returns the data format used to create this texture.
 
 Returns the internal graphics handle for this texture object. For use when communicating with third-party APIs mostly with GDExtension.
 
-\ **Note:** This function returns a ``uint64_t`` which internally maps to a ``GLuint`` (OpenGL) or ``VkImage`` (Vulkan).
+\ **Note:** This function returns a ``uint64_t`` containing a driver-specific texture handle. See :ref:`DRIVER_RESOURCE_TEXTURE<class_RenderingDevice_constant_DRIVER_RESOURCE_TEXTURE>` for the handle types.
 
 .. rst-class:: classref-item-separator
 

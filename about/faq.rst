@@ -435,10 +435,12 @@ Some new versions are safer to upgrade to than others. In general, whether you
 should upgrade depends on your project's circumstances. See
 :ref:`doc_release_policy_should_i_upgrade_my_project` for more information.
 
-Should I use the Forward+, Mobile, or Compatibility renderer?
--------------------------------------------------------------
+Which renderer does EGP use?
+------------------------------
 
-You can find a detailed comparison of the renderers in :ref:`doc_renderers`.
+EGP uses Forward+ for rendered projects and the dummy backend for headless
+servers and tooling. Compatibility and Mobile renderers are removed. See
+:ref:`doc_renderers` for driver requirements and migration guidance.
 
 I would like to contribute! How can I get started?
 --------------------------------------------------

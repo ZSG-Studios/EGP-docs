@@ -399,9 +399,9 @@ Defining this method is **optional**. If not overridden, it's ``true``.
 
 :ref:`bool<class_bool>` **_is_highend**\ (\ ) |virtual| |const| :ref:`🔗<class_VisualShaderNodeCustom_private_method__is_highend>`
 
-Override this method to enable the high-end mark in the Visual Shader Editor's members dialog. This should return ``true`` for nodes that only work when using the Forward+ and Mobile renderers.
+Override this method to enable the high-end mark in the Visual Shader Editor's members dialog. This mark identifies nodes that require :ref:`RenderingDevice<class_RenderingDevice>` shader features.
 
-Defining this method is **optional**. If not overridden, it's ``false``, which indicates this node works with all renderers (including Compatibility).
+Defining this method is **optional**. If not overridden, it returns ``false`` and the node is not marked as high-end. EGP uses Forward+ for rendered output.
 
 .. rst-class:: classref-item-separator
 

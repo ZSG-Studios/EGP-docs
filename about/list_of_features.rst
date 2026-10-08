@@ -5,13 +5,9 @@
 List of features
 ================
 
-This page aims to list **all** features currently supported by Godot.
-
-.. note::
-
-    This page lists features supported by the current stable version of
-    Godot. Some of these features are not available in the
-    `3.x release series <https://docs.godotengine.org/en/3.6/about/list_of_features.html>`__.
+This page describes EGP's feature set inherited from Godot and its native
+integrations. Availability depends on the platform and enabled build options.
+See :ref:`doc_egp_qualification` for actual tested revisions and artifacts.
 
 Platforms
 ---------
@@ -37,8 +33,8 @@ Platforms
      allowing for binaries that work across common Linux distributions.
 
 - Android (editor support is experimental).
-- :ref:`Web browsers <doc_using_the_web_editor>`. Experimental in 4.0,
-  using Godot 3.x is recommended instead when targeting HTML5.
+
+Browser rendering, the Web editor, Web exports and WebXR are unsupported in EGP.
 
 .. note::
 
@@ -124,22 +120,14 @@ Editor
 Rendering
 ---------
 
-Godot 4 includes three renderers:
-
-- **Forward+**. The most advanced renderer, suited for desktop platforms only.
-  Used by default on desktop platforms. This renderer uses **Vulkan**, **Direct3D 12**,
-  or **Metal** as the rendering driver, and it uses the **RenderingDevice** backend.
-- **Mobile**. Fewer features, but renders simple scenes faster. Suited for mobile
-  and desktop platforms. Used by default on mobile platforms. This renderer uses
-  **Vulkan**, **Direct3D 12**, or **Metal** as the rendering driver, and it uses
-  the **RenderingDevice** backend.
-- **Compatibility**, sometimes called **GL Compatibility**. The least advanced
-  renderer, suited for low-end desktop and mobile platforms. Used by default on
-  the web platform. This renderer uses **OpenGL** as the rendering driver.
+EGP uses **Forward+** through the **RenderingDevice** backend with Vulkan,
+Direct3D 12 or Metal, depending on the platform and enabled build features.
+Compatibility and Mobile renderers, OpenGL/OpenGL ES and ANGLE are removed.
+Headless servers and tooling retain the dummy backend.
 
 .. seealso::
 
-    See :ref:`doc_renderers` for a detailed comparison of the rendering methods.
+    See :ref:`doc_renderers` for driver requirements and migration guidance.
 
 2D graphics
 -----------
@@ -223,7 +211,7 @@ settings, supported shapes/queries, native joints and remaining parity gates.
 - Perspective, orthographic and frustum-offset cameras.
 - When using the Forward+ renderer, a depth prepass is used to improve
   performance in complex scenes by reducing the cost of overdraw.
-- :ref:`doc_variable_rate_shading` on supported GPUs in Forward+ and Mobile.
+- :ref:`doc_variable_rate_shading` on supported GPUs in Forward+.
 
 **Physically-based rendering (built-in material features):**
 
@@ -253,12 +241,9 @@ settings, supported shapes/queries, native joints and remaining parity gates.
 - Adjustable light "size" for spherical omni and disc spot lights (will also make shadows
   blurrier with variable penumbra).
 - Optional distance fade system to fade distant lights and their shadows, improving performance.
-- When using the Forward+ renderer (default on desktop), lights are
+- With Forward+ rendering, lights are
   rendered with clustered forward optimizations to decrease their individual cost.
   Clustered rendering also lifts any limits on the number of lights that can be used on a mesh.
-- When using the Mobile renderer, up to 8 omni lights, 8 spot lights, and 8 area lights can
-  be displayed per mesh resource. Baked lighting can be used to overcome this limit
-  if needed.
 
 **Shadow mapping:**
 
@@ -319,13 +304,10 @@ settings, supported shapes/queries, native joints and remaining parity gates.
   Parallax box correction can optionally be enabled.
 - Screen-space reflections with support for material roughness.
 - Reflection techniques can be mixed together for greater accuracy or scalability.
-- When using the Forward+ renderer (default on desktop), reflection probes are
+- With Forward+ rendering, reflection probes are
   rendered with clustered forward optimizations to decrease their individual cost.
   Clustered rendering also lifts any limits on the number of reflection probes
   that can be used on a mesh.
-- When using the Mobile renderer, up to 8 reflection probes can be displayed per mesh
-  resource. When using the Compatibility renderer, up to 2 reflection probes can
-  be displayed per mesh resource.
 
 **Decals:**
 
@@ -338,11 +320,9 @@ settings, supported shapes/queries, native joints and remaining parity gates.
   complex skinned meshes with no performance penalty, even if the decal moves every frame.
 - Support for nearest, bilinear, trilinear or anisotropic texture filtering (configured globally).
 - Optional distance fade system to fade distant decals, improving performance.
-- When using the Forward+ renderer (default on desktop), decals are
+- With Forward+ rendering, decals are
   rendered with clustered forward optimizations to decrease their individual cost.
   Clustered rendering also lifts any limits on the number of decals that can be used on a mesh.
-- When using the Mobile renderer, up to 8 decals can be displayed per mesh
-  resource.
 
 **Sky:**
 

@@ -31,10 +31,9 @@ look somewhat familiar.
 
 .. note::
 
-   Compute shaders can only be used from RenderingDevice-based renderers (the
-   Forward+ or Mobile renderer). To follow along with this tutorial, ensure that
-   you are using the Forward+ or Mobile renderer. The setting for which is
-   located in the top right-hand corner of the editor.
+   Compute shaders use RenderingDevice, which is provided by the Forward+
+   renderer. Run this tutorial with a rendered editor or project; the headless
+   dummy backend does not provide RenderingDevice.
 
    Note that compute shader support is generally poor on mobile devices (due to
    driver bugs), even if they are technically supported.

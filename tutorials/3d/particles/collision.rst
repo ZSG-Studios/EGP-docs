@@ -125,8 +125,7 @@ SDF collision
 
 .. note::
 
-     Particle SDF collision is only supported in the Forward+ and Mobile renderers,
-     not Compatibility.
+     Particle SDF collision is supported in the Forward+ renderer.
 
 .. figure:: img/particle_collision_sdf_entry.webp
    :alt: Particle collision SDF

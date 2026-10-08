@@ -36,11 +36,11 @@ There are other XR related nodes and there is much more to say about these three
 Which Renderer to use
 ---------------------
 
-Godot has 3 renderer options for projects: Compatibility, Mobile, and Forward+.
-The current recommendation is to use the Mobile renderer for any desktop VR project,
-or any project running on a standalone headset like the Meta Quest 3. XR projects
-will run with the Forward+ renderer, but it isn't well optimized for XR right now
-compared to the other two.
+EGP uses Forward+ for rendered XR projects. The selected XR runtime and
+RenderingDevice driver must support the target headset. Mobile and
+Compatibility renderers are removed; their upstream setup recommendations
+do not apply. See :ref:`doc_renderers` and validate the project's frame budget
+on its target device.
 
 OpenXR
 ------
@@ -139,7 +139,7 @@ Next we need to add a script to our root node. Add the following code into this 
 
     The OpenXR interface is unique in that we have to start it before the project loads, hence ``is_initialized`` is checked here. Most interfaces require a call to their ``initialize`` function instead.
 
-    If you wish to support multiple XR interfaces, say release a game both targeting OpenXR hardware and deploy over WebXR, you can check one after the other until a functioning interface is found.
+    If you support multiple native XR interfaces, check their availability and handle initialization failure. WebXR is not available in EGP.
 
 
 .. warning::

@@ -939,8 +939,6 @@ The default ParticleProcessMaterial needs to have :ref:`ParticleProcessMaterial.
 
 Additionally, it will use the contents of ``custom`` as ``(rotation, lifetime, animation, lifetime randomness)``.
 
-\ **Note:** :ref:`emit_particle()<class_GPUParticles3D_method_emit_particle>` is only supported on the Forward+ and Mobile rendering methods, not Compatibility.
-
 .. rst-class:: classref-item-separator
 
 ----

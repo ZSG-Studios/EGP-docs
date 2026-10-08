@@ -20,7 +20,7 @@ jobs:
         run: python -c 'import json, os; print("revision=" + json.load(open("egp/source_manifest.json"))["engine_revision"], file=open(os.environ["GITHUB_OUTPUT"], "a"))'
       - uses: actions/checkout@v4
         with:
-          repository: ZSG-Studios/EGP
+          repository: ZSG-Studios/EGP-Engine
           ref: ${{ steps.engine.outputs.revision }}
           path: .engine-src
           sparse-checkout: |

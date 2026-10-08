@@ -7,6 +7,12 @@ Use an EGP editor and export templates built from the same engine revision.
 Godot version strings alone do not identify EGP's native API or its bundled
 C++ SDK. C# projects also require the matching GodotSharp assemblies and packages.
 
+Rendered projects use Forward+ with a supported RenderingDevice driver:
+Vulkan, Direct3D 12 or Metal, depending on the platform and build. There is
+no Compatibility or Mobile renderer, OpenGL fallback, Web export or WebXR
+support. Headless servers and tooling retain the dummy backend. See
+:ref:`doc_renderers` before choosing target hardware or migrating a project.
+
 Building the editor
 -------------------
 
@@ -31,7 +37,7 @@ graph captures the editor's actual extension API and embeds the matching SDK.
 Check the :doc:`qualification` page before relying on a platform or feature.
 
 The current physics backends require single-precision x86_64 or arm64 desktop
-builds. Android, iOS, Web and double-precision export profiles explicitly omit
+builds. Android, iOS and double-precision export profiles explicitly omit
 physics with ``disable_physics_2d=yes disable_physics_3d=yes``. These profiles
 cannot run games that require those physics nodes. Editor builds require physics;
 Android and double-precision editors are currently unsupported.

@@ -4,9 +4,8 @@ The XR action map
 =================
 
 Godot has an action map feature as part of the XR system.
-At this point in time this system is part of the OpenXR module.
-There are plans to encompass WebXR into this in the near future hence we call it
-the XR action map system in this document.
+This system is part of the OpenXR module and is referred to as the XR action map
+system in this document.
 It implements the built-in action map system of OpenXR mostly exactly as it is offered.
 
 The XR action map system exposes input, positional data and output for XR controllers

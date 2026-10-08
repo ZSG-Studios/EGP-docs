@@ -17,8 +17,10 @@ See :ref:`doc_exporting_for_android` for the full details, and return here when 
 
 .. warning::
 
-    While the Mobile Vulkan renderer has many optimizations targeted at mobile devices, we're still working out the kinks.
-    It is highly advisable to use the compatibility renderer (OpenGL) for the time being when targeting Android based XR devices.
+    EGP requires Forward+ with Vulkan on supported Android XR devices.
+    Compatibility, Mobile and OpenGL rendering are removed. Verify the headset's
+    graphics driver, OpenXR runtime and vendor plugins with the chosen EGP build;
+    there is no fallback renderer. See :ref:`doc_egp_qualification` for tested scope.
 
 Gradle Android build
 --------------------

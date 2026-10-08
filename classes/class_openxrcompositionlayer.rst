@@ -146,9 +146,7 @@ enum **MipmapMode**: :ref:`🔗<enum_OpenXRCompositionLayer_MipmapMode>`
 
 :ref:`MipmapMode<enum_OpenXRCompositionLayer_MipmapMode>` **MIPMAP_MODE_DISABLED** = ``0``
 
-Disable mipmapping.
-
-\ **Note:** Mipmapping can only be disabled in the Compatibility renderer.
+A request to disable mipmapping. With the Vulkan rendering driver, this mode uses linear mipmap interpolation, as with :ref:`MIPMAP_MODE_LINEAR<class_OpenXRCompositionLayer_constant_MIPMAP_MODE_LINEAR>`.
 
 .. _class_OpenXRCompositionLayer_constant_MIPMAP_MODE_NEAREST:
 
@@ -215,8 +213,6 @@ Repeat the texture infinitely, mirroring it on each repeat.
 :ref:`Wrap<enum_OpenXRCompositionLayer_Wrap>` **WRAP_MIRROR_CLAMP_TO_EDGE** = ``4``
 
 Mirror the texture once and then clamp the texture to its edge color.
-
-\ **Note:** This wrap mode is not available in the Compatibility renderer.
 
 .. rst-class:: classref-item-separator
 
@@ -461,7 +457,7 @@ The sort order for this composition layer. Higher numbers will be shown in front
 
 The swizzle value for the alpha channel of the swapchain state.
 
-\ **Note:** This property only has an effect on devices that support the OpenXR XR_FB_swapchain_update_state OpenGLES/Vulkan extensions.
+\ **Note:** This property only has an effect when using the Vulkan rendering driver with an OpenXR runtime that supports the ``XR_FB_swapchain_update_state`` and ``XR_FB_swapchain_update_state_vulkan`` extensions.
 
 .. rst-class:: classref-item-separator
 
@@ -480,7 +476,7 @@ The swizzle value for the alpha channel of the swapchain state.
 
 The swizzle value for the blue channel of the swapchain state.
 
-\ **Note:** This property only has an effect on devices that support the OpenXR XR_FB_swapchain_update_state OpenGLES/Vulkan extensions.
+\ **Note:** This property only has an effect when using the Vulkan rendering driver with an OpenXR runtime that supports the ``XR_FB_swapchain_update_state`` and ``XR_FB_swapchain_update_state_vulkan`` extensions.
 
 .. rst-class:: classref-item-separator
 
@@ -499,7 +495,7 @@ The swizzle value for the blue channel of the swapchain state.
 
 The border color of the swapchain state that is used when the wrap mode clamps to the border.
 
-\ **Note:** This property only has an effect on devices that support the OpenXR XR_FB_swapchain_update_state OpenGLES/Vulkan extensions.
+\ **Note:** This property only has an effect when using the Vulkan rendering driver with an OpenXR runtime that supports the ``XR_FB_swapchain_update_state`` and ``XR_FB_swapchain_update_state_vulkan`` extensions.
 
 .. rst-class:: classref-item-separator
 
@@ -518,7 +514,7 @@ The border color of the swapchain state that is used when the wrap mode clamps t
 
 The swizzle value for the green channel of the swapchain state.
 
-\ **Note:** This property only has an effect on devices that support the OpenXR XR_FB_swapchain_update_state OpenGLES/Vulkan extensions.
+\ **Note:** This property only has an effect when using the Vulkan rendering driver with an OpenXR runtime that supports the ``XR_FB_swapchain_update_state`` and ``XR_FB_swapchain_update_state_vulkan`` extensions.
 
 .. rst-class:: classref-item-separator
 
@@ -537,7 +533,7 @@ The swizzle value for the green channel of the swapchain state.
 
 The horizontal wrap mode of the swapchain state.
 
-\ **Note:** This property only has an effect on devices that support the OpenXR XR_FB_swapchain_update_state OpenGLES/Vulkan extensions.
+\ **Note:** This property only has an effect when using the Vulkan rendering driver with an OpenXR runtime that supports the ``XR_FB_swapchain_update_state`` and ``XR_FB_swapchain_update_state_vulkan`` extensions.
 
 .. rst-class:: classref-item-separator
 
@@ -556,7 +552,7 @@ The horizontal wrap mode of the swapchain state.
 
 The magnification filter of the swapchain state.
 
-\ **Note:** This property only has an effect on devices that support the OpenXR XR_FB_swapchain_update_state OpenGLES/Vulkan extensions.
+\ **Note:** This property only has an effect when using the Vulkan rendering driver with an OpenXR runtime that supports the ``XR_FB_swapchain_update_state`` and ``XR_FB_swapchain_update_state_vulkan`` extensions.
 
 .. rst-class:: classref-item-separator
 
@@ -575,7 +571,7 @@ The magnification filter of the swapchain state.
 
 The max anisotropy of the swapchain state.
 
-\ **Note:** This property only has an effect on devices that support the OpenXR XR_FB_swapchain_update_state OpenGLES/Vulkan extensions.
+\ **Note:** This property only has an effect when using the Vulkan rendering driver with an OpenXR runtime that supports the ``XR_FB_swapchain_update_state`` and ``XR_FB_swapchain_update_state_vulkan`` extensions.
 
 .. rst-class:: classref-item-separator
 
@@ -594,7 +590,7 @@ The max anisotropy of the swapchain state.
 
 The minification filter of the swapchain state.
 
-\ **Note:** This property only has an effect on devices that support the OpenXR XR_FB_swapchain_update_state OpenGLES/Vulkan extensions.
+\ **Note:** This property only has an effect when using the Vulkan rendering driver with an OpenXR runtime that supports the ``XR_FB_swapchain_update_state`` and ``XR_FB_swapchain_update_state_vulkan`` extensions.
 
 .. rst-class:: classref-item-separator
 
@@ -613,7 +609,7 @@ The minification filter of the swapchain state.
 
 The mipmap mode of the swapchain state.
 
-\ **Note:** This property only has an effect on devices that support the OpenXR XR_FB_swapchain_update_state OpenGLES/Vulkan extensions.
+\ **Note:** This property only has an effect when using the Vulkan rendering driver with an OpenXR runtime that supports the ``XR_FB_swapchain_update_state`` and ``XR_FB_swapchain_update_state_vulkan`` extensions.
 
 .. rst-class:: classref-item-separator
 
@@ -632,7 +628,7 @@ The mipmap mode of the swapchain state.
 
 The swizzle value for the red channel of the swapchain state.
 
-\ **Note:** This property only has an effect on devices that support the OpenXR XR_FB_swapchain_update_state OpenGLES/Vulkan extensions.
+\ **Note:** This property only has an effect when using the Vulkan rendering driver with an OpenXR runtime that supports the ``XR_FB_swapchain_update_state`` and ``XR_FB_swapchain_update_state_vulkan`` extensions.
 
 .. rst-class:: classref-item-separator
 
@@ -651,7 +647,7 @@ The swizzle value for the red channel of the swapchain state.
 
 The vertical wrap mode of the swapchain state.
 
-\ **Note:** This property only has an effect on devices that support the OpenXR XR_FB_swapchain_update_state OpenGLES/Vulkan extensions.
+\ **Note:** This property only has an effect when using the Vulkan rendering driver with an OpenXR runtime that supports the ``XR_FB_swapchain_update_state`` and ``XR_FB_swapchain_update_state_vulkan`` extensions.
 
 .. rst-class:: classref-item-separator
 

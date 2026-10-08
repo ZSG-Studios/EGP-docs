@@ -821,7 +821,7 @@ Additional data added to the ``UIRequiredDeviceCapabilities`` array of the ``Inf
 
 :ref:`bool<class_bool>` **capabilities/performance_a12** :ref:`🔗<class_EditorExportPlatformIOS_property_capabilities/performance_a12>`
 
-Requires the graphics performance and features of the A12 Bionic and later chips (devices supporting all Vulkan renderer features).
+Requires the graphics performance and features of the A12 Bionic and later chips.
 
 Enabling this option limits supported devices to: iPhone XS, iPhone XR, iPad Mini (5th gen.), iPad Air (3rd gen.), iPad (8th gen), and newer.
 
@@ -3392,7 +3392,7 @@ The reasons your app uses user defaults API. See `Describing use of required rea
 
 :ref:`bool<class_bool>` **shader_baker/enabled** :ref:`🔗<class_EditorExportPlatformIOS_property_shader_baker/enabled>`
 
-If ``true``, shaders will be compiled and embedded in the application. This option is only supported when using the Forward+ or Mobile renderers.
+If ``true``, shaders will be compiled and embedded in the application.
 
 \ **Note:** When exporting as a dedicated server, the shader baker is always disabled since no rendering is performed.
 

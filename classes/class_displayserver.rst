@@ -2967,7 +2967,7 @@ Default vertical synchronization mode, the image is displayed only on vertical b
 
 :ref:`VSyncMode<enum_DisplayServer_VSyncMode>` **VSYNC_ADAPTIVE** = ``2``
 
-Behaves like :ref:`VSYNC_DISABLED<class_DisplayServer_constant_VSYNC_DISABLED>` when the framerate drops below the screen's refresh rate to reduce stuttering (tearing may be visible). Otherwise, vertical synchronization is enabled to avoid tearing. Framerate is limited by the monitor refresh rate (regardless of :ref:`Engine.max_fps<class_Engine_property_max_fps>`). Behaves like :ref:`VSYNC_ENABLED<class_DisplayServer_constant_VSYNC_ENABLED>` when using the Compatibility rendering method.
+Behaves like :ref:`VSYNC_DISABLED<class_DisplayServer_constant_VSYNC_DISABLED>` when the framerate drops below the screen's refresh rate to reduce stuttering (tearing may be visible). Otherwise, vertical synchronization is enabled to avoid tearing. Framerate is limited by the monitor refresh rate (regardless of :ref:`Engine.max_fps<class_Engine_property_max_fps>`).
 
 .. _class_DisplayServer_constant_VSYNC_MAILBOX:
 
@@ -2977,7 +2977,7 @@ Behaves like :ref:`VSYNC_DISABLED<class_DisplayServer_constant_VSYNC_DISABLED>` 
 
 Displays the most recent image in the queue on vertical blanking intervals, while rendering to the other images (no tearing is visible). Framerate is unlimited (regardless of :ref:`Engine.max_fps<class_Engine_property_max_fps>`).
 
-Although not guaranteed, the images can be rendered as fast as possible, which may reduce input lag (also called "Fast" V-Sync mode). :ref:`VSYNC_MAILBOX<class_DisplayServer_constant_VSYNC_MAILBOX>` works best when at least twice as many frames as the display refresh rate are rendered. Behaves like :ref:`VSYNC_ENABLED<class_DisplayServer_constant_VSYNC_ENABLED>` when using the Compatibility rendering method.
+Although not guaranteed, the images can be rendered as fast as possible, which may reduce input lag (also called "Fast" V-Sync mode). :ref:`VSYNC_MAILBOX<class_DisplayServer_constant_VSYNC_MAILBOX>` works best when at least twice as many frames as the display refresh rate are rendered.
 
 .. classref_note::
 
@@ -3004,8 +3004,6 @@ Display handle:
 - Linux (X11): ``X11::Display*`` for the display.
 
 - Linux (Wayland): ``wl_display`` for the display.
-
-- Android: ``EGLDisplay`` for the display.
 
 .. _class_DisplayServer_constant_WINDOW_HANDLE:
 
@@ -3035,8 +3033,6 @@ Window handle:
 
 Window view:
 
-- Windows: ``HDC`` for the window (only with the Compatibility renderer).
-
 - macOS: ``NSView*`` for the window main view.
 
 - iOS: ``UIView*`` for the window main view.
@@ -3047,7 +3043,7 @@ Window view:
 
 :ref:`HandleType<enum_DisplayServer_HandleType>` **OPENGL_CONTEXT** = ``3``
 
-OpenGL context (only with the Compatibility renderer):
+Legacy OpenGL context handle, retained for API compatibility. EGP does not expose this handle. The former OpenGL rendering paths used the following platform types:
 
 - Windows: ``HGLRC`` for the window (native GL), or ``EGLContext`` for the window (ANGLE).
 
@@ -3065,6 +3061,8 @@ OpenGL context (only with the Compatibility renderer):
 
 :ref:`HandleType<enum_DisplayServer_HandleType>` **EGL_DISPLAY** = ``4``
 
+Legacy EGL display handle, retained for API compatibility. EGP does not expose this handle. The former EGL rendering paths used the following platform types:
+
 - Windows: ``EGLDisplay`` for the window (ANGLE).
 
 - macOS: ``EGLDisplay`` for the window (ANGLE).
@@ -3076,6 +3074,8 @@ OpenGL context (only with the Compatibility renderer):
 .. rst-class:: classref-enumeration-constant
 
 :ref:`HandleType<enum_DisplayServer_HandleType>` **EGL_CONFIG** = ``5``
+
+Legacy EGL configuration handle, retained for API compatibility. EGP does not expose this handle. The former EGL rendering paths used the following platform types:
 
 - Windows: ``EGLConfig`` for the window (ANGLE).
 
@@ -3089,9 +3089,7 @@ OpenGL context (only with the Compatibility renderer):
 
 :ref:`HandleType<enum_DisplayServer_HandleType>` **GLX_VISUALID** = ``6``
 
-The GLX ``VisualID`` for the window.
-
-\ **Note:** Only available on Linux when using X11.
+Legacy GLX ``VisualID`` for an X11 window, retained for API compatibility. EGP does not expose this handle.
 
 .. _class_DisplayServer_constant_GLX_FBCONFIG:
 
@@ -3099,9 +3097,7 @@ The GLX ``VisualID`` for the window.
 
 :ref:`HandleType<enum_DisplayServer_HandleType>` **GLX_FBCONFIG** = ``7``
 
-The ``GLXFBConfig`` for the window.
-
-\ **Note:** Only available on Linux when using X11.
+Legacy ``GLXFBConfig`` for an X11 window, retained for API compatibility. EGP does not expose this handle.
 
 .. rst-class:: classref-item-separator
 
@@ -7685,8 +7681,6 @@ Sets window transient parent. Transient window will be destroyed with its transi
 Sets the V-Sync mode of the given window. See also :ref:`ProjectSettings.display/window/vsync/vsync_mode<class_ProjectSettings_property_display/window/vsync/vsync_mode>`.
 
 Depending on the platform and used renderer, the engine will fall back to :ref:`VSYNC_ENABLED<class_DisplayServer_constant_VSYNC_ENABLED>` if the desired mode is not supported.
-
-\ **Note:** V-Sync modes other than :ref:`VSYNC_ENABLED<class_DisplayServer_constant_VSYNC_ENABLED>` are only supported in the Forward+ and Mobile rendering methods, not Compatibility.
 
 .. rst-class:: classref-item-separator
 

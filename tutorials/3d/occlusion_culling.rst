@@ -64,11 +64,6 @@ performance gains.
     ensure each opaque pixel is only shaded once, reducing the cost of overdraw
     significantly.
 
-    The greatest performance benefits can be observed when using the Mobile
-    renderer, as it does not feature a depth prepass for performance reasons. As
-    a result, occlusion culling will actively decrease shading overdraw with
-    that renderer.
-
     Nonetheless, even when using a depth prepass, there is still a noticeable
     benefit to occlusion culling in complex 3D scenes. However, in scenes with
     few occlusion culling opportunities, occlusion culling may not be worth the

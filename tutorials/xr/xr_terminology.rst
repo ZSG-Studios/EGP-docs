@@ -82,7 +82,7 @@ In Godot, AR is treated as a single concept, regardless of the type of device us
 This includes XR headsets using camera passthrough, see-through glasses with displays, and handheld devices
 such as phones and tablets.
 
-For XR devices and AR glasses that support standards such as OpenXR or WebXR, AR
+For XR devices and AR glasses that support OpenXR, AR
 functionality is available through the XR system. In these cases, applications can run
 across different devices with minimal changes. Passthrough on VR headsets is one example
 of this, and is simply a technical method used to enable AR capabilities on such devices.

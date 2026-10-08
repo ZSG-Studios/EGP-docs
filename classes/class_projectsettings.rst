@@ -1511,32 +1511,6 @@ Properties
    +-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
    | :ref:`int<class_int>`               | :ref:`rendering/environment/volumetric_fog/volume_size<class_ProjectSettings_property_rendering/environment/volumetric_fog/volume_size>`                                                                   | ``64``                                                                                           |
    +-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
-   | :ref:`String<class_String>`         | :ref:`rendering/gl_compatibility/driver<class_ProjectSettings_property_rendering/gl_compatibility/driver>`                                                                                                 | ``"opengl3"``                                                                                    |
-   +-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
-   | :ref:`String<class_String>`         | :ref:`rendering/gl_compatibility/driver.android<class_ProjectSettings_property_rendering/gl_compatibility/driver.android>`                                                                                 | ``"opengl3"``                                                                                    |
-   +-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
-   | :ref:`String<class_String>`         | :ref:`rendering/gl_compatibility/driver.ios<class_ProjectSettings_property_rendering/gl_compatibility/driver.ios>`                                                                                         | ``"opengl3"``                                                                                    |
-   +-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
-   | :ref:`String<class_String>`         | :ref:`rendering/gl_compatibility/driver.linuxbsd<class_ProjectSettings_property_rendering/gl_compatibility/driver.linuxbsd>`                                                                               | ``"opengl3"``                                                                                    |
-   +-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
-   | :ref:`String<class_String>`         | :ref:`rendering/gl_compatibility/driver.macos<class_ProjectSettings_property_rendering/gl_compatibility/driver.macos>`                                                                                     | ``"opengl3"``                                                                                    |
-   +-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
-   | :ref:`String<class_String>`         | :ref:`rendering/gl_compatibility/driver.web<class_ProjectSettings_property_rendering/gl_compatibility/driver.web>`                                                                                         | ``"opengl3"``                                                                                    |
-   +-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
-   | :ref:`String<class_String>`         | :ref:`rendering/gl_compatibility/driver.windows<class_ProjectSettings_property_rendering/gl_compatibility/driver.windows>`                                                                                 | ``"opengl3"``                                                                                    |
-   +-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
-   | :ref:`bool<class_bool>`             | :ref:`rendering/gl_compatibility/fallback_to_angle<class_ProjectSettings_property_rendering/gl_compatibility/fallback_to_angle>`                                                                           | ``true``                                                                                         |
-   +-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
-   | :ref:`bool<class_bool>`             | :ref:`rendering/gl_compatibility/fallback_to_gles<class_ProjectSettings_property_rendering/gl_compatibility/fallback_to_gles>`                                                                             | ``true``                                                                                         |
-   +-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
-   | :ref:`bool<class_bool>`             | :ref:`rendering/gl_compatibility/fallback_to_native<class_ProjectSettings_property_rendering/gl_compatibility/fallback_to_native>`                                                                         | ``true``                                                                                         |
-   +-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
-   | :ref:`Array<class_Array>`           | :ref:`rendering/gl_compatibility/force_angle_on_devices<class_ProjectSettings_property_rendering/gl_compatibility/force_angle_on_devices>`                                                                 |                                                                                                  |
-   +-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
-   | :ref:`int<class_int>`               | :ref:`rendering/gl_compatibility/item_buffer_size<class_ProjectSettings_property_rendering/gl_compatibility/item_buffer_size>`                                                                             | ``16384``                                                                                        |
-   +-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
-   | :ref:`bool<class_bool>`             | :ref:`rendering/gl_compatibility/nvidia_disable_threaded_optimization<class_ProjectSettings_property_rendering/gl_compatibility/nvidia_disable_threaded_optimization>`                                     | ``true``                                                                                         |
-   +-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
    | :ref:`bool<class_bool>`             | :ref:`rendering/global_illumination/gi/use_half_resolution<class_ProjectSettings_property_rendering/global_illumination/gi/use_half_resolution>`                                                           | ``false``                                                                                        |
    +-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
    | :ref:`int<class_int>`               | :ref:`rendering/global_illumination/sdfgi/frames_to_converge<class_ProjectSettings_property_rendering/global_illumination/sdfgi/frames_to_converge>`                                                       | ``5``                                                                                            |
@@ -1623,14 +1597,6 @@ Properties
    +-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
    | :ref:`int<class_int>`               | :ref:`rendering/limits/global_shader_variables/buffer_size<class_ProjectSettings_property_rendering/limits/global_shader_variables/buffer_size>`                                                           | ``65536``                                                                                        |
    +-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
-   | :ref:`int<class_int>`               | :ref:`rendering/limits/opengl/max_decals<class_ProjectSettings_property_rendering/limits/opengl/max_decals>`                                                                                               | ``64``                                                                                           |
-   +-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
-   | :ref:`int<class_int>`               | :ref:`rendering/limits/opengl/max_lights_per_object<class_ProjectSettings_property_rendering/limits/opengl/max_lights_per_object>`                                                                         | ``8``                                                                                            |
-   +-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
-   | :ref:`int<class_int>`               | :ref:`rendering/limits/opengl/max_renderable_elements<class_ProjectSettings_property_rendering/limits/opengl/max_renderable_elements>`                                                                     | ``65536``                                                                                        |
-   +-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
-   | :ref:`int<class_int>`               | :ref:`rendering/limits/opengl/max_renderable_lights<class_ProjectSettings_property_rendering/limits/opengl/max_renderable_lights>`                                                                         | ``32``                                                                                           |
-   +-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
    | :ref:`int<class_int>`               | :ref:`rendering/limits/spatial_indexer/threaded_cull_minimum_instances<class_ProjectSettings_property_rendering/limits/spatial_indexer/threaded_cull_minimum_instances>`                                   | ``1000``                                                                                         |
    +-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
    | :ref:`int<class_int>`               | :ref:`rendering/limits/spatial_indexer/update_iterations_per_frame<class_ProjectSettings_property_rendering/limits/spatial_indexer/update_iterations_per_frame>`                                           | ``10``                                                                                           |
@@ -1669,9 +1635,7 @@ Properties
    +-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
    | :ref:`String<class_String>`         | :ref:`rendering/renderer/rendering_method<class_ProjectSettings_property_rendering/renderer/rendering_method>`                                                                                             | ``"forward_plus"``                                                                               |
    +-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
-   | :ref:`String<class_String>`         | :ref:`rendering/renderer/rendering_method.mobile<class_ProjectSettings_property_rendering/renderer/rendering_method.mobile>`                                                                               | ``"mobile"``                                                                                     |
-   +-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
-   | :ref:`String<class_String>`         | :ref:`rendering/renderer/rendering_method.web<class_ProjectSettings_property_rendering/renderer/rendering_method.web>`                                                                                     | ``"gl_compatibility"``                                                                           |
+   | :ref:`String<class_String>`         | :ref:`rendering/renderer/rendering_method.mobile<class_ProjectSettings_property_rendering/renderer/rendering_method.mobile>`                                                                               | ``"forward_plus"``                                                                               |
    +-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
    | :ref:`int<class_int>`               | :ref:`rendering/rendering_device/d3d12/agility_sdk_version<class_ProjectSettings_property_rendering/rendering_device/d3d12/agility_sdk_version>`                                                           | ``618``                                                                                          |
    +-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
@@ -1694,8 +1658,6 @@ Properties
    | :ref:`String<class_String>`         | :ref:`rendering/rendering_device/driver.windows<class_ProjectSettings_property_rendering/rendering_device/driver.windows>`                                                                                 | ``"vulkan"``                                                                                     |
    +-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
    | :ref:`bool<class_bool>`             | :ref:`rendering/rendering_device/fallback_to_d3d12<class_ProjectSettings_property_rendering/rendering_device/fallback_to_d3d12>`                                                                           | ``true``                                                                                         |
-   +-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
-   | :ref:`bool<class_bool>`             | :ref:`rendering/rendering_device/fallback_to_opengl3<class_ProjectSettings_property_rendering/rendering_device/fallback_to_opengl3>`                                                                       | ``true``                                                                                         |
    +-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
    | :ref:`bool<class_bool>`             | :ref:`rendering/rendering_device/fallback_to_vulkan<class_ProjectSettings_property_rendering/rendering_device/fallback_to_vulkan>`                                                                         | ``true``                                                                                         |
    +-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
@@ -5172,7 +5134,7 @@ Depending on the platform and rendering method, the engine will fall back to **E
 
 V-Sync can be disabled on the command line using the ``--disable-vsync`` :doc:`command line argument <../tutorials/editor/command_line_tutorial>`.
 
-\ **Note:** The **Adaptive** and **Mailbox** V-Sync modes are only supported in the Forward+ and Mobile rendering methods, not Compatibility.
+\ **Note:** The **Adaptive** and **Mailbox** V-Sync modes are only supported in the Forward+ rendering method.
 
 \ **Note:** This property is only read when the project starts. To change the V-Sync mode at runtime, call :ref:`DisplayServer.window_set_vsync_mode()<class_DisplayServer_method_window_set_vsync_mode>` instead.
 
@@ -10990,7 +10952,7 @@ If ``true``, vertices of :ref:`CanvasItem<class_CanvasItem>` nodes will snap to 
 
 Sets the number of multisample antialiasing (MSAA) samples to use for 2D/Canvas rendering (as a power of two). MSAA is used to reduce aliasing around the edges of polygons. A higher MSAA value results in smoother edges but can be significantly slower on some hardware, especially integrated graphics due to their limited memory bandwidth. This has no effect on shader-induced aliasing or texture aliasing.
 
-\ **Note:** MSAA is only supported in the Forward+ and Mobile rendering methods, not Compatibility.
+\ **Note:** MSAA is only supported in the Forward+ rendering method.
 
 \ **Note:** This property is only read when the project starts. To set the number of 2D MSAA samples at runtime, set :ref:`Viewport.msaa_2d<class_Viewport_property_msaa_2d>` or use :ref:`RenderingServer.viewport_set_msaa_2d()<class_RenderingServer_method_viewport_set_msaa_2d>`.
 
@@ -11022,7 +10984,7 @@ Sets the screen-space antialiasing mode for the default screen :ref:`Viewport<cl
 
 Another way to combat specular aliasing is to enable :ref:`rendering/anti_aliasing/screen_space_roughness_limiter/enabled<class_ProjectSettings_property_rendering/anti_aliasing/screen_space_roughness_limiter/enabled>`.
 
-\ **Note:** Screen-space antialiasing is only supported in the Forward+ and Mobile rendering methods, not Compatibility.
+\ **Note:** Screen-space antialiasing is only supported in the Forward+ rendering method.
 
 \ **Note:** This property is only read when the project starts. To set the screen-space antialiasing mode at runtime, set :ref:`Viewport.screen_space_aa<class_Viewport_property_screen_space_aa>` on the root :ref:`Viewport<class_Viewport>` instead, or use :ref:`RenderingServer.viewport_set_screen_space_aa()<class_RenderingServer_method_viewport_set_screen_space_aa>`.
 
@@ -11070,7 +11032,7 @@ Enables temporal antialiasing for the default screen :ref:`Viewport<class_Viewpo
 
 \ **Note:** The implementation is not complete yet. Some visual instances such as particles and skinned meshes may show ghosting artifacts in motion.
 
-\ **Note:** TAA is only supported in the Forward+ rendering method, not Mobile or Compatibility.
+\ **Note:** TAA is only supported in the Forward+ rendering method.
 
 \ **Note:** This property is only read when the project starts. To set TAA at runtime, set :ref:`Viewport.use_taa<class_Viewport_property_use_taa>` on the root :ref:`Viewport<class_Viewport>` instead, or use :ref:`RenderingServer.viewport_set_use_taa()<class_RenderingServer_method_viewport_set_use_taa>`.
 
@@ -11098,7 +11060,7 @@ Enables temporal antialiasing for the default screen :ref:`Viewport<class_Viewpo
 
 If ``true``, enables a spatial filter to limit roughness in areas with high-frequency detail. This can help reduce specular aliasing to an extent, though not as much as enabling :ref:`rendering/anti_aliasing/quality/use_taa<class_ProjectSettings_property_rendering/anti_aliasing/quality/use_taa>`. This filter has a small performance cost, so consider disabling it if it doesn't benefit your scene noticeably.
 
-\ **Note:** The screen-space roughness limiter is only supported in the Forward+ and Mobile rendering methods, not Compatibility.
+\ **Note:** The screen-space roughness limiter is only supported in the Forward+ rendering method.
 
 \ **Note:** This property is only read when the project starts. To control the screen-space roughness limiter at runtime, call :ref:`RenderingServer.screen_space_roughness_limiter_set_active()<class_RenderingServer_method_screen_space_roughness_limiter_set_active>` instead.
 
@@ -11174,7 +11136,7 @@ Disables :ref:`rendering/driver/depth_prepass/enable<class_ProjectSettings_prope
 
 If ``true``, performs a previous depth pass before rendering 3D materials. This increases performance significantly in scenes with high overdraw, when complex materials and lighting are used. However, in scenes with few occluded surfaces, the depth prepass may reduce performance. If your game is viewed from a fixed angle that makes it easy to avoid overdraw (such as top-down or side-scrolling perspective), consider disabling the depth prepass to improve performance. This setting can be changed at run-time to optimize performance depending on the scene currently being viewed.
 
-\ **Note:** Depth prepass is only supported when using the Forward+ or Compatibility rendering method. When using the Mobile rendering method, there is no depth prepass performed.
+\ **Note:** Depth prepass is only supported when using the Forward+ rendering method.
 
 .. rst-class:: classref-item-separator
 
@@ -11238,7 +11200,7 @@ Enables legacy fog blending behavior from version 4.5 and earlier. This is inten
 
 Sets how the glow effect is upscaled before being copied onto the screen. Linear is faster, but looks blocky. Bicubic is slower but looks smooth.
 
-\ **Note:** :ref:`rendering/environment/glow/upscale_mode<class_ProjectSettings_property_rendering/environment/glow/upscale_mode>` is only effective when using the Forward+ or Mobile rendering methods, as Compatibility uses a different glow implementation.
+\ **Note:** :ref:`rendering/environment/glow/upscale_mode<class_ProjectSettings_property_rendering/environment/glow/upscale_mode>` is only effective when using the Forward+ rendering method.
 
 .. rst-class:: classref-item-separator
 
@@ -11485,218 +11447,6 @@ Number of slices to use along the depth of the froxel buffer for volumetric fog.
 :ref:`int<class_int>` **rendering/environment/volumetric_fog/volume_size** = ``64`` :ref:`🔗<class_ProjectSettings_property_rendering/environment/volumetric_fog/volume_size>`
 
 Base size used to determine size of froxel buffer in the camera X-axis and Y-axis. The final size is scaled by the aspect ratio of the screen, so actual values may differ from what is set. Set a larger size for more detailed fog, set a smaller size for better performance.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_ProjectSettings_property_rendering/gl_compatibility/driver:
-
-.. rst-class:: classref-property
-
-:ref:`String<class_String>` **rendering/gl_compatibility/driver** = ``"opengl3"`` :ref:`🔗<class_ProjectSettings_property_rendering/gl_compatibility/driver>`
-
-Sets the driver to be used by the renderer when using the Compatibility renderer. Editing this property has no effect in the default configuration, as first-party platforms each have platform-specific overrides. Use those overrides to configure the driver for each platform.
-
-This can be overridden using the ``--rendering-driver <driver>`` command line argument.
-
-Supported values are:
-
-- ``opengl3``, OpenGL 3.3 on desktop platforms, OpenGL ES 3.0 on mobile platforms, WebGL 2.0 on web.
-
-- ``opengl3_angle``, OpenGL ES 3.0 using the ANGLE compatibility layer, supported on macOS (over native OpenGL) and Windows (over Direct3D 11).
-
-- ``opengl3_es``, OpenGL ES 3.0 on Linux/BSD.
-
-\ **Note:** The availability of these options depends on whether the engine was compiled with support for them (determined by build options ``opengl3`` and ``angle_libs``).
-
-\ **Note:** The actual rendering driver may be automatically changed by the engine as a result of a fallback, or a user-specified command line argument. To get the actual rendering driver that is used at runtime, use :ref:`RenderingServer.get_current_rendering_driver_name()<class_RenderingServer_method_get_current_rendering_driver_name>` instead of reading this project setting's value.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_ProjectSettings_property_rendering/gl_compatibility/driver.android:
-
-.. rst-class:: classref-property
-
-:ref:`String<class_String>` **rendering/gl_compatibility/driver.android** = ``"opengl3"`` :ref:`🔗<class_ProjectSettings_property_rendering/gl_compatibility/driver.android>`
-
-Android override for :ref:`rendering/gl_compatibility/driver<class_ProjectSettings_property_rendering/gl_compatibility/driver>`.
-
-Only one option is supported:
-
-- ``opengl3``, OpenGL ES 3.0 from native drivers.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_ProjectSettings_property_rendering/gl_compatibility/driver.ios:
-
-.. rst-class:: classref-property
-
-:ref:`String<class_String>` **rendering/gl_compatibility/driver.ios** = ``"opengl3"`` :ref:`🔗<class_ProjectSettings_property_rendering/gl_compatibility/driver.ios>`
-
-iOS override for :ref:`rendering/gl_compatibility/driver<class_ProjectSettings_property_rendering/gl_compatibility/driver>`.
-
-Only one option is supported:
-
-- ``opengl3``, OpenGL ES 3.0 from native drivers.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_ProjectSettings_property_rendering/gl_compatibility/driver.linuxbsd:
-
-.. rst-class:: classref-property
-
-:ref:`String<class_String>` **rendering/gl_compatibility/driver.linuxbsd** = ``"opengl3"`` :ref:`🔗<class_ProjectSettings_property_rendering/gl_compatibility/driver.linuxbsd>`
-
-LinuxBSD override for :ref:`rendering/gl_compatibility/driver<class_ProjectSettings_property_rendering/gl_compatibility/driver>`.
-
-Two options are supported:
-
-- ``opengl3`` (default), OpenGL 3.3 from native drivers.
-
-- ``opengl3_es``, OpenGL ES 3.0 from native drivers. If :ref:`rendering/gl_compatibility/fallback_to_gles<class_ProjectSettings_property_rendering/gl_compatibility/fallback_to_gles>` is enabled, this is used as a fallback if OpenGL 3.3 is not supported.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_ProjectSettings_property_rendering/gl_compatibility/driver.macos:
-
-.. rst-class:: classref-property
-
-:ref:`String<class_String>` **rendering/gl_compatibility/driver.macos** = ``"opengl3"`` :ref:`🔗<class_ProjectSettings_property_rendering/gl_compatibility/driver.macos>`
-
-macOS override for :ref:`rendering/gl_compatibility/driver<class_ProjectSettings_property_rendering/gl_compatibility/driver>`.
-
-Two options are supported:
-
-- ``opengl3`` (default), OpenGL 3.3 from native drivers. If :ref:`rendering/gl_compatibility/fallback_to_native<class_ProjectSettings_property_rendering/gl_compatibility/fallback_to_native>` is enabled, this is used as a fallback if ANGLE is configured as the preferred driver but not supported.
-
-- ``opengl3_angle``, OpenGL ES 3.0 using the ANGLE compatibility layer over native OpenGL drivers. If :ref:`rendering/gl_compatibility/fallback_to_angle<class_ProjectSettings_property_rendering/gl_compatibility/fallback_to_angle>` is enabled, this is used as a fallback if OpenGL 3.3 is not supported.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_ProjectSettings_property_rendering/gl_compatibility/driver.web:
-
-.. rst-class:: classref-property
-
-:ref:`String<class_String>` **rendering/gl_compatibility/driver.web** = ``"opengl3"`` :ref:`🔗<class_ProjectSettings_property_rendering/gl_compatibility/driver.web>`
-
-Web override for :ref:`rendering/gl_compatibility/driver<class_ProjectSettings_property_rendering/gl_compatibility/driver>`.
-
-Only one option is supported:
-
-- ``opengl3``, WebGL 2.0. The underlying native API depends on the target OS, browser, and browser configuration.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_ProjectSettings_property_rendering/gl_compatibility/driver.windows:
-
-.. rst-class:: classref-property
-
-:ref:`String<class_String>` **rendering/gl_compatibility/driver.windows** = ``"opengl3"`` :ref:`🔗<class_ProjectSettings_property_rendering/gl_compatibility/driver.windows>`
-
-Windows override for :ref:`rendering/gl_compatibility/driver<class_ProjectSettings_property_rendering/gl_compatibility/driver>`.
-
-Two options are supported:
-
-- ``opengl3`` (default), OpenGL 3.3 from native drivers. If :ref:`rendering/gl_compatibility/fallback_to_native<class_ProjectSettings_property_rendering/gl_compatibility/fallback_to_native>` is enabled, this is used as a fallback if ANGLE is configured as the preferred driver but not supported.
-
-- ``opengl3_angle``, OpenGL ES 3.0 using the ANGLE compatibility layer over native Direct3D 11 drivers. If :ref:`rendering/gl_compatibility/fallback_to_angle<class_ProjectSettings_property_rendering/gl_compatibility/fallback_to_angle>` is enabled, this is used as a fallback if OpenGL 3.3 is not supported. By default, ANGLE is used as the default driver for some devices listed in :ref:`rendering/gl_compatibility/force_angle_on_devices<class_ProjectSettings_property_rendering/gl_compatibility/force_angle_on_devices>`.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_ProjectSettings_property_rendering/gl_compatibility/fallback_to_angle:
-
-.. rst-class:: classref-property
-
-:ref:`bool<class_bool>` **rendering/gl_compatibility/fallback_to_angle** = ``true`` :ref:`🔗<class_ProjectSettings_property_rendering/gl_compatibility/fallback_to_angle>`
-
-If ``true``, the Compatibility renderer will fall back to ANGLE if native OpenGL is not supported or the device is listed in :ref:`rendering/gl_compatibility/force_angle_on_devices<class_ProjectSettings_property_rendering/gl_compatibility/force_angle_on_devices>`.
-
-\ **Note:** This setting is implemented only on Windows.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_ProjectSettings_property_rendering/gl_compatibility/fallback_to_gles:
-
-.. rst-class:: classref-property
-
-:ref:`bool<class_bool>` **rendering/gl_compatibility/fallback_to_gles** = ``true`` :ref:`🔗<class_ProjectSettings_property_rendering/gl_compatibility/fallback_to_gles>`
-
-If ``true``, the Compatibility renderer will fall back to OpenGLES if desktop OpenGL is not supported.
-
-\ **Note:** This setting is implemented only on Linux/X11.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_ProjectSettings_property_rendering/gl_compatibility/fallback_to_native:
-
-.. rst-class:: classref-property
-
-:ref:`bool<class_bool>` **rendering/gl_compatibility/fallback_to_native** = ``true`` :ref:`🔗<class_ProjectSettings_property_rendering/gl_compatibility/fallback_to_native>`
-
-If ``true``, the Compatibility renderer will fall back to native OpenGL if ANGLE is not supported, or ANGLE dynamic libraries aren't found.
-
-\ **Note:** This setting is implemented on macOS and Windows.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_ProjectSettings_property_rendering/gl_compatibility/force_angle_on_devices:
-
-.. rst-class:: classref-property
-
-:ref:`Array<class_Array>` **rendering/gl_compatibility/force_angle_on_devices** :ref:`🔗<class_ProjectSettings_property_rendering/gl_compatibility/force_angle_on_devices>`
-
-An :ref:`Array<class_Array>` of devices which should always use the ANGLE renderer.
-
-Each entry is a :ref:`Dictionary<class_Dictionary>` with the following keys: ``vendor`` and ``name``. ``name`` can be set to ``*`` to add all devices with the specified ``vendor``.
-
-\ **Note:** This setting is implemented only on Windows.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_ProjectSettings_property_rendering/gl_compatibility/item_buffer_size:
-
-.. rst-class:: classref-property
-
-:ref:`int<class_int>` **rendering/gl_compatibility/item_buffer_size** = ``16384`` :ref:`🔗<class_ProjectSettings_property_rendering/gl_compatibility/item_buffer_size>`
-
-Maximum number of canvas items commands that can be drawn in a single viewport update. If more render commands are issued they will be ignored. Decreasing this limit may improve performance on bandwidth limited devices. Increase this limit if you find that not all objects are being drawn in a frame.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_ProjectSettings_property_rendering/gl_compatibility/nvidia_disable_threaded_optimization:
-
-.. rst-class:: classref-property
-
-:ref:`bool<class_bool>` **rendering/gl_compatibility/nvidia_disable_threaded_optimization** = ``true`` :ref:`🔗<class_ProjectSettings_property_rendering/gl_compatibility/nvidia_disable_threaded_optimization>`
-
-If ``true``, disables the threaded optimization feature from the NVIDIA drivers, which are known to cause stuttering in most OpenGL applications.
-
-\ **Note:** This setting only works on Windows, as threaded optimization is disabled by default on other platforms.
 
 .. rst-class:: classref-item-separator
 
@@ -12000,7 +11750,7 @@ If ``true``, screen-space contact shadows are enabled. These catch small-scale s
 
 \ **Note:** Only objects visible on screen can cast screen-space contact shadows. Objects outside the viewport, occluded by other geometry, or using the :ref:`GeometryInstance3D.cast_shadow<class_GeometryInstance3D_property_cast_shadow>` property set to :ref:`GeometryInstance3D.SHADOW_CASTING_SETTING_SHADOWS_ONLY<class_GeometryInstance3D_constant_SHADOW_CASTING_SETTING_SHADOWS_ONLY>` will not contribute.
 
-\ **Note:** Screen-space contact shadows are only supported in the Forward+ renderer, not Mobile or Compatibility.
+\ **Note:** Screen-space contact shadows are only supported in the Forward+ renderer.
 
 \ **Note:** Screen-space contact shadows only affect :ref:`DirectionalLight3D<class_DirectionalLight3D>` nodes that have shadows enabled. The :ref:`DirectionalLight3D<class_DirectionalLight3D>` node must also have :ref:`Light3D.shadow_contact_shadows_allow<class_Light3D_property_shadow_contact_shadows_allow>` set to ``true``.
 
@@ -12258,7 +12008,7 @@ The maximum number of clustered elements (:ref:`OmniLight3D<class_OmniLight3D>` 
 
 Decreasing this value may improve GPU performance on certain setups, even if the maximum number of clustered elements is never reached in the project.
 
-\ **Note:** This setting is only effective when using the Forward+ rendering method, not Mobile and Compatibility.
+\ **Note:** This setting is only effective when using the Forward+ rendering method.
 
 .. rst-class:: classref-item-separator
 
@@ -12271,66 +12021,6 @@ Decreasing this value may improve GPU performance on certain setups, even if the
 :ref:`int<class_int>` **rendering/limits/global_shader_variables/buffer_size** = ``65536`` :ref:`🔗<class_ProjectSettings_property_rendering/limits/global_shader_variables/buffer_size>`
 
 The maximum number of uniforms that can be used by the global shader uniform buffer. Each item takes up one slot. In other words, a single uniform float and a uniform vec4 will take the same amount of space in the buffer.
-
-\ **Note:** When using the Compatibility renderer, most mobile devices (and all web exports) will be limited to a maximum size of 1024 due to hardware constraints.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_ProjectSettings_property_rendering/limits/opengl/max_decals:
-
-.. rst-class:: classref-property
-
-:ref:`int<class_int>` **rendering/limits/opengl/max_decals** = ``64`` :ref:`🔗<class_ProjectSettings_property_rendering/limits/opengl/max_decals>`
-
-Max number of decals that can be rendered in a frame. This is further limited by hardware support. Setting this low will reduce memory usage, may decrease shader compile times, and may result in faster rendering on low-end, mobile, or web devices.
-
-\ **Note:** This setting is only effective when using the Compatibility rendering method, not Forward+ and Mobile.
-
-\ **Note:** Regardless of this setting's value, the number of decals on each surface is limited to 8.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_ProjectSettings_property_rendering/limits/opengl/max_lights_per_object:
-
-.. rst-class:: classref-property
-
-:ref:`int<class_int>` **rendering/limits/opengl/max_lights_per_object** = ``8`` :ref:`🔗<class_ProjectSettings_property_rendering/limits/opengl/max_lights_per_object>`
-
-Max number of omnilights and spotlights renderable per object. At the default value of 8, this means that each surface can be affected by up to 8 omnilights and 8 spotlights. This is further limited by hardware support and :ref:`rendering/limits/opengl/max_renderable_lights<class_ProjectSettings_property_rendering/limits/opengl/max_renderable_lights>`. Setting this low will slightly reduce memory usage, may decrease shader compile times, and may result in faster rendering on low-end, mobile, or web devices.
-
-\ **Note:** This setting is only effective when using the Compatibility rendering method, not Forward+ and Mobile.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_ProjectSettings_property_rendering/limits/opengl/max_renderable_elements:
-
-.. rst-class:: classref-property
-
-:ref:`int<class_int>` **rendering/limits/opengl/max_renderable_elements** = ``65536`` :ref:`🔗<class_ProjectSettings_property_rendering/limits/opengl/max_renderable_elements>`
-
-Max number of elements renderable in a frame. If more elements than this are visible per frame, they will not be drawn. Keep in mind elements refer to mesh surfaces and not meshes themselves. Setting this low will slightly reduce memory usage and may decrease shader compile times, particularly on web. For most uses, the default value is suitable, but consider lowering as much as possible on web export.
-
-\ **Note:** This setting is only effective when using the Compatibility rendering method, not Forward+ and Mobile.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_ProjectSettings_property_rendering/limits/opengl/max_renderable_lights:
-
-.. rst-class:: classref-property
-
-:ref:`int<class_int>` **rendering/limits/opengl/max_renderable_lights** = ``32`` :ref:`🔗<class_ProjectSettings_property_rendering/limits/opengl/max_renderable_lights>`
-
-Max number of positional lights renderable in a frame. If more lights than this number are used, they will be ignored. Setting this low will slightly reduce memory usage and may decrease shader compile times, particularly on web. For most uses, the default value is suitable, but consider lowering as much as possible on web export.
-
-\ **Note:** This setting is only effective when using the Compatibility rendering method, not Forward+ and Mobile.
 
 .. rst-class:: classref-item-separator
 
@@ -12578,17 +12268,7 @@ If ``true``, reduces reflections based on ambient light.
 
 :ref:`String<class_String>` **rendering/renderer/rendering_method** = ``"forward_plus"`` :ref:`🔗<class_ProjectSettings_property_rendering/renderer/rendering_method>`
 
-Sets the renderer that will be used by the project. Options are:
-
-\ **forward_plus** (Forward+): High-end renderer designed for desktop devices. Has a higher base overhead, but scales well with complex scenes. Not suitable for older devices or mobile.
-
-\ **mobile** (Mobile): Modern renderer designed for mobile devices. Has a lower base overhead than Forward+, but does not scale as well to large scenes with many elements.
-
-\ **gl_compatibility** (Compatibility): Low-end renderer designed for older devices. Based on the limitations of the OpenGL 3.3 / OpenGL ES 3.0 / WebGL 2 APIs. Lighting calculations are performed on nonlinear sRGB-encoded color data, which produces inaccurate results that may look acceptable for some games.
-
-This can be overridden using the ``--rendering-method <method>`` command line argument.
-
-\ **Note:** The actual rendering method may be automatically changed by the engine as a result of a fallback, or a user-specified command line argument. To get the actual rendering method that is used at runtime, use :ref:`RenderingServer.get_current_rendering_method()<class_RenderingServer_method_get_current_rendering_method>` instead of reading this project setting's value.
+EGP supports only ``forward_plus`` for rendered projects. Forward+ requires a supported RenderingDevice GPU and driver. Removed renderer selections are rejected; no fallback to Compatibility or Mobile is available. The ``dummy`` backend is reserved for headless servers and tooling.
 
 .. rst-class:: classref-item-separator
 
@@ -12598,21 +12278,9 @@ This can be overridden using the ``--rendering-method <method>`` command line ar
 
 .. rst-class:: classref-property
 
-:ref:`String<class_String>` **rendering/renderer/rendering_method.mobile** = ``"mobile"`` :ref:`🔗<class_ProjectSettings_property_rendering/renderer/rendering_method.mobile>`
+:ref:`String<class_String>` **rendering/renderer/rendering_method.mobile** = ``"forward_plus"`` :ref:`🔗<class_ProjectSettings_property_rendering/renderer/rendering_method.mobile>`
 
 Override for :ref:`rendering/renderer/rendering_method<class_ProjectSettings_property_rendering/renderer/rendering_method>` on mobile devices.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_ProjectSettings_property_rendering/renderer/rendering_method.web:
-
-.. rst-class:: classref-property
-
-:ref:`String<class_String>` **rendering/renderer/rendering_method.web** = ``"gl_compatibility"`` :ref:`🔗<class_ProjectSettings_property_rendering/renderer/rendering_method.web>`
-
-Override for :ref:`rendering/renderer/rendering_method<class_ProjectSettings_property_rendering/renderer/rendering_method>` on web.
 
 .. rst-class:: classref-item-separator
 
@@ -12664,7 +12332,7 @@ Depending on the complexity of scenes, this value may be lowered or may need to 
 
 :ref:`String<class_String>` **rendering/rendering_device/driver** = ``"vulkan"`` :ref:`🔗<class_ProjectSettings_property_rendering/rendering_device/driver>`
 
-Sets the driver to be used by the renderer when using a RenderingDevice-based renderer like the Forward+ or Mobile renderers. Editing this property has no effect in the default configuration, as first-party platforms each have platform-specific overrides. Use those overrides to configure the driver for each platform.
+Sets the RenderingDevice driver used by the Forward+ renderer. Editing this property has no effect in the default configuration, as first-party platforms each have platform-specific overrides. Use those overrides to configure the driver for each platform.
 
 This can be overridden using the ``--rendering-driver <driver>`` command line argument.
 
@@ -12672,13 +12340,13 @@ Supported values are:
 
 - ``metal``, Metal (supported on Apple Silicon Macs and iOS).
 
-- ``vulkan``, Vulkan (supported on all desktop and mobile platforms).
+- ``vulkan``, Vulkan (availability depends on the target platform and build options).
 
 - ``d3d12``, Direct3D 12 (supported on Windows).
 
 \ **Note:** The availability of these options depends on whether the engine was compiled with support for them (determined by build options ``vulkan``, ``metal``, and ``d3d12``).
 
-\ **Note:** If a given platform has no registered drivers, it can fall back to the Compatibility renderer (OpenGL 3) if :ref:`rendering/rendering_device/fallback_to_opengl3<class_ProjectSettings_property_rendering/rendering_device/fallback_to_opengl3>` is enabled. This fallback happens automatically for the Web platform regardless of that property.
+\ **Note:** Rendered projects require an available RenderingDevice driver. EGP does not provide an OpenGL fallback or Web exports. Headless servers and tooling can use the dummy backend.
 
 \ **Note:** The actual rendering driver may be automatically changed by the engine as a result of a fallback, or a user-specified command line argument. To get the actual rendering driver that is used at runtime, use :ref:`RenderingServer.get_current_rendering_driver_name()<class_RenderingServer_method_get_current_rendering_driver_name>` instead of reading this project setting's value.
 
@@ -12803,20 +12471,6 @@ Two options are supported:
 If ``true``, the Forward+ renderer will fall back to Direct3D 12 if Vulkan is not supported. The fallback is always attempted regardless of this setting if Vulkan driver support was disabled at compile time.
 
 \ **Note:** This setting is implemented only on Windows.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_ProjectSettings_property_rendering/rendering_device/fallback_to_opengl3:
-
-.. rst-class:: classref-property
-
-:ref:`bool<class_bool>` **rendering/rendering_device/fallback_to_opengl3** = ``true`` :ref:`🔗<class_ProjectSettings_property_rendering/rendering_device/fallback_to_opengl3>`
-
-If ``true``, the Forward+ renderer will fall back to OpenGL 3 if Direct3D 12, Metal, and Vulkan are not supported.
-
-\ **Note:** This setting is implemented on Windows, Android, macOS, iOS, and Linux/X11.
 
 .. rst-class:: classref-item-separator
 
@@ -12998,7 +12652,7 @@ Determines how sharp the upscaled image will be when using the FSR upscaling mod
 
 Sets the scaling 3D mode. Bilinear scaling renders at different resolution to either undersample or supersample the viewport. FidelityFX Super Resolution 1.0, abbreviated to FSR, is an upscaling technology that produces high quality images at fast framerates by using a spatially-aware upscaling algorithm. FSR is slightly more expensive than bilinear, but it produces significantly higher image quality. On particularly low-end GPUs, the added cost of FSR may not be worth it (compared to using bilinear scaling with a slightly higher resolution scale to match performance).
 
-\ **Note:** FSR is only effective when using the Forward+ rendering method, not Mobile or Compatibility. If using an incompatible rendering method, FSR will fall back to bilinear scaling.
+\ **Note:** FSR is supported by the Forward+ rendering method.
 
 .. rst-class:: classref-item-separator
 
@@ -13254,7 +12908,7 @@ Enabling temporal antialiasing (:ref:`rendering/anti_aliasing/quality/use_taa<cl
 
 \ **Note:** If :ref:`rendering/scaling_3d/scale<class_ProjectSettings_property_rendering/scaling_3d/scale>` is lower than ``1.0`` (exclusive), :ref:`rendering/textures/default_filters/texture_mipmap_bias<class_ProjectSettings_property_rendering/textures/default_filters/texture_mipmap_bias>` is used to adjust the automatic mipmap bias which is calculated internally based on the scale factor. The formula for this is ``log2(scaling_3d_scale) + mipmap_bias``.
 
-\ **Note:** This property is only supported in the Forward+ and Mobile renderers, not Compatibility. In Compatibility, this property is always treated as if it was set to ``0.0``.
+\ **Note:** This property is supported by the Forward+ renderer.
 
 .. rst-class:: classref-item-separator
 
@@ -13675,7 +13329,7 @@ Specify whether to enable eye tracking for this project. Depending on the platfo
 
 :ref:`bool<class_bool>` **xr/openxr/extensions/frame_synthesis** = ``false`` :ref:`🔗<class_ProjectSettings_property_xr/openxr/extensions/frame_synthesis>`
 
-If ``true`` the frame synthesis extension will be activated if supported by the platform.
+Requests the frame synthesis extension when supported by the platform and renderer. Frame synthesis is unsupported by EGP's Forward+ renderer; enabling this setting does not provide frame synthesis in EGP.
 
 \ **Note:** This feature should not be enabled in conjunction with Application Space Warp, if supported this replaces ASW.
 

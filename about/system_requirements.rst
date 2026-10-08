@@ -5,11 +5,17 @@
 System requirements
 ===================
 
-This page preserves upstream Godot's hardware guidance for the editor and
-exported projects. EGP's added backends, networking and development tools have
-their own build and platform requirements. Review :ref:`doc_egp_qualification`
-and :ref:`doc_egp_getting_started` for EGP's supported workflow; the upstream
-tables do not establish that every listed platform has been qualified for EGP.
+Rendered EGP projects require Forward+ through a supported RenderingDevice
+driver: Vulkan, Direct3D 12 or Metal, depending on the platform and build.
+Compatibility and Mobile renderers, OpenGL/OpenGL ES and ANGLE are removed;
+devices below Forward+ requirements have no fallback renderer. Browser
+rendering, the Web editor and Web exports are unsupported. Headless servers
+and tooling retain the dummy backend and can run without a GPU or display.
+
+The tables below retain upstream Forward+ hardware guidance as estimates,
+not measured EGP performance guarantees. Scene complexity, render settings
+and native integrations affect requirements. Review :ref:`doc_egp_qualification`
+and :ref:`doc_egp_getting_started` for tested revisions and platform limits.
 
 Godot editor
 ------------
@@ -42,26 +48,15 @@ Desktop or laptop PC - Minimum
 |                      |                                                                                         |
 |                      |   - *Example: Intel HD Graphics 510 (Skylake), AMD Radeon R5 Graphics (Kaveri)*         |
 |                      |                                                                                         |
-|                      | - **Mobile renderer:** Integrated graphics with full Vulkan 1.0 support                 |
-|                      |                                                                                         |
-|                      |   - *Example: Intel HD Graphics 510 (Skylake), AMD Radeon R5 Graphics (Kaveri)*         |
-|                      |                                                                                         |
-|                      | - **Compatibility renderer:** Integrated graphics with full OpenGL 3.3 support          |
-|                      |                                                                                         |
-|                      |   - *Example: Intel HD Graphics 2500 (Ivy Bridge), AMD Radeon R5 Graphics (Kaveri)*     |
 +----------------------+-----------------------------------------------------------------------------------------+
 | **RAM**              | - **Native editor:** 4 GB                                                               |
-|                      | - **Web editor:** 8 GB                                                                  |
 +----------------------+-----------------------------------------------------------------------------------------+
 | **Storage**          | 200 MB (used for the executable, project files, and cache).                             |
 |                      | Exporting projects requires downloading export templates separately                     |
 |                      | (up to 1.5 GB after installation, depending on the target platforms chosen).            |
 +----------------------+-----------------------------------------------------------------------------------------+
-| **Operating system** | - **Native editor:** Windows 10, macOS 11 (Intel Macs, Compatibility), macOS 12 (Intel  |
-|                      |   Macs, Forward+/Mobile), macOS 13 (Apple Silicon Macs), Linux distribution released    |
-|                      |   after 2018                                                                            |
-|                      | - **Web editor:** Recent versions of mainstream browsers: Firefox and derivatives       |
-|                      |   (including ESR), Chrome and Chromium derivatives, Safari and WebKit derivatives.      |
+| **Operating system** | - **Native editor:** Windows 10, macOS 12 (Intel Macs), macOS 13 (Apple Silicon Macs),  |
+|                      |   Linux distribution released after 2018                                                |
 +----------------------+-----------------------------------------------------------------------------------------+
 
 .. note::
@@ -89,24 +84,14 @@ Mobile device (smartphone/tablet) - Minimum
 |                      |                                                                                         |
 |                      |   - *Example: Qualcomm Adreno 505, Mali-G71 MP2*                                        |
 |                      |                                                                                         |
-|                      | - **Mobile renderer:** SoC featuring GPU with full Vulkan 1.0 support                   |
-|                      |                                                                                         |
-|                      |   - *Example: Qualcomm Adreno 505, Mali-G71 MP2*                                        |
-|                      |                                                                                         |
-|                      | - **Compatibility renderer:** SoC featuring GPU with full OpenGL ES 3.0 support         |
-|                      |                                                                                         |
-|                      |   - *Example: Qualcomm Adreno 306, Mali-T628 MP6*                                       |
 +----------------------+-----------------------------------------------------------------------------------------+
 | **RAM**              | - **Native editor:** 3 GB                                                               |
-|                      | - **Web editor:** 6 GB                                                                  |
 +----------------------+-----------------------------------------------------------------------------------------+
 | **Storage**          | 200 MB (used for the executable, project files, and cache).                             |
 |                      | Exporting projects requires downloading export templates separately                     |
 |                      | (up to 1.5 GB after installation, depending on the target platforms chosen).            |
 +----------------------+-----------------------------------------------------------------------------------------+
-| **Operating system** | - **Native editor:** Android 7.0 (Compatibility) or Android 9.0 (Forward+/Mobile)       |
-|                      | - **Web editor:** Recent versions of mainstream browsers: Firefox and derivatives       |
-|                      |   (including ESR), Chrome and Chromium derivatives, Safari and WebKit derivatives.      |
+| **Operating system** | - **Native editor:** Android 9.0                                                        |
 +----------------------+-----------------------------------------------------------------------------------------+
 
 These are the **recommended** specifications to get a smooth experience with the
@@ -132,21 +117,12 @@ Desktop or laptop PC - Recommended
 |                      |                                                                                             |
 |                      |   - *Example: NVIDIA GeForce GTX 1050 (Pascal), AMD Radeon RX 460 (GCN 4.0)*                |
 |                      |                                                                                             |
-|                      | - **Mobile renderer:** Dedicated graphics with full Vulkan 1.2 support                      |
-|                      |                                                                                             |
-|                      |   - *Example: NVIDIA GeForce GTX 1050 (Pascal), AMD Radeon RX 460 (GCN 4.0)*                |
-|                      |                                                                                             |
-|                      | - **Compatibility renderer:** Dedicated graphics with full OpenGL 4.6 support               |
-|                      |                                                                                             |
-|                      |   - *Example: NVIDIA GeForce GTX 650 (Kepler), AMD Radeon HD 7750 (GCN 1.0)*                |
 +----------------------+---------------------------------------------------------------------------------------------+
 | **RAM**              | - **Native editor:** 8 GB                                                                   |
-|                      | - **Web editor:** 12 GB                                                                     |
 +----------------------+---------------------------------------------------------------------------------------------+
 | **Storage**          | 2 GB (used for the executable, project files, all export templates, and cache)              |
 +----------------------+---------------------------------------------------------------------------------------------+
 | **Operating system** | - **Native editor:** Windows 11, macOS 14, Linux distribution released after 2020           |
-|                      | - **Web editor:** Latest version of Firefox, Chrome, Edge, Safari, Opera                    |
 +----------------------+---------------------------------------------------------------------------------------------+
 
 Mobile device (smartphone/tablet) - Recommended
@@ -163,22 +139,12 @@ Mobile device (smartphone/tablet) - Recommended
 |                      |                                                                                         |
 |                      |   - *Example: Qualcomm Adreno 630, Mali-G72 MP18*                                       |
 |                      |                                                                                         |
-|                      | - **Mobile renderer:** SoC featuring GPU with full Vulkan 1.2 support                   |
-|                      |                                                                                         |
-|                      |   - *Example: Qualcomm Adreno 630, Mali-G72 MP18*                                       |
-|                      |                                                                                         |
-|                      | - **Compatibility renderer:** SoC featuring GPU with full OpenGL ES 3.2 support         |
-|                      |                                                                                         |
-|                      |   - *Example: Qualcomm Adreno 630, Mali-G72 MP18*                                       |
 +----------------------+-----------------------------------------------------------------------------------------+
 | **RAM**              | - **Native editor:** 6 GB                                                               |
-|                      | - **Web editor:** 8 GB                                                                  |
 +----------------------+-----------------------------------------------------------------------------------------+
 | **Storage**          | 2 GB (used for the executable, project files, all export templates, and cache)          |
 +----------------------+-----------------------------------------------------------------------------------------+
 | **Operating system** | - **Native editor:** Android 11.0                                                       |
-|                      | - **Web editor:** Latest version of Firefox, Chrome, Edge, Safari, Opera,               |
-|                      |   Samsung Internet                                                                      |
 +----------------------+-----------------------------------------------------------------------------------------+
 
 Exported Godot project
@@ -229,26 +195,13 @@ Desktop or laptop PC - Minimum
 |                      |                                                                                         |
 |                      |   - *Example: Intel HD Graphics 510 (Skylake), AMD Radeon R5 Graphics (Kaveri)*         |
 |                      |                                                                                         |
-|                      | - **Mobile renderer:** Integrated graphics with full Vulkan 1.0 support,                |
-|                      |   Metal 3 support (macOS) or Direct3D 12 (12_0 feature level) support (Windows)         |
-|                      |                                                                                         |
-|                      |   - *Example: Intel HD Graphics 510 (Skylake), AMD Radeon R5 Graphics (Kaveri)*         |
-|                      |                                                                                         |
-|                      | - **Compatibility renderer:** Integrated graphics with full OpenGL 3.3 support          |
-|                      |   or Direct3D 11 support (Windows).                                                     |
-|                      |                                                                                         |
-|                      |   - *Example: Intel HD Graphics 2500 (Ivy Bridge), AMD Radeon R5 Graphics (Kaveri)*     |
 +----------------------+-----------------------------------------------------------------------------------------+
 | **RAM**              | - **For native exports:** 2 GB                                                          |
-|                      | - **For web exports:** 4 GB                                                             |
 +----------------------+-----------------------------------------------------------------------------------------+
 | **Storage**          | 150 MB (used for the executable, project files, and cache)                              |
 +----------------------+-----------------------------------------------------------------------------------------+
-| **Operating system** | - **For native exports:** Windows 10, macOS 11 (Intel Macs, Compatibility), macOS 12    |
-|                      |   (Intel Macs, Forward+/Mobile), macOS 13 (Apple Silicon Macs), Linux distribution      |
-|                      |   released after 2018                                                                   |
-|                      | - **For web exports:** Recent versions of mainstream browsers: Firefox and derivatives  |
-|                      |   (including ESR), Chrome and Chromium derivatives, Safari and WebKit derivatives.      |
+| **Operating system** | - **For native exports:** Windows 10, macOS 12 (Intel Macs), macOS 13 (Apple Silicon    |
+|                      |   Macs), Linux distribution released after 2018                                         |
 +----------------------+-----------------------------------------------------------------------------------------+
 
 Mobile device (smartphone/tablet) - Minimum
@@ -266,28 +219,16 @@ Mobile device (smartphone/tablet) - Minimum
 | **GPU**              | - **Forward+ renderer:** SoC featuring GPU with full Vulkan 1.0 support, or             |
 |                      |   Metal 3 support (iOS/iPadOS)                                                          |
 |                      |                                                                                         |
-|                      |   - *Example (Vulkan): Qualcomm Adreno 505, Mali-G71 MP2, Apple A12 (iPhone XR/XS)*     |
-|                      |   - *Example (Metal): Apple A12 (iPhone XR/XS)*                                         |
+|                      | - *Example (Vulkan): Qualcomm Adreno 505, Mali-G71 MP2, Apple A12 (iPhone XR/XS)*       |
+|                      | - *Example (Metal): Apple A12 (iPhone XR/XS)*                                           |
 |                      |                                                                                         |
-|                      | - **Mobile renderer:** SoC featuring GPU with full Vulkan 1.0 support, or               |
-|                      |   Metal 3 support (iOS/iPadOS)                                                          |
-|                      |                                                                                         |
-|                      |   - *Example (Vulkan): Qualcomm Adreno 505, Mali-G71 MP2, Apple A12 (iPhone XR/XS)*     |
-|                      |   - *Example (Metal): Apple A12 (iPhone XR/XS)*                                         |
-|                      |                                                                                         |
-|                      | - **Compatibility renderer:** SoC featuring GPU with full OpenGL ES 3.0 support         |
-|                      |                                                                                         |
-|                      |   - *Example: Qualcomm Adreno 306, Mali-T628 MP6, Apple A9 (iPhone 6S)*                 |
 +----------------------+-----------------------------------------------------------------------------------------+
 | **RAM**              | - **For native exports:** 1 GB                                                          |
-|                      | - **For web exports:** 2 GB                                                             |
 +----------------------+-----------------------------------------------------------------------------------------+
 | **Storage**          | 150 MB (used for the executable, project files, and cache)                              |
 +----------------------+-----------------------------------------------------------------------------------------+
-| **Operating system** | - **For native exports:** Android 7.0 (Compatibility), Android 9.0 (Forward+/Mobile),   |
-|                      |   iOS 15.0 (Forward+/Mobile with Vulkan), iOS 16.0 (Forward+/Mobile with Metal)         |
-|                      | - **For web exports:** Recent versions of mainstream browsers: Firefox and derivatives  |
-|                      |   (including ESR), Chrome and Chromium derivatives, Safari and WebKit derivatives.      |
+| **Operating system** | - **For native exports:** Android 9.0,                                                  |
+|                      |   iOS 15.0 (with Vulkan), iOS 16.0 (with Metal)                                         |
 +----------------------+-----------------------------------------------------------------------------------------+
 
 These are the **recommended** specifications to get a smooth experience with a
@@ -315,22 +256,12 @@ Desktop or laptop PC - Recommended
 |                      |                                                                                              |
 |                      |   - *Example: NVIDIA GeForce GTX 1050 (Pascal), AMD Radeon RX 460 (GCN 4.0)*                 |
 |                      |                                                                                              |
-|                      | - **Mobile renderer:** Dedicated graphics with full Vulkan 1.2 support,                      |
-|                      |   Metal 3 support (macOS), or Direct3D 12 (12_0 feature level) support (Windows)             |
-|                      |                                                                                              |
-|                      |   - *Example: NVIDIA GeForce GTX 1050 (Pascal), AMD Radeon RX 460 (GCN 4.0)*                 |
-|                      |                                                                                              |
-|                      | - **Compatibility renderer:** Dedicated graphics with full OpenGL 4.6 support                |
-|                      |                                                                                              |
-|                      |   - *Example: NVIDIA GeForce GTX 650 (Kepler), AMD Radeon HD 7750 (GCN 1.0)*                 |
 +----------------------+----------------------------------------------------------------------------------------------+
 | **RAM**              | - **For native exports:** 4 GB                                                               |
-|                      | - **For web exports:** 8 GB                                                                  |
 +----------------------+----------------------------------------------------------------------------------------------+
 | **Storage**          | 150 MB (used for the executable, project files, and cache)                                   |
 +----------------------+----------------------------------------------------------------------------------------------+
 | **Operating system** | - **For native exports:** Windows 11, macOS 14, Linux distribution released after 2020       |
-|                      | - **For web exports:** Latest version of Firefox, Chrome, Edge, Safari, Opera                |
 +----------------------+----------------------------------------------------------------------------------------------+
 
 Mobile device (smartphone/tablet) - Recommended
@@ -350,27 +281,10 @@ Mobile device (smartphone/tablet) - Recommended
 |                      |                                                                                         |
 |                      |   - *Example: Qualcomm Adreno 630, Mali-G72 MP18, Apple A14 (iPhone 12)*                |
 |                      |                                                                                         |
-|                      | - **Mobile renderer:** SoC featuring GPU with full Vulkan 1.2 support, or               |
-|                      |   Metal 3 support (iOS/iPadOS)                                                          |
-|                      |                                                                                         |
-|                      |   - *Example: Qualcomm Adreno 630, Mali-G72 MP18, Apple A14 (iPhone 12)*                |
-|                      |                                                                                         |
-|                      | - **Compatibility renderer:** SoC featuring GPU with full OpenGL ES 3.2 support         |
-|                      |                                                                                         |
-|                      |   - *Example: Qualcomm Adreno 630, Mali-G72 MP18, Apple A14 (iPhone 12)*                |
 +----------------------+-----------------------------------------------------------------------------------------+
 | **RAM**              | - **For native exports:** 2 GB                                                          |
-|                      | - **For web exports:** 4 GB                                                             |
 +----------------------+-----------------------------------------------------------------------------------------+
 | **Storage**          | 150 MB (used for the executable, project files, and cache)                              |
 +----------------------+-----------------------------------------------------------------------------------------+
 | **Operating system** | - **For native exports:** Android 9.0, iOS 16.0                                         |
-|                      | - **For web exports:** Latest version of Firefox, Chrome, Edge, Safari, Opera,          |
-|                      |   Samsung Internet                                                                      |
 +----------------------+-----------------------------------------------------------------------------------------+
-
-.. note::
-
-    Godot doesn't use OpenGL/OpenGL ES extensions introduced after OpenGL
-    3.3/OpenGL ES 3.0, but GPUs supporting newer OpenGL/OpenGL ES versions
-    generally have fewer driver issues.

@@ -52,10 +52,7 @@ For visual examples of these render modes, see :ref:`Standard Material 3D and OR
 | **unshaded**                  | Result is just albedo. No lighting/shading happens in material, making it faster to render.          |
 +-------------------------------+------------------------------------------------------------------------------------------------------+
 | **wireframe**                 | Geometry draws using lines (useful for troubleshooting).                                             |
-|                               | When using the Compatibility renderer, you must call                                                 |
-|                               | ``RenderingServer.set_debug_generate_wireframes(true)`` *before* the mesh is loaded for wireframe    |
-|                               | rendering to work. In the Compatibility renderer, backface culling is always disabled in wireframe   |
-|                               | mode, while in the Forward+ and Mobile renderers, the cull mode is respected.                        |
+|                               | The cull mode is respected in Forward+.                                                              |
 +-------------------------------+------------------------------------------------------------------------------------------------------+
 | **debug_shadow_splits**       | Directional shadows are drawn using different colors for each split (useful for troubleshooting).    |
 +-------------------------------+------------------------------------------------------------------------------------------------------+
@@ -187,12 +184,10 @@ Global built-ins are available everywhere, including in custom functions.
 +-----------------------------+-----------------------------------------------------------------------------------------------------+
 | in float **E**              | An ``E`` constant (``2.718281``). Euler's number, the base of the natural logarithm.                |
 +-----------------------------+-----------------------------------------------------------------------------------------------------+
-| in bool **OUTPUT_IS_SRGB**  | ``true`` when output is in sRGB color space (this is ``true`` in the Compatibility                  |
-|                             | renderer, ``false`` in Forward+ and Mobile).                                                        |
+| in bool **OUTPUT_IS_SRGB**  | ``true`` when output is in sRGB color space. This is ``false`` in Forward+.                         |
 +-----------------------------+-----------------------------------------------------------------------------------------------------+
 | in float **CLIP_SPACE_FAR** | Clip space far ``z`` value.                                                                         |
-|                             | In the Forward+ or Mobile renderers, it's ``0.0``.                                                  |
-|                             | In the Compatibility renderer, it's ``-1.0``.                                                       |
+|                             | In Forward+, this is ``0.0``.                                                                       |
 +-----------------------------+-----------------------------------------------------------------------------------------------------+
 | in bool **IS_MULTIVIEW**    | ``true`` when output is stereoscopic (XR), ``false`` when output is monoscopic.                     |
 +-----------------------------+-----------------------------------------------------------------------------------------------------+

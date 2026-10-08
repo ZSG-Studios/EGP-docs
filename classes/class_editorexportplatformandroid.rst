@@ -690,7 +690,7 @@ If ``true``, Gradle build is used instead of pre-built APK.
 
 :ref:`bool<class_bool>` **graphics/opengl_debug** :ref:`🔗<class_EditorExportPlatformAndroid_property_graphics/opengl_debug>`
 
-If ``true``, OpenGL ES debug context will be created (additional runtime checking, validation, and logging).
+Retained for compatibility with existing export presets. This option has no effect because the OpenGL ES rendering backend is not available.
 
 .. rst-class:: classref-item-separator
 
@@ -2902,7 +2902,7 @@ Indicates whether the application supports extra large screen form-factors.
 
 :ref:`bool<class_bool>` **shader_baker/enabled** :ref:`🔗<class_EditorExportPlatformAndroid_property_shader_baker/enabled>`
 
-If ``true``, shaders will be compiled and embedded in the application. This option is only supported when using the Forward+ or Mobile renderers.
+If ``true``, shaders will be compiled and embedded in the application.
 
 \ **Note:** When exporting as a dedicated server, the shader baker is always disabled since no rendering is performed.
 

@@ -28,18 +28,12 @@ Draw calls, state changes, and APIs
 .. note:: The following section is not relevant to end-users, but is useful to
           provide background information that is relevant in later sections.
 
-Godot sends instructions to the GPU via a graphics API (Vulkan, OpenGL, OpenGL
-ES or WebGL). The communication and driver activity involved can be quite
-costly, especially in OpenGL, OpenGL ES and WebGL. If we can provide these
-instructions in a way that is preferred by the driver and GPU, we can greatly
-increase performance.
-
-Nearly every API command in OpenGL requires a certain amount of validation to
-make sure the GPU is in the correct state. Even seemingly simple commands can
-lead to a flurry of behind-the-scenes housekeeping. Therefore, the goal is to
-reduce these instructions to a bare minimum and group together similar objects
-as much as possible so they can be rendered together, or with the minimum number
-of these expensive state changes.
+EGP sends instructions to the GPU through RenderingDevice using Vulkan,
+Direct3D 12, or Metal, depending on the platform and build. Submitting commands,
+creating pipelines, and changing rendering state can consume CPU time. Grouping
+similar objects reduces draw calls and state changes, which can help reduce this
+overhead. Measure the effect on the target hardware, as the cost depends on the
+driver, GPU, and scene.
 
 2D batching
 ~~~~~~~~~~~
@@ -270,9 +264,9 @@ If you are aiming to release on multiple platforms, test *early* and test
 but attempting to port it to mobile at the last minute is a recipe for disaster.
 
 In general, you should design your game for the lowest common denominator, then
-add optional enhancements for more powerful platforms. For example, you may want
-to use the Compatibility rendering method for both desktop and mobile platforms
-where you target both.
+add optional enhancements for more powerful platforms. When targeting both desktop
+and mobile devices, use Forward+ and adjust rendering quality to fit the
+capabilities of each device.
 
 Mobile/tiled renderers
 ----------------------

@@ -43,9 +43,7 @@ find several options for 3D resolution scaling:
 Scaling mode
 ~~~~~~~~~~~~
 
-- **Bilinear:** Standard bilinear filtering (default). This is used as a fallback
-  when the current renderer doesn't support FSR 1.0 or FSR 2.2. *Available in
-  all renderers.*
+- **Bilinear:** Standard bilinear filtering (default). *Available in Forward+.*
 - **FSR 1.0:** `AMD FidelityFX Super Resolution 1.0 <https://gpuopen.com/fidelityfx-superresolution/>`__.
   Slower, but higher quality compared to bilinear scaling. On very slow GPUs,
   the cost of FSR1 may be too expensive to be worth using it over bilinear
@@ -185,8 +183,7 @@ in each table.
 FSR Sharpness
 ~~~~~~~~~~~~~
 
-*This is only available in the Forward+ renderer, not the Mobile or Compatibility
-renderers.*
+*This is available in the Forward+ renderer.*
 
 When using the FSR1 or FSR2 scaling modes, the sharpness can be controlled using the
 **Rendering > Scaling 3D > FSR Sharpness** advanced project setting.
@@ -218,8 +215,7 @@ to oversharpening.
 Mipmap bias
 ~~~~~~~~~~~
 
-*This is only available in the Forward+ and Mobile renderers, not the Compatibility
-renderer.*
+*This is available in the Forward+ renderer.*
 
 Godot automatically uses a negative texture mipmap bias when the 3D resolution
 scale is set below ``1.0``. This allows for better preservation of texture

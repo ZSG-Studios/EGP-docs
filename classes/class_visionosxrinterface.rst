@@ -12,7 +12,7 @@ VisionOSXRInterface
 
 **Inherits:** :ref:`XRInterface<class_XRInterface>` **<** :ref:`RefCounted<class_RefCounted>` **<** :ref:`Object<class_Object>`
 
-visionOS XR implementation for rendering in immersive mode, hand tracking, and controller tracking.
+visionOS XR interface with hand and controller tracking APIs. Immersive rendering is unsupported in EGP.
 
 .. rst-class:: classref-introduction-group
 
@@ -21,23 +21,13 @@ Description
 
 This is a visionOS XR implementation. It has three modules:
 
-- the CompositorServices module, to render with Godot in immersive mode
+- the CompositorServices rendering module, whose immersive path is unsupported in EGP
 
 - the hand tracking module, using Apple's ARKit
 
 - the spatial controller module, using Apple's ARKit and GCController.
 
-Those modules can be enabled/disabled independently. The rendering module uses the CompositorServices framework to render an Immersive scene. It supports the full and mixed immersion modes. To use this module, you must set the :ref:`EditorExportPlatformVisionOS.application/app_role<class_EditorExportPlatformVisionOS_property_application/app_role>` export setting to ``Immersive``. You can choose the immersion style using the :ref:`EditorExportPlatformVisionOS.application/immersion_style<class_EditorExportPlatformVisionOS_property_application/immersion_style>` export setting. You must use the Metal rendering driver, and only the Mobile renderer is supported for now. You can initialize this interface in the :ref:`Node._ready()<class_Node_private_method__ready>` method of any of your nodes as follows:
-
-::
-
-    func _ready() -> void:
-        var interface = XRServer.find_interface("visionOS")
-        if interface and interface.initialize():
-            var viewport : Viewport = get_viewport()
-            viewport.use_xr = true
-            viewport.vrs_mode = Viewport.VRS_XR
-            viewport.use_hdr_2d = true
+The tracking modules can be enabled or disabled independently. EGP supports the ``Window`` application role with Forward+ and Metal. The CompositorServices rendering module requires the ``Immersive`` application role, which EGP rejects because this path does not support Forward+. See :ref:`EditorExportPlatformVisionOS.application/app_role<class_EditorExportPlatformVisionOS_property_application/app_role>`.
 
 Do not initialize the XR interface in the :ref:`Node._process()<class_Node_private_method__process>` method, as this will initialize it at some unspecified point in the middle of the frame rendering, possibly causing incorrect visionOS API usage.
 
@@ -156,7 +146,7 @@ Property Descriptions
 - |void| **set_immersion_style**\ (\ value\: :ref:`ImmersionStyle<enum_VisionOSXRInterface_ImmersionStyle>`\ )
 - :ref:`ImmersionStyle<enum_VisionOSXRInterface_ImmersionStyle>` **get_immersion_style**\ (\ )
 
-Immersion style of the immersive scene. Its initial value comes from the :ref:`EditorExportPlatformVisionOS.application/immersion_style<class_EditorExportPlatformVisionOS_property_application/immersion_style>` export setting.
+Immersion style of the immersive scene. Its initial value comes from the :ref:`EditorExportPlatformVisionOS.application/immersion_style<class_EditorExportPlatformVisionOS_property_application/immersion_style>` export setting. Immersive rendering is unsupported in EGP.
 
 .. rst-class:: classref-item-separator
 

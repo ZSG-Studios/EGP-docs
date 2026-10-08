@@ -311,9 +311,7 @@ The tone mapping options are:
   For photorealistic lighting, recommended values are between ``6.0`` and
   ``8.0``. Higher values result in less blown out highlights, but may make the
   scene appear lower contrast. **White** is not available when using
-  **Linear**. If you're using AgX, the mobile renderer, and HDR 2D is disabled,
-  then the value set here will be ignored, and a value of ``2.0`` will be used
-  instead.
+  **Linear**.
 
 - **AGX Contrast:** Only available when using AgX. Increasing this makes dark values
   darker, and bright values brighter. It creates better results than the contrast
@@ -336,8 +334,7 @@ The Environment resource supports many popular mid- and post-processing effects.
 Screen-Space Reflections (SSR)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*This feature is only available when using the Forward+ renderer, not
-Mobile or Compatibility.*
+*This feature is available in the Forward+ renderer.*
 
 While Godot supports several sources of reflection data such as
 :ref:`doc_reflection_probes`, they may not provide enough detail for all
@@ -386,8 +383,7 @@ full resolution, which improves quality at the cost of increased GPU utilization
 Screen-Space Ambient Occlusion (SSAO)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*This feature is only available when using the Forward+ and Compatibility renderers,
-not Mobile.*
+*This feature is available in the Forward+ renderer.*
 
 As mentioned in the **Ambient** section, areas where light from light nodes
 does not reach (either because it's outside the radius or shadowed) are lit
@@ -481,22 +477,12 @@ Additionally, you can adjust the quality of SSAO in the project settings'
 - **Fadeout To:** Distance at which the screen-space ambient occlusion is fully
   faded out. Use this hide ambient occlusion from far away.
 
-.. note::
-
-    Since Godot 4.6, a simplified version of SSAO is available in the Compatibility
-    renderer. This implementation has a different look, but should perform
-    significantly better on low-end devices compared to SSAO in Forward+.
-
-    When using the Compatibility renderer, only the **Radius** and **Intensity**
-    parameters can be adjusted.
-
 .. _doc_environment_and_post_processing_ssil:
 
 Screen-Space Indirect Lighting (SSIL)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*This feature is only available when using the Forward+ renderer, not
-Mobile or Compatibility.*
+*This feature is available in the Forward+ renderer.*
 
 :abbr:`SSIL (Screen-Space Indirect Lighting)` provides indirect lighting for
 small details or dynamic geometry that other global illumination techniques
@@ -566,8 +552,7 @@ Additionally, you can adjust the quality of SSIL in the project settings'
 Signed Distance Field Global Illumination (SDFGI)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*This feature is only available when using the Forward+ renderer, not
-Mobile or Compatibility.*
+*This feature is available in the Forward+ renderer.*
 
 Signed distance field global illumination (SDFGI) is a form of real-time global
 illumination. It is not a screen-space effect, which means it can provide global
@@ -584,16 +569,6 @@ illumination for off-screen elements (unlike :abbr:`SSIL (Screen-Space Indirect 
 
 Glow
 ~~~~
-
-.. note::
-
-    When using the Compatibility rendering method, glow uses a different
-    implementation with some properties being unavailable and hidden from the
-    inspector: **Levels**, **Normalized**, **Strength**, **Blend Mode**,
-    **Mix**, **Map**, and **Map Strength**.
-
-    This implementation is optimized to run on low-end devices and is less
-    flexible as a result.
 
 In photography and film, when light amount exceeds the maximum *luminance*
 (brightness) supported by the media, it generally bleeds outwards to darker
@@ -677,8 +652,6 @@ in higher quality with a less blocky appearance, but it has a performance cost
 on the GPU which can be significant on integrated graphics.
 The scale mode can be controlled using the
 **Rendering > Environment > Glow > Upscale Mode** project setting.
-This setting is only effective when using the Forward+ or Mobile renderers,
-as Compatibility uses a different glow implementation.
 
 .. image:: img/environment_and_post_processing_glow_scale_mode.webp
 
@@ -689,8 +662,8 @@ Using glow in 2D
 
 There are 2 ways to use glow in 2D:
 
-- Since Godot 4.2, you can enable HDR for 2D rendering when using the Forward+
-  and Mobile rendering methods. This has a performance cost, but it allows for a
+- You can enable HDR for 2D rendering with Forward+.
+  This has a performance cost, but it allows for a
   greater dynamic range. This also allows you to control which objects glow
   using their individual **Modulate** or **Self Modulate** properties (use the
   Intensity slider in the color picker). Enabling HDR can also reduce banding in the 2D
@@ -943,8 +916,7 @@ values result in a visually brighter scene.
 Auto Exposure
 ~~~~~~~~~~~~~
 
-*This feature is only available when using the Forward+ renderer, not
-Mobile or Compatibility.*
+*This feature is available in the Forward+ renderer.*
 
 Even though, in most cases, lighting and texturing are heavily artist controlled,
 Godot supports a basic high dynamic range implementation with the auto exposure

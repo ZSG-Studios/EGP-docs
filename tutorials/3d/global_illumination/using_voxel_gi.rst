@@ -9,8 +9,7 @@ it's best used when targeting dedicated graphics cards.
 
 .. important::
 
-    VoxelGI is only supported when using the Forward+ renderer, not the Mobile or
-    Compatibility renderers.
+    VoxelGI is supported in the Forward+ renderer.
 
 .. seealso::
 

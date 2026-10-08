@@ -93,12 +93,10 @@ Our updated ready function
 
 We add a few things to the ``_ready`` function.
 
-If we're using the mobile or forward+ renderer we set the viewport's ``vrs_mode`` to ``VRS_XR``.
-On platforms that support this, this will enable foveated rendering.
-
-If we're using the compatibility renderer, we check if the OpenXR foveated rendering settings
-are configured and if not, we output a warning.
-See :ref:`OpenXR Settings <doc_openxr_settings>` for further details.
+EGP uses Forward+. When a RenderingDevice is available, we set the viewport's
+``vrs_mode`` to ``VRS_XR``. This enables foveated rendering on platforms and
+OpenXR runtimes that support it. See
+:ref:`OpenXR Settings <doc_openxr_settings>` for further details.
 
 We hook up a number of signals that will be emitted by the :ref:`XRInterface <class_xrinterface>`.
 We'll provide more detail about these signals as we implement them.
@@ -131,8 +129,6 @@ it is nicer to exit on failure than to hang the system.
             # Enable VRS
             if RenderingServer.get_rendering_device():
                 vp.vrs_mode = Viewport.VRS_XR
-            elif int(ProjectSettings.get_setting("xr/openxr/foveation_level")) == 0:
-                push_warning("OpenXR: Recommend setting Foveation level to High in Project Settings")
 
             # Connect the OpenXR events
             xr_interface.session_begun.connect(_on_openxr_session_begun)
@@ -172,10 +168,6 @@ it is nicer to exit on failure than to hang the system.
                 if (RenderingServer.GetRenderingDevice() != null)
                 {
                     vp.VrsMode = Viewport.VrsModeEnum.XR;
-                }
-                else if ((int)ProjectSettings.GetSetting("xr/openxr/foveation_level") == 0)
-                {
-                    GD.PushWarning("OpenXR: Recommend setting Foveation level to High in Project Settings");
                 }
 
                 // Connect the OpenXR events

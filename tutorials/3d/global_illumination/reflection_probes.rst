@@ -189,11 +189,3 @@ an area light, a :ref:`decal <doc_using_decals>` or a
 :ref:`reflection probe <doc_reflection_probes>`. This limit can be increased by adjusting
 :ref:`Max Clustered Elements<class_ProjectSettings_property_rendering/limits/cluster_builder/max_clustered_elements>`
 in **Project Settings > Rendering > Limits > Cluster Builder**.
-
-When using the Mobile renderer, only 8 reflection probes can be applied on each
-individual Mesh *resource*. If there are more reflection probes affecting a single mesh,
-not all of them will be rendered on the mesh.
-
-Similarly, when using the Compatibility renderer, up to 2 reflection probes can
-be applied per mesh. If more than 2 reflection probes affect a single mesh,
-additional probes will not be rendered.

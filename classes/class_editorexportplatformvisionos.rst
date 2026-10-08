@@ -78,10 +78,6 @@ Properties
    +---------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`PackedStringArray<class_PackedStringArray>` | :ref:`capabilities/additional<class_EditorExportPlatformVisionOS_property_capabilities/additional>`                                                                                       |
    +---------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`bool<class_bool>`                           | :ref:`capabilities/performance_a12<class_EditorExportPlatformVisionOS_property_capabilities/performance_a12>`                                                                             |
-   +---------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`bool<class_bool>`                           | :ref:`capabilities/performance_gaming_tier<class_EditorExportPlatformVisionOS_property_capabilities/performance_gaming_tier>`                                                             |
-   +---------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`String<class_String>`                       | :ref:`custom_template/debug<class_EditorExportPlatformVisionOS_property_custom_template/debug>`                                                                                           |
    +---------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`String<class_String>`                       | :ref:`custom_template/release<class_EditorExportPlatformVisionOS_property_custom_template/release>`                                                                                       |
@@ -461,7 +457,7 @@ Additional data added to the root ``<dict>`` section of the `Info.plist <https:/
 
 :ref:`int<class_int>` **application/app_role** :ref:`🔗<class_EditorExportPlatformVisionOS_property_application/app_role>`
 
-The application role on the visionOS platform. It can be ``Window`` for running a 3D game on a 2D window, or ``Immersive`` for an XR experience.
+The application role on the visionOS platform. Use ``Window`` to run the project in a 2D window with Forward+ and Metal. The ``Immersive`` role is unsupported in EGP.
 
 .. rst-class:: classref-item-separator
 
@@ -581,7 +577,7 @@ Interpolation method used to resize application icon.
 
 :ref:`int<class_int>` **application/immersion_style** :ref:`🔗<class_EditorExportPlatformVisionOS_property_application/immersion_style>`
 
-Initial immersion style, only applicable if you have chosen the ``Immersive`` app role. It can be ``Full`` for a VR experience; ``Mixed`` for a mixed reality experience where the rendered content is displayed along with the real environment; or ``Progressive`` for a portal style experience where the user controls the immersion level. Change it at runtime with :ref:`VisionOSXRInterface.immersion_style<class_VisionOSXRInterface_property_immersion_style>`.
+Initial immersion style for the ``Immersive`` app role, which is unsupported in EGP. The retained values are ``Full`` for a VR experience; ``Mixed`` for a mixed reality experience where the rendered content is displayed along with the real environment; or ``Progressive`` for a portal style experience where the user controls the immersion level. See :ref:`VisionOSXRInterface.immersion_style<class_VisionOSXRInterface_property_immersion_style>`.
 
 .. rst-class:: classref-item-separator
 
@@ -734,34 +730,6 @@ Additional data added to the ``UIRequiredDeviceCapabilities`` array of the ``Inf
 .. classref_note::
 
     The returned array is *copied* and any changes to it will not update the original property value. See :ref:`PackedStringArray<class_PackedStringArray>` for more details.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_EditorExportPlatformVisionOS_property_capabilities/performance_a12:
-
-.. rst-class:: classref-property
-
-:ref:`bool<class_bool>` **capabilities/performance_a12** :ref:`🔗<class_EditorExportPlatformVisionOS_property_capabilities/performance_a12>`
-
-Requires the graphics performance and features of the A12 Bionic and later chips (devices supporting all Vulkan renderer features).
-
-Enabling this option limits supported devices to: iPhone XS, iPhone XR, iPad Mini (5th gen.), iPad Air (3rd gen.), iPad (8th gen), and newer.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_EditorExportPlatformVisionOS_property_capabilities/performance_gaming_tier:
-
-.. rst-class:: classref-property
-
-:ref:`bool<class_bool>` **capabilities/performance_gaming_tier** :ref:`🔗<class_EditorExportPlatformVisionOS_property_capabilities/performance_gaming_tier>`
-
-Requires the graphics performance and features of the A17 Pro and later chips.
-
-Enabling this option limits supported devices to: iPhone 15 Pro and newer.
 
 .. rst-class:: classref-item-separator
 
@@ -2824,7 +2792,7 @@ The reasons your app uses user defaults API. See `Describing use of required rea
 
 :ref:`bool<class_bool>` **shader_baker/enabled** :ref:`🔗<class_EditorExportPlatformVisionOS_property_shader_baker/enabled>`
 
-If ``true``, shaders will be compiled and embedded in the application. This option is only supported when using the Forward+ and Mobile renderers.
+If ``true``, shaders will be compiled and embedded in the application. This option requires the Forward+ renderer.
 
 \ **Note:** When exporting as a dedicated server, the shader baker is always disabled since no rendering is performed.
 

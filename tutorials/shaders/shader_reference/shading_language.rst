@@ -85,10 +85,10 @@ Most GLSL ES 3.0 datatypes are supported:
 | **samplerCube**        | Sampler type for binding Cubemaps, which are read as float.                     |
 +------------------------+---------------------------------------------------------------------------------+
 | **samplerCubeArray**   | Sampler type for binding Cubemap arrays, which are read as float.               |
-|                        | Only supported in Forward+ and Mobile, not Compatibility.                       |
+|                        | Supported in Forward+.                                                          |
 +------------------------+---------------------------------------------------------------------------------+
 | **samplerExternalOES** | External sampler type.                                                          |
-|                        | Only supported in Compatibility/Android platform.                               |
+|                        | Legacy sampler type; not supported for rendering in EGP.                        |
 +------------------------+---------------------------------------------------------------------------------+
 
 These types can also be put inside :ref:`arrays <doc_shading_language_arrays>`
@@ -958,12 +958,12 @@ Albedo and color textures should typically have a ``source_color`` hint. Normal,
 roughness, metallic, and height textures typically do not need a ``source_color``
 hint.
 
-Using ``source_color`` hint is required in the Forward+ and Mobile renderers,
+Using ``source_color`` hint is required in Forward+,
 and in ``canvas_item`` shaders when :ref:`HDR 2D<class_ProjectSettings_property_rendering/viewport/hdr_2d>`
-is enabled. The ``source_color`` hint is optional for the Compatibility renderer,
-and for ``canvas_item`` shaders if ``HDR 2D`` is disabled. However, it is
+is enabled. The ``source_color`` hint is optional for ``canvas_item`` shaders if
+``HDR 2D`` is disabled. However, it is
 recommended to always use the ``source_color`` hint, because it works even
-if you change renderers or disable ``HDR 2D``.
+if you disable ``HDR 2D``.
 
 Uniform groups
 ~~~~~~~~~~~~~~
@@ -1135,12 +1135,14 @@ When using per-instance uniforms, there are some restrictions you should be awar
 
 .. note::
 
+    The following example records a historical limitation of upstream Godot's
+    Compatibility renderer. EGP uses Forward+ and does not have this limitation.
+
     In GLSL versions before 4.0 (i.e. GLSL 3.3 and lower), you cannot directly index
     a texture array using a per-instance uniform, as sampler arrays can only be indexed by
-    compile-time constant expressions. This affects shaders compiled with the Compatibility
-    renderer.
+    compile-time constant expressions.
 
-    If you are affected, use the ``switch`` statement to select the texture:
+    Older shaders used a ``switch`` statement to select the texture:
 
    .. code-block:: glsl
 
@@ -1276,9 +1278,9 @@ table of the corresponding types:
 | **samplerCube**        | **Cubemap**             | See :ref:`doc_importing_images_changing_import_type` for   |
 |                        |                         | instructions on importing cubemaps for use in Godot.       |
 +------------------------+-------------------------+------------------------------------------------------------+
-| **samplerCubeArray**   | **CubemapArray**        | Only supported in Forward+ and Mobile, not Compatibility.  |
+| **samplerCubeArray**   | **CubemapArray**        | Supported in Forward+.                                     |
 +------------------------+-------------------------+------------------------------------------------------------+
-| **samplerExternalOES** | **ExternalTexture**     | Only supported in Compatibility/Android platform.          |
+| **samplerExternalOES** | **ExternalTexture**     | Legacy type; not supported for rendering in EGP.           |
 +------------------------+-------------------------+------------------------------------------------------------+
 
 .. note:: Be careful when setting shader uniforms from GDScript, since no error

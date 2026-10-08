@@ -90,7 +90,7 @@ Use the texture from this shader's normal map built-in.
 
 :ref:`Source<enum_VisualShaderNodeTexture_Source>` **SOURCE_DEPTH** = ``4``
 
-Use the depth texture captured during the depth prepass. Only available when the depth prepass is used (i.e. in spatial shaders and in the forward_plus or gl_compatibility renderers).
+Use the depth texture captured during the depth prepass. Only available in the fragment stage of spatial shaders.
 
 .. _class_VisualShaderNodeTexture_constant_SOURCE_PORT:
 
@@ -106,7 +106,7 @@ Use the texture provided in the input port for this function.
 
 :ref:`Source<enum_VisualShaderNodeTexture_Source>` **SOURCE_3D_NORMAL** = ``6``
 
-Use the normal buffer captured during the depth prepass. Only available when the normal-roughness buffer is available (i.e. in spatial shaders and in the forward_plus renderer).
+Use the normal buffer captured during the depth prepass. Only available in the fragment stage of spatial shaders.
 
 .. _class_VisualShaderNodeTexture_constant_SOURCE_ROUGHNESS:
 
@@ -114,7 +114,7 @@ Use the normal buffer captured during the depth prepass. Only available when the
 
 :ref:`Source<enum_VisualShaderNodeTexture_Source>` **SOURCE_ROUGHNESS** = ``7``
 
-Use the roughness buffer captured during the depth prepass. Only available when the normal-roughness buffer is available (i.e. in spatial shaders and in the forward_plus renderer).
+Use the roughness buffer captured during the depth prepass. Only available in the fragment stage of spatial shaders.
 
 .. _class_VisualShaderNodeTexture_constant_SOURCE_MAX:
 

@@ -4,11 +4,13 @@ EGP manual
 ==========
 
 EGP is ZSG-Studios' fork of Godot Engine. It retains Godot's editor, scene
-system and rendering architecture, and integrates Box2D, Box3D, Yojimbo,
+system and Forward+ rendering, and integrates Box2D, Box3D, Yojimbo,
 native C++ extension tools and a Windows native xmake workflow.
 
 Start with the EGP guides below before following inherited Godot tutorials.
-Physics and multiplayer projects require particular attention during migration.
+Rendering, physics and multiplayer projects require particular attention during
+migration. Rendered projects require a supported RenderingDevice driver;
+headless servers and tooling retain the dummy backend. Web exports are unsupported.
 The class reference is generated from EGP's engine sources.
 
 .. toctree::

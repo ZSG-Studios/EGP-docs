@@ -182,9 +182,8 @@ FPS+ portion.
     When comparing results across different runs, make sure to use the same
     viewport size for all runs.
 
-Visual Profiler is supported when using any rendering method (Forward+, Mobile
-or Compatibility), but the reported categories will vary depending on the
-current rendering method as well as the enabled graphics features. For example,
+Visual Profiler is supported with Forward+, but the reported categories vary
+depending on the enabled graphics features. For example,
 when using Forward+, a simple 2D scene with shadow-casting lights will result in
 the following categories appearing:
 
@@ -206,11 +205,6 @@ appended to their name. This hints that multiple tasks are being performed in
 parallel on the GPU. This generally means that disabling only one of the
 features involved won't improve performance as much as anticipated, as the other
 task still needs to be performed sequentially.
-
-.. note::
-
-    The Visual Profiler is not supported when using the Compatibility renderer
-    on macOS, due to platform limitations.
 
 Network Profiler
 ----------------

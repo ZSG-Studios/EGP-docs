@@ -5,7 +5,7 @@ Exporting for visionOS
 
 .. seealso::
 
-    This page describes how to export a Godot project to visionOS.
+    This page describes how to export an EGP project to visionOS.
     If you're looking to compile export template binaries from source instead,
     see :ref:`doc_compiling_for_visionos`.
 
@@ -26,21 +26,15 @@ Requirements
 App Role
 --------
 
-.. image:: img/visionos_app_role.webp
+Use the **Window** role to present the project in a flat window with
+Forward+ and Metal. A supported RenderingDevice driver is required.
+The **Immersive** role is unsupported in EGP and the export preset reports
+this configuration as unsupported.
 
--  The **Window** mode (default) presents your game in a flat window, similar to an iOS app.
--  The **Immersive** mode presents your game as an XR app.
+The retained immersion-style options do not provide immersive rendering
+support. Upstream instructions for passthrough, immersive tracking and
+Mobile rendering do not apply to EGP. See :ref:`doc_visionos_intro`.
 
-For more information about the immersive mode, see :ref:`doc_visionos_intro`.
-
-Immersion Mode
---------------
-
-.. image:: img/visionos_immersion_style.webp
-
-The **Mixed** immersion style displays your Godot game on top of the passthrough environment.
-The **Full** and **Progressive** immersion styles display your game on top of an
-opaque background and defines a 1.5-meter boundary around the player.
-
-See Apple's `Human Interface Guidelines <https://developer.apple.com/design/human-interface-guidelines/immersive-experiences#Immersion-styles>`_
-for more details.
+Native compilation, export configuration and physical visionOS device
+behavior have separate qualification requirements. See
+:ref:`doc_egp_qualification` for tested revisions and artifacts.

@@ -33,29 +33,22 @@ without affecting the source file.
 Color banding
 -------------
 
-When using the Forward+ or Mobile rendering methods, Godot's 3D engine
+When using the Forward+ renderer, Godot's 3D engine
 renders internally in HDR. However, the rendering output will typically be
 written to a lower precision buffer. This can result in
-visible banding, especially when using untextured materials. For performance
-reasons, color precision is also lower when using the Mobile rendering method
-compared to Forward+.
-
-When using the Compatibility rendering method, internal HDR rendering is not
-used and the color precision is the lowest of all rendering methods. This also applies to 2D
-rendering, where banding may be visible when using smooth gradient textures.
+visible banding, especially when using untextured materials.
 
 There are two main ways to alleviate banding:
 
-- If using the Forward+ or Forward Mobile rendering methods, enable
+- Enable
   :ref:`Use Debanding<class_ProjectSettings_property_rendering/anti_aliasing/quality/use_debanding>`
   in **Project Settings > Rendering > Anti Aliasing**. This applies a fullscreen debanding
   shader as a post-processing effect and is very cheap.
 - Alternatively, bake some noise into your textures. This is mainly effective in
   2D, e.g. for vignetting effects. In 3D, you can also use a `custom debanding
   shader <https://github.com/fractilegames/godot-gles2-debanding-material>`__ to
-  be applied on your *materials*. This technique works even if your project is
-  rendered with low color precision, which means it will work when using the
-  Mobile and Compatibility rendering methods.
+  be applied on your *materials*. This technique also works when the rendering
+  output has low color precision.
 
 .. figure:: img/3d_rendering_limitations_banding.webp
    :align: center

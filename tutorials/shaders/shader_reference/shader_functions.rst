@@ -71,7 +71,8 @@ These function descriptions are adapted and modified from
 originally published by Khronos Group under the
 `Open Publication License <https://opencontent.org/openpub>`__.
 Each function description links to the corresponding official OpenGL
-documentation. Modification history for this page can be found on
+documentation for its GLSL definition. EGP executes these shaders through
+Forward+ and its RenderingDevice drivers. Modification history for this page can be found on
 `GitHub <https://github.com/godotengine/godot-docs/blob/master/tutorials/shaders/shader_reference/shader_functions.rst>`__.
 
 .. rst-class:: classref-section-separator
@@ -2311,12 +2312,10 @@ Texture functions
     | |vec_type|       | :ref:`dFdxCoarse<shader_func_dFdxCoarse>`\ (\ |vec_type| p)                                             | Derivative with respect to ``x`` window coordinate,                 |
     |                  |                                                                                                         | course granularity.                                                 |
     |                  |                                                                                                         |                                                                     |
-    |                  |                                                                                                         | Not available when using the Compatibility renderer.                |
     +------------------+---------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------+
     | |vec_type|       | :ref:`dFdxFine<shader_func_dFdxFine>`\ (\ |vec_type| p)                                                 | Derivative with respect to ``x`` window coordinate,                 |
     |                  |                                                                                                         | fine granularity.                                                   |
     |                  |                                                                                                         |                                                                     |
-    |                  |                                                                                                         | Not available when using the Compatibility renderer.                |
     +------------------+---------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------+
     | |vec_type|       | :ref:`dFdy<shader_func_dFdy>`\ (\ |vec_type| p)                                                         | Derivative with respect to ``y`` window coordinate,                 |
     |                  |                                                                                                         | automatic granularity.                                              |
@@ -2324,22 +2323,18 @@ Texture functions
     | |vec_type|       | :ref:`dFdyCoarse<shader_func_dFdyCoarse>`\ (\ |vec_type| p)                                             | Derivative with respect to ``y`` window coordinate,                 |
     |                  |                                                                                                         | course granularity.                                                 |
     |                  |                                                                                                         |                                                                     |
-    |                  |                                                                                                         | Not available when using the Compatibility renderer.                |
     +------------------+---------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------+
     | |vec_type|       | :ref:`dFdyFine<shader_func_dFdyFine>`\ (\ |vec_type| p)                                                 | Derivative with respect to ``y`` window coordinate,                 |
     |                  |                                                                                                         | fine granularity.                                                   |
     |                  |                                                                                                         |                                                                     |
-    |                  |                                                                                                         | Not available when using the Compatibility renderer.                |
     +------------------+---------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------+
     | |vec_type|       | :ref:`fwidth<shader_func_fwidth>`\ (\ |vec_type| p)                                                     | Sum of absolute derivative in ``x`` and ``y``.                      |
     +------------------+---------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------+
     | |vec_type|       | :ref:`fwidthCoarse<shader_func_fwidthCoarse>`\ (\ |vec_type| p)                                         | Sum of absolute derivative in ``x`` and ``y``.                      |
     |                  |                                                                                                         |                                                                     |
-    |                  |                                                                                                         | Not available when using the Compatibility renderer.                |
     +------------------+---------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------+
     | |vec_type|       | :ref:`fwidthFine<shader_func_fwidthFine>`\ (\ |vec_type| p)                                             | Sum of absolute derivative in ``x`` and ``y``.                      |
     |                  |                                                                                                         |                                                                     |
-    |                  |                                                                                                         | Not available when using the Compatibility renderer.                |
     +------------------+---------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------+
 
 
@@ -2900,7 +2895,6 @@ vec4 **textureGather**\ (\ samplerCube s, vec3 p [, int comps] ) :ref:`🔗<shad
 
     .. note::
         Available only in the fragment shader.
-        Not available when using the Compatibility renderer.
 
     Returns the partial derivative of ``p`` with respect to the window x coordinate.
 
@@ -2940,7 +2934,6 @@ vec4 **textureGather**\ (\ samplerCube s, vec3 p [, int comps] ) :ref:`🔗<shad
 
     .. note::
         Available only in the fragment shader.
-        Not available when using the Compatibility renderer.
 
     Returns the partial derivative of ``p`` with respect to the window x coordinate.
 
@@ -3010,7 +3003,6 @@ vec4 **textureGather**\ (\ samplerCube s, vec3 p [, int comps] ) :ref:`🔗<shad
 
     .. note::
         Available only in the fragment shader.
-        Not available when using the Compatibility renderer.
 
     Returns the partial derivative of ``p`` with respect to the window y coordinate.
 
@@ -3045,7 +3037,6 @@ vec4 **textureGather**\ (\ samplerCube s, vec3 p [, int comps] ) :ref:`🔗<shad
 
     .. note::
         Available only in the fragment shader.
-        Not available when using the Compatibility renderer.
 
     Returns the partial derivative of ``p`` with respect to the window y coordinate.
 
@@ -3105,7 +3096,6 @@ vec4 **textureGather**\ (\ samplerCube s, vec3 p [, int comps] ) :ref:`🔗<shad
 
     .. note::
         Available only in the fragment shader.
-        Not available when using the Compatibility renderer.
 
     Returns the sum of the absolute value of derivatives in x and y.
 
@@ -3136,7 +3126,6 @@ vec4 **textureGather**\ (\ samplerCube s, vec3 p [, int comps] ) :ref:`🔗<shad
 
     .. note::
         Available only in the fragment shader.
-        Not available when using the Compatibility renderer.
 
     Returns the sum of the absolute value of derivatives in x and y.
 

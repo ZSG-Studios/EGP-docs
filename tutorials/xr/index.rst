@@ -43,8 +43,11 @@ OpenXR
    openxr_render_models
    openxr_spatial_entities
 
-WebXR
-~~~~~
+Retired browser interface
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+WebXR is unsupported in EGP. The following page retains the old documentation
+URL and explains the support boundary.
 
 .. toctree::
    :maxdepth: 1

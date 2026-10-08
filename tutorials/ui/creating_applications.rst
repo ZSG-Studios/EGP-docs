@@ -549,8 +549,7 @@ basis, so it should not be used as an absolute security measure or DRM.
 
     There are also `known issues <https://github.com/godotengine/godot/issues/76167>`__
     with transparent window display on Windows with hybrid GPU setups
-    (such as NVIDIA Optimus). Switching renderers may
-    help resolve the issue.
+    (such as NVIDIA Optimus). Test transparency on the target GPU and driver.
 
     On Linux with X11, transparency will not work if the user
     has disabled compositing in the window manager settings.
@@ -665,10 +664,9 @@ Performance
 
 Here are some project settings you can use to reduce CPU, GPU, and memory utilization:
 
-- Use the Compatibility renderer if you don't need features that are exclusive
-  to Forward+ or Mobile. The Compatibility renderer has lower hardware requirements
-  and generally launches faster, which makes it a better option for applications.
-  Creating new windows is also faster with this renderer.
+- Use Forward+ and disable rendering effects your application does not need.
+  Check the :ref:`doc_system_requirements` for supported graphics hardware and
+  drivers.
 
 - Enable :ref:`application/run/low_processor_mode <class_ProjectSettings_property_application/run/low_processor_mode>`
   to decrease CPU and GPU usage. This makes the project only render a frame
@@ -783,9 +781,7 @@ Optimizing distribution size
 
 Since non-game applications generally avoid using large parts of the engine,
 such as audio, 2D, or 3D functionality, you can compile an optimized export
-template to reduce its file size. This will also improve startup times,
-especially on the web platform where binary size is directly linked to
-initialization speeds.
+template to reduce its file size.
 
 The size reduction is often significant (relative to the project's size),
 since applications contain fewer large assets compared to games.

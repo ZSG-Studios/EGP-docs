@@ -536,8 +536,7 @@ mapping.
 Subsurface Scattering
 ---------------------
 
-*This is only available in the Forward+ renderer, not the Mobile or Compatibility
-renderers.*
+*This is available in the Forward+ renderer.*
 
 This effect emulates light that penetrates an object's surface, is scattered,
 and then comes out. It is useful to create realistic skin, marble, colored
@@ -767,8 +766,7 @@ When drawing points, specify the point size in pixels.
 Use Particle Trails
 ~~~~~~~~~~~~~~~~~~~
 
-*This is only available in the Forward+ and Mobile renderers, not the Compatibility
-renderer.*
+*This is available in the Forward+ renderer.*
 
 If true, enables parts of the shader required for GPUParticles3D trails to function.
 This also requires using a mesh with appropriate skinning, such as RibbonTrailMesh

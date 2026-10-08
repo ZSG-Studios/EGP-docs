@@ -41,7 +41,7 @@ detailed below.
 Multisample antialiasing (MSAA)
 -------------------------------
 
-*This is available in all renderers.*
+*This is available in the Forward+ renderer.*
 
 This technique is the "historical" way of dealing with aliasing. MSAA is very
 effective on geometry edges (especially at higher levels). MSAA does not
@@ -88,8 +88,7 @@ Note that alpha antialiasing is not used here:
 Temporal antialiasing (TAA)
 ---------------------------
 
-*This is only available in the Forward+ renderer, not the Mobile or Compatibility
-renderers.*
+*This is available in the Forward+ renderer.*
 
 Temporal antialiasing works by *converging* the result of previously rendered
 frames into a single, high-quality frame. This is a continuous process that
@@ -121,8 +120,7 @@ Comparison between no antialiasing (left) and TAA (right):
 AMD FidelityFX Super Resolution 2.2 (FSR2)
 ------------------------------------------
 
-*This is only available in the Forward+ renderer, not the Mobile or Compatibility
-renderers.*
+*This is available in the Forward+ renderer.*
 
 Since Godot 4.2, there is built-in support for
 `AMD FidelityFX Super Resolution <https://www.amd.com/en/products/graphics/technologies/fidelityfx/super-resolution.html>`__
@@ -157,8 +155,7 @@ Comparison between no antialiasing (left) and FSR2 at native resolution (right):
 Fast approximate antialiasing (FXAA)
 ------------------------------------
 
-*This is only available in the Forward+ and Mobile renderers, not the Compatibility
-renderer.*
+*This is available in the Forward+ renderer.*
 
 Fast approximate antialiasing is a post-processing antialiasing solution. It is
 faster to run than any other antialiasing technique and also supports
@@ -184,8 +181,7 @@ Comparison between no antialiasing (left) and FXAA (right):
 Sub-pixel Morphological Antialiasing (SMAA 1x)
 ----------------------------------------------
 
-*This is only available in the Forward+ and Mobile renderers, not the Compatibility
-renderer.*
+*This is available in the Forward+ renderer.*
 
 Sub-pixel Morphological Antialiasing is a post-processing antialiasing solution.
 It runs slightly slower than FXAA, but produces less blurriness. This is very helpful
@@ -209,7 +205,7 @@ Comparison between no antialiasing (left) and SMAA 1x (right):
 Supersample antialiasing (SSAA)
 -------------------------------
 
-*This is available in all renderers.*
+*This is available in the Forward+ renderer.*
 
 Supersampling provides the highest quality of antialiasing possible, but it's
 also the most expensive. It works by shading every pixel in the scene multiple
@@ -251,8 +247,7 @@ Comparison between no antialiasing (left) and various SSAA levels (right):
 Screen-space roughness limiter
 ------------------------------
 
-*This is only available in the Forward+ and Mobile renderers, not the Compatibility
-renderer.*
+*This is available in the Forward+ renderer.*
 
 This is not an edge antialiasing method, but it is a way of reducing specular
 aliasing in 3D.
@@ -345,10 +340,6 @@ Antialiasing comparison
 | Performance cost         | 🟡 Medium                | 🟡 Medium                | 🔴 High                  | 🟢 Very Low              |  🟢 Low                  | 🔴 Very High             | 🟢 Low                   |
 +--------------------------+--------------------------+--------------------------+--------------------------+--------------------------+--------------------------+--------------------------+--------------------------+
 | Forward+                 | ✔️ Yes                   | ✔️ Yes                   | ✔️ Yes                   | ✔️ Yes                   |  ✔️ Yes                  | ✔️ Yes                   | ✔️ Yes                   |
-+--------------------------+--------------------------+--------------------------+--------------------------+--------------------------+--------------------------+--------------------------+--------------------------+
-| Mobile                   | ✔️ Yes                   | ❌ No                    | ❌ No                    | ✔️ Yes                   |  ✔️ Yes                  | ✔️ Yes                   | ✔️ Yes                   |
-+--------------------------+--------------------------+--------------------------+--------------------------+--------------------------+--------------------------+--------------------------+--------------------------+
-| Compatibility            | ✔️ Yes                   | ❌ No                    | ❌ No                    | ❌ No                    |  ❌ No                   | ✔️ Yes                   | ❌ No                    |
 +--------------------------+--------------------------+--------------------------+--------------------------+--------------------------+--------------------------+--------------------------+--------------------------+
 
 

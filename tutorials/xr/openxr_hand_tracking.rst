@@ -9,8 +9,8 @@ Introduction
 .. note::
 
     This page focuses specifically on the feature set exposed through OpenXR.
-    Parts of the functionality presented here also applies to WebXR and can by provided
-    by other XR interfaces.
+    Other native XR interfaces may expose parts of this functionality, depending
+    on their implementation and the device.
 
 When discussing hand tracking it is important to know that there are differences of opinion as to where lines are drawn.
 The practical result of this is that there are differences in implementation between the different OpenXR runtimes.
@@ -73,7 +73,7 @@ This includes SteamVR, Meta Quest (currently native only but Meta link support i
 and hopefully soon others as well.
 
 The hand tracking implementation in Godot has been standardized around the Godot Humanoid Skeleton
-and works both in OpenXR and WebXR. The instructions below will thus work in both environments.
+and is exposed through OpenXR. The instructions below describe this environment.
 
 In order to use the hand tracking API with OpenXR you first need to enable it.
 This can be done in the project settings:

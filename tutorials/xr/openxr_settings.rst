@@ -178,11 +178,14 @@ Most XR runtimes only support fixed foveation, but some will take eye tracking i
 The higher the level, the better the performance gains, but also the more reduction in quality there is in the user's peripheral vision.
 
 .. Note::
-  **Compatibility renderer only**,
-  for Mobile and Forward+ renderer, set the ``vrs_mode`` property on :ref:`Viewport <class_viewport>` to ``VRS_XR``.
+  Foveation support depends on the OpenXR runtime and rendering driver. For
+  viewport variable rate shading in Forward+, set the ``vrs_mode`` property on
+  :ref:`Viewport <class_viewport>` to ``VRS_XR``; see :ref:`doc_variable_rate_shading`.
 
 .. Warning::
-  This feature is disabled if post effects are used such as glow, bloom, or DOF.
+  Foveation with subsampled images on Vulkan is disabled when incompatible
+  screen-space or post-processing effects, such as FXAA or glow, are enabled.
+  On platforms other than Android, enabling 3D MSAA disables foveation.
 
 Foveation Dynamic
 ~~~~~~~~~~~~~~~~~
@@ -190,9 +193,6 @@ Foveation Dynamic
 When enabled the foveation level will be adjusted automatically depending on current GPU load.
 It will be adjusted between low and the select foveation level in the previous setting.
 It is therefore best to combine this setting with foveation level set to high.
-
-.. Note::
-  **Compatibility renderer only**
 
 Submit Depth Buffer
 ~~~~~~~~~~~~~~~~~~~
@@ -213,7 +213,7 @@ We don't always receive feedback from the XR system as to why starting fails. If
 Common failure reasons are:
 
 - No OpenXR runtime is installed on the host system.
-- Microsoft's WMR OpenXR runtime is currently active, this only supports DirectX and will fail if OpenGL or Vulkan is used.
+- The active OpenXR runtime does not support the selected rendering driver.
 - SteamVR is used but no headset is connected/turned on.
 
 Disable this if you support a fallback mode in your game so it can be played in desktop mode when no VR headset is connected,
@@ -239,14 +239,13 @@ This allows you to choose which debug messages are logged.
 Frame Synthesis
 ~~~~~~~~~~~~~~~
 
-When enabled, provided it's supported by the XR runtime, lower resolution motion
-vector and depth buffers are rendered and provided to the XR runtime. The XR
-runtime can now inject reprojection frames and compensate for lower framerates.
+Frame synthesis is unsupported by EGP's Forward+ renderer. The retained OpenXR
+API and project setting do not enable frame synthesis, even when the XR runtime
+advertises support for the extension.
 
-It currently has the following limitations:
-
-- Does NOT work in the Forward+ renderer.
-- Only works with stereo rendering.
+The upstream extension uses motion vector and depth buffers to inject
+reprojection frames at reduced application framerates. This describes the
+extension's purpose, rather than a supported EGP rendering feature.
 
 Hand Tracking
 ~~~~~~~~~~~~~

@@ -3,18 +3,11 @@
 Reducing stutter from shader (pipeline) compilations
 ====================================================
 
-.. warning::
+.. note::
 
-    This page only applies to the Forward+ and Mobile renderers, not Compatibility.
-    Ubershaders and pipeline precompilation rely on functionality only available
-    in modern low-level graphics APIs (Vulkan, Direct3D 12, Metal). The Compatibility
-    renderer uses OpenGL 3.3, OpenGL ES 3.0, or WebGL 2.0 depending on the platform.
-    These versions lack the functionality to effectively implement ubershaders
-    and pipeline precompilation.
-
-    To avoid shader stutters in Compatibility, you need to use the legacy
-    approach of preloading materials, shaders, and particles by displaying them
-    for at least one frame in the view frustum when the level is loading.
+    This page describes Forward+. Ubershaders and pipeline precompilation use
+    RenderingDevice functionality provided by the platform-enabled Vulkan,
+    Direct3D 12, or Metal driver.
 
 Pipeline compilation, also commonly known as shader compilation, is an expensive
 operation required by the engine to be able to draw any kind of content with the
@@ -267,13 +260,9 @@ The shader baker will only export shaders that match the
 
 .. note::
 
-    The shader baker is only supported for the Forward+ and Mobile renderers.
-    It will have no effect if the project uses the Compatibility renderer,
-    or for users who make use of the Compatibility fallback due to their
-    hardware not supporting the Forward+ or Mobile renderer.
-
-    This also means the shader baker is not supported on the web platform,
-    as the web platform only supports the Compatibility renderer.
+    The shader baker is supported for Forward+ on supported native export
+    platforms. EGP does not support browser exports or a fallback renderer for
+    hardware that cannot run Forward+.
 
     Additionally, the shader baker is not supported when exporting a project
     using the ``--headless`` :ref:`command line argument <doc_command_line_tutorial>`,

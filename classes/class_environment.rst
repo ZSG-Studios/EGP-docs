@@ -1097,8 +1097,6 @@ If set above ``0.0``, renders the scene's directional light(s) in the fog color 
 
 The glow blending mode.
 
-\ **Note:** The Compatibility renderer always uses :ref:`GLOW_BLEND_MODE_SCREEN<class_Environment_constant_GLOW_BLEND_MODE_SCREEN>` and :ref:`glow_blend_mode<class_Environment_property_glow_blend_mode>` will have no effect.
-
 .. rst-class:: classref-item-separator
 
 ----
@@ -1132,10 +1130,6 @@ The bloom's intensity. If set to a value higher than ``0``, this will make glow 
 - :ref:`bool<class_bool>` **is_glow_enabled**\ (\ )
 
 If ``true``, the glow effect is enabled. This simulates real world atmosphere and eye/camera behavior by causing bright pixels to bleed onto surrounding pixels.
-
-\ **Note:** When using the Mobile rendering method, glow looks different due to the lower dynamic range available in the Mobile rendering method.
-
-\ **Note:** When using the Compatibility rendering method, glow uses a different implementation with some properties being unavailable and hidden from the inspector: ``glow_levels/*``, :ref:`glow_normalized<class_Environment_property_glow_normalized>`, :ref:`glow_strength<class_Environment_property_glow_strength>`, :ref:`glow_blend_mode<class_Environment_property_glow_blend_mode>`, :ref:`glow_mix<class_Environment_property_glow_mix>`, :ref:`glow_map<class_Environment_property_glow_map>`, and :ref:`glow_map_strength<class_Environment_property_glow_map_strength>`. This implementation is optimized to run on low-end devices and is less flexible as a result.
 
 .. rst-class:: classref-item-separator
 
@@ -1186,7 +1180,7 @@ Smooths the transition between values that are below and above :ref:`glow_hdr_th
 - |void| **set_glow_hdr_bleed_threshold**\ (\ value\: :ref:`float<class_float>`\ )
 - :ref:`float<class_float>` **get_glow_hdr_bleed_threshold**\ (\ )
 
-The lower threshold of the HDR glow. When using the Mobile rendering method (which only supports a lower dynamic range up to ``2.0``), this may need to be below ``1.0`` for glow to be visible. A value of ``0.9`` works well in this case. This value also needs to be decreased below ``1.0`` when using glow in 2D, as 2D rendering is performed in SDR.
+The lower threshold of the HDR glow. When using glow in SDR 2D rendering, decrease this value below ``1.0`` for glow to be visible. Enable :ref:`Viewport.use_hdr_2d<class_Viewport_property_use_hdr_2d>` to use HDR values in 2D.
 
 .. rst-class:: classref-item-separator
 
@@ -1203,7 +1197,7 @@ The lower threshold of the HDR glow. When using the Mobile rendering method (whi
 - |void| **set_glow_intensity**\ (\ value\: :ref:`float<class_float>`\ )
 - :ref:`float<class_float>` **get_glow_intensity**\ (\ )
 
-The overall brightness multiplier that is applied to the glow effect just before it is blended with the scene. When using the Mobile rendering method (which only supports a lower dynamic range up to ``2.0``), this should be increased to ``1.5`` to compensate.
+The overall brightness multiplier that is applied to the glow effect just before it is blended with the scene.
 
 .. rst-class:: classref-item-separator
 
@@ -1222,8 +1216,6 @@ The overall brightness multiplier that is applied to the glow effect just before
 
 The intensity of the 1st level of glow. This is the most "local" level (least blurry).
 
-\ **Note:** :ref:`glow_levels/1<class_Environment_property_glow_levels/1>` has no effect when using the Compatibility rendering method, due to this rendering method using a simpler glow implementation optimized for low-end devices.
-
 .. rst-class:: classref-item-separator
 
 ----
@@ -1240,8 +1232,6 @@ The intensity of the 1st level of glow. This is the most "local" level (least bl
 - :ref:`float<class_float>` **get_glow_level**\ (\ idx\: :ref:`int<class_int>`\ ) |const|
 
 The intensity of the 2nd level of glow.
-
-\ **Note:** :ref:`glow_levels/2<class_Environment_property_glow_levels/2>` has no effect when using the Compatibility rendering method, due to this rendering method using a simpler glow implementation optimized for low-end devices.
 
 .. rst-class:: classref-item-separator
 
@@ -1260,8 +1250,6 @@ The intensity of the 2nd level of glow.
 
 The intensity of the 3rd level of glow.
 
-\ **Note:** :ref:`glow_levels/3<class_Environment_property_glow_levels/3>` has no effect when using the Compatibility rendering method, due to this rendering method using a simpler glow implementation optimized for low-end devices.
-
 .. rst-class:: classref-item-separator
 
 ----
@@ -1278,8 +1266,6 @@ The intensity of the 3rd level of glow.
 - :ref:`float<class_float>` **get_glow_level**\ (\ idx\: :ref:`int<class_int>`\ ) |const|
 
 The intensity of the 4th level of glow.
-
-\ **Note:** :ref:`glow_levels/4<class_Environment_property_glow_levels/4>` has no effect when using the Compatibility rendering method, due to this rendering method using a simpler glow implementation optimized for low-end devices.
 
 .. rst-class:: classref-item-separator
 
@@ -1298,8 +1284,6 @@ The intensity of the 4th level of glow.
 
 The intensity of the 5th level of glow.
 
-\ **Note:** :ref:`glow_levels/5<class_Environment_property_glow_levels/5>` has no effect when using the Compatibility rendering method, due to this rendering method using a simpler glow implementation optimized for low-end devices.
-
 .. rst-class:: classref-item-separator
 
 ----
@@ -1317,8 +1301,6 @@ The intensity of the 5th level of glow.
 
 The intensity of the 6th level of glow.
 
-\ **Note:** :ref:`glow_levels/6<class_Environment_property_glow_levels/6>` has no effect when using the Compatibility rendering method, due to this rendering method using a simpler glow implementation optimized for low-end devices.
-
 .. rst-class:: classref-item-separator
 
 ----
@@ -1335,8 +1317,6 @@ The intensity of the 6th level of glow.
 - :ref:`float<class_float>` **get_glow_level**\ (\ idx\: :ref:`int<class_int>`\ ) |const|
 
 The intensity of the 7th level of glow. This is the most "global" level (blurriest).
-
-\ **Note:** :ref:`glow_levels/7<class_Environment_property_glow_levels/7>` has no effect when using the Compatibility rendering method, due to this rendering method using a simpler glow implementation optimized for low-end devices.
 
 .. rst-class:: classref-item-separator
 
@@ -1357,8 +1337,6 @@ The texture that should be used as a glow map to *multiply* the resulting glow c
 
 \ **Note:** The texture will be stretched to fit the screen. Therefore, it's recommended to use a texture with an aspect ratio that matches your project's base aspect ratio (typically 16:9).
 
-\ **Note:** :ref:`glow_map<class_Environment_property_glow_map>` has no effect when using the Compatibility rendering method, due to this rendering method using a simpler glow implementation optimized for low-end devices.
-
 .. rst-class:: classref-item-separator
 
 ----
@@ -1378,8 +1356,6 @@ How strong of an influence the :ref:`glow_map<class_Environment_property_glow_ma
 
 \ **Note:** If the glow map has black areas, a value of ``1.0`` can also turn off the glow effect entirely in specific areas of the screen.
 
-\ **Note:** :ref:`glow_map_strength<class_Environment_property_glow_map_strength>` has no effect when using the Compatibility rendering method, due to this rendering method using a simpler glow implementation optimized for low-end devices.
-
 .. rst-class:: classref-item-separator
 
 ----
@@ -1396,8 +1372,6 @@ How strong of an influence the :ref:`glow_map<class_Environment_property_glow_ma
 - :ref:`float<class_float>` **get_glow_mix**\ (\ )
 
 When using the :ref:`GLOW_BLEND_MODE_MIX<class_Environment_constant_GLOW_BLEND_MODE_MIX>` :ref:`glow_blend_mode<class_Environment_property_glow_blend_mode>`, this controls how much the source image is blended with the glow layer. A value of ``0.0`` makes the glow rendering invisible, while a value of ``1.0`` is equivalent to :ref:`GLOW_BLEND_MODE_REPLACE<class_Environment_constant_GLOW_BLEND_MODE_REPLACE>`.
-
-\ **Note:** :ref:`glow_mix<class_Environment_property_glow_mix>` has no effect when using the Compatibility rendering method, due to this rendering method using a simpler glow implementation optimized for low-end devices.
 
 .. rst-class:: classref-item-separator
 
@@ -1416,8 +1390,6 @@ When using the :ref:`GLOW_BLEND_MODE_MIX<class_Environment_constant_GLOW_BLEND_M
 
 If ``true``, glow levels will be normalized so that summed together their intensities equal ``1.0``.
 
-\ **Note:** :ref:`glow_normalized<class_Environment_property_glow_normalized>` has no effect when using the Compatibility rendering method, due to this rendering method using a simpler glow implementation optimized for low-end devices.
-
 .. rst-class:: classref-item-separator
 
 ----
@@ -1433,9 +1405,7 @@ If ``true``, glow levels will be normalized so that summed together their intens
 - |void| **set_glow_strength**\ (\ value\: :ref:`float<class_float>`\ )
 - :ref:`float<class_float>` **get_glow_strength**\ (\ )
 
-The strength that is used when blurring across the screen to generate the glow effect. This affects the distance and intensity of the blur. When using the Mobile rendering method, this should be increased to compensate for the lower dynamic range.
-
-\ **Note:** :ref:`glow_strength<class_Environment_property_glow_strength>` has no effect when using the Compatibility rendering method, due to this rendering method using a simpler glow implementation optimized for low-end devices.
+The strength that is used when blurring across the screen to generate the glow effect. This affects the distance and intensity of the blur.
 
 .. rst-class:: classref-item-separator
 
@@ -1526,7 +1496,7 @@ The number of cascades to use for SDFGI (between 1 and 8). A higher number of ca
 
 If ``true``, enables signed distance field global illumination for meshes that have their :ref:`GeometryInstance3D.gi_mode<class_GeometryInstance3D_property_gi_mode>` set to :ref:`GeometryInstance3D.GI_MODE_STATIC<class_GeometryInstance3D_constant_GI_MODE_STATIC>`. SDFGI is a real-time global illumination technique that works well with procedurally generated and user-built levels, including in situations where geometry is created during gameplay. The signed distance field is automatically generated around the camera as it moves. Dynamic lights are supported, but dynamic occluders and emissive surfaces are not.
 
-\ **Note:** SDFGI is only supported in the Forward+ rendering method, not Mobile or Compatibility.
+\ **Note:** SDFGI requires the Forward+ rendering method.
 
 \ **Performance:** SDFGI is relatively demanding on the GPU and is not suited to low-end hardware such as integrated graphics (consider :ref:`LightmapGI<class_LightmapGI>` instead). To improve SDFGI performance, enable :ref:`ProjectSettings.rendering/global_illumination/gi/use_half_resolution<class_ProjectSettings_property_rendering/global_illumination/gi/use_half_resolution>` in the Project Settings.
 
@@ -1774,7 +1744,7 @@ Sets the strength of the additional level of detail for the screen-space ambient
 
 If ``true``, the screen-space ambient occlusion effect is enabled. This darkens objects' corners and cavities to simulate ambient light not reaching the entire object as in real life. This works well for small, dynamic objects, but baked lighting or ambient occlusion textures will do a better job at displaying ambient occlusion on large static objects. Godot uses a form of SSAO called Adaptive Screen Space Ambient Occlusion which is itself a form of Horizon Based Ambient Occlusion.
 
-\ **Note:** SSAO is only supported in the Forward+ and Compatibility rendering methods, not Mobile.
+\ **Note:** SSAO requires the Forward+ rendering method.
 
 .. rst-class:: classref-item-separator
 
@@ -1895,7 +1865,7 @@ The amount that the screen-space ambient occlusion effect is allowed to blur ove
 
 If ``true``, the screen-space indirect lighting effect is enabled. Screen space indirect lighting is a form of indirect lighting that allows diffuse light to bounce between nearby objects. Screen-space indirect lighting works very similarly to screen-space ambient occlusion, in that it only affects a limited range. It is intended to be used along with a form of proper global illumination like SDFGI or :ref:`VoxelGI<class_VoxelGI>`. Screen-space indirect lighting is not affected by individual light's :ref:`Light3D.light_indirect_energy<class_Light3D_property_light_indirect_energy>`.
 
-\ **Note:** SSIL is only supported in the Forward+ rendering method, not Mobile or Compatibility.
+\ **Note:** SSIL requires the Forward+ rendering method.
 
 .. rst-class:: classref-item-separator
 
@@ -1999,7 +1969,7 @@ The depth tolerance for screen-space reflections.
 
 If ``true``, screen-space reflections are enabled. Screen-space reflections are more accurate than reflections from :ref:`VoxelGI<class_VoxelGI>`\ s or :ref:`ReflectionProbe<class_ReflectionProbe>`\ s, but are slower and can't reflect surfaces occluded by others.
 
-\ **Note:** SSR is only supported in the Forward+ rendering method, not Mobile or Compatibility.
+\ **Note:** SSR requires the Forward+ rendering method.
 
 \ **Note:** SSR is not supported on viewports that have a transparent background (where :ref:`Viewport.transparent_bg<class_Viewport_property_transparent_bg>` is ``true``).
 
@@ -2088,7 +2058,7 @@ Increasing :ref:`tonemap_agx_contrast<class_Environment_property_tonemap_agx_con
 
 The white reference value for tonemapping, which indicates where bright white is located in the scale of values provided to the tonemapper. For photorealistic lighting, it is recommended to set :ref:`tonemap_agx_white<class_Environment_property_tonemap_agx_white>` to at least ``6.0``. Higher values result in less blown out highlights, but may make the scene appear lower contrast. :ref:`tonemap_agx_white<class_Environment_property_tonemap_agx_white>` is the same as :ref:`tonemap_white<class_Environment_property_tonemap_white>`, but is only effective with the :ref:`TONE_MAPPER_AGX<class_Environment_constant_TONE_MAPPER_AGX>` tonemapper. See also :ref:`tonemap_exposure<class_Environment_property_tonemap_exposure>`.
 
-\ **Note:** When using the Mobile renderer with :ref:`Viewport.use_hdr_2d<class_Viewport_property_use_hdr_2d>` disabled, :ref:`tonemap_agx_white<class_Environment_property_tonemap_agx_white>` is ignored and a white value of ``2.0`` will always be used instead. Otherwise, :ref:`tonemap_agx_white<class_Environment_property_tonemap_agx_white>` will be dynamically adjusted at runtime by multiplying it by the parent window's :ref:`Window.get_output_max_linear_value()<class_Window_method_get_output_max_linear_value>` when using :ref:`Viewport.use_hdr_2d<class_Viewport_property_use_hdr_2d>` to ensure good behavior with both SDR and HDR output.
+\ **Note:** When :ref:`Viewport.use_hdr_2d<class_Viewport_property_use_hdr_2d>` is enabled, :ref:`tonemap_agx_white<class_Environment_property_tonemap_agx_white>` is dynamically adjusted at runtime by multiplying it by the parent window's :ref:`Window.get_output_max_linear_value()<class_Window_method_get_output_max_linear_value>` to account for both SDR and HDR output.
 
 .. rst-class:: classref-item-separator
 
@@ -2124,7 +2094,7 @@ Adjusts the brightness of values before they are provided to the tonemapper. Hig
 - |void| **set_tonemapper**\ (\ value\: :ref:`ToneMapper<enum_Environment_ToneMapper>`\ )
 - :ref:`ToneMapper<enum_Environment_ToneMapper>` **get_tonemapper**\ (\ )
 
-The tonemapping mode to use. Tonemapping is the process that "converts" HDR values to be suitable for rendering on an LDR display. (Godot doesn't support rendering on HDR displays yet.)
+The tonemapping mode to use. Tonemapping maps HDR values to the output display's range.
 
 .. rst-class:: classref-item-separator
 
@@ -2142,8 +2112,6 @@ The tonemapping mode to use. Tonemapping is the process that "converts" HDR valu
 - :ref:`float<class_float>` **get_tonemap_white**\ (\ )
 
 The white reference value for tonemapping, which indicates where bright white is located in the scale of values provided to the tonemapper. For photorealistic lighting, it is recommended to set :ref:`tonemap_white<class_Environment_property_tonemap_white>` to at least ``6.0``. Higher values result in less blown out highlights, but may make the scene appear lower contrast. :ref:`tonemap_agx_white<class_Environment_property_tonemap_agx_white>` will be used instead when using the :ref:`TONE_MAPPER_AGX<class_Environment_constant_TONE_MAPPER_AGX>` tonemapper. See also :ref:`tonemap_exposure<class_Environment_property_tonemap_exposure>`.
-
-\ **Note:** :ref:`tonemap_white<class_Environment_property_tonemap_white>` must be set to ``2.0`` or lower on the Mobile renderer to produce bright images.
 
 \ **Note:** :ref:`tonemap_white<class_Environment_property_tonemap_white>` is ignored when using :ref:`TONE_MAPPER_LINEAR<class_Environment_constant_TONE_MAPPER_LINEAR>` and will be dynamically adjusted at runtime to never be less than the parent window's :ref:`Window.get_output_max_linear_value()<class_Window_method_get_output_max_linear_value>` when using :ref:`TONE_MAPPER_REINHARDT<class_Environment_constant_TONE_MAPPER_REINHARDT>` with :ref:`Viewport.use_hdr_2d<class_Viewport_property_use_hdr_2d>`.
 
@@ -2289,7 +2257,7 @@ The brightness of the emitted light from the volumetric fog.
 
 Enables the volumetric fog effect. Volumetric fog uses a screen-aligned froxel buffer to calculate accurate volumetric scattering in the short to medium range. Volumetric fog interacts with :ref:`FogVolume<class_FogVolume>`\ s and lights to calculate localized and global fog. Volumetric fog uses a PBR single-scattering model based on extinction, scattering, and emission which it exposes to users as density, albedo, and emission.
 
-\ **Note:** Volumetric fog is only supported in the Forward+ rendering method, not Mobile or Compatibility.
+\ **Note:** Volumetric fog requires the Forward+ rendering method.
 
 .. rst-class:: classref-item-separator
 

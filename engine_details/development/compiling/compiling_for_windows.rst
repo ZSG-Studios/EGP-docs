@@ -68,13 +68,13 @@ Install pinned optional dependencies using the native installer:
 .. code-block:: shell
 
     xmake lua misc/scripts/install_build_dependencies.lua d3d12
-    xmake lua misc/scripts/install_build_dependencies.lua angle
     xmake lua misc/scripts/install_build_dependencies.lua accesskit
 
 Enable the corresponding options only after installing their SDKs. The
-PowerShell launcher's default profile uses ``d3d12=n angle=n accesskit=n``;
+PowerShell launcher's default profile uses ``d3d12=n accesskit=n``;
 add overrides with ``-XmakeArgs`` when those features are required.
-The Vulkan and OpenGL routes remain separately configurable.
+Rendered projects use Forward+ through an enabled RenderingDevice driver.
+OpenGL and ANGLE are removed; headless tooling can use the dummy backend.
 
 Outputs and debugging
 ---------------------

@@ -30,8 +30,6 @@ As a drawback, if the instances are too far away from each other, performance ma
 
 Since instances may have any behavior, the AABB used for visibility must be provided by the user.
 
-\ **Note:** A MultiMesh is a single object, therefore the same maximum lights per object restriction applies. This means, that once the maximum lights are consumed by one or more instances, the rest of the MultiMesh instances will **not** receive any lighting.
-
 \ **Note:** Blend Shapes will be ignored if used in a MultiMesh.
 
 .. rst-class:: classref-introduction-group
@@ -547,7 +545,7 @@ When the order of instances is coherent, the simpler alternative of setting :ref
 
 Sets the color of a specific instance by *multiplying* the mesh's existing vertex colors. This allows for different color tinting per instance.
 
-\ **Note:** Each component is stored in 32 bits in the Forward+ and Mobile rendering methods, but is packed into 16 bits in the Compatibility rendering method.
+Each color component is stored as a 32-bit floating-point number.
 
 For the color to take effect, ensure that :ref:`use_colors<class_MultiMesh_property_use_colors>` is ``true`` on the **MultiMesh** and :ref:`BaseMaterial3D.vertex_color_use_as_albedo<class_BaseMaterial3D_property_vertex_color_use_as_albedo>` is ``true`` on the material. If you intend to set an absolute color instead of tinting, make sure the material's albedo color is set to pure white (\ ``Color(1, 1, 1)``).
 
@@ -563,7 +561,7 @@ For the color to take effect, ensure that :ref:`use_colors<class_MultiMesh_prope
 
 Sets custom data for a specific instance. ``custom_data`` is a :ref:`Color<class_Color>` type only to contain 4 floating-point numbers.
 
-\ **Note:** Each number is stored in 32 bits in the Forward+ and Mobile rendering methods, but is packed into 16 bits in the Compatibility rendering method.
+Each component is stored as a 32-bit floating-point number.
 
 For the custom data to be used, ensure that :ref:`use_custom_data<class_MultiMesh_property_use_custom_data>` is ``true``.
 

@@ -11,10 +11,51 @@ not establish runtime behavior or production readiness.
 Native xmake qualification
 --------------------------
 
-This documentation follows published engine revision ``36ca84ecbe02``. The
-completed build and runtime receipts below retain their tested revision,
-``ed0e5c443b4d``. The later cleanup removes two empty, unused Mono Python
-package markers; all other tracked source files and build recipes are identical.
+This documentation follows published engine revision ``94799cef115c``, which
+includes the upstream integration through ``65e8d16951d6`` and the later
+Forward+-only renderer changes. Rendered projects require a supported
+RenderingDevice driver: Vulkan, Direct3D 12 or Metal, depending on the
+platform and enabled build features. Compatibility, Mobile, OpenGL/OpenGL ES,
+ANGLE, WebGL and WebXR are removed. Headless servers and tooling retain the
+dummy backend. Devices without an available RenderingDevice driver have no
+fallback renderer; Web builds and exports are unsupported.
+
+The corrective source updates renderer configuration, caller flags, class
+references and command-line guidance. It removes four unused OpenGL limit
+settings and the obsolete ANGLE export options. visionOS supports the
+Window application role with Forward+ and Metal; Immersive applications are
+explicitly unsupported. The retained OpenXR frame synthesis API is also
+unsupported by EGP's Forward+ renderer, even when the XR runtime advertises
+support. No physical visionOS device qualification is implied.
+
+Current native builds, renderer runtime behavior, extension API fingerprints,
+C++ SDKs and matching Mono assemblies require fresh qualification at this
+revision. These gates are pending. Earlier build and runtime receipts do not
+qualify the changed renderer, and no older API or SDK hash is presented as a
+current artifact identity.
+
+At this revision, the native Xmake contracts pass 35 suites and 16,332 checks
+on Linux, and 41 suites and 16,742 checks on Windows. The minimal Linux
+template passes 1,150 native test cases and 252,813 assertions, plus its
+startup control. These results are recorded in the `current native workflow
+<https://github.com/ZSG-Studios/EGP-Engine/actions/runs/37847543471>`__. They
+cover build contracts and the minimal template; the full engine matrix, C++
+SDK/API and Mono artifact gates remain pending.
+
+The earlier ``b25aa87b4dbc`` integration removes
+``Light3D.shadow_contact_shadows_opacity`` and the corresponding Light3D and
+RenderingServer opacity constants. Their contact shadow blur constants have
+value 21, and their parameter maxima are 22. A metadata-only check of that
+revision's Linux Mono artifact passes seven controls for the removed property,
+accessors and constants, plus the updated enum values. That historical managed
+result does not qualify the later renderer source or its rebuilt assemblies.
+
+The completed build and runtime receipts below are historical results for
+their named revisions. The prior ``36ca84ecbe02`` `native CI matrix
+<https://github.com/ZSG-Studios/EGP/actions/runs/37822111834>`__ passes all 23
+jobs. That cleanup removed two empty, unused Mono Python package markers;
+all other tracked source files and build recipes were identical to
+``ed0e5c443b4d``. That source equivalence does not extend to the upstream merge.
 
 At ``ed0e5c443b4d``, the `native CI matrix
 <https://github.com/ZSG-Studios/EGP/actions/runs/37813507787>`__ passes all
@@ -36,10 +77,10 @@ panel stages. The panel checks include deliberate compiler failure, terminal
 control sanitization, wrapped diagnostic navigation, source editing, reload,
 descriptor failure recovery and Release publication.
 
-These desktop CI builds use extension API hash ``23ac1572ca9acc10``. Their
-SDK receipts retain separate platform identities:
+Those historical ``ed0e5c443b4d`` desktop CI builds use extension API hash
+``23ac1572ca9acc10``. Their SDK receipts retain separate platform identities:
 
-.. list-table:: C++ SDKs tested by the desktop CI workflow
+.. list-table:: C++ SDKs tested at ed0e5c443b4d
    :header-rows: 1
    :widths: 20 40 40
 
@@ -87,7 +128,7 @@ per-phase latency guarantee or a native protocol change.
 The C++ diagnostic correction passes 25 native regular-expression controls
 for source paths with xmake severity prefixes. Fresh standalone Release
 fairness and state-encoding tests pass against the same native core as
-``14899a3ce526``. The current ``ed0e5c443b4d`` native CI tests also pass both
+``14899a3ce526``. The ``ed0e5c443b4d`` native CI tests also pass both
 cases on all three desktop platforms. Earlier failed runs remain retained;
 the later passes do not identify the cause of those intermittent failures.
 

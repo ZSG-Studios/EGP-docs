@@ -209,7 +209,7 @@ The target (upscale) size if scaling is used.
 
 Bias applied to mipmaps.
 
-\ **Note:** This property is only supported in the Forward+ and Mobile renderers, not Compatibility. In Compatibility, this property is always treated as if it was set to ``0.0``.
+\ **Note:** This property requires the Forward+ renderer.
 
 .. rst-class:: classref-item-separator
 

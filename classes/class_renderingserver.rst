@@ -1322,7 +1322,7 @@ enum **TextureDrawableFormat**: :ref:`🔗<enum_RenderingServer_TextureDrawableF
 
 :ref:`TextureDrawableFormat<enum_RenderingServer_TextureDrawableFormat>` **TEXTURE_DRAWABLE_FORMAT_RGBA8** = ``0``
 
-OpenGL texture format RGBA with four components, each with a bitdepth of 8.
+RGBA texture format with four components, each with a bitdepth of 8.
 
 .. _class_RenderingServer_constant_TEXTURE_DRAWABLE_FORMAT_RGBA8_SRGB:
 
@@ -1330,7 +1330,7 @@ OpenGL texture format RGBA with four components, each with a bitdepth of 8.
 
 :ref:`TextureDrawableFormat<enum_RenderingServer_TextureDrawableFormat>` **TEXTURE_DRAWABLE_FORMAT_RGBA8_SRGB** = ``1``
 
-OpenGL texture format RGBA with four components, each with a bitdepth of 8.
+RGBA texture format with four components, each with a bitdepth of 8.
 
 When drawn to, a linear to sRGB color encoding conversion is performed.
 
@@ -1340,7 +1340,7 @@ When drawn to, a linear to sRGB color encoding conversion is performed.
 
 :ref:`TextureDrawableFormat<enum_RenderingServer_TextureDrawableFormat>` **TEXTURE_DRAWABLE_FORMAT_RGBAH** = ``2``
 
-OpenGL texture format GL_RGBA16F where there are four components, each a 16-bit "half-precision" floating-point value.
+RGBA16F texture format where there are four components, each a 16-bit "half-precision" floating-point value.
 
 .. _class_RenderingServer_constant_TEXTURE_DRAWABLE_FORMAT_RGBAF:
 
@@ -1348,7 +1348,7 @@ OpenGL texture format GL_RGBA16F where there are four components, each a 16-bit 
 
 :ref:`TextureDrawableFormat<enum_RenderingServer_TextureDrawableFormat>` **TEXTURE_DRAWABLE_FORMAT_RGBAF** = ``3``
 
-OpenGL texture format GL_RGBA32F where there are four components, each a 32-bit floating-point value.
+RGBA32F texture format where there are four components, each a 32-bit floating-point value.
 
 .. rst-class:: classref-item-separator
 
@@ -1852,7 +1852,7 @@ Flag used to mark that a mesh is using compressed attributes (vertices, normals,
 
 :ref:`ArrayFormat<enum_RenderingServer_ArrayFormat>` **ARRAY_FLAG_USE_STORAGE_BUFFER** = ``1073741824``
 
-Flag used to mark that the surface's vertex, attribute, skin, and index buffers must be created with the storage-buffer usage bit so they can be bound as storage buffers in compute shaders. This is required to write into them from a compute pipeline through the :ref:`RID<class_RID>`\ s returned by :ref:`mesh_surface_get_vertex_buffer_rd_rid()<class_RenderingServer_method_mesh_surface_get_vertex_buffer_rd_rid>` and the matching methods for the attribute, skin, and index buffers. Has no effect on the OpenGL backend, which does not expose :ref:`RenderingDevice<class_RenderingDevice>` :ref:`RID<class_RID>`\ s.
+Flag used to mark that the surface's vertex, attribute, skin, and index buffers must be created with the storage-buffer usage bit so they can be bound as storage buffers in compute shaders. This is required to write into them from a compute pipeline through the :ref:`RID<class_RID>`\ s returned by :ref:`mesh_surface_get_vertex_buffer_rd_rid()<class_RenderingServer_method_mesh_surface_get_vertex_buffer_rd_rid>` and the matching methods for the attribute, skin, and index buffers. The headless dummy backend does not expose :ref:`RenderingDevice<class_RenderingDevice>` :ref:`RID<class_RID>`\ s.
 
 .. _class_RenderingServer_constant_ARRAY_FLAG_FORMAT_VERSION_BASE:
 
@@ -2320,19 +2320,11 @@ Blurs the edges of the shadow. Can be used to hide pixel artifacts in low resolu
 
 Constant representing the intensity of the light, measured in Lumens when dealing with a :ref:`SpotLight3D<class_SpotLight3D>` or :ref:`OmniLight3D<class_OmniLight3D>`, or measured in Lux with a :ref:`DirectionalLight3D<class_DirectionalLight3D>`. Only used when :ref:`ProjectSettings.rendering/lights_and_shadows/use_physical_light_units<class_ProjectSettings_property_rendering/lights_and_shadows/use_physical_light_units>` is ``true``.
 
-.. _class_RenderingServer_constant_LIGHT_PARAM_CONTACT_SHADOW_OPACITY:
-
-.. rst-class:: classref-enumeration-constant
-
-:ref:`LightParam<enum_RenderingServer_LightParam>` **LIGHT_PARAM_CONTACT_SHADOW_OPACITY** = ``21``
-
-Changes the opacity of the lights screen-space contact shadows. A value of ``1.0`` uses the same opacity as :ref:`LIGHT_PARAM_SHADOW_OPACITY<class_RenderingServer_constant_LIGHT_PARAM_SHADOW_OPACITY>`, a value of ``0.5`` would be 50% of the opacity of :ref:`LIGHT_PARAM_SHADOW_OPACITY<class_RenderingServer_constant_LIGHT_PARAM_SHADOW_OPACITY>`.
-
 .. _class_RenderingServer_constant_LIGHT_PARAM_CONTACT_SHADOW_BLUR:
 
 .. rst-class:: classref-enumeration-constant
 
-:ref:`LightParam<enum_RenderingServer_LightParam>` **LIGHT_PARAM_CONTACT_SHADOW_BLUR** = ``22``
+:ref:`LightParam<enum_RenderingServer_LightParam>` **LIGHT_PARAM_CONTACT_SHADOW_BLUR** = ``21``
 
 Blurs the edges of the contact shadow. ``0.0`` produces sharp shadows; higher values increase the noise magnitude.
 
@@ -2340,7 +2332,7 @@ Blurs the edges of the contact shadow. ``0.0`` produces sharp shadows; higher va
 
 .. rst-class:: classref-enumeration-constant
 
-:ref:`LightParam<enum_RenderingServer_LightParam>` **LIGHT_PARAM_MAX** = ``23``
+:ref:`LightParam<enum_RenderingServer_LightParam>` **LIGHT_PARAM_MAX** = ``22``
 
 Represents the size of the :ref:`LightParam<enum_RenderingServer_LightParam>` enum.
 
@@ -3730,9 +3722,7 @@ Objects are displayed semi-transparent with additive blending so you can see whe
 
 Debug draw draws objects in wireframe.
 
-\ **Note:** :ref:`set_debug_generate_wireframes()<class_RenderingServer_method_set_debug_generate_wireframes>` must be called before loading any meshes for wireframes to be visible when using the Compatibility renderer.
-
-\ **Note:** In the Compatibility renderer, backfaces are always visible when using wireframe rendering. In the Forward+ and Mobile renderers, wireframes follow the material's backface culling properties instead.
+\ **Note:** In Forward+, wireframes follow the material's backface culling properties.
 
 .. _class_RenderingServer_constant_VIEWPORT_DEBUG_DRAW_NORMAL_BUFFER:
 
@@ -3800,7 +3790,7 @@ The last cascade shows all frustum slices to illustrate the coverage of all slic
 
 Draws the estimated scene luminance. This is a 1×1 texture that is generated when autoexposure is enabled to control the scene's exposure.
 
-\ **Note:** Only supported when using the Forward+ or Mobile rendering methods.
+\ **Note:** Only supported when using the Forward+ rendering method.
 
 .. _class_RenderingServer_constant_VIEWPORT_DEBUG_DRAW_SSAO:
 
@@ -3832,7 +3822,7 @@ Colors each PSSM split for the :ref:`DirectionalLight3D<class_DirectionalLight3D
 
 \ **Note:** When using this debug draw mode, custom shaders are ignored since all materials in the scene temporarily use a debug material. This means the result from custom shader functions (such as vertex displacement) won't be visible anymore when using this debug draw mode.
 
-\ **Note:** Only supported when using the Forward+ or Mobile rendering methods.
+\ **Note:** Only supported when using the Forward+ rendering method.
 
 .. _class_RenderingServer_constant_VIEWPORT_DEBUG_DRAW_DECAL_ATLAS:
 
@@ -3842,7 +3832,7 @@ Colors each PSSM split for the :ref:`DirectionalLight3D<class_DirectionalLight3D
 
 Draws the decal atlas that stores decal textures from :ref:`Decal<class_Decal>`\ s.
 
-\ **Note:** Only supported when using the Forward+ or Mobile rendering methods.
+\ **Note:** Only supported when using the Forward+ rendering method.
 
 .. _class_RenderingServer_constant_VIEWPORT_DEBUG_DRAW_SDFGI:
 
@@ -3932,7 +3922,7 @@ Draws the :ref:`ReflectionProbe<class_ReflectionProbe>` cluster. Clustering dete
 
 Draws the occlusion culling buffer. This low-resolution occlusion culling buffer is rasterized on the CPU and is used to check whether instances are occluded by other objects.
 
-\ **Note:** Only supported when using the Forward+ or Mobile rendering methods.
+\ **Note:** Only supported when using the Forward+ rendering method.
 
 .. _class_RenderingServer_constant_VIEWPORT_DEBUG_DRAW_MOTION_VECTORS:
 
@@ -3952,7 +3942,7 @@ Draws the motion vectors buffer. This is used by temporal antialiasing to correc
 
 Internal buffer is drawn instead of regular scene so you can see the per-pixel output that will be used by post-processing effects.
 
-\ **Note:** Only supported when using the Forward+ or Mobile rendering methods.
+\ **Note:** Only supported when using the Forward+ rendering method.
 
 .. rst-class:: classref-item-separator
 
@@ -5950,7 +5940,7 @@ Buffer memory used (in bytes). This includes vertex data, uniform buffers, and m
 
 :ref:`RenderingInfo<enum_RenderingServer_RenderingInfo>` **RENDERING_INFO_VIDEO_MEM_USED** = ``5``
 
-Video memory used (in bytes). When using the Forward+ or Mobile renderers, this is always greater than the sum of :ref:`RENDERING_INFO_TEXTURE_MEM_USED<class_RenderingServer_constant_RENDERING_INFO_TEXTURE_MEM_USED>` and :ref:`RENDERING_INFO_BUFFER_MEM_USED<class_RenderingServer_constant_RENDERING_INFO_BUFFER_MEM_USED>`, since there is miscellaneous data not accounted for by those two metrics. When using the Compatibility renderer, this is equal to the sum of :ref:`RENDERING_INFO_TEXTURE_MEM_USED<class_RenderingServer_constant_RENDERING_INFO_TEXTURE_MEM_USED>` and :ref:`RENDERING_INFO_BUFFER_MEM_USED<class_RenderingServer_constant_RENDERING_INFO_BUFFER_MEM_USED>`.
+Video memory used (in bytes). When using the Forward+ renderer, this is always greater than the sum of :ref:`RENDERING_INFO_TEXTURE_MEM_USED<class_RenderingServer_constant_RENDERING_INFO_TEXTURE_MEM_USED>` and :ref:`RENDERING_INFO_BUFFER_MEM_USED<class_RenderingServer_constant_RENDERING_INFO_BUFFER_MEM_USED>`, since there is miscellaneous data not accounted for by those two metrics.
 
 .. _class_RenderingServer_constant_RENDERING_INFO_PIPELINE_COMPILATIONS_CANVAS:
 
@@ -7920,7 +7910,7 @@ Sets the compositor effects for the specified compositor RID. ``effects`` should
 
 Creates a RenderingDevice that can be used to do draw and compute operations on a separate thread. Cannot draw to the screen nor share data with the global RenderingDevice.
 
-\ **Note:** When using the OpenGL rendering driver or when running in headless mode, this function always returns ``null``.
+\ **Note:** When running in headless mode, this function always returns ``null``.
 
 .. rst-class:: classref-item-separator
 
@@ -8160,7 +8150,7 @@ Once finished with your RID, you will want to free the RID using the RenderingSe
 
 If ``enable`` is ``true``, enables bicubic upscaling for glow which improves quality at the cost of performance. Equivalent to :ref:`ProjectSettings.rendering/environment/glow/upscale_mode<class_ProjectSettings_property_rendering/environment/glow/upscale_mode>`.
 
-\ **Note:** This setting is only effective when using the Forward+ or Mobile rendering methods, as Compatibility uses a different glow implementation.
+\ **Note:** This setting is effective when using the Forward+ rendering method.
 
 .. rst-class:: classref-item-separator
 
@@ -8596,11 +8586,9 @@ Tries to free an object in the RenderingServer. To avoid memory leaks, this shou
 
 :ref:`String<class_String>` **get_current_rendering_driver_name**\ (\ ) |const| :ref:`🔗<class_RenderingServer_method_get_current_rendering_driver_name>`
 
-Returns the name of the current rendering driver. This can be ``vulkan``, ``d3d12``, ``metal``, ``opengl3``, ``opengl3_es``, or ``opengl3_angle``. See also :ref:`get_current_rendering_method()<class_RenderingServer_method_get_current_rendering_method>`.
+Returns the name of the current rendering driver. For rendered projects, this can be ``vulkan``, ``d3d12``, or ``metal``. See also :ref:`get_current_rendering_method()<class_RenderingServer_method_get_current_rendering_method>`.
 
-When :ref:`ProjectSettings.rendering/renderer/rendering_method<class_ProjectSettings_property_rendering/renderer/rendering_method>` is ``forward_plus`` or ``mobile``, the rendering driver is determined by :ref:`ProjectSettings.rendering/rendering_device/driver<class_ProjectSettings_property_rendering/rendering_device/driver>`.
-
-When :ref:`ProjectSettings.rendering/renderer/rendering_method<class_ProjectSettings_property_rendering/renderer/rendering_method>` is ``gl_compatibility``, the rendering driver is determined by :ref:`ProjectSettings.rendering/gl_compatibility/driver<class_ProjectSettings_property_rendering/gl_compatibility/driver>`.
+When :ref:`ProjectSettings.rendering/renderer/rendering_method<class_ProjectSettings_property_rendering/renderer/rendering_method>` is ``forward_plus``, the rendering driver is determined by :ref:`ProjectSettings.rendering/rendering_device/driver<class_ProjectSettings_property_rendering/rendering_device/driver>`.
 
 The rendering driver is also determined by the ``--rendering-driver`` command line argument that overrides this project setting, or an automatic fallback that is applied depending on the hardware.
 
@@ -8614,7 +8602,7 @@ The rendering driver is also determined by the ``--rendering-driver`` command li
 
 :ref:`String<class_String>` **get_current_rendering_method**\ (\ ) |const| :ref:`🔗<class_RenderingServer_method_get_current_rendering_method>`
 
-Returns the name of the current rendering method. This can be ``forward_plus``, ``mobile``, or ``gl_compatibility``. See also :ref:`get_current_rendering_driver_name()<class_RenderingServer_method_get_current_rendering_driver_name>`.
+Returns the name of the current rendering method. Rendered projects use ``forward_plus``. See also :ref:`get_current_rendering_driver_name()<class_RenderingServer_method_get_current_rendering_driver_name>`.
 
 The rendering method is determined by :ref:`ProjectSettings.rendering/renderer/rendering_method<class_ProjectSettings_property_rendering/renderer/rendering_method>`, the ``--rendering-method`` command line argument that overrides this project setting, or an automatic fallback that is applied depending on the hardware.
 
@@ -8654,7 +8642,7 @@ Returns the time taken to setup rendering on the CPU in milliseconds. This value
 
 Returns the global RenderingDevice.
 
-\ **Note:** When using the OpenGL rendering driver or when running in headless mode, this function always returns ``null``.
+\ **Note:** When running in headless mode, this function always returns ``null``.
 
 .. rst-class:: classref-item-separator
 
@@ -8734,7 +8722,7 @@ Returns the RID of a 256×256 texture with a testing pattern on it (in :ref:`Ima
 
 :ref:`String<class_String>` **get_video_adapter_api_version**\ (\ ) |const| :ref:`🔗<class_RenderingServer_method_get_video_adapter_api_version>`
 
-Returns the version of the graphics video adapter *currently in use* (e.g. "1.2.189" for Vulkan, "3.3.0 NVIDIA 510.60.02" for OpenGL). This version may be different from the actual latest version supported by the hardware, as Godot may not always request the latest version. See also :ref:`OS.get_video_adapter_driver_info()<class_OS_method_get_video_adapter_driver_info>`.
+Returns the version of the graphics video adapter *currently in use* (e.g. "1.2.189" for Vulkan). This version may be different from the actual latest version supported by the hardware, as Godot may not always request the latest version. See also :ref:`OS.get_video_adapter_driver_info()<class_OS_method_get_video_adapter_driver_info>`.
 
 \ **Note:** When running a headless or server binary, this function returns an empty string.
 
@@ -8766,7 +8754,7 @@ Returns the name of the video adapter (e.g. "GeForce GTX 1080/PCIe/SSE2").
 
 Returns the type of the video adapter. Since dedicated graphics cards from a given generation will *usually* be significantly faster than integrated graphics made in the same generation, the device type can be used as a basis for automatic graphics settings adjustment. However, this is not always true, so make sure to provide users with a way to manually override graphics settings.
 
-\ **Note:** When using the OpenGL rendering driver or when running in headless mode, this function always returns :ref:`RenderingDevice.DEVICE_TYPE_OTHER<class_RenderingDevice_constant_DEVICE_TYPE_OTHER>`.
+\ **Note:** When running in headless mode, this function always returns :ref:`RenderingDevice.DEVICE_TYPE_OTHER<class_RenderingDevice_constant_DEVICE_TYPE_OTHER>`.
 
 .. rst-class:: classref-item-separator
 
@@ -9836,9 +9824,7 @@ Sets a shader material's shader.
 
 |void| **material_set_use_debanding**\ (\ enable\: :ref:`bool<class_bool>`\ ) :ref:`🔗<class_RenderingServer_method_material_set_use_debanding>`
 
-When using the Mobile renderer, :ref:`material_set_use_debanding()<class_RenderingServer_method_material_set_use_debanding>` can be used to enable or disable the debanding feature of 3D materials (:ref:`BaseMaterial3D<class_BaseMaterial3D>` and :ref:`ShaderMaterial<class_ShaderMaterial>`).
-
-\ :ref:`material_set_use_debanding()<class_RenderingServer_method_material_set_use_debanding>` has no effect when using the Compatibility or Forward+ renderer. In Forward+, :ref:`Viewport<class_Viewport>` debanding can be used instead.
+This method has no effect in the Forward+ renderer. Use :ref:`Viewport<class_Viewport>` debanding instead.
 
 See also :ref:`ProjectSettings.rendering/anti_aliasing/quality/use_debanding<class_ProjectSettings_property_rendering/anti_aliasing/quality/use_debanding>` and :ref:`viewport_set_use_debanding()<class_RenderingServer_method_viewport_set_use_debanding>`.
 
@@ -10084,7 +10070,7 @@ Returns the :ref:`RenderingDevice<class_RenderingDevice>` :ref:`RID<class_RID>` 
 
 To bind the buffer as a storage buffer in compute, the surface must have been created with the :ref:`ARRAY_FLAG_USE_STORAGE_BUFFER<class_RenderingServer_constant_ARRAY_FLAG_USE_STORAGE_BUFFER>` flag set in its format.
 
-Returns an invalid :ref:`RID<class_RID>` if the surface has no attribute buffer or if the rendering backend does not expose :ref:`RenderingDevice<class_RenderingDevice>` :ref:`RID<class_RID>`\ s (such as the OpenGL backend).
+Returns an invalid :ref:`RID<class_RID>` if the surface has no attribute buffer or if the rendering backend does not expose :ref:`RenderingDevice<class_RenderingDevice>` :ref:`RID<class_RID>`\ s (such as the headless dummy backend).
 
 .. rst-class:: classref-item-separator
 
@@ -10184,7 +10170,7 @@ Returns the :ref:`RenderingDevice<class_RenderingDevice>` :ref:`RID<class_RID>` 
 
 To bind the buffer as a storage buffer in compute, the surface must have been created with the :ref:`ARRAY_FLAG_USE_STORAGE_BUFFER<class_RenderingServer_constant_ARRAY_FLAG_USE_STORAGE_BUFFER>` flag set in its format.
 
-Returns an invalid :ref:`RID<class_RID>` if the surface is not indexed or if the rendering backend does not expose :ref:`RenderingDevice<class_RenderingDevice>` :ref:`RID<class_RID>`\ s (such as the OpenGL backend).
+Returns an invalid :ref:`RID<class_RID>` if the surface is not indexed or if the rendering backend does not expose :ref:`RenderingDevice<class_RenderingDevice>` :ref:`RID<class_RID>`\ s (such as the headless dummy backend).
 
 .. rst-class:: classref-item-separator
 
@@ -10212,7 +10198,7 @@ Returns the :ref:`RenderingDevice<class_RenderingDevice>` :ref:`RID<class_RID>` 
 
 This buffer is created with the storage-buffer usage bit whenever the surface has skinning data, so it can be bound as a storage buffer in compute even without :ref:`ARRAY_FLAG_USE_STORAGE_BUFFER<class_RenderingServer_constant_ARRAY_FLAG_USE_STORAGE_BUFFER>`.
 
-Returns an invalid :ref:`RID<class_RID>` if the surface has no skin buffer or if the rendering backend does not expose :ref:`RenderingDevice<class_RenderingDevice>` :ref:`RID<class_RID>`\ s (such as the OpenGL backend).
+Returns an invalid :ref:`RID<class_RID>` if the surface has no skin buffer or if the rendering backend does not expose :ref:`RenderingDevice<class_RenderingDevice>` :ref:`RID<class_RID>`\ s (such as the headless dummy backend).
 
 .. rst-class:: classref-item-separator
 
@@ -10228,7 +10214,7 @@ Returns the :ref:`RenderingDevice<class_RenderingDevice>` :ref:`RID<class_RID>` 
 
 To bind the buffer as a storage buffer in compute, the surface must have been created with the :ref:`ARRAY_FLAG_USE_STORAGE_BUFFER<class_RenderingServer_constant_ARRAY_FLAG_USE_STORAGE_BUFFER>` flag set in its format.
 
-Returns an invalid :ref:`RID<class_RID>` if the surface has no vertex buffer or if the rendering backend does not expose :ref:`RenderingDevice<class_RenderingDevice>` :ref:`RID<class_RID>`\ s (such as the OpenGL backend).
+Returns an invalid :ref:`RID<class_RID>` if the surface has no vertex buffer or if the rendering backend does not expose :ref:`RenderingDevice<class_RenderingDevice>` :ref:`RID<class_RID>`\ s (such as the headless dummy backend).
 
 .. rst-class:: classref-item-separator
 
@@ -11690,9 +11676,7 @@ Sets a boot image. The ``color`` defines the background color. The value of ``st
 
 |void| **set_debug_generate_wireframes**\ (\ generate\: :ref:`bool<class_bool>`\ ) :ref:`🔗<class_RenderingServer_method_set_debug_generate_wireframes>`
 
-If ``generate`` is ``true``, generates debug wireframes for all meshes that are loaded when using the Compatibility renderer. By default, the engine does not generate debug wireframes at runtime, since they slow down loading of assets and take up VRAM.
-
-\ **Note:** You must call this method before loading any meshes when using the Compatibility renderer. Otherwise, wireframes will not be used.
+This method is retained for API compatibility and has no effect in Forward+. To display wireframes, use :ref:`VIEWPORT_DEBUG_DRAW_WIREFRAME<class_RenderingServer_constant_VIEWPORT_DEBUG_DRAW_WIREFRAME>`.
 
 .. rst-class:: classref-item-separator
 
@@ -12260,7 +12244,7 @@ Returns the internal graphics handle for this texture object. For use when commu
 
 \ ``srgb`` should be ``true`` when the texture uses nonlinear sRGB encoding and ``false`` when the texture uses linear encoding.
 
-\ **Note:** This function returns a ``uint64_t`` which internally maps to a ``GLuint`` (OpenGL) or ``VkImage`` (Vulkan).
+\ **Note:** This function returns a ``uint64_t`` which represents a backend-specific native texture handle, such as a ``VkImage`` on Vulkan.
 
 .. rst-class:: classref-item-separator
 
@@ -12973,7 +12957,7 @@ Affects the final texture sharpness by reading from a lower or higher mipmap (al
 
 \ **Note:** When the 3D scaling mode is set to FSR 1.0, this value is used to adjust the automatic mipmap bias which is calculated internally based on the scale factor. The formula for this is ``-log2(1.0 / scale) + mipmap_bias``.
 
-\ **Note:** This method is only supported in the Forward+ and Mobile renderers, not Compatibility. In Compatibility, this method is always treated as if ``mipmap_bias`` was set to ``0.0``.
+\ **Note:** This method is supported by the Forward+ renderer.
 
 .. rst-class:: classref-item-separator
 

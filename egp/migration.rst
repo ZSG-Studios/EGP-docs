@@ -7,6 +7,19 @@ Back up the project and use a separate working copy for migration. EGP follows
 Godot's development branch, so check both upstream version changes and the
 fork-specific changes below. Keep the editor, templates and generated APIs matched.
 
+Rendering
+---------
+
+Rendered EGP projects use Forward+ through a supported RenderingDevice driver.
+Set ``rendering/renderer/rendering_method`` and its mobile override to
+``forward_plus``. Compatibility and Mobile renderers, OpenGL/OpenGL ES and
+ANGLE are removed; old renderer selections are rejected and unsupported
+devices have no fallback renderer.
+
+Recheck imported materials, lighting and render settings on the target GPU.
+Browser exports and WebXR are unsupported. Headless servers and tooling retain
+the dummy backend through ``--headless``. See :ref:`doc_renderers` for details.
+
 Physics
 -------
 

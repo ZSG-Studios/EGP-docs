@@ -732,9 +732,7 @@ Objects are displayed semi-transparent with additive blending so you can see whe
 
 Objects are displayed as wireframe models.
 
-\ **Note:** :ref:`RenderingServer.set_debug_generate_wireframes()<class_RenderingServer_method_set_debug_generate_wireframes>` must be called before loading any meshes for wireframes to be visible when using the Compatibility renderer.
-
-\ **Note:** In the Compatibility renderer, backfaces are always visible when using wireframe rendering. In the Forward+ and Mobile renderers, wireframes follow the material's backface culling properties instead.
+Wireframes follow the material's backface culling properties.
 
 .. _class_Viewport_constant_DEBUG_DRAW_NORMAL_BUFFER:
 
@@ -800,7 +798,7 @@ Draws the shadow atlas that stores shadows from :ref:`DirectionalLight3D<class_D
 
 Draws the scene luminance buffer (if available) in the upper left quadrant of the **Viewport**.
 
-\ **Note:** Only supported when using the Forward+ or Mobile rendering methods.
+\ **Note:** Requires the Forward+ rendering method.
 
 .. _class_Viewport_constant_DEBUG_DRAW_SSAO:
 
@@ -832,7 +830,7 @@ Colors each PSSM split for the :ref:`DirectionalLight3D<class_DirectionalLight3D
 
 \ **Note:** When using this debug draw mode, custom shaders are ignored since all materials in the scene temporarily use a debug material. This means the result from custom shader functions (such as vertex displacement) won't be visible anymore when using this debug draw mode.
 
-\ **Note:** Only supported when using the Forward+ or Mobile rendering methods.
+\ **Note:** Requires the Forward+ rendering method.
 
 .. _class_Viewport_constant_DEBUG_DRAW_DECAL_ATLAS:
 
@@ -842,7 +840,7 @@ Colors each PSSM split for the :ref:`DirectionalLight3D<class_DirectionalLight3D
 
 Draws the decal atlas used by :ref:`Decal<class_Decal>`\ s and light projector textures in the upper left quadrant of the **Viewport**.
 
-\ **Note:** Only supported when using the Forward+ or Mobile rendering methods.
+\ **Note:** Requires the Forward+ rendering method.
 
 .. _class_Viewport_constant_DEBUG_DRAW_SDFGI:
 
@@ -936,7 +934,7 @@ Draws the cluster used by :ref:`ReflectionProbe<class_ReflectionProbe>` nodes to
 
 Draws the buffer used for occlusion culling.
 
-\ **Note:** Only supported when using the Forward+ or Mobile rendering methods.
+\ **Note:** Requires the Forward+ rendering method.
 
 .. _class_Viewport_constant_DEBUG_DRAW_MOTION_VECTORS:
 
@@ -956,7 +954,7 @@ Draws vector lines over the viewport to indicate the movement of pixels between 
 
 Draws the internal resolution buffer of the scene in linear colorspace before tonemapping or post-processing is applied.
 
-\ **Note:** Only supported when using the Forward+ or Mobile rendering methods.
+\ **Note:** Requires the Forward+ rendering method.
 
 .. _class_Viewport_constant_DEBUG_DRAW_CLUSTER_AREA_LIGHTS:
 
@@ -976,7 +974,7 @@ Draws the cluster used by :ref:`AreaLight3D<class_AreaLight3D>` nodes to optimiz
 
 Draws the atlas used by :ref:`AreaLight3D<class_AreaLight3D>` nodes in the upper left quadrant of the **Viewport**.
 
-\ **Note:** Only supported when using the Forward+ or Mobile rendering method.
+\ **Note:** Requires the Forward+ rendering method.
 
 .. rst-class:: classref-item-separator
 
@@ -1986,7 +1984,7 @@ To control this property on the root viewport, set the :ref:`ProjectSettings.ren
 
 \ **Note:** If :ref:`scaling_3d_scale<class_Viewport_property_scaling_3d_scale>` is lower than ``1.0`` (exclusive), :ref:`texture_mipmap_bias<class_Viewport_property_texture_mipmap_bias>` is used to adjust the automatic mipmap bias which is calculated internally based on the scale factor. The formula for this is ``log2(scaling_3d_scale) + mipmap_bias``.
 
-\ **Note:** This property is only supported in the Forward+ and Mobile renderers, not Compatibility. In Compatibility, this property is always treated as if it was set to ``0.0``.
+\ **Note:** This property requires the Forward+ renderer.
 
 .. rst-class:: classref-item-separator
 
@@ -2022,9 +2020,7 @@ If ``true``, the viewport should render its background as transparent.
 - |void| **set_use_debanding**\ (\ value\: :ref:`bool<class_bool>`\ )
 - :ref:`bool<class_bool>` **is_using_debanding**\ (\ )
 
-When using the Mobile or Forward+ renderers, set :ref:`use_debanding<class_Viewport_property_use_debanding>` to enable or disable the debanding feature of this **Viewport**. If :ref:`use_hdr_2d<class_Viewport_property_use_hdr_2d>` is ``false``, 2D rendering is *not* affected by debanding unless the :ref:`Environment.background_mode<class_Environment_property_background_mode>` is :ref:`Environment.BG_CANVAS<class_Environment_constant_BG_CANVAS>`. If :ref:`use_hdr_2d<class_Viewport_property_use_hdr_2d>` is ``true``, debanding will only be applied if this is the root **Viewport** and will affect all 2D and 3D rendering, including canvas items.
-
-\ :ref:`use_debanding<class_Viewport_property_use_debanding>` has no effect when using the Compatibility rendering method. The Mobile renderer can also use material debanding, which can be set with :ref:`RenderingServer.material_set_use_debanding()<class_RenderingServer_method_material_set_use_debanding>` or configured with :ref:`ProjectSettings.rendering/anti_aliasing/quality/use_debanding<class_ProjectSettings_property_rendering/anti_aliasing/quality/use_debanding>`.
+Enables or disables debanding for this **Viewport**. If :ref:`use_hdr_2d<class_Viewport_property_use_hdr_2d>` is ``false``, 2D rendering is *not* affected by debanding unless the :ref:`Environment.background_mode<class_Environment_property_background_mode>` is :ref:`Environment.BG_CANVAS<class_Environment_constant_BG_CANVAS>`. If :ref:`use_hdr_2d<class_Viewport_property_use_hdr_2d>` is ``true``, debanding will only be applied if this is the root **Viewport** and will affect all 2D and 3D rendering, including canvas items.
 
 See also :ref:`ProjectSettings.rendering/anti_aliasing/quality/use_debanding<class_ProjectSettings_property_rendering/anti_aliasing/quality/use_debanding>`, :ref:`RenderingServer.material_set_use_debanding()<class_RenderingServer_method_material_set_use_debanding>`, and :ref:`RenderingServer.viewport_set_use_debanding()<class_RenderingServer_method_viewport_set_use_debanding>`.
 
