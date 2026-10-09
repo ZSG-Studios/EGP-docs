@@ -133,9 +133,7 @@ Method Descriptions
 
 :ref:`Error<enum_@GlobalScope_Error>` **acknowledge_packet**\ (\ message\: :ref:`int<class_int>`, binding_generation\: :ref:`int<class_int>`, channel\: :ref:`int<class_int>` = 0\ ) :ref:`🔗<class_SuperposSession_method_acknowledge_packet>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Acknowledges a received message on the selected channel with its checked binding generation. This does not apply application state automatically.
 
 .. rst-class:: classref-item-separator
 
@@ -147,9 +145,7 @@ Method Descriptions
 
 :ref:`Error<enum_@GlobalScope_Error>` **advance_tick**\ (\ ) :ref:`🔗<class_SuperposSession_method_advance_tick>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Advances the canonical session by one tick on its owning thread. For a world with automatic ticks enabled, manual advancement is rejected.
 
 .. rst-class:: classref-item-separator
 
@@ -161,9 +157,7 @@ Method Descriptions
 
 |void| **close**\ (\ ) :ref:`🔗<class_SuperposSession_method_close>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Closes the session through :ref:`close_checked()<class_SuperposSession_method_close_checked>`. Use the checked method when the caller needs the rejection reason.
 
 .. rst-class:: classref-item-separator
 
@@ -175,9 +169,7 @@ Method Descriptions
 
 :ref:`Error<enum_@GlobalScope_Error>` **close_checked**\ (\ ) :ref:`🔗<class_SuperposSession_method_close_checked>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Closes the owned canonical world and transport, subject to owner and lifecycle checks. Retained wrappers cannot revive an owner that has been permanently retired.
 
 .. rst-class:: classref-item-separator
 
@@ -189,9 +181,7 @@ Method Descriptions
 
 :ref:`Error<enum_@GlobalScope_Error>` **configure**\ (\ schemas\: :ref:`Array<class_Array>`\[:ref:`SuperposSchema<class_SuperposSchema>`\], max_objects\: :ref:`int<class_int>` = 4096, authority_epoch\: :ref:`int<class_int>` = 1, authority_peer\: :ref:`int<class_int>` = 0, state_budget\: :ref:`int<class_int>` = 268435456\ ) :ref:`🔗<class_SuperposSession_method_configure>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Creates a bounded canonical world from the supplied schemas, object capacity, authority and state budget. This configures local state; use :ref:`configure_udp()<class_SuperposSession_method_configure_udp>` to attach a network association. Calls must run on the owning thread.
 
 .. rst-class:: classref-item-separator
 
@@ -203,9 +193,7 @@ Method Descriptions
 
 :ref:`Error<enum_@GlobalScope_Error>` **configure_udp**\ (\ server\: :ref:`bool<class_bool>`, local_address\: :ref:`String<class_String>`, local_port\: :ref:`int<class_int>`, remote_address\: :ref:`String<class_String>`, remote_port\: :ref:`int<class_int>`, session_id\: :ref:`int<class_int>`, peer_identity\: :ref:`int<class_int>`, admission_key\: :ref:`PackedByteArray<class_PackedByteArray>`\ ) :ref:`🔗<class_SuperposSession_method_configure_udp>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Attaches one pre-provisioned native UDP server or client association with local/remote endpoints, session ID, peer identity and admission key. Check :ref:`get_admission_state()<class_SuperposSession_method_get_admission_state>` for authenticated readiness. Old Yojimbo tokens are incompatible; never log the admission key.
 
 .. rst-class:: classref-item-separator
 
@@ -217,9 +205,7 @@ Method Descriptions
 
 :ref:`Error<enum_@GlobalScope_Error>` **destroy_object**\ (\ handle\: :ref:`int<class_int>`\ ) :ref:`🔗<class_SuperposSession_method_destroy_object>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Destroys the canonical object identified by the exact handle bits. This does not free an application scene Node.
 
 .. rst-class:: classref-item-separator
 
@@ -231,9 +217,7 @@ Method Descriptions
 
 :ref:`Dictionary<class_Dictionary>` **enqueue_packet**\ (\ payload\: :ref:`PackedByteArray<class_PackedByteArray>`, channel\: :ref:`int<class_int>` = 0\ ) :ref:`🔗<class_SuperposSession_method_enqueue_packet>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Queues canonical payload bytes on the selected channel. On success the checked Dictionary contains message, connection epoch, binding generation, channel and an Accepted outcome. Acceptance is not an acknowledgement by the receiver.
 
 .. rst-class:: classref-item-separator
 
@@ -245,9 +229,7 @@ Method Descriptions
 
 :ref:`Dictionary<class_Dictionary>` **get_admission_state**\ (\ ) |const| :ref:`🔗<class_SuperposSession_method_get_admission_state>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Returns a checked Dictionary describing transport attachment and authenticated readiness. ``ready`` is false for an unattached or unavailable association; local configuration alone does not authenticate a peer.
 
 .. rst-class:: classref-item-separator
 
@@ -259,9 +241,7 @@ Method Descriptions
 
 :ref:`Error<enum_@GlobalScope_Error>` **get_last_error**\ (\ ) |const| :ref:`🔗<class_SuperposSession_method_get_last_error>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Returns the last recorded session error. Check each operation return value or its Dictionary ``error`` for that operation outcome.
 
 .. rst-class:: classref-item-separator
 
@@ -273,9 +253,7 @@ Method Descriptions
 
 :ref:`Dictionary<class_Dictionary>` **get_packet_outcome**\ (\ message\: :ref:`int<class_int>`, binding_generation\: :ref:`int<class_int>`, channel\: :ref:`int<class_int>` = 0\ ) |const| :ref:`🔗<class_SuperposSession_method_get_packet_outcome>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Returns a checked Dictionary describing the tracked message outcome on the selected channel. Stale binding generations and invalid message identities are rejected.
 
 .. rst-class:: classref-item-separator
 
@@ -287,9 +265,7 @@ Method Descriptions
 
 :ref:`String<class_String>` **get_state**\ (\ ) |const| :ref:`🔗<class_SuperposSession_method_get_state>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Returns the session lifecycle state. A permanently retired owner cannot be configured again.
 
 .. rst-class:: classref-item-separator
 
@@ -301,9 +277,7 @@ Method Descriptions
 
 :ref:`Dictionary<class_Dictionary>` **get_statistics**\ (\ ) |const| :ref:`🔗<class_SuperposSession_method_get_statistics>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Returns a checked Dictionary of canonical world capacity, live objects, tick, binding generation, memory accounting and publication counts. An attached transport adds its counters and readiness. These counters do not establish application scene replication.
 
 .. rst-class:: classref-item-separator
 
@@ -315,9 +289,7 @@ Method Descriptions
 
 :ref:`Error<enum_@GlobalScope_Error>` **predict_checked**\ (\ binding\: :ref:`int<class_int>`, epoch\: :ref:`int<class_int>`, tick\: :ref:`int<class_int>`, input\: :ref:`PackedByteArray<class_PackedByteArray>`\ ) :ref:`🔗<class_SuperposSession_method_predict_checked>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Runs a checked prediction step for a registered compiled simulation provider using binding generation, authority epoch, tick and input bytes. Script callbacks do not register or qualify native replay capabilities.
 
 .. rst-class:: classref-item-separator
 
@@ -329,9 +301,7 @@ Method Descriptions
 
 :ref:`Error<enum_@GlobalScope_Error>` **publish_packed**\ (\ operations\: :ref:`PackedByteArray<class_PackedByteArray>`\ ) :ref:`🔗<class_SuperposSession_method_publish_packed>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Validates and applies a bounded packed canonical operation batch atomically. This does not make Godot property setters transactional or implement automatic scene projection.
 
 .. rst-class:: classref-item-separator
 
@@ -343,9 +313,7 @@ Method Descriptions
 
 :ref:`Dictionary<class_Dictionary>` **read_authority_epoch**\ (\ ) |const| :ref:`🔗<class_SuperposSession_method_read_authority_epoch>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Returns ``error`` and, only on a successful live authority query, ``value`` containing the unsigned authority epoch bits.
 
 .. rst-class:: classref-item-separator
 
@@ -357,9 +325,7 @@ Method Descriptions
 
 :ref:`Dictionary<class_Dictionary>` **read_binding_generation**\ (\ ) |const| :ref:`🔗<class_SuperposSession_method_read_binding_generation>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Returns ``error`` and, only on successful owner validation, ``value`` containing the unsigned binding generation bits. Use this value with checked packet and prediction calls.
 
 .. rst-class:: classref-item-separator
 
@@ -371,9 +337,7 @@ Method Descriptions
 
 :ref:`Dictionary<class_Dictionary>` **read_object**\ (\ handle\: :ref:`int<class_int>`\ ) |const| :ref:`🔗<class_SuperposSession_method_read_object>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Returns a checked Dictionary containing the canonical object handle, schema ID, owner, ownership revision, revision, tick and canonical bytes on success. Stale or invalid handles are rejected.
 
 .. rst-class:: classref-item-separator
 
@@ -385,9 +349,7 @@ Method Descriptions
 
 :ref:`Dictionary<class_Dictionary>` **read_packet**\ (\ channel\: :ref:`int<class_int>` = 0\ ) |const| :ref:`🔗<class_SuperposSession_method_read_packet>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Reads the next available packet on the selected channel into a checked Dictionary. Success includes payload, message and association metadata. Acknowledge the returned message using its binding generation after application processing.
 
 .. rst-class:: classref-item-separator
 
@@ -399,9 +361,7 @@ Method Descriptions
 
 :ref:`Dictionary<class_Dictionary>` **read_prediction**\ (\ binding\: :ref:`int<class_int>`, epoch\: :ref:`int<class_int>`\ ) :ref:`🔗<class_SuperposSession_method_read_prediction>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Returns checked prediction bytes and tick for the supplied binding generation and authority epoch. A registered native simulation provider is required.
 
 .. rst-class:: classref-item-separator
 
@@ -413,9 +373,7 @@ Method Descriptions
 
 :ref:`Dictionary<class_Dictionary>` **read_prediction_info**\ (\ binding\: :ref:`int<class_int>`, epoch\: :ref:`int<class_int>`\ ) :ref:`🔗<class_SuperposSession_method_read_prediction_info>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Returns checked prediction-history information for the supplied binding generation and authority epoch. Availability does not establish a physics solver integration.
 
 .. rst-class:: classref-item-separator
 
@@ -427,9 +385,7 @@ Method Descriptions
 
 :ref:`Dictionary<class_Dictionary>` **read_simulation_profile**\ (\ ) |const| :ref:`🔗<class_SuperposSession_method_read_simulation_profile>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Returns the native simulation capability profile. Unregistered sessions do not expose qualified prediction or replay capabilities.
 
 .. rst-class:: classref-item-separator
 
@@ -441,9 +397,7 @@ Method Descriptions
 
 :ref:`Dictionary<class_Dictionary>` **read_tick**\ (\ ) |const| :ref:`🔗<class_SuperposSession_method_read_tick>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Returns ``error`` and, only on successful owner/world validation, ``value`` containing the exact unsigned tick bits. Check the error before reading the value.
 
 .. rst-class:: classref-item-separator
 
@@ -455,9 +409,7 @@ Method Descriptions
 
 :ref:`Dictionary<class_Dictionary>` **reconcile_checked**\ (\ binding\: :ref:`int<class_int>`, epoch\: :ref:`int<class_int>`, tick\: :ref:`int<class_int>`, revision\: :ref:`int<class_int>`, canonical\: :ref:`PackedByteArray<class_PackedByteArray>`\ ) :ref:`🔗<class_SuperposSession_method_reconcile_checked>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Reconciles a registered native prediction history against the supplied canonical bytes, tick and revision. Returns a checked Dictionary; inspect its error before using reconciliation output.
 
 .. rst-class:: classref-item-separator
 
@@ -469,9 +421,7 @@ Method Descriptions
 
 :ref:`Error<enum_@GlobalScope_Error>` **retire_packet**\ (\ message\: :ref:`int<class_int>`, binding_generation\: :ref:`int<class_int>`, channel\: :ref:`int<class_int>` = 0\ ) :ref:`🔗<class_SuperposSession_method_retire_packet>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Retires the tracked message using the supplied binding generation and channel. Use the checked outcome to decide when the application no longer needs the message.
 
 .. rst-class:: classref-item-separator
 
@@ -483,9 +433,7 @@ Method Descriptions
 
 :ref:`int<class_int>` **spawn_object**\ (\ schema\: :ref:`int<class_int>`, owner\: :ref:`int<class_int>`, canonical\: :ref:`PackedByteArray<class_PackedByteArray>`\ ) :ref:`🔗<class_SuperposSession_method_spawn_object>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Creates a bounded canonical object using the selected schema, owner and canonical bytes. Returns its unsigned handle bits, or zero on failure. This does not instantiate a scene Node.
 
 .. rst-class:: classref-item-separator
 
@@ -497,9 +445,7 @@ Method Descriptions
 
 :ref:`Error<enum_@GlobalScope_Error>` **transfer_ownership**\ (\ handle\: :ref:`int<class_int>`, owner\: :ref:`int<class_int>`, expected_revision\: :ref:`int<class_int>`\ ) :ref:`🔗<class_SuperposSession_method_transfer_ownership>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Transfers a canonical object to the supplied owner, checking the expected ownership revision. Use exact unsigned handle, owner and revision bits.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
 .. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`

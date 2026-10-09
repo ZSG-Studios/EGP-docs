@@ -85,9 +85,7 @@ Property Descriptions
 - |void| **set_authority_epoch**\ (\ value\: :ref:`int<class_int>`\ )
 - :ref:`int<class_int>` **get_authority_epoch**\ (\ )
 
-.. container:: contribute
-
-	There is currently no description for this property. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Authored unsigned authority epoch for the next configuration. Use the session checked authority read for live state.
 
 .. rst-class:: classref-item-separator
 
@@ -104,9 +102,7 @@ Property Descriptions
 - |void| **set_authority_peer**\ (\ value\: :ref:`int<class_int>`\ )
 - :ref:`int<class_int>` **get_authority_peer**\ (\ )
 
-.. container:: contribute
-
-	There is currently no description for this property. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Authored unsigned authority peer identity for the next configuration. This property does not contain credentials or establish network admission.
 
 .. rst-class:: classref-item-separator
 
@@ -123,9 +119,7 @@ Property Descriptions
 - |void| **set_automatic_ticks**\ (\ value\: :ref:`bool<class_bool>`\ )
 - :ref:`bool<class_bool>` **get_automatic_ticks**\ (\ )
 
-.. container:: contribute
-
-	There is currently no description for this property. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+When enabled, the owned session advances through this Node physics processing and rejects manual tick advancement. This does not register a physics simulation provider.
 
 .. rst-class:: classref-item-separator
 
@@ -142,9 +136,7 @@ Property Descriptions
 - |void| **set_max_objects**\ (\ value\: :ref:`int<class_int>`\ )
 - :ref:`int<class_int>` **get_max_objects**\ (\ )
 
-.. container:: contribute
-
-	There is currently no description for this property. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Maximum canonical object capacity used when configuring the next owned session.
 
 .. rst-class:: classref-item-separator
 
@@ -161,9 +153,7 @@ Property Descriptions
 - |void| **set_schemas**\ (\ value\: :ref:`Array<class_Array>`\[:ref:`SuperposSchema<class_SuperposSchema>`\]\ )
 - :ref:`Array<class_Array>`\[:ref:`SuperposSchema<class_SuperposSchema>`\] **get_schemas**\ (\ )
 
-.. container:: contribute
-
-	There is currently no description for this property. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Schemas used when configuring the next owned session. Editing authored configuration does not silently reconfigure a live session.
 
 .. rst-class:: classref-section-separator
 
@@ -180,9 +170,7 @@ Method Descriptions
 
 :ref:`Error<enum_@GlobalScope_Error>` **advance_tick**\ (\ ) :ref:`🔗<class_SuperposWorld_method_advance_tick>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Advances the canonical session by one tick on its owning thread. For a world with automatic ticks enabled, manual advancement is rejected.
 
 .. rst-class:: classref-item-separator
 
@@ -194,9 +182,7 @@ Method Descriptions
 
 |void| **close**\ (\ ) :ref:`🔗<class_SuperposWorld_method_close>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Closes the session through :ref:`close_checked()<class_SuperposWorld_method_close_checked>`. Use the checked method when the caller needs the rejection reason.
 
 .. rst-class:: classref-item-separator
 
@@ -208,9 +194,7 @@ Method Descriptions
 
 :ref:`Error<enum_@GlobalScope_Error>` **close_checked**\ (\ ) :ref:`🔗<class_SuperposWorld_method_close_checked>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Closes the owned canonical world and transport, subject to owner and lifecycle checks. Retained wrappers cannot revive an owner that has been permanently retired.
 
 .. rst-class:: classref-item-separator
 
@@ -222,9 +206,7 @@ Method Descriptions
 
 :ref:`Error<enum_@GlobalScope_Error>` **configure**\ (\ ) :ref:`🔗<class_SuperposWorld_method_configure>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Creates and owns a native session using the authored schema, capacity and authority properties. An existing attached session must be closed first. This does not configure UDP admission.
 
 .. rst-class:: classref-item-separator
 
@@ -236,9 +218,7 @@ Method Descriptions
 
 :ref:`SuperposSession<class_SuperposSession>` **get_session**\ (\ ) |const| :ref:`🔗<class_SuperposWorld_method_get_session>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Returns the attached session, or null when owner validation fails or no session is attached. Use :ref:`read_session()<class_SuperposWorld_method_read_session>` to inspect the checked error.
 
 .. rst-class:: classref-item-separator
 
@@ -250,9 +230,7 @@ Method Descriptions
 
 :ref:`Dictionary<class_Dictionary>` **read_configuration**\ (\ ) |const| :ref:`🔗<class_SuperposWorld_method_read_configuration>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Returns a checked Dictionary of authored schemas, maximum objects, authority epoch, authority peer and automatic tick settings. Authored authority properties are not proof of live authenticated authority.
 
 .. rst-class:: classref-item-separator
 
@@ -264,9 +242,7 @@ Method Descriptions
 
 :ref:`Dictionary<class_Dictionary>` **read_session**\ (\ ) |const| :ref:`🔗<class_SuperposWorld_method_read_session>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Returns a Dictionary containing error and, only on success, value with the attached session. Access and lifetime follow the main-thread world owner.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
 .. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`

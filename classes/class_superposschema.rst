@@ -71,9 +71,7 @@ Property Descriptions
 - |void| **set_fields**\ (\ value\: :ref:`Array<class_Array>`\[:ref:`SuperposField<class_SuperposField>`\]\ )
 - :ref:`Array<class_Array>`\[:ref:`SuperposField<class_SuperposField>`\] **get_fields**\ (\ )
 
-.. container:: contribute
-
-	There is currently no description for this property. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Authored canonical field descriptors. Baking rejects null entries, invalid descriptors and duplicate field IDs.
 
 .. rst-class:: classref-item-separator
 
@@ -90,9 +88,7 @@ Property Descriptions
 - |void| **set_revision**\ (\ value\: :ref:`int<class_int>`\ )
 - :ref:`int<class_int>` **get_revision**\ (\ )
 
-.. container:: contribute
-
-	There is currently no description for this property. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Nonzero unsigned revision of the authored schema manifest. Changing it changes the baked manifest fingerprint.
 
 .. rst-class:: classref-item-separator
 
@@ -109,9 +105,7 @@ Property Descriptions
 - |void| **set_schema_id**\ (\ value\: :ref:`int<class_int>`\ )
 - :ref:`int<class_int>` **get_schema_id**\ (\ )
 
-.. container:: contribute
-
-	There is currently no description for this property. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Nonzero unsigned schema identifier. All participants must provision a compatible manifest.
 
 .. rst-class:: classref-section-separator
 
@@ -128,9 +122,7 @@ Method Descriptions
 
 :ref:`Dictionary<class_Dictionary>` **bake**\ (\ ) |const| :ref:`🔗<class_SuperposSchema_method_bake>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Validates and sorts the authored field descriptors, then returns a Dictionary containing ``error``. On success it also contains ``manifest``, ``fingerprint``, ``schema_id``, ``revision`` and ``state_bytes``. Duplicate IDs and invalid codec bounds are rejected. Baking does not configure a session.
 
 .. rst-class:: classref-item-separator
 
@@ -142,9 +134,7 @@ Method Descriptions
 
 :ref:`String<class_String>` **get_fingerprint**\ (\ ) |const| :ref:`🔗<class_SuperposSchema_method_get_fingerprint>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Returns the hexadecimal SHA-256 fingerprint of the baked schema manifest, or an empty String when baking fails. Use :ref:`bake()<class_SuperposSchema_method_bake>` to inspect the error.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
 .. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`

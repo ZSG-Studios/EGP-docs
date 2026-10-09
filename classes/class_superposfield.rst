@@ -67,9 +67,7 @@ Property Descriptions
 - |void| **set_audience**\ (\ value\: :ref:`int<class_int>`\ )
 - :ref:`int<class_int>` **get_audience**\ (\ )
 
-.. container:: contribute
-
-	There is currently no description for this property. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Core FieldAudience value in the range 0 through 2. This is schema metadata, not an application authentication policy.
 
 .. rst-class:: classref-item-separator
 
@@ -86,9 +84,7 @@ Property Descriptions
 - |void| **set_codec_id**\ (\ value\: :ref:`int<class_int>`\ )
 - :ref:`int<class_int>` **get_codec_id**\ (\ )
 
-.. container:: contribute
-
-	There is currently no description for this property. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Canonical codec identifier in the range 1 through 10. Its bounds and byte layout must match the corresponding Superpos core FieldKind.
 
 .. rst-class:: classref-item-separator
 
@@ -105,9 +101,7 @@ Property Descriptions
 - |void| **set_field_id**\ (\ value\: :ref:`int<class_int>`\ )
 - :ref:`int<class_int>` **get_field_id**\ (\ )
 
-.. container:: contribute
-
-	There is currently no description for this property. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Nonzero field identifier, unique within the schema. Preserve its full unsigned bits. Fields are sorted by this ID when baking.
 
 .. rst-class:: classref-item-separator
 
@@ -124,9 +118,7 @@ Property Descriptions
 - |void| **set_field_name**\ (\ value\: :ref:`StringName<class_StringName>`\ )
 - :ref:`StringName<class_StringName>` **get_field_name**\ (\ )
 
-.. container:: contribute
-
-	There is currently no description for this property. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+ASCII field name containing letters, digits or underscores, with a maximum length of 64 characters.
 
 .. rst-class:: classref-item-separator
 
@@ -143,9 +135,7 @@ Property Descriptions
 - |void| **set_max_bytes**\ (\ value\: :ref:`int<class_int>`\ )
 - :ref:`int<class_int>` **get_max_bytes**\ (\ )
 
-.. container:: contribute
-
-	There is currently no description for this property. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Canonical byte width for this field. The codec and total schema state size impose additional bounds checked when baking.
 
 .. rst-class:: classref-item-separator
 
@@ -162,9 +152,7 @@ Property Descriptions
 - |void| **set_maximum**\ (\ value\: :ref:`float<class_float>`\ )
 - :ref:`float<class_float>` **get_maximum**\ (\ )
 
-.. container:: contribute
-
-	There is currently no description for this property. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Maximum numeric bound used by codecs that require a bounded range.
 
 .. rst-class:: classref-item-separator
 
@@ -181,9 +169,7 @@ Property Descriptions
 - |void| **set_minimum**\ (\ value\: :ref:`float<class_float>`\ )
 - :ref:`float<class_float>` **get_minimum**\ (\ )
 
-.. container:: contribute
-
-	There is currently no description for this property. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Minimum numeric bound used by codecs that require a bounded range.
 
 .. rst-class:: classref-item-separator
 
@@ -200,9 +186,7 @@ Property Descriptions
 - |void| **set_quantization_levels**\ (\ value\: :ref:`int<class_int>`\ )
 - :ref:`int<class_int>` **get_quantization_levels**\ (\ )
 
-.. container:: contribute
-
-	There is currently no description for this property. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Number of quantization levels for codecs that require quantization. The schema validates its compatibility with the selected codec.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
 .. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`

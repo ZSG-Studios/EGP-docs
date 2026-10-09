@@ -60,9 +60,7 @@ Method Descriptions
 
 :ref:`Dictionary<class_Dictionary>` **bounded_difference**\ (\ later\: :ref:`int<class_int>`, earlier\: :ref:`int<class_int>`, limit\: :ref:`int<class_int>`\ ) |static| :ref:`🔗<class_SuperposUInt64_method_bounded_difference>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Returns the unsigned difference only when later is at least earlier and the difference does not exceed limit. Check the Dictionary error before using value.
 
 .. rst-class:: classref-item-separator
 
@@ -74,9 +72,7 @@ Method Descriptions
 
 :ref:`Dictionary<class_Dictionary>` **checked_add**\ (\ a\: :ref:`int<class_int>`, b\: :ref:`int<class_int>`\ ) |static| :ref:`🔗<class_SuperposUInt64_method_checked_add>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Adds unsigned values without wrapping. Returns a Dictionary with ``error`` and ``value``; ignore value when the error is not :ref:`@GlobalScope.OK<class_@GlobalScope_constant_OK>`. Overflow returns :ref:`@GlobalScope.ERR_PARAMETER_RANGE_ERROR<class_@GlobalScope_constant_ERR_PARAMETER_RANGE_ERROR>`.
 
 .. rst-class:: classref-item-separator
 
@@ -88,9 +84,7 @@ Method Descriptions
 
 :ref:`int<class_int>` **compare**\ (\ a\: :ref:`int<class_int>`, b\: :ref:`int<class_int>`\ ) |static| :ref:`🔗<class_SuperposUInt64_method_compare>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Compares the two values as unsigned 64-bit integers, returning a negative value, zero or a positive value. Negative GDScript integers are valid opaque unsigned bit patterns.
 
 .. rst-class:: classref-item-separator
 
@@ -102,9 +96,7 @@ Method Descriptions
 
 :ref:`Dictionary<class_Dictionary>` **from_bytes**\ (\ bytes\: :ref:`PackedByteArray<class_PackedByteArray>`\ ) |static| :ref:`🔗<class_SuperposUInt64_method_from_bytes>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Decodes exactly eight bytes in little-endian order into unsigned bits. The returned Dictionary contains error and value; ignore value on failure.
 
 .. rst-class:: classref-item-separator
 
@@ -116,9 +108,7 @@ Method Descriptions
 
 :ref:`Dictionary<class_Dictionary>` **from_decimal**\ (\ text\: :ref:`String<class_String>`\ ) |static| :ref:`🔗<class_SuperposUInt64_method_from_decimal>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Parses an unsigned decimal String without a sign or fractional component, preserving all 64 bits. Check the returned Dictionary error before using value.
 
 .. rst-class:: classref-item-separator
 
@@ -130,9 +120,7 @@ Method Descriptions
 
 :ref:`PackedByteArray<class_PackedByteArray>` **to_bytes**\ (\ value\: :ref:`int<class_int>`\ ) |static| :ref:`🔗<class_SuperposUInt64_method_to_bytes>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Encodes the unsigned bit pattern as eight bytes in little-endian order.
 
 .. rst-class:: classref-item-separator
 
@@ -144,9 +132,7 @@ Method Descriptions
 
 :ref:`String<class_String>` **to_decimal**\ (\ value\: :ref:`int<class_int>`\ ) |static| :ref:`🔗<class_SuperposUInt64_method_to_decimal>`
 
-.. container:: contribute
-
-	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/development/documentation/class_reference.html>`__!
+Formats the unsigned bit pattern as an exact decimal String. This preserves identifiers above the signed 64-bit maximum.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
 .. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
