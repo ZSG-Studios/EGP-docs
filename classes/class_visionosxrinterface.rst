@@ -12,7 +12,7 @@ VisionOSXRInterface
 
 **Inherits:** :ref:`XRInterface<class_XRInterface>` **<** :ref:`RefCounted<class_RefCounted>` **<** :ref:`Object<class_Object>`
 
-visionOS XR interface with hand and controller tracking APIs. Immersive rendering is unsupported in EGP.
+visionOS XR interface with hand and controller tracking APIs. Immersive Forward+ rendering is experimental and not device-qualified.
 
 .. rst-class:: classref-introduction-group
 
@@ -21,13 +21,13 @@ Description
 
 This is a visionOS XR implementation. It has three modules:
 
-- the CompositorServices rendering module, whose immersive path is unsupported in EGP
+- the CompositorServices rendering module, with an experimental unfoveated Forward+ path
 
 - the hand tracking module, using Apple's ARKit
 
 - the spatial controller module, using Apple's ARKit and GCController.
 
-The tracking modules can be enabled or disabled independently. EGP supports the ``Window`` application role with Forward+ and Metal. The CompositorServices rendering module requires the ``Immersive`` application role, which EGP rejects because this path does not support Forward+. See :ref:`EditorExportPlatformVisionOS.application/app_role<class_EditorExportPlatformVisionOS_property_application/app_role>`.
+The tracking modules can be enabled or disabled independently. EGP supports the ``Window`` application role with Forward+ and Metal. The CompositorServices rendering module requires the ``Immersive`` application role and :ref:`ProjectSettings.xr/visionos/experimental_forward_plus<class_ProjectSettings_property_xr/visionos/experimental_forward_plus>`. Use HDR 2D, 3D scale 1.0, and disable MSAA, temporal AA and VRS. Foveation is disabled; physical device correctness and performance remain unverified. See :ref:`EditorExportPlatformVisionOS.application/app_role<class_EditorExportPlatformVisionOS_property_application/app_role>`.
 
 Do not initialize the XR interface in the :ref:`Node._process()<class_Node_private_method__process>` method, as this will initialize it at some unspecified point in the middle of the frame rendering, possibly causing incorrect visionOS API usage.
 
@@ -146,7 +146,7 @@ Property Descriptions
 - |void| **set_immersion_style**\ (\ value\: :ref:`ImmersionStyle<enum_VisionOSXRInterface_ImmersionStyle>`\ )
 - :ref:`ImmersionStyle<enum_VisionOSXRInterface_ImmersionStyle>` **get_immersion_style**\ (\ )
 
-Immersion style of the immersive scene. Its initial value comes from the :ref:`EditorExportPlatformVisionOS.application/immersion_style<class_EditorExportPlatformVisionOS_property_application/immersion_style>` export setting. Immersive rendering is unsupported in EGP.
+Immersion style of the immersive scene. Its initial value comes from the :ref:`EditorExportPlatformVisionOS.application/immersion_style<class_EditorExportPlatformVisionOS_property_application/immersion_style>` export setting. Immersive Forward+ rendering is experimental and not device-qualified.
 
 .. rst-class:: classref-item-separator
 

@@ -28,12 +28,13 @@ App Role
 
 Use the **Window** role to present the project in a flat window with
 Forward+ and Metal. A supported RenderingDevice driver is required.
-The **Immersive** role is unsupported in EGP and the export preset reports
-this configuration as unsupported.
-
-The retained immersion-style options do not provide immersive rendering
-support. Upstream instructions for passthrough, immersive tracking and
-Mobile rendering do not apply to EGP. See :ref:`doc_visionos_intro`.
+The **Immersive (experimental)** role requires Metal and
+``xr/visionos/experimental_forward_plus=true``. The initial path disables
+foveation, MSAA and temporal AA/upscaling, requires HDR 2D and 3D scale 1.0,
+and uses the supplied Xcode launch profile's native Metal hazard tracking.
+Physical headset rendering, tracking, lifecycle and performance are unqualified.
+See :doc:`/egp/visionos_experimental` for the exact fixture, export and device
+handoff instructions. Upstream Mobile-renderer instructions do not apply.
 
 Native compilation, export configuration and physical visionOS device
 behavior have separate qualification requirements. See

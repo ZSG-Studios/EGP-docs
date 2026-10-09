@@ -457,7 +457,7 @@ Additional data added to the root ``<dict>`` section of the `Info.plist <https:/
 
 :ref:`int<class_int>` **application/app_role** :ref:`🔗<class_EditorExportPlatformVisionOS_property_application/app_role>`
 
-The application role on the visionOS platform. Use ``Window`` to run the project in a 2D window with Forward+ and Metal. The ``Immersive`` role is unsupported in EGP.
+The application role on the visionOS platform. Use ``Window`` to run the project in a 2D window with Forward+ and Metal. The ``Immersive`` role requires :ref:`ProjectSettings.xr/visionos/experimental_forward_plus<class_ProjectSettings_property_xr/visionos/experimental_forward_plus>` and is experimental, with foveation disabled and physical device validation pending.
 
 .. rst-class:: classref-item-separator
 

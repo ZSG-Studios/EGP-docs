@@ -8,8 +8,8 @@ From the documentation repository:
 
 .. code-block:: console
 
-   python tools/sync_egp_docs.py --engine ../EGP
-   python tools/sync_egp_docs.py --engine ../EGP --check
+   python tools/sync_egp_docs.py --engine ../EGP-Engine
+   python tools/sync_egp_docs.py --engine ../EGP-Engine --check
    python -m sphinx -b html -W --keep-going -j 4 . _build/html
 
 This wrapper first invokes the engine's class/manual generator, then renders

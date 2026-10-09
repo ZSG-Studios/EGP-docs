@@ -9,10 +9,11 @@ Set :ref:`Application > App Role
 **Window** in the export preset. A supported RenderingDevice driver is
 required; the Mobile renderer is removed.
 
-**Immersive** applications are unsupported. The retained visionOS XR API
-does not establish immersive rendering support, and the export preset
-reports the unsupported role. Do not use upstream instructions that switch
-to Mobile rendering or initialize a visionOS immersive session.
+An opt-in **Immersive (experimental)** Forward+ path is available with Metal
+and ``xr/visionos/experimental_forward_plus=true``. Foveation is disabled;
+physical headset rendering, tracking, lifecycle and performance remain
+unqualified. Follow :doc:`/egp/visionos_experimental` for the constrained startup,
+export and Xcode device handoff profile. The Mobile renderer is not restored.
 
 Headless tooling retains the dummy backend. Native platform compilation and
 physical visionOS device behavior have separate qualification requirements;
@@ -28,4 +29,4 @@ Retired immersive rendering guidance
 
 This bookmark is retained for older links. Upstream guidance for immersive
 passthrough, depth reprojection, tracking and sky depth writes does not
-describe a supported EGP immersive workflow.
+describe the constrained experimental EGP Forward+ workflow.

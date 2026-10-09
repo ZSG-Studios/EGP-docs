@@ -4,7 +4,7 @@ EGP documentation
 =================
 
 Welcome to the documentation for **EGP**, ZSG-Studios' fork of Godot Engine.
-Explore Box2D and Box3D physics, Yojimbo networking, and built-in C++ tools
+Explore Box2D and Box3D physics, Superpos networking, and built-in C++ tools
 alongside the familiar Godot editor and scene workflow.
 
 .. raw:: html

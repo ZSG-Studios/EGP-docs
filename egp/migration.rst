@@ -40,39 +40,14 @@ supported parameters differ. Changing the backend does not establish full parity
 Multiplayer
 -----------
 
-EGP replaces Godot's high-level scene multiplayer with Yojimbo. Inherited
-``MultiplayerAPI``, ``SceneMultiplayer``, ``MultiplayerPeer``, multiplayer
-spawners/synchronizers, ENet/WebRTC multiplayer peers and ``@rpc`` examples
-are not EGP networking APIs.
+Superpos replaces the previous transport and its Superposition layer. Use native
+``SuperposSession`` / ``SuperposWorld``, explicit ``SuperposField`` /
+``SuperposSchema`` declarations and matching generated bindings. Old tokens,
+helper facades, RPC/spawner nodes and physics adapters are incompatible.
+Automatic scene projection and solver recovery are not implemented equivalents.
 
-.. list-table:: Migration map
-   :header-rows: 1
-   :widths: 35 65
-
-   * - Existing approach
-     - EGP integration
-   * - Create an ENet multiplayer server/client
-     - Configure ``EGPNet``; use ``host()`` and encrypted ``join_token()`` admission.
-   * - Invoke scene-node RPC methods
-     - Register named message contracts with ``register_message()`` and use ``send_message()``.
-   * - Automatically replicate scene properties
-     - Publish bounded authoritative entity states with ``spawn()`` and ``update_entity()``.
-   * - Automatically spawn replicated nodes
-     - Register scene factories explicitly and select a kind for each entity.
-   * - Persist node authority across reconnect
-     - Assign ownership to the current connection generation's ``peer_id``.
-   * - Rely on transport reconnection/persistence
-     - Obtain fresh admission, rebuild ownership and restore application state explicitly.
-
-Account ``client_id``, connection ``peer_id`` and replicated ``entity`` handles
-have separate lifetimes. A client addresses the server as peer ``0``.
-Clients never receive the server's private admission key.
-
-Low-level HTTP, TCP, UDP and WebSocket utilities are separate from the
-multiplayer transport. Their availability depends on the build. EGP's desktop
-Yojimbo transport does not establish browser multiplayer support.
-
-See :doc:`networking`, :doc:`networking_reference` and :doc:`network_lab`.
+See :doc:`superpos_migration` and :doc:`networking_reference` for the API map,
+checked unsigned identifiers, ownership and authenticated associations.
 
 Bindings and runtime reload
 ---------------------------

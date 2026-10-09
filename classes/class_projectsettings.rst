@@ -1847,6 +1847,8 @@ Properties
    +-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
    | :ref:`bool<class_bool>`             | :ref:`xr/shaders/enabled<class_ProjectSettings_property_xr/shaders/enabled>`                                                                                                                               | ``false``                                                                                        |
    +-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
+   | :ref:`bool<class_bool>`             | :ref:`xr/visionos/experimental_forward_plus<class_ProjectSettings_property_xr/visionos/experimental_forward_plus>`                                                                                         | ``false``                                                                                        |
+   +-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
    | :ref:`bool<class_bool>`             | :ref:`xr/visionos/dynamic_render_quality/enable<class_ProjectSettings_property_xr/visionos/dynamic_render_quality/enable>`                                                                                 | ``false``                                                                                        |
    +-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
    | :ref:`float<class_float>`           | :ref:`xr/visionos/dynamic_render_quality/maximum_quality<class_ProjectSettings_property_xr/visionos/dynamic_render_quality/maximum_quality>`                                                               | ``0.38``                                                                                         |
@@ -13734,6 +13736,18 @@ Specify the view configuration with which to configure OpenXR setting up either 
 :ref:`bool<class_bool>` **xr/shaders/enabled** = ``false`` :ref:`🔗<class_ProjectSettings_property_xr/shaders/enabled>`
 
 If ``true``, Godot will compile shaders required for XR.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_ProjectSettings_property_xr/visionos/experimental_forward_plus:
+
+.. rst-class:: classref-property
+
+:ref:`bool<class_bool>` **xr/visionos/experimental_forward_plus** = ``false`` :ref:`🔗<class_ProjectSettings_property_xr/visionos/experimental_forward_plus>`
+
+Opts in to EGP's experimental immersive visionOS Forward+ path. Requires Metal, the visionOS XR module, HDR 2D, 3D scale 1.0, and disabled MSAA, temporal AA and VRS. Foveation is disabled. Build and software-rendered tests do not establish physical Apple Vision Pro correctness or performance.
 
 .. rst-class:: classref-item-separator
 

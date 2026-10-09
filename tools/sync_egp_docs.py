@@ -181,6 +181,8 @@ def public_types(text: str, cpp: bool) -> list[tuple[str, str]]:
 
 
 def helper_reference(engine: Path, base: str, revision: str) -> str:
+    if (engine / "doc/egp_superpos.md").is_file():
+        return base
     lines = [
         base.split("\nC#\n--\n", 1)[0].rstrip(),
         "",

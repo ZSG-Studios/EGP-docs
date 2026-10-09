@@ -12,7 +12,7 @@ What changes in EGP?
 --------------------
 
 EGP replaces the scene physics backends with Box2D and Box3D, provides explicit
-Box3D worlds and Yojimbo-based authoritative networking, and adds integrated
+Box3D worlds and Superpos-based authoritative networking, and adds integrated
 C++ tooling and opted-in runtime reload. Start with :ref:`doc_egp_migration`
 before importing a project that uses Godot's multiplayer or physics APIs.
 
@@ -28,9 +28,9 @@ Use matching editors, export templates and SDK artifacts for that revision.
 Do the networking examples provide production authentication?
 -------------------------------------------------------------
 
-The examples demonstrate encrypted token admission, bounded state replication,
-ownership, interest and reconnect handling. A production game must supply its
-own trusted identity service, token issuer and application persistence. See
+The current native fixtures demonstrate pre-provisioned authenticated loopback
+associations, canonical state and checked ownership. Production identity,
+credential provisioning, reconnect policy and persistence belong to the game. See
 :ref:`doc_egp_networking` for the integration contract.
 
 The questions below describe inherited Godot functionality and licensing.

@@ -20,7 +20,7 @@ Introduction
 
 Welcome to the documentation of **EGP**, ZSG-Studios' open source fork of Godot
 Engine. EGP retains Godot's scene-based editor and rendering architecture,
-and integrates Box2D, Box3D, Yojimbo networking and native C++ development tools.
+and integrates Box2D, Box3D, Superpos networking and native C++ development tools.
 
 Begin with the :ref:`EGP manual <doc_egp>` for the fork's systems, APIs and
 :ref:`migration requirements <doc_egp_migration>`. The inherited Godot tutorials

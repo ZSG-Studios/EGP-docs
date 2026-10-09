@@ -26,8 +26,8 @@ Edit the engine XML/manual sources first. From this documentation checkout,
 with a sibling engine checkout at the exact committed revision:
 
 ```sh
-python tools/sync_egp_docs.py --engine ../EGP
-python tools/sync_egp_docs.py --engine ../EGP --check
+python tools/sync_egp_docs.py --engine ../EGP-Engine
+python tools/sync_egp_docs.py --engine ../EGP-Engine --check
 ```
 
 `egp/source_manifest.json` records the exact engine revision and normalized

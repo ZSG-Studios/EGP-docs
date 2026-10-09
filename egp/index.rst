@@ -4,7 +4,7 @@ EGP manual
 ==========
 
 EGP is ZSG-Studios' fork of Godot Engine. It retains Godot's editor, scene
-system and Forward+ rendering, and integrates Box2D, Box3D, Yojimbo,
+system and Forward+ rendering, and integrates Box2D, Box3D, Superpos,
 native C++ extension tools and a Windows native xmake workflow.
 
 Start with the EGP guides below before following inherited Godot tutorials.
@@ -36,6 +36,7 @@ The class reference is generated from EGP's engine sources.
    networking
    prediction
    networking_reference
+   superpos_migration
    superposition
    physics_arena
    deterministic_demo
@@ -54,3 +55,5 @@ The class reference is generated from EGP's engine sources.
    api_contract
    reference_workflow
    documentation
+   visionos_experimental
+   platform_validation

@@ -618,13 +618,11 @@ Networking
 
    - Supports HTTPS out of the box using bundled certificates.
 
-- :doc:`Yojimbo networking </egp/networking>` with encrypted admission and
-  bounded server-authoritative entity replication.
-- Shared GDScript, C# and C++ helpers for registered messages, ownership,
-  interest and scene factories; optional bounded prediction/reconciliation.
-- :doc:`Network lab </egp/network_lab>` for dedicated servers, listen hosts,
-  impairment, explicit reconnect and checkpoint-based replacement.
-- :ref:`WebSocket <doc_websocket>` utilities are separate from EGP multiplayer.
+- :doc:`Native Superpos </egp/networking_reference>` with explicit schemas,
+  canonical objects, checked ownership and bounded authenticated packet delivery.
+- Matching generated GDScript, C# and C++ bindings use the same native API.
+- Automatic scene projection, solver integration, reconnect/recovery and WAN
+  gameplay require separate implementation and qualification.
 
 - Support for :ref:`UPnP <class_UPNP>` to sidestep the requirement to forward ports
   when hosting a server behind a NAT.
