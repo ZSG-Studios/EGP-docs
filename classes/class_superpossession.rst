@@ -84,6 +84,10 @@ Methods
    +---------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`Error<enum_@GlobalScope_Error>` | :ref:`transfer_ownership<class_SuperposSession_method_transfer_ownership>`\ (\ handle\: :ref:`int<class_int>`, owner\: :ref:`int<class_int>`, expected_revision\: :ref:`int<class_int>`\ )                                                                                                                                                                                                                             |
    +---------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`Dictionary<class_Dictionary>`   | :ref:`read_fields<class_SuperposSession_method_read_fields>`\ (\ handle\: :ref:`int<class_int>`, fields\: :ref:`PackedInt64Array<class_PackedInt64Array>`\ ) |const|                                                                                                                                                                                                                                                   |
+   +---------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`Error<enum_@GlobalScope_Error>` | :ref:`publish_fields<class_SuperposSession_method_publish_fields>`\ (\ handle\: :ref:`int<class_int>`, expected_revision\: :ref:`int<class_int>`, values\: :ref:`Dictionary<class_Dictionary>`\ )                                                                                                                                                                                                                      |
+   +---------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 .. rst-class:: classref-section-separator
 
@@ -446,6 +450,30 @@ Creates a bounded canonical object using the selected schema, owner and canonica
 :ref:`Error<enum_@GlobalScope_Error>` **transfer_ownership**\ (\ handle\: :ref:`int<class_int>`, owner\: :ref:`int<class_int>`, expected_revision\: :ref:`int<class_int>`\ ) :ref:`🔗<class_SuperposSession_method_transfer_ownership>`
 
 Transfers a canonical object to the supplied owner, checking the expected ownership revision. Use exact unsigned handle, owner and revision bits.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_SuperposSession_method_read_fields:
+
+.. rst-class:: classref-method
+
+:ref:`Dictionary<class_Dictionary>` **read_fields**\ (\ handle\: :ref:`int<class_int>`, fields\: :ref:`PackedInt64Array<class_PackedInt64Array>`\ ) |const| :ref:`🔗<class_SuperposSession_method_read_fields>`
+
+Reads selected field IDs through the frozen native schema. The result contains error and, only on success, values, revision and binding_generation. Values uses field IDs as keys. Unsigned 64-bit values and IDs preserve signed integer bit patterns; object references remain weak handles. Duplicate or unknown fields fail without returning partial values. No property getters or scripts run.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_SuperposSession_method_publish_fields:
+
+.. rst-class:: classref-method
+
+:ref:`Error<enum_@GlobalScope_Error>` **publish_fields**\ (\ handle\: :ref:`int<class_int>`, expected_revision\: :ref:`int<class_int>`, values\: :ref:`Dictionary<class_Dictionary>`\ ) :ref:`🔗<class_SuperposSession_method_publish_fields>`
+
+Publishes typed field values keyed by exact field IDs. Checks the expected canonical object revision and every field before publishing a complete replacement. Boolean, integer, floating-point and packed-byte types are checked against the frozen schema. Unsigned values preserve integer bit patterns. Unmentioned fields retain their canonical values. A successful canonical publication does not imply scene projection or remote delivery.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
 .. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`

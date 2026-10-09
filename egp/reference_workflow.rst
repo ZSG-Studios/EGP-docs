@@ -12,21 +12,23 @@ From the documentation repository:
    python tools/sync_egp_docs.py --engine ../EGP-Engine --check
    python -m sphinx -b html -W --keep-going -j 4 . _build/html
 
-This wrapper first invokes the engine's class/manual generator, then renders
-public C# and C++ helper declarations from the same source revision. It retains
-multiline signatures, overloads, default arguments, events and property
-accessors, while excluding method bodies and private implementation fields.
-GDScript declarations and signals come from the engine generator.
+This wrapper invokes the engine's class/manual generator and normalizes guide
+heading levels. The current Superpos language reference describes matching
+generated C# and C++ bindings to the native ClassDB API. It does not republish
+the retired helper facades. The helper declaration parser remains available
+for historical source revisions.
 
 ``egp/source_manifest.json`` records the pinned engine revision, normalized
 source hashes, output hashes and the documentation generator hash. CI checks
 the complete generated result against that engine commit before building.
-Update source helpers and their behavior documentation in the engine first;
+Update native XML and behavior documentation in the engine first;
 update additional tutorials and language examples in this repository.
 
 The engine's ``misc/scripts/sync_egp_docs.py`` remains the base generator.
-When updating this documentation fork, run the wrapper above so that the typed
-helper reference and its manifest are completed together.
+When updating this documentation fork, run the wrapper above so that guide
+normalization and its generator manifest are completed together. In the
+maintained workspace, run Sphinx and website builds on the remote build PC;
+source synchronization and checks that do not build may run locally.
 
 The manual synchronization workflow exports a reviewable patch. Commit the
 result only after reviewing the source revision, API changes and relevant

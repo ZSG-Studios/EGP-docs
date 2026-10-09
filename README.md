@@ -7,6 +7,11 @@ are retained. `egp/` documents the fork-specific systems and migration paths.
 
 ## Build
 
+The maintained EGP workspace temporarily requires every build stage to execute
+on the remote build PC. Run Sphinx there, reusing the environment and canonical
+`_build/html` output. Local source synchronization and checks that do not build
+remain permitted.
+
 ```sh
 python -m venv .venv
 python -m pip install -r requirements.txt
@@ -32,8 +37,9 @@ python tools/sync_egp_docs.py --engine ../EGP-Engine --check
 
 `egp/source_manifest.json` records the exact engine revision and normalized
 source/output SHA256 hashes, including the documentation generator. The wrapper
-uses the engine's native reference generator and adds complete public C#/C++
-helper declarations, including multiline signatures and defaults. CI checks
+uses the engine's native reference generator and documents the matching
+generated native C#/C++ API. Retired language helper facades are not generated
+as supported APIs. CI checks
 these generated files against that pinned
 engine checkout. Additional tutorials, navigation and presentation are edited
 here. See `egp/reference_workflow.rst` for this fork's complete update workflow
