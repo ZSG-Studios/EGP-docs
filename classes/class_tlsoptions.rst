@@ -37,6 +37,14 @@ Objects of this class cannot be instantiated directly, and one of the static met
     var server_key = load("res://my_server_key.key")
     var server_tls_options = TLSOptions.server(server_key, server_certs)
 
+ .. code-tab:: csharp
+
+    var trustedCas = GD.Load<X509Certificate>("res://my_trusted_cas.crt");
+    TLSOptions clientOptions = TLSOptions.Client(trustedCas);
+    var serverCerts = GD.Load<X509Certificate>("res://my_server_cas.crt");
+    var serverKey = GD.Load<CryptoKey>("res://my_server_key.key");
+    TLSOptions serverOptions = TLSOptions.Server(serverKey, serverCerts);
+
 
 
 .. rst-class:: classref-reftable-group

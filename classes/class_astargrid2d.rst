@@ -150,7 +150,7 @@ enum **Heuristic**: :ref:`🔗<enum_AStarGrid2D_Heuristic>`
 
 The `Euclidean heuristic <https://en.wikipedia.org/wiki/Euclidean_distance>`__ to be used for the pathfinding using the following formula:
 
-::
+.. code:: text
 
     dx = abs(to_id.x - from_id.x)
     dy = abs(to_id.y - from_id.y)
@@ -166,7 +166,7 @@ The `Euclidean heuristic <https://en.wikipedia.org/wiki/Euclidean_distance>`__ t
 
 The `Manhattan heuristic <https://en.wikipedia.org/wiki/Taxicab_geometry>`__ to be used for the pathfinding using the following formula:
 
-::
+.. code:: text
 
     dx = abs(to_id.x - from_id.x)
     dy = abs(to_id.y - from_id.y)
@@ -182,7 +182,7 @@ The `Manhattan heuristic <https://en.wikipedia.org/wiki/Taxicab_geometry>`__ to 
 
 The Octile heuristic to be used for the pathfinding using the following formula:
 
-::
+.. code:: text
 
     dx = abs(to_id.x - from_id.x)
     dy = abs(to_id.y - from_id.y)
@@ -197,7 +197,7 @@ The Octile heuristic to be used for the pathfinding using the following formula:
 
 The `Chebyshev heuristic <https://en.wikipedia.org/wiki/Chebyshev_distance>`__ to be used for the pathfinding using the following formula:
 
-::
+.. code:: text
 
     dx = abs(to_id.x - from_id.x)
     dy = abs(to_id.y - from_id.y)

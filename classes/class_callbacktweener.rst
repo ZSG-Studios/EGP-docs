@@ -56,10 +56,20 @@ Makes the callback call delayed by given time in seconds.
 
 \ **Example:** Call :ref:`Node.queue_free()<class_Node_method_queue_free>` after 2 seconds:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var tween = get_tree().create_tween()
     tween.tween_callback(queue_free).set_delay(2)
+
+ .. code-tab:: csharp
+
+    Tween tween = GetTree().CreateTween();
+    tween.TweenCallback(Callable.From(QueueFree)).SetDelay(2);
+
+
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
 .. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`

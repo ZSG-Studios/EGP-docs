@@ -219,10 +219,20 @@ Method Descriptions
 
 Returns a new, pre-configured **PhysicsRayQueryParameters3D** object. Use it to quickly create query parameters using the most common options.
 
-::
 
-    var query = PhysicsRayQueryParameters3D.create(position, position + Vector3(0, -10, 0))
+.. tabs::
+
+ .. code-tab:: gdscript
+
+    var query = PhysicsRayQueryParameters3D.create(global_position, global_position + Vector3(0, -10, 0))
     var collision = get_world_3d().direct_space_state.intersect_ray(query)
+
+ .. code-tab:: csharp
+
+    var query = PhysicsRayQueryParameters3D.Create(GlobalPosition, GlobalPosition + new Vector3(0, -10, 0));
+    var collision = GetWorld3D().DirectSpaceState.IntersectRay(query);
+
+
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
 .. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`

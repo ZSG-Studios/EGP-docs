@@ -153,10 +153,20 @@ If ``true`` and MSAA is enabled, this will trigger a color buffer resolve before
 
 \ **Note:** In :ref:`_render_callback()<class_CompositorEffect_private_method__render_callback>`, to access the resolved buffer use:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var render_scene_buffers = render_data.get_render_scene_buffers()
     var color_buffer = render_scene_buffers.get_texture("render_buffers", "color")
+
+ .. code-tab:: csharp
+
+    var renderSceneBuffers = (RenderSceneBuffersRD)renderData.GetRenderSceneBuffers();
+    Rid colorBuffer = renderSceneBuffers.GetTexture("render_buffers", "color");
+
+
 
 .. rst-class:: classref-item-separator
 
@@ -177,10 +187,20 @@ If ``true`` and MSAA is enabled, this will trigger a depth buffer resolve before
 
 \ **Note:** In :ref:`_render_callback()<class_CompositorEffect_private_method__render_callback>`, to access the resolved buffer use:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var render_scene_buffers = render_data.get_render_scene_buffers()
     var depth_buffer = render_scene_buffers.get_texture("render_buffers", "depth")
+
+ .. code-tab:: csharp
+
+    var renderSceneBuffers = (RenderSceneBuffersRD)renderData.GetRenderSceneBuffers();
+    Rid depthBuffer = renderSceneBuffers.GetTexture("render_buffers", "depth");
+
+
 
 .. rst-class:: classref-item-separator
 
@@ -235,10 +255,20 @@ If ``true`` this triggers motion vectors being calculated during the opaque rend
 
 \ **Note:** In :ref:`_render_callback()<class_CompositorEffect_private_method__render_callback>`, to access the motion vector buffer use:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var render_scene_buffers = render_data.get_render_scene_buffers()
     var motion_buffer = render_scene_buffers.get_velocity_texture()
+
+ .. code-tab:: csharp
+
+    var renderSceneBuffers = (RenderSceneBuffersRD)renderData.GetRenderSceneBuffers();
+    Rid motionBuffer = renderSceneBuffers.GetVelocityTexture();
+
+
 
 .. rst-class:: classref-item-separator
 
@@ -259,14 +289,24 @@ If ``true`` this triggers normal and roughness data to be output during our dept
 
 \ **Note:** In :ref:`_render_callback()<class_CompositorEffect_private_method__render_callback>`, to access the roughness buffer use:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var render_scene_buffers = render_data.get_render_scene_buffers()
     var roughness_buffer = render_scene_buffers.get_texture("forward_clustered", "normal_roughness")
 
+ .. code-tab:: csharp
+
+    var renderSceneBuffers = (RenderSceneBuffersRD)renderData.GetRenderSceneBuffers();
+    Rid roughnessBuffer = renderSceneBuffers.GetTexture("forward_clustered", "normal_roughness");
+
+
+
 The raw normal and roughness buffer is stored in an optimized format, different than the one available in Spatial shaders. When sampling the buffer, a conversion function must be applied. Use this function, copied from `here <https://github.com/godotengine/godot/blob/da5f39889f155658cef7f7ec3cc1abb94e17d815/servers/rendering/renderer_rd/shaders/forward_clustered/scene_forward_clustered_inc.glsl#L334-L341>`__:
 
-::
+.. code:: glsl
 
     vec4 normal_roughness_compatibility(vec4 p_normal_roughness) {
         float roughness = p_normal_roughness.w;

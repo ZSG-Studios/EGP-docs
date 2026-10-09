@@ -27,7 +27,10 @@ EditorDock is a :ref:`Container<class_Container>` node that can be docked in one
 
 You can add a dock by using :ref:`EditorPlugin.add_dock()<class_EditorPlugin_method_add_dock>`. The dock can be customized by changing its properties.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     @tool
     extends EditorPlugin
@@ -50,6 +53,33 @@ You can add a dock by using :ref:`EditorPlugin.add_dock()<class_EditorPlugin_met
         remove_dock(dock)
         dock.queue_free()
         dock = null
+
+ .. code-tab:: csharp
+
+    [Tool]
+    public partial class MyDockPlugin : EditorPlugin
+    {
+        private EditorDock dock;
+        public override void _EnterTree()
+        {
+            dock = new EditorDock
+            {
+                Title = "My Dock",
+                DockIcon = GD.Load<Texture2D>("res://addons/my_plugin/dock_icon.png"),
+                DefaultSlot = EditorDock.DockSlot.RightUl,
+            };
+            dock.AddChild(GD.Load<PackedScene>("res://addons/my_plugin/dock_content.tscn").Instantiate());
+            AddDock(dock);
+        }
+        public override void _ExitTree()
+        {
+            RemoveDock(dock);
+            dock.QueueFree();
+            dock = null;
+        }
+    }
+
+
 
 .. rst-class:: classref-introduction-group
 
@@ -597,10 +627,22 @@ Implement this method to handle saving this dock's layout. It's equivalent to :r
 
 Implement this method to handle the layout switching for this dock. ``layout`` is one of the :ref:`DockLayout<enum_EditorDock_DockLayout>` constants.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     func _update_layout(layout):
         box_container.vertical = (layout == DOCK_LAYOUT_VERTICAL)
+
+ .. code-tab:: csharp
+
+    public override void _UpdateLayout(int layout)
+    {
+        boxContainer.Vertical = layout == (int)DockLayout.Vertical;
+    }
+
+
 
 .. rst-class:: classref-item-separator
 
@@ -614,10 +656,22 @@ Implement this method to handle the layout switching for this dock. ``layout`` i
 
 Implement this method to handle the layout/slot switching for this dock. ``layout`` is one of the :ref:`DockLayout<enum_EditorDock_DockLayout>` constants, and ``slot`` is one of the :ref:`DockSlot<enum_EditorDock_DockSlot>` ones.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     func _update_layout_and_slot(layout, slot):
         box_container.vertical = (layout == DOCK_LAYOUT_VERTICAL)
+
+ .. code-tab:: csharp
+
+    public override void _UpdateLayoutAndSlot(int layout, int slot)
+    {
+        boxContainer.Vertical = layout == (int)DockLayout.Vertical;
+    }
+
+
 
 .. rst-class:: classref-item-separator
 

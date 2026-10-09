@@ -251,7 +251,7 @@ Returns the number of frames for the ``anim`` animation.
 
 Returns a relative duration of the frame ``idx`` in the ``anim`` animation (defaults to ``1.0``). For example, a frame with a duration of ``2.0`` is displayed twice as long as a frame with a duration of ``1.0``. You can calculate the absolute duration (in seconds) of a frame using the following formula:
 
-::
+.. code:: text
 
     absolute_duration = relative_duration / (animation_fps * abs(playing_speed))
 

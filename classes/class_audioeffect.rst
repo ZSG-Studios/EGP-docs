@@ -65,7 +65,10 @@ Method Descriptions
 
 Override this method to customize the :ref:`AudioEffectInstance<class_AudioEffectInstance>` created when this effect is applied on a bus in the editor's Audio panel, or through :ref:`AudioServer.add_bus_effect()<class_AudioServer_method_add_bus_effect>`.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     extends AudioEffect
 
@@ -76,6 +79,21 @@ Override this method to customize the :ref:`AudioEffectInstance<class_AudioEffec
         effect.base = self
 
         return effect
+
+ .. code-tab:: csharp
+
+    public partial class CustomAudioEffect : AudioEffect
+    {
+        [Export] public float Strength { get; set; } = 4.0f;
+        public override AudioEffectInstance _Instantiate()
+        {
+            var effect = new CustomAudioEffectInstance();
+            effect.Base = this; // The custom instance declares this reference.
+            return effect;
+        }
+    }
+
+
 
 \ **Note:** It is recommended to keep a reference to the original **AudioEffect** in the new instance. Depending on the implementation this allows the effect instance to listen for changes at run-time and be modified accordingly.
 

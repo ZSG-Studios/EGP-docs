@@ -509,11 +509,27 @@ Emitted when the mouse cursor leaves the control's (and all child control's) vis
 
 \ **Note:** If you want to check whether the mouse truly left the area, ignoring any top nodes, you can use code like this:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     func _on_mouse_exited():
         if not Rect2(Vector2(), size).has_point(get_local_mouse_position()):
             # Not hovering over area.
+            pass
+
+ .. code-tab:: csharp
+
+    private void OnMouseExited()
+    {
+        if (!new Rect2(Vector2.Zero, Size).HasPoint(GetLocalMousePosition()))
+        {
+            // Not hovering over the area.
+        }
+    }
+
+
 
 .. rst-class:: classref-item-separator
 
@@ -1379,13 +1395,30 @@ Sent when the node needs to refresh its theme items. This happens in one of the 
 
 \ **Note:** This notification is received alongside :ref:`Node.NOTIFICATION_ENTER_TREE<class_Node_constant_NOTIFICATION_ENTER_TREE>`, so if you are instantiating a scene, the child nodes will not be initialized yet. You can use it to setup theming for this node, child nodes created from script, or if you want to access child nodes added in the editor, make sure the node is ready using :ref:`Node.is_node_ready()<class_Node_method_is_node_ready>`.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     func _notification(what):
         if what == NOTIFICATION_THEME_CHANGED:
             if not is_node_ready():
                 await ready # Wait until ready signal.
             $Label.add_theme_color_override("font_color", Color.YELLOW)
+
+ .. code-tab:: csharp
+
+    public override async void _Notification(int what)
+    {
+        if (what == NotificationThemeChanged)
+        {
+            if (!IsNodeReady())
+                await ToSignal(this, SignalName.Ready);
+            GetNode<Label>("Label").AddThemeColorOverride("font_color", Colors.Yellow);
+        }
+    }
+
+
 
 .. _class_Control_constant_NOTIFICATION_SCROLL_BEGIN:
 
@@ -3432,7 +3465,10 @@ Equivalent to ``get_screen_transform().origin`` (see :ref:`CanvasItem.get_screen
 
 \ **Example:** Show a popup at the mouse position:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     popup_menu.position = get_screen_position() + get_screen_transform().basis_xform(get_local_mouse_position())
 
@@ -3441,6 +3477,16 @@ Equivalent to ``get_screen_transform().origin`` (see :ref:`CanvasItem.get_screen
 
     popup_menu.reset_size()
     popup_menu.popup()
+
+ .. code-tab:: csharp
+
+    popupMenu.Position = (Vector2I)(GetScreenPosition() + GetScreenTransform().BasisXform(GetLocalMousePosition()));
+    // Equivalent expression:
+    popupMenu.Position = (Vector2I)(GetScreenTransform() * GetLocalMousePosition());
+    popupMenu.ResetSize();
+    popupMenu.Popup();
+
+
 
 .. rst-class:: classref-item-separator
 

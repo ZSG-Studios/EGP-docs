@@ -23,21 +23,44 @@ This class can be used to discover compatible :ref:`UPNPDevice<class_UPNPDevice>
 
 To forward a specific port (here ``7777``, note both :ref:`discover()<class_UPNP_method_discover>` and :ref:`add_port_mapping()<class_UPNP_method_add_port_mapping>` can return errors that should be checked):
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var upnp = UPNP.new()
     upnp.discover()
     upnp.add_port_mapping(7777)
 
+ .. code-tab:: csharp
+
+    var upnp = new Upnp();
+    upnp.Discover();
+    upnp.AddPortMapping(7777);
+
+
+
 To close a specific port (e.g. after you have finished using it):
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     upnp.delete_port_mapping(port)
 
+ .. code-tab:: csharp
+
+    upnp.DeletePortMapping(port);
+
+
+
 \ **Note:** UPnP discovery blocks the current thread. To perform discovery without blocking the main thread, use :ref:`Thread<class_Thread>`\ s like this:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     # Emitted when UPnP port mapping setup is completed (regardless of success or failure).
     signal upnp_completed(error)
@@ -53,13 +76,19 @@ To close a specific port (e.g. after you have finished using it):
 
         if err != UPNP.UPNP_RESULT_SUCCESS:
             push_error(str(err))
-            upnp_completed.emit(err)
+            emit_signal.call_deferred("upnp_completed", err)
             return
 
-        if upnp.get_gateway() and upnp.get_gateway().is_valid_gateway():
-            upnp.add_port_mapping(server_port, server_port, ProjectSettings.get_setting("application/config/name"), "UDP")
-            upnp.add_port_mapping(server_port, server_port, ProjectSettings.get_setting("application/config/name"), "TCP")
-            upnp_completed.emit(UPNP.UPNP_RESULT_SUCCESS)
+        var gateway = upnp.get_gateway()
+        if not gateway or not gateway.is_valid_gateway():
+            err = UPNP.UPNP_RESULT_INVALID_GATEWAY
+        else:
+            var app_name = ProjectSettings.get_setting("application/config/name")
+            err = upnp.add_port_mapping(server_port, server_port, app_name, "UDP")
+            if err == UPNP.UPNP_RESULT_SUCCESS:
+                err = upnp.add_port_mapping(server_port, server_port, app_name, "TCP")
+        # Marshal completion to the owning engine thread, including mapping failures.
+        emit_signal.call_deferred("upnp_completed", err)
 
     func _ready():
         thread = Thread.new()
@@ -68,6 +97,35 @@ To close a specific port (e.g. after you have finished using it):
     func _exit_tree():
         # Wait for thread finish here to handle game exit while the thread is running.
         thread.wait_to_finish()
+
+ .. code-tab:: csharp
+
+    [Signal] public delegate void UpnpCompletedEventHandler(long error);
+    private const int ServerPort = 3928;
+    private readonly Godot.Thread thread = new();
+    private void SetupUpnp(int port)
+    {
+        var upnp = new Upnp();
+        int error = upnp.Discover();
+        if (error == (int)Upnp.UpnpResult.Success)
+        {
+            var gateway = upnp.GetGateway();
+            if (gateway == null || !gateway.IsValidGateway()) error = (int)Upnp.UpnpResult.InvalidGateway;
+            else
+            {
+                string name = ProjectSettings.GetSetting("application/config/name").AsString();
+                error = upnp.AddPortMapping(port, port, name, "UDP");
+                if (error == (int)Upnp.UpnpResult.Success)
+                    error = upnp.AddPortMapping(port, port, name, "TCP");
+            }
+        }
+        // Marshal the completion to the owning engine thread.
+        Callable.From(() => EmitSignal(SignalName.UpnpCompleted, error)).CallDeferred();
+    }
+    public override void _Ready() => thread.Start(Callable.From(() => SetupUpnp(ServerPort)));
+    public override void _ExitTree() => thread.WaitToFinish();
+
+
 
 \ **Terminology:** In the context of UPnP networking, "gateway" (or "internet gateway device", short IGD) refers to network devices that allow computers in the local network to access the internet ("wide area network", WAN). These gateways are often also called "routers".
 

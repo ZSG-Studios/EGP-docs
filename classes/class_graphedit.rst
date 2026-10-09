@@ -580,7 +580,7 @@ The connections between :ref:`GraphNode<class_GraphNode>`\ s.
 
 A connection is represented as a :ref:`Dictionary<class_Dictionary>` in the form of:
 
-::
+.. code:: text
 
     {
         from_node: StringName,
@@ -982,7 +982,10 @@ By default, a hot zone is a :ref:`Rect2<class_Rect2>` positioned such that its c
 
 Below is a sample code to help get started:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     func _is_in_input_hotzone(in_node, in_port, mouse_position):
         var port_size = Vector2(get_theme_constant("port_grab_distance_horizontal"), get_theme_constant("port_grab_distance_vertical"))
@@ -990,6 +993,18 @@ Below is a sample code to help get started:
         var rect = Rect2(port_pos, port_size)
 
         return rect.has_point(mouse_position)
+
+ .. code-tab:: csharp
+
+    public override bool _IsInInputHotzone(GodotObject inNode, int inPort, Vector2 mousePosition)
+    {
+        var node = (GraphNode)inNode;
+        var size = new Vector2(GetThemeConstant("port_grab_distance_horizontal"), GetThemeConstant("port_grab_distance_vertical"));
+        Vector2 position = node.Position + node.GetInputPortPosition(inPort) - size / 2;
+        return new Rect2(position, size).HasPoint(mousePosition);
+    }
+
+
 
 .. rst-class:: classref-item-separator
 
@@ -1005,7 +1020,10 @@ Returns whether the ``mouse_position`` is in the output hot zone. For more infor
 
 Below is a sample code to help get started:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     func _is_in_output_hotzone(in_node, in_port, mouse_position):
         var port_size = Vector2(get_theme_constant("port_grab_distance_horizontal"), get_theme_constant("port_grab_distance_vertical"))
@@ -1013,6 +1031,18 @@ Below is a sample code to help get started:
         var rect = Rect2(port_pos, port_size)
 
         return rect.has_point(mouse_position)
+
+ .. code-tab:: csharp
+
+    public override bool _IsInOutputHotzone(GodotObject inNode, int inPort, Vector2 mousePosition)
+    {
+        var node = (GraphNode)inNode;
+        var size = new Vector2(GetThemeConstant("port_grab_distance_horizontal"), GetThemeConstant("port_grab_distance_vertical"));
+        Vector2 position = node.Position + node.GetOutputPortPosition(inPort) - size / 2;
+        return new Rect2(position, size).HasPoint(mousePosition);
+    }
+
+
 
 .. rst-class:: classref-item-separator
 
@@ -1201,7 +1231,7 @@ Returns the closest connection to the given point in screen space. If no connect
 
 A connection is represented as a :ref:`Dictionary<class_Dictionary>` in the form of:
 
-::
+.. code:: text
 
     {
         from_node: StringName,
@@ -1219,6 +1249,10 @@ For example, getting a connection at a given mouse position can be achieved like
  .. code-tab:: gdscript
 
     var connection = get_closest_connection_at_point(mouse_event.get_position())
+
+ .. code-tab:: csharp
+
+    var connection = GetClosestConnectionAtPoint(mouseEvent.Position);
 
 
 
@@ -1260,7 +1294,7 @@ Returns an :ref:`Array<class_Array>` containing a list of all connections for ``
 
 A connection is represented as a :ref:`Dictionary<class_Dictionary>` in the form of:
 
-::
+.. code:: text
 
     {
         from_node: StringName,
@@ -1272,7 +1306,10 @@ A connection is represented as a :ref:`Dictionary<class_Dictionary>` in the form
 
 \ **Example:** Get all connections on a specific port:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     func get_connection_list_from_port(node, port):
         var connections = get_connection_list_from_node(node)
@@ -1291,6 +1328,23 @@ A connection is represented as a :ref:`Dictionary<class_Dictionary>` in the form
                 result.push_back(dict)
         return result
 
+ .. code-tab:: csharp
+
+    private Godot.Collections.Array<Godot.Collections.Dictionary> GetConnectionListFromPort(StringName node, int port)
+    {
+        var result = new Godot.Collections.Array<Godot.Collections.Dictionary>();
+        foreach (var connection in GetConnectionListFromNode(node))
+        {
+            if (connection["from_node"].AsStringName() == node && connection["from_port"].AsInt32() == port)
+                result.Add(new() { { "node", connection["to_node"] }, { "port", connection["to_port"] }, { "type", "left" } });
+            else if (connection["to_node"].AsStringName() == node && connection["to_port"].AsInt32() == port)
+                result.Add(new() { { "node", connection["from_node"] }, { "port", connection["from_port"] }, { "type", "right" } });
+        }
+        return result;
+    }
+
+
+
 .. rst-class:: classref-item-separator
 
 ----
@@ -1305,7 +1359,7 @@ Returns an :ref:`Array<class_Array>` containing the list of connections that int
 
 A connection is represented as a :ref:`Dictionary<class_Dictionary>` in the form of:
 
-::
+.. code:: text
 
     {
         from_node: StringName,

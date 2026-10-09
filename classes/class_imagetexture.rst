@@ -21,29 +21,59 @@ Description
 
 A :ref:`Texture2D<class_Texture2D>` based on an :ref:`Image<class_Image>`. For an image to be displayed, an **ImageTexture** has to be created from it using the :ref:`create_from_image()<class_ImageTexture_method_create_from_image>` method:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var image = Image.load_from_file("res://icon.svg")
     var texture = ImageTexture.create_from_image(image)
     $Sprite2D.texture = texture
 
+ .. code-tab:: csharp
+
+    Image image = Image.LoadFromFile("res://icon.svg");
+    ImageTexture texture = ImageTexture.CreateFromImage(image);
+    GetNode<Sprite2D>("Sprite2D").Texture = texture;
+
+
+
 This way, textures can be created at run-time by loading images both from within the editor and externally.
 
 \ **Warning:** Prefer to load imported textures with :ref:`@GDScript.load()<class_@GDScript_method_load>` over loading them from within the filesystem dynamically with :ref:`Image.load()<class_Image_method_load>`, as it may not work in exported projects:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var texture = load("res://icon.svg")
     $Sprite2D.texture = texture
+
+ .. code-tab:: csharp
+
+    GetNode<Sprite2D>("Sprite2D").Texture = GD.Load<Texture2D>("res://icon.svg");
+
+
 
 This is because images have to be imported as a :ref:`CompressedTexture2D<class_CompressedTexture2D>` first to be loaded with :ref:`@GDScript.load()<class_@GDScript_method_load>`. If you'd still like to load an image file just like any other :ref:`Resource<class_Resource>`, import it as an :ref:`Image<class_Image>` resource instead, and then load it normally using the :ref:`@GDScript.load()<class_@GDScript_method_load>` method.
 
 \ **Note:** The image can be retrieved from an imported texture using the :ref:`Texture2D.get_image()<class_Texture2D_method_get_image>` method, which returns a copy of the image:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var texture = load("res://icon.svg")
     var image = texture.get_image()
+
+ .. code-tab:: csharp
+
+    Texture2D texture = GD.Load<Texture2D>("res://icon.svg");
+    Image image = texture.GetImage();
+
+
 
 An **ImageTexture** is not meant to be operated from within the editor interface directly, and is mostly useful for rendering images on screen dynamically via code. If you need to generate images procedurally from within the editor, consider saving and importing images as custom texture resources implementing a new :ref:`EditorImportPlugin<class_EditorImportPlugin>`.
 

@@ -471,7 +471,10 @@ Each element in the return value is a :ref:`Dictionary<class_Dictionary>` with t
 
 Return a :ref:`Dictionary<class_Dictionary>` of override values for export options, that will be used instead of user-provided values. Overridden options will be hidden from the user interface.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     class MyExportPlugin extends EditorExportPlugin:
         func _get_name() -> String:
@@ -488,6 +491,18 @@ Return a :ref:`Dictionary<class_Dictionary>` of override values for export optio
             return {
                 "binary_format/embed_pck": true,
             }
+
+ .. code-tab:: csharp
+
+    public partial class MyExportPlugin : EditorExportPlugin
+    {
+        public override string _GetName() => "MyExportPlugin";
+        public override bool _SupportsPlatform(EditorExportPlatform platform) => platform is EditorExportPlatformPC;
+        public override Godot.Collections.Dictionary _GetExportOptionsOverrides(EditorExportPlatform platform)
+            => new() { { "binary_format/embed_pck", true } };
+    }
+
+
 
 .. rst-class:: classref-item-separator
 

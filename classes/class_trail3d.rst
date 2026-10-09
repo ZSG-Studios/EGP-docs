@@ -235,7 +235,7 @@ The material to assign to the trail mesh when :ref:`material_mode<class_Trail3D_
 
 \ **Tip:** To preserve billboarding, use the following shader as a base:
 
-::
+.. code:: glsl
 
     shader_type spatial;
     render_mode blend_mix, depth_draw_never, unshaded, skip_vertex_transform, cull_disabled;

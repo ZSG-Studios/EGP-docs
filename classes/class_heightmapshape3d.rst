@@ -43,6 +43,13 @@ A heightmap collision shape can also be built by using an :ref:`Image<class_Imag
 
     update_map_data_from_image(heightmap_image, height_min, height_max)
 
+ .. code-tab:: csharp
+
+    Texture2D texture = GD.Load<Texture2D>("res://heightmap_image.exr");
+    Image image = texture.GetImage();
+    image.Convert(Image.Format.Rf);
+    UpdateMapDataFromImage(image, 0.0f, 10.0f);
+
 
 
 \ **Note:** Geometry and scaling parity for the Box3D height map adapter requires further qualification.

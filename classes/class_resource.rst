@@ -314,7 +314,10 @@ Override this method to customize the newly duplicated resource created from :re
 
 \ **Example:** Set a random ``damage`` value to every local resource from an instantiated scene:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     extends Resource
 
@@ -322,6 +325,16 @@ Override this method to customize the newly duplicated resource created from :re
 
     func _setup_local_to_scene():
         damage = randi_range(10, 40)
+
+ .. code-tab:: csharp
+
+    public partial class LocalDamage : Resource
+    {
+        public int Damage { get; private set; }
+        public override void _SetupLocalToScene() => Damage = GD.RandRange(10, 40);
+    }
+
+
 
 .. rst-class:: classref-item-separator
 
@@ -387,13 +400,32 @@ Emits the :ref:`changed<class_Resource_signal_changed>` signal. This method is c
 
 \ **Note:** For custom resources, it's recommended to call this method whenever a meaningful change occurs, such as a modified property. This ensures that custom :ref:`Object<class_Object>`\ s depending on the resource are properly updated.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var damage:
         set(new_value):
             if damage != new_value:
                 damage = new_value
                 emit_changed()
+
+ .. code-tab:: csharp
+
+    private int damage;
+    public int Damage
+    {
+        get => damage;
+        set
+        {
+            if (damage == value) return;
+            damage = value;
+            EmitChanged();
+        }
+    }
+
+
 
 .. rst-class:: classref-item-separator
 

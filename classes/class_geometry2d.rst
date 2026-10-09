@@ -229,11 +229,26 @@ Returns the `Bresenham line <https://en.wikipedia.org/wiki/Bresenham%27s_line_al
 
 Example code to draw a line between two :ref:`Marker2D<class_Marker2D>` nodes using a series of :ref:`CanvasItem.draw_rect()<class_CanvasItem_method_draw_rect>` calls:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     func _draw():
         for pixel in Geometry2D.bresenham_line($MarkerA.position, $MarkerB.position):
             draw_rect(Rect2(pixel, Vector2.ONE), Color.WHITE)
+
+ .. code-tab:: csharp
+
+    public override void _Draw()
+    {
+        var start = (Vector2I)GetNode<Marker2D>("MarkerA").Position;
+        var end = (Vector2I)GetNode<Marker2D>("MarkerB").Position;
+        foreach (Vector2I pixel in Geometry2D.BresenhamLine(start, end))
+            DrawRect(new Rect2(pixel, Vector2.One), Colors.White);
+    }
+
+
 
 .. rst-class:: classref-item-separator
 

@@ -171,7 +171,10 @@ Method Descriptions
 
 Called after parsing all files. You can modify the ``strings`` array to add or remove entries from the final list of strings, then return it after modifications. Each entry is a :ref:`PackedStringArray<class_PackedStringArray>` like explained in the **EditorTranslationParserPlugin**'s description.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     @tool
     extends EditorTranslationParserPlugin
@@ -184,6 +187,24 @@ Called after parsing all files. You can modify the ``strings`` array to add or r
         strings = strings.filter(func(s): return not s[0].begins_with("$"))
 
         return strings
+
+ .. code-tab:: csharp
+
+    [Tool]
+    public partial class MyTranslationParser : EditorTranslationParserPlugin
+    {
+        public override Godot.Collections.Array<string[]> _CustomizeStrings(Godot.Collections.Array<string[]> strings)
+        {
+            var result = new Godot.Collections.Array<string[]>();
+            strings.Add(new[] { "Test 1", "context", "test 1 plurals", "test 1 comment" });
+            foreach (string[] entry in strings)
+                if (!entry[0].StartsWith("$", System.StringComparison.Ordinal))
+                    result.Add(entry);
+            return result;
+        }
+    }
+
+
 
 .. rst-class:: classref-item-separator
 

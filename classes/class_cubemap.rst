@@ -37,7 +37,7 @@ The expected image order is X+, X-, Y+, Y-, Z+, Z- (in Godot's coordinate system
 
 \ **Note:** Godot doesn't support using cubemaps in a :ref:`PanoramaSkyMaterial<class_PanoramaSkyMaterial>`. To use a cubemap as a skybox, convert the default :ref:`PanoramaSkyMaterial<class_PanoramaSkyMaterial>` to a :ref:`ShaderMaterial<class_ShaderMaterial>` using the **Convert to ShaderMaterial** resource dropdown option, then replace its code with the following:
 
-.. code:: text
+.. code:: glsl
 
     shader_type sky;
 

@@ -4664,10 +4664,20 @@ Returns ``true`` if ``string`` is likely to be an attempt at confusing the reade
 
 Returns array of the composite character boundaries.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var ts = TextServerManager.get_primary_interface()
     print(ts.string_get_character_breaks("Test ❤️‍🔥 Test")) # Prints [1, 2, 3, 4, 5, 9, 10, 11, 12, 13, 14]
+
+ .. code-tab:: csharp
+
+    var textServer = TextServerManager.GetPrimaryInterface();
+    GD.Print(textServer.StringGetCharacterBreaks("Test ❤️‍🔥 Test"));
+
+
 
 .. rst-class:: classref-item-separator
 
@@ -4683,7 +4693,10 @@ Returns an array of the word break boundaries. Elements in the returned array ar
 
 When ``chars_per_line`` is greater than zero, line break boundaries are returned instead.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var ts = TextServerManager.get_primary_interface()
     # Corresponds to the substrings "The", "Godot", "Engine", and "4".
@@ -4692,6 +4705,15 @@ When ``chars_per_line`` is greater than zero, line break boundaries are returned
     print(ts.string_get_word_breaks("The Godot Engine, 4", "en", 5)) # Prints [0, 3, 4, 9, 10, 15, 15, 19]
     # Corresponds to the substrings "The Godot" and "Engine, 4".
     print(ts.string_get_word_breaks("The Godot Engine, 4", "en", 10)) # Prints [0, 9, 10, 19]
+
+ .. code-tab:: csharp
+
+    var textServer = TextServerManager.GetPrimaryInterface();
+    GD.Print(textServer.StringGetWordBreaks("The Godot Engine, 4"));
+    GD.Print(textServer.StringGetWordBreaks("The Godot Engine, 4", "en", 5));
+    GD.Print(textServer.StringGetWordBreaks("The Godot Engine, 4", "en", 10));
+
+
 
 .. rst-class:: classref-item-separator
 

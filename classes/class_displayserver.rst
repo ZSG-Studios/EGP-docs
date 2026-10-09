@@ -4588,10 +4588,17 @@ To avoid opening the file picker again after each app restart, you can take pers
 
  .. code-tab:: gdscript
 
-    val uri = "content://com.android..." # URI of the selected file or folder.
-    val persist = true # Set to false to release the persistable permission.
+    var uri = "content://com.android..." # URI of the selected file or folder.
+    var persist = true # Set to false to release the persistable permission.
     var android_runtime = Engine.get_singleton("AndroidRuntime")
     android_runtime.updatePersistableUriPermission(uri, persist)
+
+ .. code-tab:: csharp
+
+    string uri = "content://com.android..."; // Selected file/folder URI.
+    bool persist = true; // Use false to release the permission.
+    GodotObject androidRuntime = Engine.GetSingleton("AndroidRuntime");
+    androidRuntime.Call("updatePersistableUriPermission", uri, persist);
 
 
 
@@ -6308,11 +6315,22 @@ Returns the current refresh rate of the specified screen. When V-Sync is enabled
 
 To fallback to a default refresh rate if the method fails, try:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var refresh_rate = DisplayServer.screen_get_refresh_rate()
     if refresh_rate < 0:
         refresh_rate = 60.0
+
+ .. code-tab:: csharp
+
+    float refreshRate = DisplayServer.ScreenGetRefreshRate();
+    if (refreshRate < 0)
+        refreshRate = 60.0f;
+
+
 
 \ **Note:** One of the following constants can be used as ``screen``: :ref:`SCREEN_OF_MAIN_WINDOW<class_DisplayServer_constant_SCREEN_OF_MAIN_WINDOW>`, :ref:`SCREEN_PRIMARY<class_DisplayServer_constant_SCREEN_PRIMARY>`, :ref:`SCREEN_WITH_MOUSE_FOCUS<class_DisplayServer_constant_SCREEN_WITH_MOUSE_FOCUS>`, or :ref:`SCREEN_WITH_KEYBOARD_FOCUS<class_DisplayServer_constant_SCREEN_WITH_KEYBOARD_FOCUS>`.
 

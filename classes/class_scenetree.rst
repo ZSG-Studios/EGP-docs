@@ -211,12 +211,24 @@ Emitted immediately before :ref:`Node._process()<class_Node_private_method__proc
 
 Emitted after the new scene is added to scene tree and initialized. Can be used to reliably access :ref:`current_scene<class_SceneTree_property_current_scene>` when changing scenes.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     # This code should be inside an autoload.
     get_tree().change_scene_to_file(other_scene_path)
     await get_tree().scene_changed
     print(get_tree().current_scene) # Prints the new scene.
+
+ .. code-tab:: csharp
+
+    // In an async method of an autoload:
+    GetTree().ChangeSceneToFile(otherScenePath);
+    await ToSignal(GetTree(), SceneTree.SignalName.SceneChanged);
+    GD.Print(GetTree().CurrentScene);
+
+
 
 .. rst-class:: classref-item-separator
 
@@ -520,12 +532,21 @@ Calls ``method`` on each node inside this tree added to the given ``group``. You
 
 Calls the given ``method`` on each node inside this tree added to the given ``group``. Use ``flags`` to customize this method's behavior (see :ref:`GroupCallFlags<enum_SceneTree_GroupCallFlags>`). Additional arguments for ``method`` can be passed at the end of this method. Nodes that cannot call ``method`` (either because the method doesn't exist or the arguments do not match) are ignored.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     # Calls "hide" to all nodes of the "enemies" group, at the end of the frame and in reverse tree order.
     get_tree().call_group_flags(
             SceneTree.GROUP_CALL_DEFERRED | SceneTree.GROUP_CALL_REVERSE,
             "enemies", "hide")
+
+ .. code-tab:: csharp
+
+    GetTree().CallGroupFlags((uint)(SceneTree.GroupCallFlags.Deferred | SceneTree.GroupCallFlags.Reverse), "enemies", "hide");
+
+
 
 \ **Note:** In C#, ``method`` must be in snake_case when referring to built-in Godot methods. Prefer using the names exposed in the ``MethodName`` class to avoid allocating a new :ref:`StringName<class_StringName>` on each call.
 

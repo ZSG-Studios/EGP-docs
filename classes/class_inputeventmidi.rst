@@ -272,12 +272,25 @@ The velocity of the MIDI message. This value ranges from ``0`` to ``127``. For a
 
 \ **Note:** Some MIDI devices may send a :ref:`@GlobalScope.MIDI_MESSAGE_NOTE_ON<class_@GlobalScope_constant_MIDI_MESSAGE_NOTE_ON>` message with ``0`` velocity and expect it to be treated the same as a :ref:`@GlobalScope.MIDI_MESSAGE_NOTE_OFF<class_@GlobalScope_constant_MIDI_MESSAGE_NOTE_OFF>` message. If necessary, this can be handled with a few lines of code:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     func _input(event):
         if event is InputEventMIDI:
             if event.message == MIDI_MESSAGE_NOTE_ON and event.velocity > 0:
                 print("Note pressed!")
+
+ .. code-tab:: csharp
+
+    public override void _Input(InputEvent inputEvent)
+    {
+        if (inputEvent is InputEventMidi midi && midi.Message == MidiMessage.NoteOn && midi.Velocity > 0)
+            GD.Print("Note pressed!");
+    }
+
+
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
 .. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`

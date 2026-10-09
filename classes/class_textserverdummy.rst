@@ -23,16 +23,35 @@ A dummy :ref:`TextServer<class_TextServer>` interface that doesn't do anything. 
 
 A dummy text server is always available at the start of a project. Here's how to access it:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var dummy_text_server = TextServerManager.find_interface("Dummy")
     if dummy_text_server != null:
         TextServerManager.set_primary_interface(dummy_text_server)
         # If the other text servers are unneeded, they can be removed:
-        for i in TextServerManager.get_interface_count():
+        for i in range(TextServerManager.get_interface_count() - 1, -1, -1):
             var text_server = TextServerManager.get_interface(i)
             if text_server != dummy_text_server:
                 TextServerManager.remove_interface(text_server)
+
+ .. code-tab:: csharp
+
+    TextServer dummy = TextServerManager.FindInterface("Dummy");
+    if (dummy != null)
+    {
+        TextServerManager.SetPrimaryInterface(dummy);
+        // Iterate backwards because removing an interface changes the indices.
+        for (int i = TextServerManager.GetInterfaceCount() - 1; i >= 0; i--)
+        {
+            TextServer server = TextServerManager.GetInterface(i);
+            if (server != dummy) TextServerManager.RemoveInterface(server);
+        }
+    }
+
+
 
 The command line argument ``--text-driver Dummy`` (case-sensitive) can be used to force the "Dummy" :ref:`TextServer<class_TextServer>` on any project.
 

@@ -922,11 +922,23 @@ Use :ref:`_set_state()<class_EditorPlugin_private_method__set_state>` to restore
 
 \ **Note:** You must implement :ref:`_get_plugin_name()<class_EditorPlugin_private_method__get_plugin_name>` for the state to be stored and restored correctly.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     func _get_state():
-        var state = { "zoom": zoom, "preferred_color": my_color }
+        var state = { "zoom": zoom, "preferred_color": preferred_color }
         return state
+
+ .. code-tab:: csharp
+
+    public override Godot.Collections.Dictionary _GetState()
+    {
+        return new() { { "zoom", zoom }, { "preferred_color", preferredColor } };
+    }
+
+
 
 .. rst-class:: classref-item-separator
 
@@ -944,7 +956,10 @@ When closing a scene, ``for_scene`` is the path to the scene being closed. You c
 
 If the user confirms saving, :ref:`_save_external_data()<class_EditorPlugin_private_method__save_external_data>` will be called, before closing the editor.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     func _get_unsaved_status(for_scene):
         if not unsaved:
@@ -958,13 +973,39 @@ If the user confirms saving, :ref:`_save_external_data()<class_EditorPlugin_priv
     func _save_external_data():
         unsaved = false
 
+ .. code-tab:: csharp
+
+    public override string _GetUnsavedStatus(string forScene)
+    {
+        if (!unsaved)
+            return "";
+        return string.IsNullOrEmpty(forScene)
+            ? "Save changes in MyCustomPlugin before closing?"
+            : $"Scene {forScene.GetFile()} has changes from MyCustomPlugin. Save before closing?";
+    }
+    public override void _SaveExternalData() => unsaved = false;
+
+
+
 If the plugin has no scene-specific changes, you can ignore the calls when closing scenes:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     func _get_unsaved_status(for_scene):
         if not for_scene.is_empty():
             return ""
+
+ .. code-tab:: csharp
+
+    public override string _GetUnsavedStatus(string forScene)
+    {
+        return ""; // No unsaved external data in this example.
+    }
+
+
 
 .. rst-class:: classref-item-separator
 
@@ -980,11 +1021,24 @@ Override this method to provide the GUI layout of the plugin or any other data y
 
 Use :ref:`_set_window_layout()<class_EditorPlugin_private_method__set_window_layout>` to restore your saved layout.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     func _get_window_layout(configuration):
         configuration.set_value("MyPlugin", "window_position", $Window.position)
         configuration.set_value("MyPlugin", "icon_color", $Icon.modulate)
+
+ .. code-tab:: csharp
+
+    public override void _GetWindowLayout(ConfigFile configuration)
+    {
+        configuration.SetValue("MyPlugin", "window_position", GetNode<Window>("Window").Position);
+        configuration.SetValue("MyPlugin", "icon_color", GetNode<Sprite2D>("Icon").Modulate);
+    }
+
+
 
 .. rst-class:: classref-item-separator
 
@@ -1042,11 +1096,24 @@ Remember that you have to manage the visibility of all your editor controls manu
 
 This function is called when an individual scene is about to be played in the editor. ``args`` is a list of command line arguments that will be passed to the new Godot instance, which will be replaced by the list returned by this function.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     func _run_scene(scene, args):
         args.append("--an-extra-argument")
         return args
+
+ .. code-tab:: csharp
+
+    public override string[] _RunScene(string scene, string[] args)
+    {
+        var result = new System.Collections.Generic.List<string>(args) { "--an-extra-argument" };
+        return result.ToArray();
+    }
+
+
 
 \ **Note:** Text that is printed in this method will not be visible in the editor's Output panel unless :ref:`EditorSettings.run/output/always_clear_output_on_play<class_EditorSettings_property_run/output/always_clear_output_on_play>` is ``false``.
 
@@ -1076,11 +1143,24 @@ Restore the state saved by :ref:`_get_state()<class_EditorPlugin_private_method_
 
 \ **Note:** Your plugin must implement :ref:`_get_plugin_name()<class_EditorPlugin_private_method__get_plugin_name>`, otherwise it will not be recognized and this method will not be called.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     func _set_state(data):
         zoom = data.get("zoom", 1.0)
-        preferred_color = data.get("my_color", Color.WHITE)
+        preferred_color = data.get("preferred_color", Color.WHITE)
+
+ .. code-tab:: csharp
+
+    public override void _SetState(Godot.Collections.Dictionary data)
+    {
+        zoom = data.TryGetValue("zoom", out Variant z) ? z.AsDouble() : 1.0;
+        preferredColor = data.TryGetValue("preferred_color", out Variant c) ? c.AsColor() : Colors.White;
+    }
+
+
 
 .. rst-class:: classref-item-separator
 
@@ -1094,11 +1174,24 @@ Restore the state saved by :ref:`_get_state()<class_EditorPlugin_private_method_
 
 Restore the plugin GUI layout and data saved by :ref:`_get_window_layout()<class_EditorPlugin_private_method__get_window_layout>`. This method is called for every plugin on editor startup. Use the provided ``configuration`` file to read your saved data.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     func _set_window_layout(configuration):
-        $Window.position = configuration.get_value("MyPlugin", "window_position", Vector2())
+        $Window.position = configuration.get_value("MyPlugin", "window_position", Vector2i())
         $Icon.modulate = configuration.get_value("MyPlugin", "icon_color", Color.WHITE)
+
+ .. code-tab:: csharp
+
+    public override void _SetWindowLayout(ConfigFile configuration)
+    {
+        GetNode<Window>("Window").Position = configuration.GetValue("MyPlugin", "window_position", Vector2I.Zero).AsVector2I();
+        GetNode<Sprite2D>("Icon").Modulate = configuration.GetValue("MyPlugin", "icon_color", Colors.White).AsColor();
+    }
+
+
 
 .. rst-class:: classref-item-separator
 
@@ -1299,6 +1392,13 @@ Registers a new :ref:`EditorInspectorPlugin<class_EditorInspectorPlugin>`. Inspe
 
     func _exit_tree():
         remove_inspector_plugin(inspector_plugin)
+
+ .. code-tab:: csharp
+
+    // MyInspectorPlugin is a custom C# EditorInspectorPlugin subclass.
+    private readonly MyInspectorPlugin inspectorPlugin = new();
+    public override void _EnterTree() => AddInspectorPlugin(inspectorPlugin);
+    public override void _ExitTree() => RemoveInspectorPlugin(inspectorPlugin);
 
 
 

@@ -82,13 +82,27 @@ You can optionally specify ``on_success``, it will be invoked on successful comp
 
 Or you can use the returned :ref:`OpenXRFutureResult<class_OpenXRFutureResult>` object to ``await`` its :ref:`OpenXRFutureResult.completed<class_OpenXRFutureResult_signal_completed>` signal.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var future_result = OpenXRFutureExtension.register_future(future)
     await future_result.completed
     if future_result.get_status() == OpenXRFutureResult.RESULT_FINISHED:
         # Handle your success
         pass
+
+ .. code-tab:: csharp
+
+    OpenXRFutureResult result = OpenXRFutureExtension.RegisterFuture(future);
+    await ToSignal(result, OpenXRFutureResult.SignalName.Completed);
+    if (result.GetStatus() == OpenXRFutureResult.ResultStatus.Finished)
+    {
+        // Handle success.
+    }
+
+
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
 .. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`

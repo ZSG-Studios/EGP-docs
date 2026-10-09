@@ -52,6 +52,27 @@ To start a WebSocket client, first call :ref:`connect_to_url()<class_WebSocketPe
             print("WebSocket closed with code: %d, reason %s. Clean: %s" % [code, reason, code != -1])
             set_process(false) # Stop processing.
 
+ .. code-tab:: csharp
+
+    private readonly WebSocketPeer socket = new();
+    public override void _Ready() => socket.ConnectToUrl("wss://example.com");
+    public override void _Process(double delta)
+    {
+        socket.Poll();
+        var state = socket.GetReadyState();
+        if (state == WebSocketPeer.State.Open)
+        {
+            while (socket.GetAvailablePacketCount() > 0) GD.Print("Packet: ", socket.GetPacket());
+        }
+        else if (state == WebSocketPeer.State.Closed)
+        {
+            int code = socket.GetCloseCode();
+            GD.Print($"WebSocket closed with code: {code}, reason {socket.GetCloseReason()}. Clean: {code != -1}");
+            SetProcess(false);
+        }
+        // Keep polling while Closing to finish the close handshake.
+    }
+
 
 
 To use the peer as part of a WebSocket server refer to :ref:`accept_stream()<class_WebSocketPeer_method_accept_stream>` and the online tutorial.

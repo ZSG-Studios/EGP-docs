@@ -940,7 +940,7 @@ Returns the response headers.
 
 Returns all response headers as a :ref:`Dictionary<class_Dictionary>`. Each entry is composed by the header name, and a :ref:`String<class_String>` containing the values separated by ``"; "``. The casing is kept the same as the headers were received.
 
-::
+.. code:: text
 
     {
         "content-length": 12,

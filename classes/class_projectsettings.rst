@@ -14034,7 +14034,10 @@ Returns the absolute, native OS path corresponding to the localized ``path`` (st
 
 \ **Note:** :ref:`globalize_path()<class_ProjectSettings_method_globalize_path>` with ``res://`` will not work in an exported project. Instead, prepend the executable's base directory to the path when running from an exported project:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var path = ""
     if OS.has_feature("editor"):
@@ -14047,6 +14050,14 @@ Returns the absolute, native OS path corresponding to the localized ``path`` (st
         # This is *not* identical to using `ProjectSettings.globalize_path()` with a `res://` path,
         # but is close enough in spirit.
         path = OS.get_executable_path().get_base_dir().path_join("hello.txt")
+
+ .. code-tab:: csharp
+
+    string path = OS.HasFeature("editor")
+        ? ProjectSettings.GlobalizePath("res://hello.txt")
+        : OS.GetExecutablePath().GetBaseDir().PathJoin("hello.txt");
+
+
 
 .. rst-class:: classref-item-separator
 
@@ -14154,7 +14165,10 @@ Defines if the specified setting is considered internal. An internal setting won
 
 Sets the specified setting's initial value. This is the value the setting reverts to. The setting should already exist before calling this method. Note that project settings equal to their default value are not saved, so your code needs to account for that.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     extends EditorPlugin
 
@@ -14166,6 +14180,19 @@ Sets the specified setting's initial value. This is the value the setting revert
             ProjectSettings.set_setting(SETTING_NAME, SETTING_DEFAULT)
 
         ProjectSettings.set_initial_value(SETTING_NAME, SETTING_DEFAULT)
+
+ .. code-tab:: csharp
+
+    private const string SettingName = "addons/my_setting";
+    private const double SettingDefault = 10.0;
+    public override void _EnterTree()
+    {
+        if (!ProjectSettings.HasSetting(SettingName))
+            ProjectSettings.SetSetting(SettingName, SettingDefault);
+        ProjectSettings.SetInitialValue(SettingName, SettingDefault);
+    }
+
+
 
 If you have a project setting defined by an :ref:`EditorPlugin<class_EditorPlugin>`, but want to use it in a running project, you will need a similar code at runtime.
 

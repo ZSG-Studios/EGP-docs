@@ -305,7 +305,10 @@ Register a reference to an object that will be erased if the "do" history is del
 
 When the "do" history is deleted, if the object is a :ref:`RefCounted<class_RefCounted>`, it will be unreferenced. Otherwise, it will be freed. Do not use for resources.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var node = Node2D.new()
     undo_redo.create_action("Add node")
@@ -313,6 +316,17 @@ When the "do" history is deleted, if the object is a :ref:`RefCounted<class_RefC
     undo_redo.add_do_reference(node)
     undo_redo.add_undo_method(remove_child.bind(node))
     undo_redo.commit_action()
+
+ .. code-tab:: csharp
+
+    var node = new Node2D();
+    undoRedo.CreateAction("Add node");
+    undoRedo.AddDoMethod(Callable.From(() => AddChild(node)));
+    undoRedo.AddDoReference(node);
+    undoRedo.AddUndoMethod(Callable.From(() => RemoveChild(node)));
+    undoRedo.CommitAction();
+
+
 
 .. rst-class:: classref-item-separator
 
@@ -352,7 +366,10 @@ Register a reference to an object that will be erased if the "undo" history is d
 
 When the "undo" history is deleted, if the object is a :ref:`RefCounted<class_RefCounted>`, it will be unreferenced. Otherwise, it will be freed. Do not use for resources.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var node = $Node2D
     undo_redo.create_action("Remove node")
@@ -360,6 +377,17 @@ When the "undo" history is deleted, if the object is a :ref:`RefCounted<class_Re
     undo_redo.add_undo_method(add_child.bind(node))
     undo_redo.add_undo_reference(node)
     undo_redo.commit_action()
+
+ .. code-tab:: csharp
+
+    var node = GetNode<Node2D>("Node2D");
+    undoRedo.CreateAction("Remove node");
+    undoRedo.AddDoMethod(Callable.From(() => RemoveChild(node)));
+    undoRedo.AddUndoMethod(Callable.From(() => AddChild(node)));
+    undoRedo.AddUndoReference(node);
+    undoRedo.CommitAction();
+
+
 
 .. rst-class:: classref-item-separator
 

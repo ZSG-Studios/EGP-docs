@@ -56,7 +56,10 @@ Creates an **ImageTextureLayered** from an array of :ref:`Image<class_Image>`\ s
 
 Each :ref:`Image<class_Image>` represents one ``layer``.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     # Fill in an array of Images with different colors.
     var images = []
@@ -89,6 +92,29 @@ Each :ref:`Image<class_Image>` represents one ``layer``.
     var cubemap_array = CubemapArray.new()
     cubemap_array.create_from_images(images)
     ResourceSaver.save(cubemap_array, "res://cubemap_array.res", ResourceSaver.FLAG_COMPRESS)
+
+ .. code-tab:: csharp
+
+    var images = new Godot.Collections.Array<Image>();
+    for (int i = 0; i < 6; i++)
+    {
+        Image image = Image.CreateEmpty(128, 128, false, Image.Format.Rgb8);
+        image.Fill(i % 3 == 0 ? Colors.Red : i % 3 == 1 ? Colors.Green : Colors.Blue);
+        images.Add(image);
+    }
+    var textureArray = new Texture2DArray();
+    textureArray.CreateFromImages(images);
+    ResourceSaver.Save(textureArray, "res://texture_2d_array.res", ResourceSaver.SaverFlags.Compress);
+    // Cubemap face order: X+, X-, Y+, Y-, Z+, Z-.
+    var cubemap = new Cubemap();
+    cubemap.CreateFromImages(images);
+    ResourceSaver.Save(cubemap, "res://cubemap.res", ResourceSaver.SaverFlags.Compress);
+    // Cubemap arrays require a multiple of six images, in the same face order.
+    var cubemapArray = new CubemapArray();
+    cubemapArray.CreateFromImages(images);
+    ResourceSaver.Save(cubemapArray, "res://cubemap_array.res", ResourceSaver.SaverFlags.Compress);
+
+
 
 .. rst-class:: classref-item-separator
 

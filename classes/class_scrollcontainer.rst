@@ -415,10 +415,19 @@ The current horizontal scroll value.
 
 \ **Note:** If you are setting this value in the :ref:`Node._ready()<class_Node_private_method__ready>` function or earlier, it needs to be wrapped with :ref:`Object.set_deferred()<class_Object_method_set_deferred>`, since scroll bar's :ref:`Range.max_value<class_Range_property_max_value>` is not initialized yet.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     func _ready():
         set_deferred("scroll_horizontal", 600)
+
+ .. code-tab:: csharp
+
+    public override void _Ready() => SetDeferred(PropertyName.ScrollHorizontal, 600);
+
+
 
 .. rst-class:: classref-item-separator
 
@@ -475,10 +484,19 @@ The current vertical scroll value.
 
 \ **Note:** Setting it early needs to be deferred, just like in :ref:`scroll_horizontal<class_ScrollContainer_property_scroll_horizontal>`.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     func _ready():
         set_deferred("scroll_vertical", 600)
+
+ .. code-tab:: csharp
+
+    public override void _Ready() => SetDeferred(PropertyName.ScrollVertical, 600);
+
+
 
 .. rst-class:: classref-item-separator
 
@@ -550,11 +568,22 @@ Ensures the given ``control`` is visible (must be a direct or indirect child of 
 
 \ **Note:** This will not work on a node that was just added during the same frame. If you want to scroll to a newly added child, you must wait until the next frame using :ref:`SceneTree.process_frame<class_SceneTree_signal_process_frame>`:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     add_child(child_node)
     await get_tree().process_frame
     ensure_control_visible(child_node)
+
+ .. code-tab:: csharp
+
+    AddChild(childNode);
+    await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+    EnsureControlVisible(childNode);
+
+
 
 .. rst-class:: classref-item-separator
 

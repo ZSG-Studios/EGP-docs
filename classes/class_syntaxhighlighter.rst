@@ -122,7 +122,7 @@ Each entry is a column number containing a nested :ref:`Dictionary<class_Diction
 
 \ **Example:** Possible return value. This means columns ``0`` to ``4`` should be red, and columns ``5`` to the end of the line should be green:
 
-::
+.. code:: text
 
     {
         0: {

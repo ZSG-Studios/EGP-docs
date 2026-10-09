@@ -25,18 +25,48 @@ Description
 
 You can retrieve the data by iterating on the container, which will work as if iterating on the packed data itself. If the packed container is a :ref:`Dictionary<class_Dictionary>`, the data can be retrieved by key names (:ref:`String<class_String>`/:ref:`StringName<class_StringName>` only).
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var data = { "key": "value", "another_key": 123, "lock": Vector2() }
     var packed = PackedDataContainer.new()
     packed.pack(data)
     ResourceSaver.save(packed, "packed_data.res")
 
-::
+ .. code-tab:: csharp
+
+    var data = new Godot.Collections.Dictionary { { "key", "value" }, { "another_key", 123 }, { "lock", Vector2.Zero } };
+    var packed = new PackedDataContainer();
+    packed.Pack(data);
+    ResourceSaver.Save(packed, "res://packed_data.res");
+
+
+
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var container = load("packed_data.res")
     for key in container:
         prints(key, container[key])
+
+ .. code-tab:: csharp
+
+    var container = GD.Load<PackedDataContainer>("res://packed_data.res");
+    // Native iteration hooks are accessible through dynamic calls.
+    var iterator = new Godot.Collections.Array { 0 };
+    bool valid = container.Call("_iter_init", iterator).AsBool();
+    while (valid)
+    {
+        Variant key = container.Call("_iter_get", iterator[0]);
+        GD.Print(key, " ", container.Get(key.AsString()));
+        valid = container.Call("_iter_next", iterator).AsBool();
+    }
+
+
 
 Prints:
 

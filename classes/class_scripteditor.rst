@@ -213,7 +213,7 @@ Opens help for the given topic. The ``topic`` is an encoded string that controls
 
 The supported ``topic`` formats include ``class_name:class``, ``class_method:class:method``, ``class_constant:class:constant``, ``class_signal:class:signal``, ``class_annotation:class:@annotation``, ``class_property:class:property``, and ``class_theme_item:class:item``, where ``class`` is the class name, ``method`` is the method name, ``constant`` is the constant name, ``signal`` is the signal name, ``annotation`` is the annotation name, ``property`` is the property name, and ``item`` is the theme item.
 
-::
+.. code:: text
 
     # Shows help for the Node class.
     class_name:Node

@@ -25,7 +25,10 @@ Description
 
 To create a menu, use :ref:`create_menu()<class_NativeMenu_method_create_menu>`, add menu items using ``add_*_item`` methods. To remove a menu, use :ref:`free_menu()<class_NativeMenu_method_free_menu>`.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var menu
 
@@ -52,6 +55,32 @@ To create a menu, use :ref:`create_menu()<class_NativeMenu_method_create_menu>`,
     func _exit_tree():
         # Remove menu when it's no longer needed:
         NativeMenu.free_menu(menu)
+
+ .. code-tab:: csharp
+
+    private Rid menu;
+    private void MenuCallback(Variant itemId)
+    {
+        switch (itemId.AsString())
+        {
+            case "ITEM_CUT": Cut(); break;
+            case "ITEM_COPY": Copy(); break;
+            case "ITEM_PASTE": Paste(); break;
+        }
+    }
+    public override void _EnterTree()
+    {
+        menu = NativeMenu.CreateMenu();
+        var callback = Callable.From<Variant>(MenuCallback);
+        NativeMenu.AddItem(menu, "Cut", callback, default, "ITEM_CUT");
+        NativeMenu.AddItem(menu, "Copy", callback, default, "ITEM_COPY");
+        NativeMenu.AddSeparator(menu);
+        NativeMenu.AddItem(menu, "Paste", callback, default, "ITEM_PASTE");
+    }
+    private void OnButtonPressed() => NativeMenu.Popup(menu, DisplayServer.MouseGetPosition());
+    public override void _ExitTree() => NativeMenu.FreeMenu(menu);
+
+
 
 .. rst-class:: classref-reftable-group
 

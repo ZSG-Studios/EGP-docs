@@ -23,7 +23,10 @@ UDP packet peer. Can be used to send and receive raw UDP packets as well as :ref
 
 \ **Example:** Send a packet:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var peer = PacketPeerUDP.new()
 
@@ -33,9 +36,21 @@ UDP packet peer. Can be used to send and receive raw UDP packets as well as :ref
     peer.set_dest_address("1.1.1.1", 4433)
     peer.put_packet("hello".to_utf8_buffer())
 
+ .. code-tab:: csharp
+
+    var peer = new PacketPeerUdp();
+    peer.Bind(4444); // Optional local source port.
+    peer.SetDestAddress("1.1.1.1", 4433);
+    peer.PutPacket("hello".ToUtf8Buffer());
+
+
+
 \ **Example:** Listen for packets:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var peer
 
@@ -49,6 +64,22 @@ UDP packet peer. Can be used to send and receive raw UDP packets as well as :ref
             var array_bytes = peer.get_packet()
             var packet_string = array_bytes.get_string_from_ascii()
             print("Received message: ", packet_string)
+
+ .. code-tab:: csharp
+
+    private PacketPeerUdp peer;
+    public override void _Ready()
+    {
+        peer = new PacketPeerUdp();
+        peer.Bind(4433);
+    }
+    public override void _Process(double delta)
+    {
+        if (peer.GetAvailablePacketCount() > 0)
+            GD.Print("Received message: ", peer.GetPacket().GetStringFromAscii());
+    }
+
+
 
 \ **Note:** When exporting to Android, make sure to enable the ``INTERNET`` permission in the Android export preset before exporting the project or using remote deploy. Otherwise, network communication of any kind will be blocked by Android.
 

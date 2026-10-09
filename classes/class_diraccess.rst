@@ -28,13 +28,24 @@ This class is used to manage directories and their content, even outside of the 
 
 Most of the methods have a static alternative that can be used without creating a **DirAccess**. Static methods only support absolute paths (including ``res://`` and ``user://``).
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     # Standard
     var dir = DirAccess.open("user://levels")
     dir.make_dir("world1")
     # Static
     DirAccess.make_dir_absolute("user://levels/world1")
+
+ .. code-tab:: csharp
+
+    using var dir = DirAccess.Open("user://levels");
+    dir.MakeDir("world1");
+    DirAccess.MakeDirAbsolute("user://levels/world1");
+
+
 
 \ **Note:** Accessing project ("res://") directories once exported may behave unexpectedly as some files are converted to engine-specific formats and their original source files may not be present in the expected PCK package. Because of this, to access resources in an exported project, it is recommended to use :ref:`ResourceLoader<class_ResourceLoader>` instead of :ref:`FileAccess<class_FileAccess>`.
 

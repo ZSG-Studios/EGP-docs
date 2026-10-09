@@ -173,6 +173,13 @@ Emitted when a :ref:`Shape3D<class_Shape3D>` of the received ``area`` enters a s
     var local_shape_owner = shape_find_owner(local_shape_index)
     var local_shape_node = shape_owner_get_owner(local_shape_owner)
 
+ .. code-tab:: csharp
+
+    uint otherShapeOwner = area.ShapeFindOwner((int)areaShapeIndex);
+    GodotObject otherShapeNode = area.ShapeOwnerGetOwner(otherShapeOwner);
+    uint localShapeOwner = ShapeFindOwner((int)localShapeIndex);
+    GodotObject localShapeNode = ShapeOwnerGetOwner(localShapeOwner);
+
 
 
 .. rst-class:: classref-item-separator
@@ -245,6 +252,13 @@ Emitted when a :ref:`Shape3D<class_Shape3D>` of the received ``body`` enters a s
 
     var local_shape_owner = shape_find_owner(local_shape_index)
     var local_shape_node = shape_owner_get_owner(local_shape_owner)
+
+ .. code-tab:: csharp
+
+    uint bodyShapeOwner = body.ShapeFindOwner((int)bodyShapeIndex);
+    GodotObject bodyShapeNode = body.ShapeOwnerGetOwner(bodyShapeOwner);
+    uint localShapeOwner = ShapeFindOwner((int)localShapeIndex);
+    GodotObject localShapeNode = ShapeOwnerGetOwner(localShapeOwner);
 
 
 

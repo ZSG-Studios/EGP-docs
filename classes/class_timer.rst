@@ -25,10 +25,19 @@ After a timer enters the scene tree, it can be manually started with :ref:`start
 
 Without requiring much code, a timer node can be added and configured in the editor. The :ref:`timeout<class_Timer_signal_timeout>` signal it emits can also be connected through the Signals dock in the editor:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     func _on_timer_timeout():
         print("Time to attack!")
+
+ .. code-tab:: csharp
+
+    private void OnTimerTimeout() => GD.Print("Time to attack!");
+
+
 
 \ **Note:** To create a one-shot timer without instantiating a node, use :ref:`SceneTree.create_timer()<class_SceneTree_method_create_timer>`.
 

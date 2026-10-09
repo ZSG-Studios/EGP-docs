@@ -756,11 +756,20 @@ Not to be confused with :ref:`get_user_data_dir()<class_OS_method_get_user_data_
 
 Returns the command-line arguments passed to the engine, excluding arguments processed by the engine, such as ``--headless`` and ``--fullscreen``.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     # Godot has been executed with the following command:
     # godot --headless --verbose --scene my_scene.tscn --custom
     OS.get_cmdline_args() # Returns ["--scene", "my_scene.tscn", "--custom"]
+
+ .. code-tab:: csharp
+
+    string[] args = OS.GetCmdlineArgs(); // ["--scene", "my_scene.tscn", "--custom"].
+
+
 
 Command-line arguments can be written in any form, including both ``--key value`` and ``--key=value`` forms so they can be properly parsed, as long as custom command-line arguments do not conflict with engine arguments.
 
@@ -819,13 +828,23 @@ You can set :ref:`ProjectSettings.editor/run/main_run_args<class_ProjectSettings
 
 Returns the command-line user arguments passed to the engine. User arguments are ignored by the engine and reserved for the user. They are passed after the double dash ``--`` argument. ``++`` may be used when ``--`` is intercepted by another program (such as ``startx``).
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     # Godot has been executed with the following command:
     # godot --fullscreen --custom -- --level=2 --hardcore
 
     OS.get_cmdline_args()      # Returns ["--custom"]
     OS.get_cmdline_user_args() # Returns ["--level=2", "--hardcore"]
+
+ .. code-tab:: csharp
+
+    string[] engineArgs = OS.GetCmdlineArgs(); // ["--custom"].
+    string[] userArgs = OS.GetCmdlineUserArgs(); // ["--level=2", "--hardcore"].
+
+
 
 To get arguments passed before ``--`` or ``++``, use :ref:`get_cmdline_args()<class_OS_method_get_cmdline_args>`.
 
@@ -1542,6 +1561,19 @@ The second element holds the driver version. For example, on the ``nvidia`` driv
 
     func _exit_tree():
         thread.wait_to_finish()
+
+ .. code-tab:: csharp
+
+    private readonly Godot.Thread thread = new();
+    public override void _Ready()
+    {
+        thread.Start(Callable.From(() =>
+        {
+            string[] info = OS.GetVideoAdapterDriverInfo();
+            GD.Print(info.Length >= 2 ? $"Driver: {info[0]} {info[1]}" : "Driver: (unknown)");
+        }));
+    }
+    public override void _ExitTree() => thread.WaitToFinish();
 
 
 

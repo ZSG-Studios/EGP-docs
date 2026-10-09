@@ -25,7 +25,10 @@ For reference, this is how common user-facing blend modes are implemented in God
 
 \ **Mix:**\ 
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var attachment = RDPipelineColorBlendStateAttachment.new()
     attachment.enable_blend = true
@@ -36,9 +39,25 @@ For reference, this is how common user-facing blend modes are implemented in God
     attachment.src_alpha_blend_factor = RenderingDevice.BLEND_FACTOR_ONE
     attachment.dst_alpha_blend_factor = RenderingDevice.BLEND_FACTOR_ONE_MINUS_SRC_ALPHA
 
+ .. code-tab:: csharp
+
+    var attachment = new RDPipelineColorBlendStateAttachment();
+    attachment.EnableBlend = true;
+    attachment.ColorBlendOp = RenderingDevice.BlendOperation.Add;
+    attachment.SrcColorBlendFactor = RenderingDevice.BlendFactor.SrcAlpha;
+    attachment.DstColorBlendFactor = RenderingDevice.BlendFactor.OneMinusSrcAlpha;
+    attachment.AlphaBlendOp = RenderingDevice.BlendOperation.Add;
+    attachment.SrcAlphaBlendFactor = RenderingDevice.BlendFactor.One;
+    attachment.DstAlphaBlendFactor = RenderingDevice.BlendFactor.OneMinusSrcAlpha;
+
+
+
 \ **Add:**\ 
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var attachment = RDPipelineColorBlendStateAttachment.new()
     attachment.enable_blend = true
@@ -49,9 +68,25 @@ For reference, this is how common user-facing blend modes are implemented in God
     attachment.src_alpha_blend_factor = RenderingDevice.BLEND_FACTOR_SRC_ALPHA
     attachment.dst_alpha_blend_factor = RenderingDevice.BLEND_FACTOR_ONE
 
+ .. code-tab:: csharp
+
+    var attachment = new RDPipelineColorBlendStateAttachment();
+    attachment.EnableBlend = true;
+    attachment.AlphaBlendOp = RenderingDevice.BlendOperation.Add;
+    attachment.ColorBlendOp = RenderingDevice.BlendOperation.Add;
+    attachment.SrcColorBlendFactor = RenderingDevice.BlendFactor.SrcAlpha;
+    attachment.DstColorBlendFactor = RenderingDevice.BlendFactor.One;
+    attachment.SrcAlphaBlendFactor = RenderingDevice.BlendFactor.SrcAlpha;
+    attachment.DstAlphaBlendFactor = RenderingDevice.BlendFactor.One;
+
+
+
 \ **Subtract:**\ 
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var attachment = RDPipelineColorBlendStateAttachment.new()
     attachment.enable_blend = true
@@ -62,9 +97,25 @@ For reference, this is how common user-facing blend modes are implemented in God
     attachment.src_alpha_blend_factor = RenderingDevice.BLEND_FACTOR_SRC_ALPHA
     attachment.dst_alpha_blend_factor = RenderingDevice.BLEND_FACTOR_ONE
 
+ .. code-tab:: csharp
+
+    var attachment = new RDPipelineColorBlendStateAttachment();
+    attachment.EnableBlend = true;
+    attachment.AlphaBlendOp = RenderingDevice.BlendOperation.ReverseSubtract;
+    attachment.ColorBlendOp = RenderingDevice.BlendOperation.ReverseSubtract;
+    attachment.SrcColorBlendFactor = RenderingDevice.BlendFactor.SrcAlpha;
+    attachment.DstColorBlendFactor = RenderingDevice.BlendFactor.One;
+    attachment.SrcAlphaBlendFactor = RenderingDevice.BlendFactor.SrcAlpha;
+    attachment.DstAlphaBlendFactor = RenderingDevice.BlendFactor.One;
+
+
+
 \ **Multiply:**\ 
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var attachment = RDPipelineColorBlendStateAttachment.new()
     attachment.enable_blend = true
@@ -75,9 +126,25 @@ For reference, this is how common user-facing blend modes are implemented in God
     attachment.src_alpha_blend_factor = RenderingDevice.BLEND_FACTOR_DST_ALPHA
     attachment.dst_alpha_blend_factor = RenderingDevice.BLEND_FACTOR_ZERO
 
+ .. code-tab:: csharp
+
+    var attachment = new RDPipelineColorBlendStateAttachment();
+    attachment.EnableBlend = true;
+    attachment.AlphaBlendOp = RenderingDevice.BlendOperation.Add;
+    attachment.ColorBlendOp = RenderingDevice.BlendOperation.Add;
+    attachment.SrcColorBlendFactor = RenderingDevice.BlendFactor.DstColor;
+    attachment.DstColorBlendFactor = RenderingDevice.BlendFactor.Zero;
+    attachment.SrcAlphaBlendFactor = RenderingDevice.BlendFactor.DstAlpha;
+    attachment.DstAlphaBlendFactor = RenderingDevice.BlendFactor.Zero;
+
+
+
 \ **Pre-multiplied alpha:**\ 
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var attachment = RDPipelineColorBlendStateAttachment.new()
     attachment.enable_blend = true
@@ -87,6 +154,19 @@ For reference, this is how common user-facing blend modes are implemented in God
     attachment.dst_color_blend_factor = RenderingDevice.BLEND_FACTOR_ONE_MINUS_SRC_ALPHA
     attachment.src_alpha_blend_factor = RenderingDevice.BLEND_FACTOR_ONE
     attachment.dst_alpha_blend_factor = RenderingDevice.BLEND_FACTOR_ONE_MINUS_SRC_ALPHA
+
+ .. code-tab:: csharp
+
+    var attachment = new RDPipelineColorBlendStateAttachment();
+    attachment.EnableBlend = true;
+    attachment.AlphaBlendOp = RenderingDevice.BlendOperation.Add;
+    attachment.ColorBlendOp = RenderingDevice.BlendOperation.Add;
+    attachment.SrcColorBlendFactor = RenderingDevice.BlendFactor.One;
+    attachment.DstColorBlendFactor = RenderingDevice.BlendFactor.OneMinusSrcAlpha;
+    attachment.SrcAlphaBlendFactor = RenderingDevice.BlendFactor.One;
+    attachment.DstAlphaBlendFactor = RenderingDevice.BlendFactor.OneMinusSrcAlpha;
+
+
 
 .. rst-class:: classref-reftable-group
 

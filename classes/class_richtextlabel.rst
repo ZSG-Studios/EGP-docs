@@ -412,6 +412,13 @@ For example, the following method can be connected to :ref:`meta_clicked<class_R
         # `meta` is of Variant type, so convert it to a String to avoid script errors at run-time.
         OS.shell_open(str(meta))
 
+ .. code-tab:: csharp
+
+    private void OnMetaClicked(Variant meta)
+    {
+        OS.ShellOpen(meta.ToString());
+    }
+
 
 
 .. rst-class:: classref-item-separator
@@ -1823,7 +1830,10 @@ Installs a custom effect. This can also be done in the Inspector through the :re
 
 \ **Example:** With the following script extending from :ref:`RichTextEffect<class_RichTextEffect>`:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     # effect.gd
     class_name MyCustomEffect
@@ -1833,9 +1843,23 @@ Installs a custom effect. This can also be done in the Inspector through the :re
 
     # ...
 
+ .. code-tab:: csharp
+
+    [GlobalClass]
+    public partial class MyCustomEffect : RichTextEffect
+    {
+        public string bbcode = "my_custom_effect";
+        // Override _ProcessCustomFX here.
+    }
+
+
+
 The above effect can be installed in **RichTextLabel** from a script:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     # rich_text_label.gd
     extends RichTextLabel
@@ -1845,6 +1869,18 @@ The above effect can be installed in **RichTextLabel** from a script:
 
         # Alternatively, if not using `class_name` in the script that extends RichTextEffect:
         install_effect(preload("res://effect.gd").new())
+
+ .. code-tab:: csharp
+
+    public override void _Ready()
+    {
+        InstallEffect(new MyCustomEffect());
+        // A GDScript effect can also be instantiated explicitly:
+        var script = GD.Load<GDScript>("res://effect.gd");
+        InstallEffect(script.Call("new"));
+    }
+
+
 
 .. rst-class:: classref-item-separator
 

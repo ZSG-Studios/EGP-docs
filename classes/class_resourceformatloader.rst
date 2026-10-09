@@ -163,7 +163,10 @@ Should return the dependencies for the resource at the given ``path``. Each depe
 
 - The third section should contain the fallback path if the resource has a UID. Otherwise, it should be empty.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     func _get_dependencies(path, add_types):
         return [
@@ -172,6 +175,21 @@ Should return the dependencies for the resource at the given ``path``. Each depe
             "res://script.gd::Script",
             "res://script.gd",
         ]
+
+ .. code-tab:: csharp
+
+    public override string[] _GetDependencies(string path, bool addTypes)
+    {
+        return new[]
+        {
+            "uid://fqgvuwrkuixh::Script::res://script.gd",
+            "uid://fqgvuwrkuixh::::res://script.gd",
+            "res://script.gd::Script",
+            "res://script.gd",
+        };
+    }
+
+
 
 \ **Note:** Custom resource types defined by scripts aren't known by the :ref:`ClassDB<class_ClassDB>`, so ``"Resource"`` can be used for the class name.
 

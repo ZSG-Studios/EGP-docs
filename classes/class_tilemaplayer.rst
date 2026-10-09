@@ -608,7 +608,10 @@ Returns the tile source ID of the cell at coordinates ``coords``. Returns ``-1``
 
 Returns the :ref:`TileData<class_TileData>` object associated with the given cell, or ``null`` if the cell does not exist or is not a :ref:`TileSetAtlasSource<class_TileSetAtlasSource>`.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     func get_clicked_tile_power():
         var clicked_cell = tile_map_layer.local_to_map(tile_map_layer.get_local_mouse_position())
@@ -617,6 +620,17 @@ Returns the :ref:`TileData<class_TileData>` object associated with the given cel
             return data.get_custom_data("power")
         else:
             return 0
+
+ .. code-tab:: csharp
+
+    private Variant GetClickedTilePower()
+    {
+        Vector2I cell = tileMap.LocalToMap(tileMap.GetLocalMousePosition());
+        TileData data = tileMap.GetCellTileData(cell);
+        return data != null ? data.GetCustomData("power") : Variant.From(0);
+    }
+
+
 
 .. rst-class:: classref-item-separator
 

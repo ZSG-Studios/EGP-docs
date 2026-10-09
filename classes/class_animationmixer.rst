@@ -566,6 +566,11 @@ AnimationMixer has a global library by default with an empty string as key. For 
     var global_library = mixer.get_animation_library("")
     global_library.add_animation("animation_name", animation_resource)
 
+ .. code-tab:: csharp
+
+    var globalLibrary = mixer.GetAnimationLibrary("");
+    globalLibrary.AddAnimation("animation_name", animationResource);
+
 
 
 .. rst-class:: classref-item-separator
@@ -705,7 +710,7 @@ The most basic example is applying position to :ref:`CharacterBody3D<class_Chara
 
  .. code-tab:: gdscript
 
-    var current_rotation
+    var current_rotation = Quaternion.IDENTITY
 
     func _process(delta):
         if Input.is_action_just_pressed("animate"):
@@ -714,6 +719,20 @@ The most basic example is applying position to :ref:`CharacterBody3D<class_Chara
         var velocity = current_rotation * animation_tree.get_root_motion_position() / delta
         set_velocity(velocity)
         move_and_slide()
+
+ .. code-tab:: csharp
+
+    private Quaternion currentRotation = Quaternion.Identity;
+    public override void _Process(double delta)
+    {
+        if (Input.IsActionJustPressed("animate"))
+        {
+            currentRotation = Quaternion;
+            stateMachine.Travel("Animate");
+        }
+        Velocity = currentRotation * animationTree.GetRootMotionPosition() / (float)delta;
+        MoveAndSlide();
+    }
 
 
 
@@ -731,6 +750,17 @@ By using this in combination with :ref:`get_root_motion_rotation_accumulator()<c
         var velocity = (animation_tree.get_root_motion_rotation_accumulator().inverse() * get_quaternion()) * animation_tree.get_root_motion_position() / delta
         set_velocity(velocity)
         move_and_slide()
+
+ .. code-tab:: csharp
+
+    public override void _Process(double delta)
+    {
+        if (Input.IsActionJustPressed("animate"))
+            stateMachine.Travel("Animate");
+        Quaternion *= animationTree.GetRootMotionRotation();
+        Velocity = (animationTree.GetRootMotionRotationAccumulator().Inverse() * Quaternion) * animationTree.GetRootMotionPosition() / (float)delta;
+        MoveAndSlide();
+    }
 
 
 
@@ -750,6 +780,17 @@ In this case, the code can be written as follows:
         var velocity = get_quaternion() * animation_tree.get_root_motion_position() / delta
         set_velocity(velocity)
         move_and_slide()
+
+ .. code-tab:: csharp
+
+    public override void _Process(double delta)
+    {
+        if (Input.IsActionJustPressed("animate"))
+            stateMachine.Travel("Animate");
+        Quaternion *= animationTree.GetRootMotionRotation();
+        Velocity = Quaternion * animationTree.GetRootMotionPosition() / (float)delta;
+        MoveAndSlide();
+    }
 
 
 
@@ -774,7 +815,7 @@ For example, if an animation with only one key ``Vector3(0, 0, 0)`` is played in
 
  .. code-tab:: gdscript
 
-    var prev_root_motion_position_accumulator
+    var prev_root_motion_position_accumulator = Vector3.ZERO
 
     func _process(delta):
         if Input.is_action_just_pressed("animate"):
@@ -783,6 +824,19 @@ For example, if an animation with only one key ``Vector3(0, 0, 0)`` is played in
         var difference = current_root_motion_position_accumulator - prev_root_motion_position_accumulator
         prev_root_motion_position_accumulator = current_root_motion_position_accumulator
         transform.origin += difference
+
+ .. code-tab:: csharp
+
+    private Vector3 previousPosition = Vector3.Zero;
+    public override void _Process(double delta)
+    {
+        if (Input.IsActionJustPressed("animate"))
+            stateMachine.Travel("Animate");
+        Vector3 currentPosition = animationTree.GetRootMotionPositionAccumulator();
+        Vector3 difference = currentPosition - previousPosition;
+        previousPosition = currentPosition;
+        Position += difference;
+    }
 
 
 
@@ -816,6 +870,15 @@ The most basic example is applying rotation to :ref:`CharacterBody3D<class_Chara
             state_machine.travel("Animate")
         set_quaternion(get_quaternion() * animation_tree.get_root_motion_rotation())
 
+ .. code-tab:: csharp
+
+    public override void _Process(double delta)
+    {
+        if (Input.IsActionJustPressed("animate"))
+            stateMachine.Travel("Animate");
+        Quaternion *= animationTree.GetRootMotionRotation();
+    }
+
 
 
 .. rst-class:: classref-item-separator
@@ -841,7 +904,7 @@ For example, if an animation with only one key ``Quaternion(0, 0, 0, 1)`` is pla
 
  .. code-tab:: gdscript
 
-    var prev_root_motion_rotation_accumulator
+    var prev_root_motion_rotation_accumulator = Quaternion.IDENTITY
 
     func _process(delta):
         if Input.is_action_just_pressed("animate"):
@@ -850,6 +913,21 @@ For example, if an animation with only one key ``Quaternion(0, 0, 0, 1)`` is pla
         var difference = prev_root_motion_rotation_accumulator.inverse() * current_root_motion_rotation_accumulator
         prev_root_motion_rotation_accumulator = current_root_motion_rotation_accumulator
         transform.basis *=  Basis(difference)
+
+ .. code-tab:: csharp
+
+    private Quaternion previousRotation = Quaternion.Identity;
+    public override void _Process(double delta)
+    {
+        if (Input.IsActionJustPressed("animate"))
+            stateMachine.Travel("Animate");
+        Quaternion currentRotation = animationTree.GetRootMotionRotationAccumulator();
+        Quaternion difference = previousRotation.Inverse() * currentRotation;
+        previousRotation = currentRotation;
+        Transform3D transform = Transform;
+        transform.Basis *= new Basis(difference);
+        Transform = transform;
+    }
 
 
 
@@ -889,6 +967,22 @@ The most basic example is applying scale to :ref:`CharacterBody3D<class_Characte
         scale_accum += animation_tree.get_root_motion_scale()
         set_scale(current_scale * scale_accum)
 
+ .. code-tab:: csharp
+
+    private Vector3 currentScale = Vector3.One;
+    private Vector3 scaleAccum = Vector3.One;
+    public override void _Process(double delta)
+    {
+        if (Input.IsActionJustPressed("animate"))
+        {
+            currentScale = Scale;
+            scaleAccum = Vector3.One;
+            stateMachine.Travel("Animate");
+        }
+        scaleAccum += animationTree.GetRootMotionScale();
+        Scale = currentScale * scaleAccum;
+    }
+
 
 
 .. rst-class:: classref-item-separator
@@ -910,15 +1004,34 @@ For example, if an animation with only one key ``Vector3(1, 1, 1)`` is played in
 
  .. code-tab:: gdscript
 
-    var prev_root_motion_scale_accumulator
+    var prev_root_motion_scale_accumulator = Vector3.ONE
 
     func _process(delta):
         if Input.is_action_just_pressed("animate"):
             state_machine.travel("Animate")
         var current_root_motion_scale_accumulator = animation_tree.get_root_motion_scale_accumulator()
-        var difference = current_root_motion_scale_accumulator - prev_root_motion_scale_accumulator
+        if prev_root_motion_scale_accumulator.x != 0 and prev_root_motion_scale_accumulator.y != 0 and prev_root_motion_scale_accumulator.z != 0:
+            var ratio = current_root_motion_scale_accumulator / prev_root_motion_scale_accumulator
+            transform.basis = transform.basis.scaled(ratio)
         prev_root_motion_scale_accumulator = current_root_motion_scale_accumulator
-        transform.basis = transform.basis.scaled(difference)
+
+ .. code-tab:: csharp
+
+    private Vector3 previousScale = Vector3.One;
+    public override void _Process(double delta)
+    {
+        if (Input.IsActionJustPressed("animate"))
+            stateMachine.Travel("Animate");
+        Vector3 currentScale = animationTree.GetRootMotionScaleAccumulator();
+        // Ratios preserve scale when the accumulator is unchanged.
+        if (previousScale.X != 0 && previousScale.Y != 0 && previousScale.Z != 0)
+        {
+            Transform3D transform = Transform;
+            transform.Basis = transform.Basis.Scaled(currentScale / previousScale);
+            Transform = transform;
+        }
+        previousScale = currentScale;
+    }
 
 
 

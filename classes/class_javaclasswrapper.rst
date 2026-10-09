@@ -23,7 +23,10 @@ The JavaClassWrapper singleton provides a way for the Godot application to send 
 
 \ **Note:** This singleton is only available in Android builds.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var LocalDateTime = JavaClassWrapper.wrap("java.time.LocalDateTime")
     var DateTimeFormatter = JavaClassWrapper.wrap("java.time.format.DateTimeFormatter")
@@ -32,6 +35,16 @@ The JavaClassWrapper singleton provides a way for the Godot application to send 
     var formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")
 
     print(datetime.format(formatter))
+
+ .. code-tab:: csharp
+
+    GodotObject localDateTime = JavaClassWrapper.Wrap("java.time.LocalDateTime");
+    GodotObject dateTimeFormatter = JavaClassWrapper.Wrap("java.time.format.DateTimeFormatter");
+    GodotObject dateTime = localDateTime.Call("now").AsGodotObject();
+    GodotObject formatter = dateTimeFormatter.Call("ofPattern", "dd-MM-yyyy HH:mm:ss").AsGodotObject();
+    GD.Print(dateTime.Call("format", formatter));
+
+
 
 \ **Warning:** When calling Java methods, be sure to check :ref:`get_exception()<class_JavaClassWrapper_method_get_exception>` to check if the method threw an exception.
 
@@ -79,7 +92,10 @@ Creates a :ref:`JavaObject<class_JavaObject>` implementing the given Java interf
 
 The ``object`` must contain methods signatures matching the methods signatures from the passed Java ``interfaces``. Invoking methods from the Java ``interfaces`` will route to the matching ``object`` method.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     class PrintProxy:
         func println(content: String) -> void:
@@ -88,6 +104,20 @@ The ``object`` must contain methods signatures matching the methods signatures f
     var print_proxy = PrintProxy.new()
     var printer_object = JavaClassWrapper.create_proxy(print_proxy, ["android.util.Printer"])
     printer_object.println("Hello Godot World!")
+
+ .. code-tab:: csharp
+
+    public partial class PrintProxy : RefCounted
+    {
+        // Java proxy dispatch uses this exact method name.
+        public void println(string content) => GD.Print(content);
+    }
+    // In the calling script:
+    var printProxy = new PrintProxy();
+    GodotObject printer = JavaClassWrapper.CreateProxy(printProxy, new[] { "android.util.Printer" });
+    printer.Call("println", "Hello Godot World!");
+
+
 
 \ **Note:** This method only works on Android. On every other platform, this method will always return ``null``.
 
@@ -107,12 +137,23 @@ The ``sam_interface`` **must be** a Java SAM interface, meaning it must only hav
 
 The ``callable`` must be able to handle the same parameter types as the SAM interface method, and must provide the same return type. The ``callable`` will be invoked as a callback, passing the arguments from the Java SAM interface method.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var cb = func (content: String) -> void:
         print(content)
     var callback = JavaClassWrapper.create_sam_callback("android.util.Printer", cb)
     callback.println("Hello Godot World!")
+
+ .. code-tab:: csharp
+
+    Callable callback = Callable.From<string>(content => GD.Print(content));
+    GodotObject printer = JavaClassWrapper.CreateSamCallback("android.util.Printer", callback);
+    printer.Call("println", "Hello Godot World!");
+
+
 
 \ **Note:** This method only works on Android. On every other platform, this method will always return ``null``.
 
@@ -146,10 +187,20 @@ When wrapping inner (nested) classes, use ``$`` instead of ``.`` to separate the
 
 \ **Note:** To invoke a constructor, call a method with the same name as the class. For example:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var Intent = JavaClassWrapper.wrap("android.content.Intent")
     var intent = Intent.Intent()
+
+ .. code-tab:: csharp
+
+    GodotObject intentClass = JavaClassWrapper.Wrap("android.content.Intent");
+    GodotObject intent = intentClass.Call("Intent").AsGodotObject();
+
+
 
 \ **Note:** This method only works on Android. On every other platform, this method does nothing and returns an empty :ref:`JavaClass<class_JavaClass>`.
 

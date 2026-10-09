@@ -1057,7 +1057,7 @@ Draws a textured rectangle region of the font texture with LCD subpixel anti-ali
 
 Texture is drawn using the following blend operation, blend mode of the :ref:`CanvasItemMaterial<class_CanvasItemMaterial>` is ignored:
 
-::
+.. code:: glsl
 
     dst.r = texture.r * modulate.r * modulate.a + dst.r * (1.0 - texture.r * modulate.a);
     dst.g = texture.g * modulate.g * modulate.a + dst.g * (1.0 - texture.g * modulate.a);
@@ -1649,9 +1649,18 @@ Transforms ``viewport_point`` from the viewport's coordinates to this node's loc
 
 For the opposite operation, use :ref:`get_global_transform_with_canvas()<class_CanvasItem_method_get_global_transform_with_canvas>`.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var viewport_point = get_global_transform_with_canvas() * local_point
+
+ .. code-tab:: csharp
+
+    Vector2 viewportPoint = GetGlobalTransformWithCanvas() * localPoint;
+
+
 
 .. rst-class:: classref-item-separator
 

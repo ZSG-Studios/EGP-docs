@@ -90,7 +90,10 @@ Method Descriptions
 
 Called when the engine compilation profile editor wants to check what build options an imported resource needs. For example, :ref:`ResourceImporterDynamicFont<class_ResourceImporterDynamicFont>` has a property called :ref:`ResourceImporterDynamicFont.multichannel_signed_distance_field<class_ResourceImporterDynamicFont_property_multichannel_signed_distance_field>`, that depends on the engine to be build with the "msdfgen" module. If that resource happened to be a custom one, it would be handled like this:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     func _get_build_dependencies(path):
         var resource = load(path)
@@ -100,6 +103,17 @@ Called when the engine compilation profile editor wants to check what build opti
             dependencies.push_back("module_msdfgen_enabled")
 
         return dependencies
+
+ .. code-tab:: csharp
+
+    public override string[] _GetBuildDependencies(string path)
+    {
+        FontFile font = GD.Load<FontFile>(path);
+        return font.MultichannelSignedDistanceField
+            ? new[] { "module_msdfgen_enabled" } : System.Array.Empty<string>();
+    }
+
+
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
 .. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`

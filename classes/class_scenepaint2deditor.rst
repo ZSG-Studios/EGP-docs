@@ -75,7 +75,19 @@ Emitted for each new node created during drawing.
 
     func _on_scene_painted(node: Node2D):
         # Set random rotation when drawing nodes.
-        node.rotation = randf_range(0, 360)
+        node.rotation_degrees = randf_range(0, 360)
+
+ .. code-tab:: csharp
+
+    public override void _EnterTree()
+    {
+        EditorInterface.Singleton.GetScenePaint2D().ScenePainted += OnScenePainted;
+    }
+    public override void _ExitTree()
+    {
+        EditorInterface.Singleton.GetScenePaint2D().ScenePainted -= OnScenePainted;
+    }
+    private void OnScenePainted(Node2D node) => node.RotationDegrees = (float)GD.RandRange(0.0, 360.0);
 
 
 

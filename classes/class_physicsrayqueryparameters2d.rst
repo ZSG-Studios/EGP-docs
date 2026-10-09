@@ -200,10 +200,20 @@ Method Descriptions
 
 Returns a new, pre-configured **PhysicsRayQueryParameters2D** object. Use it to quickly create query parameters using the most common options.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var query = PhysicsRayQueryParameters2D.create(global_position, global_position + Vector2(0, 100))
     var collision = get_world_2d().direct_space_state.intersect_ray(query)
+
+ .. code-tab:: csharp
+
+    var query = PhysicsRayQueryParameters2D.Create(GlobalPosition, GlobalPosition + new Vector2(0, 100));
+    var collision = GetWorld2D().DirectSpaceState.IntersectRay(query);
+
+
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
 .. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`

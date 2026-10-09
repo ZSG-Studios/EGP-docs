@@ -56,7 +56,7 @@ enum **Function**: :ref:`🔗<enum_VisualShaderNodeColorFunc_Function>`
 
 Converts the color to grayscale using the following formula:
 
-::
+.. code:: glsl
 
     vec3 c = input;
     float max1 = max(c.r, c.g);
@@ -88,7 +88,7 @@ Converts RGB vector to HSV equivalent.
 
 Applies sepia tone effect using the following formula:
 
-::
+.. code:: glsl
 
     vec3 c = input;
     float r = (c.r * 0.393) + (c.g * 0.769) + (c.b * 0.189);
@@ -104,7 +104,7 @@ Applies sepia tone effect using the following formula:
 
 Converts color from linear encoding to nonlinear sRGB encoding using the following formula:
 
-::
+.. code:: glsl
 
     const vec3 a = vec3(0.055f);
     return mix((vec3(1.0f) + a) * pow(c.rgb, vec3(1.0f / 2.4f)) - a, 12.92f * c.rgb, lessThan(c.rgb, vec3(0.0031308f)));
@@ -117,7 +117,7 @@ Converts color from linear encoding to nonlinear sRGB encoding using the followi
 
 Converts color from nonlinear sRGB encoding to linear encoding using the following formula:
 
-::
+.. code:: glsl
 
     vec3 c = input;
     return mix(pow((c.rgb + vec3(0.055)) * (1.0 / (1.0 + 0.055)), vec3(2.4)), c.rgb * (1.0 / 12.92), lessThan(c.rgb, vec3(0.04045)));

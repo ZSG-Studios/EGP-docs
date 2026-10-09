@@ -23,7 +23,10 @@ Description
 
 SkeletonIK3D is used to rotate all bones of a :ref:`Skeleton3D<class_Skeleton3D>` bone chain a way that places the end bone at a desired 3D position. A typical scenario for IK in games is to place a character's feet on the ground or a character's hands on a currently held object. SkeletonIK uses FabrikInverseKinematic internally to solve the bone chain and applies the results to the :ref:`Skeleton3D<class_Skeleton3D>` ``bones_global_pose_override`` property for all affected bones in the chain. If fully applied, this overwrites any bone transform from :ref:`Animation<class_Animation>`\ s or bone custom poses set by users. The applied amount can be controlled with the :ref:`SkeletonModifier3D.influence<class_SkeletonModifier3D_property_influence>` property.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     # Apply IK effect automatically on every new frame (not the current)
     skeleton_ik_node.start()
@@ -42,6 +45,17 @@ SkeletonIK3D is used to rotate all bones of a :ref:`Skeleton3D<class_Skeleton3D>
 
     # Apply zero IK effect (a value at or below 0.01 also removes bones_global_pose_override on Skeleton)
     skeleton_ik_node.set_influence(0.0)
+
+ .. code-tab:: csharp
+
+    skeletonIkNode.Start(); // Every subsequent frame.
+    skeletonIkNode.Start(true); // Current frame only.
+    skeletonIkNode.Stop(); // Reset overrides.
+    skeletonIkNode.Influence = 1.0f; // Full IK.
+    skeletonIkNode.Influence = 0.5f; // Half IK.
+    skeletonIkNode.Influence = 0.0f; // Remove overrides.
+
+
 
 .. rst-class:: classref-reftable-group
 

@@ -172,9 +172,18 @@ Creates an :ref:`Array<class_Array>` of polygons covering a rectangular portion 
 
 To get polygons covering the whole bitmap, pass:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     Rect2(Vector2(), get_size())
+
+ .. code-tab:: csharp
+
+    new Rect2(Vector2.Zero, GetSize());
+
+
 
 \ ``epsilon`` is passed to RDP to control how accurately the polygons cover the bitmap: a lower ``epsilon`` corresponds to more points in the polygons.
 

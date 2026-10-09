@@ -56,7 +56,7 @@ enum **Operator**: :ref:`🔗<enum_VisualShaderNodeColorOp_Operator>`
 
 Produce a screen effect with the following formula:
 
-::
+.. code:: glsl
 
     result = vec3(1.0) - (vec3(1.0) - a) * (vec3(1.0) - b);
 
@@ -68,7 +68,7 @@ Produce a screen effect with the following formula:
 
 Produce a difference effect with the following formula:
 
-::
+.. code:: glsl
 
     result = abs(a - b);
 
@@ -80,7 +80,7 @@ Produce a difference effect with the following formula:
 
 Produce a darken effect with the following formula:
 
-::
+.. code:: glsl
 
     result = min(a, b);
 
@@ -92,7 +92,7 @@ Produce a darken effect with the following formula:
 
 Produce a lighten effect with the following formula:
 
-::
+.. code:: glsl
 
     result = max(a, b);
 
@@ -104,7 +104,7 @@ Produce a lighten effect with the following formula:
 
 Produce an overlay effect with the following formula:
 
-::
+.. code:: glsl
 
     for (int i = 0; i < 3; i++) {
         float base = a[i];
@@ -124,7 +124,7 @@ Produce an overlay effect with the following formula:
 
 Produce a dodge effect with the following formula:
 
-::
+.. code:: glsl
 
     result = a / (vec3(1.0) - b);
 
@@ -136,7 +136,7 @@ Produce a dodge effect with the following formula:
 
 Produce a burn effect with the following formula:
 
-::
+.. code:: glsl
 
     result = vec3(1.0) - (vec3(1.0) - a) / b;
 
@@ -148,7 +148,7 @@ Produce a burn effect with the following formula:
 
 Produce a soft light effect with the following formula:
 
-::
+.. code:: glsl
 
     for (int i = 0; i < 3; i++) {
         float base = a[i];
@@ -168,7 +168,7 @@ Produce a soft light effect with the following formula:
 
 Produce a hard light effect with the following formula:
 
-::
+.. code:: glsl
 
     for (int i = 0; i < 3; i++) {
         float base = a[i];

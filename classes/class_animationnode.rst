@@ -29,11 +29,23 @@ You can access the time information as read-only parameter which is processed an
 
 \ **Note:** If multiple inputs exist in the **AnimationNode**, which time information takes precedence depends on the type of **AnimationNode**.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var current_length = $AnimationTree["parameters/AnimationNodeName/current_length"]
     var current_position = $AnimationTree["parameters/AnimationNodeName/current_position"]
     var current_delta = $AnimationTree["parameters/AnimationNodeName/current_delta"]
+
+ .. code-tab:: csharp
+
+    var tree = GetNode<AnimationTree>("AnimationTree");
+    double currentLength = tree.Get("parameters/AnimationNodeName/current_length").AsDouble();
+    double currentPosition = tree.Get("parameters/AnimationNodeName/current_position").AsDouble();
+    double currentDelta = tree.Get("parameters/AnimationNodeName/current_delta").AsDouble();
+
+
 
 .. rst-class:: classref-introduction-group
 

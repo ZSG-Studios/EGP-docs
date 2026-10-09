@@ -76,13 +76,28 @@ The ``metadata`` dictionary is provided by preview generator (see :ref:`EditorRe
 
 \ **Note:** If you decide to discard the ``base``, make sure to call :ref:`Node.queue_free()<class_Node_method_queue_free>`, because it's not freed automatically.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     func _make_tooltip_for_path(path, metadata, base):
         var t_rect = TextureRect.new()
         request_thumbnail(path, t_rect)
         base.add_child(t_rect) # The TextureRect will appear at the bottom of the tooltip.
         return base
+
+ .. code-tab:: csharp
+
+    public override Control _MakeTooltipForPath(string path, Godot.Collections.Dictionary metadata, Control baseControl)
+    {
+        var textureRect = new TextureRect();
+        RequestThumbnail(path, textureRect);
+        baseControl.AddChild(textureRect);
+        return baseControl;
+    }
+
+
 
 .. rst-class:: classref-item-separator
 

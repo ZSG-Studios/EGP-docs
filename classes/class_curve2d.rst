@@ -345,7 +345,10 @@ Cubic interpolation tends to follow the curves better, but linear is faster (and
 
 Similar to :ref:`sample_baked()<class_Curve2D_method_sample_baked>`, but returns :ref:`Transform2D<class_Transform2D>` that includes a rotation along the curve, with :ref:`Transform2D.origin<class_Transform2D_property_origin>` as the point position and the :ref:`Transform2D.x<class_Transform2D_property_x>` vector pointing in the direction of the path at that point. Returns an empty transform if the length of the curve is ``0``.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var baked = curve.sample_baked_with_rotation(offset)
     # The returned Transform2D can be set directly.
@@ -353,6 +356,16 @@ Similar to :ref:`sample_baked()<class_Curve2D_method_sample_baked>`, but returns
     # You can also read the origin and rotation separately from the returned Transform2D.
     position = baked.get_origin()
     rotation = baked.get_rotation()
+
+ .. code-tab:: csharp
+
+    Transform2D baked = curve.SampleBakedWithRotation(offset);
+    Transform = baked;
+    // Or use the components separately.
+    Position = baked.Origin;
+    Rotation = baked.Rotation;
+
+
 
 .. rst-class:: classref-item-separator
 

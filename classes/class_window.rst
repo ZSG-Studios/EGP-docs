@@ -397,13 +397,23 @@ Emitted when the **Window**'s DPI changes as a result of OS-level changes (e.g. 
 
 Emitted when files are dragged from the OS file manager and dropped in the game window. The argument is a list of file paths.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     func _ready():
         get_window().files_dropped.connect(on_files_dropped)
 
     func on_files_dropped(files):
         print(files)
+
+ .. code-tab:: csharp
+
+    public override void _Ready() => GetWindow().FilesDropped += OnFilesDropped;
+    private void OnFilesDropped(string[] files) => GD.Print(files);
+
+
 
 \ **Note:** This signal only works with native windows, i.e. the main window and **Window**-derived nodes when :ref:`Viewport.gui_embed_subwindows<class_Viewport_property_gui_embed_subwindows>` is disabled in the main viewport.
 
@@ -2127,6 +2137,8 @@ This value is used by tonemapping and other :ref:`Environment<class_Environment>
         # Color must be linear-encoded to use math operations.
         var linear_color = srgb_color.srgb_to_linear()
         var max_rgb_value = maxf(linear_color.r, maxf(linear_color.g, linear_color.b))
+        if max_rgb_value <= 0:
+            return srgb_color
         var brightness_scale = max_linear_value / max_rgb_value
         linear_color *= brightness_scale
         # Undo changes to the alpha channel, which should not be modified.
@@ -2134,6 +2146,23 @@ This value is used by tonemapping and other :ref:`Environment<class_Environment>
         # Convert back to nonlinear sRGB encoding, which is required for Color in
         # Godot unless stated otherwise.
         return linear_color.linear_to_srgb()
+
+ .. code-tab:: csharp
+
+    public override void _Process(double delta)
+    {
+        float maximum = GetWindow().GetOutputMaxLinearValue();
+        Color brightColor = NormalizeColor(Colors.Purple, maximum);
+    }
+    private static Color NormalizeColor(Color srgb, float maximum = 1.0f)
+    {
+        Color linear = srgb.SrgbToLinear();
+        float largest = Mathf.Max(linear.R, Mathf.Max(linear.G, linear.B));
+        if (largest <= 0) return srgb; // Black cannot be normalized by division.
+        linear *= maximum / largest;
+        linear.A = srgb.A;
+        return linear.LinearToSrgb();
+    }
 
 
 

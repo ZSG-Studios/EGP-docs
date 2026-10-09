@@ -981,7 +981,10 @@ Pops up an editor dialog for selecting a :ref:`Node<class_Node>` from the edited
 
 \ **Example:** Display the node selection dialog as soon as this node is added to the tree for the first time:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     func _ready():
         if Engine.is_editor_hint():
@@ -992,6 +995,20 @@ Pops up an editor dialog for selecting a :ref:`Node<class_Node>` from the edited
             print("node selection canceled")
         else:
             print("selected ", node_path)
+
+ .. code-tab:: csharp
+
+    public override void _Ready()
+    {
+        if (Engine.IsEditorHint())
+            EditorInterface.Singleton.PopupNodeSelector(Callable.From<NodePath>(OnNodeSelected), new[] { "Button" });
+    }
+    private void OnNodeSelected(NodePath path)
+    {
+        GD.Print(path.IsEmpty ? "node selection canceled" : $"selected {path}");
+    }
+
+
 
 .. rst-class:: classref-item-separator
 
@@ -1005,17 +1022,35 @@ Pops up an editor dialog for selecting a :ref:`Node<class_Node>` from the edited
 
 Pops up an editor dialog for selecting properties from ``object``. The ``callback`` must take a single argument of type :ref:`NodePath<class_NodePath>`. It is called on the selected property path (see :ref:`NodePath.get_as_property_path()<class_NodePath_method_get_as_property_path>`) or the empty path ``^""`` if the dialog is canceled. If ``type_filter`` is provided, the dialog will only show properties that match one of the listed :ref:`Variant.Type<enum_@GlobalScope_Variant.Type>` values. If ``current_value`` is provided, the property will be selected automatically in the property list, if it exists.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     func _ready():
         if Engine.is_editor_hint():
-            EditorInterface.popup_property_selector(this, _on_property_selected, [TYPE_INT])
+            EditorInterface.popup_property_selector(self, _on_property_selected, [TYPE_INT])
 
     func _on_property_selected(property_path):
         if property_path.is_empty():
             print("property selection canceled")
         else:
             print("selected ", property_path)
+
+ .. code-tab:: csharp
+
+    public override void _Ready()
+    {
+        if (Engine.IsEditorHint())
+            EditorInterface.Singleton.PopupPropertySelector(this, Callable.From<NodePath>(OnPropertySelected),
+                new[] { (int)Variant.Type.Int });
+    }
+    private void OnPropertySelected(NodePath path)
+    {
+        GD.Print(path.IsEmpty ? "property selection canceled" : $"selected {path}");
+    }
+
+
 
 .. rst-class:: classref-item-separator
 

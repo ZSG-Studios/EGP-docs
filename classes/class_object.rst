@@ -33,13 +33,29 @@ Godot is very dynamic. An object's script, and therefore its properties, methods
 
 In GDScript, you can also check if a given property, method, or signal name exists in an object with the ``in`` operator:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var node = Node.new()
     print("name" in node)         # Prints true
     print("get_parent" in node)   # Prints true
     print("tree_entered" in node) # Prints true
     print("unknown" in node)      # Prints false
+
+ .. code-tab:: csharp
+
+    var node = new Node();
+    bool hasName = false;
+    foreach (Godot.Collections.Dictionary property in node.GetPropertyList())
+        hasName |= property["name"].AsString() == "name";
+    GD.Print(hasName);                    // True.
+    GD.Print(node.HasMethod("get_parent")); // True.
+    GD.Print(node.HasSignal("tree_entered")); // True.
+    GD.Print(node.HasMethod("unknown"));   // False.
+
+
 
 Notifications are :ref:`int<class_int>` constants commonly sent and received by objects. For example, on every rendered frame, the :ref:`SceneTree<class_SceneTree>` notifies nodes inside the tree with a :ref:`Node.NOTIFICATION_PROCESS<class_Node_constant_NOTIFICATION_PROCESS>`. The nodes receive it and may call :ref:`Node._process()<class_Node_private_method__process>` to update. To make use of notifications, see :ref:`notification()<class_Object_method_notification>` and :ref:`_notification()<class_Object_private_method__notification>`.
 
@@ -284,16 +300,32 @@ Reference-counted connections can be assigned to the same :ref:`Callable<class_C
 
 On signal emission, the source object is automatically appended after the original arguments of the signal, regardless of the connected :ref:`Callable<class_Callable>`'s unbinds which affect only the original arguments of the signal (see :ref:`Callable.unbind()<class_Callable_method_unbind>`, :ref:`Callable.get_unbound_arguments_count()<class_Callable_method_get_unbound_arguments_count>`).
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     extends Object
 
-    signal test_signal
+    signal test_signal(first, second)
 
     func test():
         print(self) # Prints e.g. <Object#35332818393>
         test_signal.connect(prints.unbind(1), CONNECT_APPEND_SOURCE_OBJECT)
         test_signal.emit("emit_arg_1", "emit_arg_2") # Prints emit_arg_1 <Object#35332818393>
+
+ .. code-tab:: csharp
+
+    [Signal] public delegate void TestSignalEventHandler(string first, string second);
+    public void Test()
+    {
+        GD.Print(this);
+        var callback = Callable.From<string, GodotObject>((first, source) => GD.Print(first, " ", source));
+        Connect(SignalName.TestSignal, callback.Unbind(1), (uint)ConnectFlags.AppendSourceObject);
+        EmitSignal(SignalName.TestSignal, "emit_arg_1", "emit_arg_2");
+    }
+
+
 
 .. rst-class:: classref-section-separator
 
@@ -570,7 +602,10 @@ Returns the current iterable value. ``iter`` stores the iteration state, but unl
 
 Initializes the iterator. ``iter`` stores the iteration state. Since GDScript does not support passing arguments by reference, a single-element array is used as a wrapper. This array should not be resized. Returns ``true`` so long as the iterator has not reached the end.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     class MyRange:
         var _from
@@ -596,6 +631,29 @@ Initializes the iterator. ``iter`` stores the iteration state. Since GDScript do
         var my_range = MyRange.new(2, 5)
         for x in my_range:
             print(x) # Prints 2, 3, 4.
+
+ .. code-tab:: csharp
+
+    // Idiomatic C# iteration uses IEnumerable rather than GDScript's iterator hooks.
+    public sealed class MyRange : System.Collections.Generic.IEnumerable<int>
+    {
+        private readonly int from, to;
+        public MyRange(int from, int to)
+        {
+            if (from > to) throw new System.ArgumentException("from must not exceed to");
+            this.from = from;
+            this.to = to;
+        }
+        public System.Collections.Generic.IEnumerator<int> GetEnumerator()
+        {
+            for (int i = from; i < to; i++) yield return i;
+        }
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => GetEnumerator();
+    }
+    // In _Ready():
+    foreach (int x in new MyRange(2, 5)) GD.Print(x); // 2, 3, 4.
+
+
 
 \ **Note:** Avoid storing iterator state in a member variable, use the ``iter`` parameter instead. Otherwise, you won't be able to reuse the same iterator instance in nested loops.
 
@@ -761,7 +819,10 @@ Combined with :ref:`_get()<class_Object_private_method__get>` and :ref:`_get_pro
 
 Override this method to customize the return value of :ref:`to_string()<class_Object_method_to_string>`, and therefore the object's representation as a :ref:`String<class_String>`.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     func _to_string():
         return "Welcome to Godot 4!"
@@ -769,6 +830,17 @@ Override this method to customize the return value of :ref:`to_string()<class_Ob
     func _init():
         print(self)       # Prints "Welcome to Godot 4!"
         var a = str(self) # a is "Welcome to Godot 4!"
+
+ .. code-tab:: csharp
+
+    public override string ToString() => "Welcome to Godot 4!";
+    public override void _Ready()
+    {
+        GD.Print(this);
+        string text = ToString();
+    }
+
+
 
 .. rst-class:: classref-item-separator
 
@@ -941,7 +1013,10 @@ See also :ref:`Callable.call_deferred()<class_Callable_method_call_deferred>`.
 
 \ **Note:** If you're looking to delay the function call by a frame, refer to the :ref:`SceneTree.process_frame<class_SceneTree_signal_process_frame>` and :ref:`SceneTree.physics_frame<class_SceneTree_signal_physics_frame>` signals.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var node = Node3D.new()
     # Make a Callable and bind the arguments to the node's rotate() call.
@@ -949,6 +1024,14 @@ See also :ref:`Callable.call_deferred()<class_Callable_method_call_deferred>`.
     # Connect the callable to the process_frame signal, so it gets called in the next process frame.
     # CONNECT_ONE_SHOT makes sure it only gets called once instead of every frame.
     get_tree().process_frame.connect(callable, CONNECT_ONE_SHOT)
+
+ .. code-tab:: csharp
+
+    var node = new Node3D();
+    Callable callable = Callable.From(() => node.Rotate(Vector3.Right, 1.571f));
+    GetTree().Connect(SceneTree.SignalName.ProcessFrame, callable, (uint)ConnectFlags.OneShot);
+
+
 
 .. rst-class:: classref-item-separator
 

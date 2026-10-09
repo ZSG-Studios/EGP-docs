@@ -118,12 +118,22 @@ Returns the list of supported filename extensions for movies written with this *
 
 Called when the engine determines whether this **MovieWriter** is able to handle the file at ``path``. Must return ``true`` if this **MovieWriter** is able to handle the given file path, ``false`` otherwise. Typically, :ref:`_handles_file()<class_MovieWriter_private_method__handles_file>` is overridden as follows to allow the user to record a file at any path with a given file extension:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     func _handles_file(path):
         # Allows specifying an output file with a `.mkv` file extension (case-insensitive),
         # either in the Project Settings or with the `--write-movie <path>` command line argument.
         return path.get_extension().to_lower() == "mkv"
+
+ .. code-tab:: csharp
+
+    public override bool _HandlesFile(string path)
+        => path.GetExtension().ToLowerInvariant() == "mkv";
+
+
 
 .. rst-class:: classref-item-separator
 

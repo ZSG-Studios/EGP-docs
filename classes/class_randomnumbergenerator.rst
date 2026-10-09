@@ -25,11 +25,24 @@ RandomNumberGenerator is a class for generating pseudo-random numbers. It curren
 
 To generate a random float number (within a given range) based on a time-dependent seed:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var rng = RandomNumberGenerator.new()
     func _ready():
         var my_random_number = rng.randf_range(-10.0, 10.0)
+
+ .. code-tab:: csharp
+
+    private readonly RandomNumberGenerator rng = new();
+    public override void _Ready()
+    {
+        float myRandomNumber = rng.RandfRange(-10.0f, 10.0f);
+    }
+
+
 
 .. rst-class:: classref-introduction-group
 
@@ -104,11 +117,22 @@ Initializes the random number generator state based on the given seed value. A g
 
 \ **Note:** Setting this property produces a side effect of changing the internal :ref:`state<class_RandomNumberGenerator_property_state>`, so make sure to initialize the seed *before* modifying the :ref:`state<class_RandomNumberGenerator_property_state>`:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var rng = RandomNumberGenerator.new()
     rng.seed = hash("Godot")
     rng.state = 100 # Restore to some previously saved state.
+
+ .. code-tab:: csharp
+
+    var rng = new RandomNumberGenerator();
+    rng.Seed = GD.Hash("Godot");
+    rng.State = 100; // A previously saved state.
+
+
 
 .. rst-class:: classref-item-separator
 
@@ -127,7 +151,10 @@ Initializes the random number generator state based on the given seed value. A g
 
 The current state of the random number generator. Save and restore this property to restore the generator to a previous state:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var rng = RandomNumberGenerator.new()
     print(rng.randf())
@@ -135,6 +162,17 @@ The current state of the random number generator. Save and restore this property
     print(rng.randf()) # Advance internal state.
     rng.state = saved_state # Restore the state.
     print(rng.randf()) # Prints the same value as previously.
+
+ .. code-tab:: csharp
+
+    var rng = new RandomNumberGenerator();
+    GD.Print(rng.Randf());
+    ulong savedState = rng.State;
+    GD.Print(rng.Randf());
+    rng.State = savedState;
+    GD.Print(rng.Randf()); // Same value as the previous draw.
+
+
 
 \ **Note:** Do not set state to arbitrary values, since the random number generator requires the state to have certain qualities to behave properly. It should only be set to values that came from the state property itself. To initialize the random number generator with arbitrary input, use :ref:`seed<class_RandomNumberGenerator_property_seed>` instead.
 
@@ -174,6 +212,13 @@ Prints an error and returns ``-1`` if the array is empty or contains any negativ
     # Prints one of the four elements in `my_array`.
     # It is more likely to print "four", and less likely to print "one".
     print(my_array[rng.rand_weighted(weights)])
+
+ .. code-tab:: csharp
+
+    var rng = new RandomNumberGenerator();
+    string[] values = { "one", "two", "three", "four" };
+    float[] weights = { 0.5f, 1, 1, 2 };
+    GD.Print(values[rng.RandWeighted(weights)]); // "four" is most likely.
 
 
 

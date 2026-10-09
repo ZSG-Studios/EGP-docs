@@ -659,10 +659,20 @@ Returns ``true`` if the an animation is currently active. An animation is active
 
 This can be used to check whether an animation is currently paused or stopped.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var is_paused = not is_playing() and is_animation_active()
     var is_stopped = not is_playing() and not is_animation_active()
+
+ .. code-tab:: csharp
+
+    bool isPaused = !IsPlaying() && IsAnimationActive();
+    bool isStopped = !IsPlaying() && !IsAnimationActive();
+
+
 
 .. rst-class:: classref-item-separator
 
@@ -794,10 +804,20 @@ See also :ref:`AnimationMixer.capture()<class_AnimationMixer_method_capture>`.
 
 You can use this method to use more detailed options for capture than those performed by :ref:`playback_auto_capture<class_AnimationPlayer_property_playback_auto_capture>`. When :ref:`playback_auto_capture<class_AnimationPlayer_property_playback_auto_capture>` is ``false``, this method is almost the same as the following:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     capture(name, duration, trans_type, ease_type)
     play(name, custom_blend, custom_speed, from_end)
+
+ .. code-tab:: csharp
+
+    Capture(name, duration, transType, easeType);
+    Play(name, customBlend, customSpeed, fromEnd);
+
+
 
 If ``name`` is blank, it specifies :ref:`assigned_animation<class_AnimationPlayer_property_assigned_animation>`.
 

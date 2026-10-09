@@ -46,12 +46,27 @@ To use simulated bold font variant:
 
 To set the coordinate of multiple variation axes:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var fv = FontVariation.new();
     var ts = TextServerManager.get_primary_interface()
     fv.base_font = load("res://BarlowCondensed-Regular.ttf")
     fv.variation_opentype = { ts.name_to_tag("wght"): 900, ts.name_to_tag("custom_hght"): 900 }
+
+ .. code-tab:: csharp
+
+    var font = new FontVariation { BaseFont = GD.Load<Font>("res://BarlowCondensed-Regular.ttf") };
+    var textServer = TextServerManager.GetPrimaryInterface();
+    font.VariationOpentype = new Godot.Collections.Dictionary
+    {
+        { textServer.NameToTag("wght"), 900 },
+        { textServer.NameToTag("custom_hght"), 900 },
+    };
+
+
 
 .. rst-class:: classref-reftable-group
 

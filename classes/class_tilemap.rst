@@ -517,7 +517,10 @@ Returns the :ref:`TileData<class_TileData>` object associated with the given cel
 
 If ``layer`` is negative, the layers are accessed from the last one.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     func get_clicked_tile_power():
         var clicked_cell = tile_map.local_to_map(tile_map.get_local_mouse_position())
@@ -526,6 +529,17 @@ If ``layer`` is negative, the layers are accessed from the last one.
             return data.get_custom_data("power")
         else:
             return 0
+
+ .. code-tab:: csharp
+
+    private Variant GetClickedTilePower()
+    {
+        Vector2I cell = tileMap.LocalToMap(tileMap.GetLocalMousePosition());
+        TileData data = tileMap.GetCellTileData(0, cell);
+        return data != null ? data.GetCustomData("power") : Variant.From(0);
+    }
+
+
 
 If ``use_proxies`` is ``false``, ignores the :ref:`TileSet<class_TileSet>`'s tile proxies. See :ref:`TileSet.map_tile_proxy()<class_TileSet_method_map_tile_proxy>`.
 

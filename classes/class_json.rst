@@ -25,7 +25,10 @@ The **JSON** class enables all data types to be converted to and from a JSON str
 
 \ :ref:`parse()<class_JSON_method_parse>` is used to convert any existing JSON data into a :ref:`Variant<class_Variant>` that can be used within Godot. If successfully parsed, use :ref:`data<class_JSON_property_data>` to retrieve the :ref:`Variant<class_Variant>`, and use :ref:`@GlobalScope.typeof()<class_@GlobalScope_method_typeof>` to check if the Variant's type is what you expect. JSON Objects are converted into a :ref:`Dictionary<class_Dictionary>`, but JSON data can be used to store :ref:`Array<class_Array>`\ s, numbers, :ref:`String<class_String>`\ s and even just a boolean.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var data_to_send = ["a", "b", "c"]
     var json_string = JSON.stringify(data_to_send)
@@ -43,11 +46,39 @@ The **JSON** class enables all data types to be converted to and from a JSON str
     else:
         print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
 
+ .. code-tab:: csharp
+
+    var dataToSend = new Godot.Collections.Array { "a", "b", "c" };
+    string jsonString = Json.Stringify(dataToSend);
+    // Save and retrieve jsonString here.
+    var json = new Json();
+    Error error = json.Parse(jsonString);
+    if (error == Error.Ok)
+    {
+        if (json.Data.VariantType == Variant.Type.Array)
+            GD.Print(json.Data);
+        else
+            GD.Print("Unexpected data");
+    }
+    else
+        GD.Print($"JSON Parse Error: {json.GetErrorMessage()} in {jsonString} at line {json.GetErrorLine()}");
+
+
+
 Alternatively, you can parse strings using the static :ref:`parse_string()<class_JSON_method_parse_string>` method, but it doesn't handle errors.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var data = JSON.parse_string(json_string) # Returns null if parsing failed.
+
+ .. code-tab:: csharp
+
+    Variant data = Json.ParseString(jsonString); // Nil if parsing failed.
+
+
 
 \ **Note:** Both parse methods do not fully comply with the JSON specification:
 
@@ -140,10 +171,20 @@ By default, objects are ignored for security reasons, unless ``full_objects`` is
 
 You can convert a native value to a JSON string like this:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     func encode_data(value, full_objects = false):
         return JSON.stringify(JSON.from_native(value, full_objects))
+
+ .. code-tab:: csharp
+
+    private string EncodeData(Variant value, bool fullObjects = false)
+        => Json.Stringify(Json.FromNative(value, fullObjects));
+
+
 
 .. rst-class:: classref-item-separator
 
@@ -233,7 +274,7 @@ The ``indent`` parameter controls if and how something is indented; its contents
 
 \ **Example output:**\ 
 
-::
+.. code:: text
 
     ## JSON.stringify(my_dictionary, "", false)
     {"name":"my_dictionary","version":"1.0.0","entities":[{"name":"entity_0","value":"value_0"},{"name":"entity_1","value":"value_1"}]}
@@ -286,10 +327,20 @@ By default, objects are ignored for security reasons, unless ``allow_objects`` i
 
 You can convert a JSON string back to a native value like this:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     func decode_data(string, allow_objects = false):
         return JSON.to_native(JSON.parse_string(string), allow_objects)
+
+ .. code-tab:: csharp
+
+    private Variant DecodeData(string text, bool allowObjects = false)
+        => Json.ToNative(Json.ParseString(text), allowObjects);
+
+
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
 .. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`

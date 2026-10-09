@@ -177,16 +177,32 @@ Constants
 
 Represents cell's horizontal flip flag. Should be used directly with :ref:`TileMapLayer<class_TileMapLayer>` to flip placed tiles by altering their alternative IDs.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var alternate_id = $TileMapLayer.get_cell_alternative_tile(Vector2i(2, 2))
-    if not alternate_id & TileSetAtlasSource.TRANSFORM_FLIP_H:
+    if (alternate_id & TileSetAtlasSource.TRANSFORM_FLIP_H) == 0:
         # If tile is not already flipped, flip it.
         $TileMapLayer.set_cell(Vector2i(2, 2), source_id, atlas_coords, alternate_id | TileSetAtlasSource.TRANSFORM_FLIP_H)
 
+ .. code-tab:: csharp
+
+    var layer = GetNode<TileMapLayer>("TileMapLayer");
+    var cell = new Vector2I(2, 2);
+    int alternateId = layer.GetCellAlternativeTile(cell);
+    if ((alternateId & TileSetAtlasSource.TransformFlipH) == 0)
+        layer.SetCell(cell, sourceId, atlasCoords, alternateId | (int)TileSetAtlasSource.TransformFlipH);
+
+
+
 \ **Note:** These transformations can be combined to do the equivalent of 0, 90, 180, and 270 degree rotations, as shown below:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     enum TileTransform {
         ROTATE_0 = 0,
@@ -194,6 +210,18 @@ Represents cell's horizontal flip flag. Should be used directly with :ref:`TileM
         ROTATE_180 = TileSetAtlasSource.TRANSFORM_FLIP_H | TileSetAtlasSource.TRANSFORM_FLIP_V,
         ROTATE_270 = TileSetAtlasSource.TRANSFORM_TRANSPOSE | TileSetAtlasSource.TRANSFORM_FLIP_V,
     }
+
+ .. code-tab:: csharp
+
+    public enum TileTransform : long
+    {
+        Rotate0 = 0,
+        Rotate90 = TileSetAtlasSource.TransformTranspose | TileSetAtlasSource.TransformFlipH,
+        Rotate180 = TileSetAtlasSource.TransformFlipH | TileSetAtlasSource.TransformFlipV,
+        Rotate270 = TileSetAtlasSource.TransformTranspose | TileSetAtlasSource.TransformFlipV,
+    }
+
+
 
 .. _class_TileSetAtlasSource_constant_TRANSFORM_FLIP_V:
 

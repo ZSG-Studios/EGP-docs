@@ -21,7 +21,10 @@ Description
 
 JavaScriptObject is used to interact with JavaScript objects retrieved or created via :ref:`JavaScriptBridge.get_interface()<class_JavaScriptBridge_method_get_interface>`, :ref:`JavaScriptBridge.create_object()<class_JavaScriptBridge_method_create_object>`, or :ref:`JavaScriptBridge.create_callback()<class_JavaScriptBridge_method_create_callback>`.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     extends Node
 
@@ -48,6 +51,26 @@ JavaScriptObject is used to interact with JavaScript objects retrieved or create
         # ...
         # [0, 9, [JavaScriptObject:1180]]
         print(args)
+
+ .. code-tab:: csharp
+
+    // This inherited browser example requires a supported web export runtime.
+    private JavaScriptObject callback; // Retain the native callback wrapper.
+    public override void _Ready()
+    {
+        callback = JavaScriptBridge.CreateCallback(Callable.From<Godot.Collections.Array>(OnCallback));
+        var console = JavaScriptBridge.GetInterface("console");
+        var buffer = JavaScriptBridge.CreateObject("ArrayBuffer", 10);
+        var bytes = JavaScriptBridge.CreateObject("Uint8Array", buffer);
+        bytes.Set("1", 255);
+        GD.Print(bytes.Get("1"), " ", bytes.Get("byteLength"));
+        console.Call("log", bytes);
+        var array = JavaScriptBridge.GetInterface("Array").Call("from", bytes).As<JavaScriptObject>();
+        array.Call("forEach", callback);
+    }
+    private void OnCallback(Godot.Collections.Array args) => GD.Print(args);
+
+
 
 \ **Note:** Only available in the Web platform.
 

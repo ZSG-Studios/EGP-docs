@@ -23,52 +23,110 @@ A regular expression (or regex) is a compact language that can be used to recogn
 
 To begin, the RegEx object needs to be compiled with the search pattern using :ref:`compile()<class_RegEx_method_compile>` before it can be used. Alternatively, the static method :ref:`create_from_string()<class_RegEx_method_create_from_string>` can be used to create and compile a RegEx object in a single method call.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var regex = RegEx.new()
     regex.compile("\\w-(\\d+)")
     # Shorthand to create and compile a regex (used in the examples below):
     var regex2 = RegEx.create_from_string("\\w-(\\d+)")
 
+ .. code-tab:: csharp
+
+    var regex = new RegEx();
+    regex.Compile(@"\w-(\d+)");
+    var regex2 = RegEx.CreateFromString(@"\w-(\d+)");
+
+
+
 The search pattern must be escaped first for GDScript before it is escaped for the expression. For example, ``compile("\\d+")`` would be read by RegEx as ``\d+``. Similarly, ``compile("\"(?:\\\\.|[^\"])*\"")`` would be read as ``"(?:\\.|[^"])*"``. In GDScript, you can also use raw string literals (r-strings). For example, ``compile(r'"(?:\\.|[^"])*"')`` would be read the same.
 
 Using :ref:`search()<class_RegEx_method_search>`, you can find the pattern within the given text. If a pattern is found, :ref:`RegExMatch<class_RegExMatch>` is returned and you can retrieve details of the results using methods such as :ref:`RegExMatch.get_string()<class_RegExMatch_method_get_string>` and :ref:`RegExMatch.get_start()<class_RegExMatch_method_get_start>`.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var regex = RegEx.create_from_string("\\w-(\\d+)")
     var result = regex.search("abc n-0123")
     if result:
         print(result.get_string()) # Prints "n-0123"
 
+ .. code-tab:: csharp
+
+    var regex = RegEx.CreateFromString(@"\w-(\d+)");
+    RegExMatch result = regex.Search("abc n-0123");
+    if (result != null)
+        GD.Print(result.GetString()); // n-0123.
+
+
+
 The results of capturing groups ``()`` can be retrieved by passing the group number to the various methods in :ref:`RegExMatch<class_RegExMatch>`. Group 0 is the default and will always refer to the entire pattern. In the above example, calling ``result.get_string(1)`` would give you ``0123``.
 
 This version of RegEx also supports named capturing groups, and the names can be used to retrieve the results. If two or more groups have the same name, the name would only refer to the first one with a match.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var regex = RegEx.create_from_string("d(?<digit>[0-9]+)|x(?<digit>[0-9a-f]+)")
     var result = regex.search("the number is x2f")
     if result:
         print(result.get_string("digit")) # Prints "2f"
 
+ .. code-tab:: csharp
+
+    var regex = RegEx.CreateFromString("d(?<digit>[0-9]+)|x(?<digit>[0-9a-f]+)");
+    RegExMatch result = regex.Search("the number is x2f");
+    if (result != null)
+        GD.Print(result.GetString("digit")); // 2f.
+
+
+
 If you need to process multiple results, :ref:`search_all()<class_RegEx_method_search_all>` generates a list of all non-overlapping results. This can be combined with a ``for`` loop for convenience.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     # Prints "01 03 0 3f 42"
     for result in regex.search_all("d01, d03, d0c, x3f and x42"):
         print(result.get_string("digit"))
 
+ .. code-tab:: csharp
+
+    foreach (RegExMatch result in regex.SearchAll("d01, d03, d0c, x3f and x42"))
+        GD.Print(result.GetString("digit")); // 01, 03, 0, 3f, 42.
+
+
+
 \ **Example:** Split a string using a RegEx:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var regex = RegEx.create_from_string("\\S+") # Negated whitespace character class.
     var results = []
     for result in regex.search_all("One  Two \n\tThree"):
         results.push_back(result.get_string())
     print(results) # Prints ["One", "Two", "Three"]
+
+ .. code-tab:: csharp
+
+    var regex = RegEx.CreateFromString(@"\S+");
+    var results = new Godot.Collections.Array<string>();
+    foreach (RegExMatch result in regex.SearchAll("One  Two \n\tThree"))
+        results.Add(result.GetString());
+    GD.Print(results);
+
+
 
 \ **Note:** Godot's regex implementation is based on the `PCRE2 <https://pcre2project.github.io/pcre2/>`__ library. You can view the full pattern reference `here <https://pcre2project.github.io/pcre2/doc/pcre2pattern/>`__.
 

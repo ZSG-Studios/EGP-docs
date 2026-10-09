@@ -23,11 +23,24 @@ By inheriting this class you can create a custom :ref:`VisualShader<class_Visual
 
 In order for the node to be registered as an editor addon, you must use the ``@tool`` annotation and provide a ``class_name`` for your custom script. For example:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     @tool
     extends VisualShaderNodeCustom
     class_name VisualShaderNodeNoise
+
+ .. code-tab:: csharp
+
+    [Tool, GlobalClass]
+    public partial class VisualShaderNodeNoise : VisualShaderNodeCustom
+    {
+        // Override the required shader-node virtual methods.
+    }
+
+
 
 .. rst-class:: classref-introduction-group
 

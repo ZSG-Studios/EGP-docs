@@ -124,7 +124,7 @@ Contains the arguments passed in the opening BBCode tag. By default, arguments a
 
 For example, the opening BBCode tag ``[example foo=hello bar=true baz=42 color=#ffffff]`` will map to the following :ref:`Dictionary<class_Dictionary>`:
 
-::
+.. code:: text
 
     {"foo": "hello", "bar": true, "baz": 42, "color": Color(1, 1, 1, 1)}
 

@@ -1931,7 +1931,7 @@ VRAM-compressed unsigned red/green/blue/alpha channel data format with normalize
 
 :ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_ASTC_4x4_UNORM_BLOCK** = ``156``
 
-VRAM-compressed unsigned floating-point data format with normalized value, packed in 4×4 blocks (highest quality). Values are in the ``[0.0, 1.0]`` range. Using ASTC compression.
+VRAM-compressed unsigned floating-point data format with normalized value, packed in 4Ãƒâ€”4 blocks (highest quality). Values are in the ``[0.0, 1.0]`` range. Using ASTC compression.
 
 .. _class_RenderingDevice_constant_DATA_FORMAT_ASTC_4x4_SRGB_BLOCK:
 
@@ -1939,7 +1939,7 @@ VRAM-compressed unsigned floating-point data format with normalized value, packe
 
 :ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_ASTC_4x4_SRGB_BLOCK** = ``157``
 
-VRAM-compressed unsigned floating-point data format with normalized value and nonlinear sRGB encoding, packed in 4×4 blocks (highest quality). Values are in the ``[0.0, 1.0]`` range. Using ASTC compression.
+VRAM-compressed unsigned floating-point data format with normalized value and nonlinear sRGB encoding, packed in 4Ãƒâ€”4 blocks (highest quality). Values are in the ``[0.0, 1.0]`` range. Using ASTC compression.
 
 .. _class_RenderingDevice_constant_DATA_FORMAT_ASTC_5x4_UNORM_BLOCK:
 
@@ -1947,7 +1947,7 @@ VRAM-compressed unsigned floating-point data format with normalized value and no
 
 :ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_ASTC_5x4_UNORM_BLOCK** = ``158``
 
-VRAM-compressed unsigned floating-point data format with normalized value, packed in 5×4 blocks. Values are in the ``[0.0, 1.0]`` range. Using ASTC compression.
+VRAM-compressed unsigned floating-point data format with normalized value, packed in 5Ãƒâ€”4 blocks. Values are in the ``[0.0, 1.0]`` range. Using ASTC compression.
 
 .. _class_RenderingDevice_constant_DATA_FORMAT_ASTC_5x4_SRGB_BLOCK:
 
@@ -1955,7 +1955,7 @@ VRAM-compressed unsigned floating-point data format with normalized value, packe
 
 :ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_ASTC_5x4_SRGB_BLOCK** = ``159``
 
-VRAM-compressed unsigned floating-point data format with normalized value and nonlinear sRGB encoding, packed in 5×4 blocks. Values are in the ``[0.0, 1.0]`` range. Using ASTC compression.
+VRAM-compressed unsigned floating-point data format with normalized value and nonlinear sRGB encoding, packed in 5Ãƒâ€”4 blocks. Values are in the ``[0.0, 1.0]`` range. Using ASTC compression.
 
 .. _class_RenderingDevice_constant_DATA_FORMAT_ASTC_5x5_UNORM_BLOCK:
 
@@ -1963,7 +1963,7 @@ VRAM-compressed unsigned floating-point data format with normalized value and no
 
 :ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_ASTC_5x5_UNORM_BLOCK** = ``160``
 
-VRAM-compressed unsigned floating-point data format with normalized value, packed in 5×5 blocks. Values are in the ``[0.0, 1.0]`` range. Using ASTC compression.
+VRAM-compressed unsigned floating-point data format with normalized value, packed in 5Ãƒâ€”5 blocks. Values are in the ``[0.0, 1.0]`` range. Using ASTC compression.
 
 .. _class_RenderingDevice_constant_DATA_FORMAT_ASTC_5x5_SRGB_BLOCK:
 
@@ -1971,7 +1971,7 @@ VRAM-compressed unsigned floating-point data format with normalized value, packe
 
 :ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_ASTC_5x5_SRGB_BLOCK** = ``161``
 
-VRAM-compressed unsigned floating-point data format with normalized value and nonlinear sRGB encoding, packed in 5×5 blocks. Values are in the ``[0.0, 1.0]`` range. Using ASTC compression.
+VRAM-compressed unsigned floating-point data format with normalized value and nonlinear sRGB encoding, packed in 5Ãƒâ€”5 blocks. Values are in the ``[0.0, 1.0]`` range. Using ASTC compression.
 
 .. _class_RenderingDevice_constant_DATA_FORMAT_ASTC_6x5_UNORM_BLOCK:
 
@@ -1979,7 +1979,7 @@ VRAM-compressed unsigned floating-point data format with normalized value and no
 
 :ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_ASTC_6x5_UNORM_BLOCK** = ``162``
 
-VRAM-compressed unsigned floating-point data format with normalized value, packed in 6×5 blocks. Values are in the ``[0.0, 1.0]`` range. Using ASTC compression.
+VRAM-compressed unsigned floating-point data format with normalized value, packed in 6Ãƒâ€”5 blocks. Values are in the ``[0.0, 1.0]`` range. Using ASTC compression.
 
 .. _class_RenderingDevice_constant_DATA_FORMAT_ASTC_6x5_SRGB_BLOCK:
 
@@ -1987,7 +1987,7 @@ VRAM-compressed unsigned floating-point data format with normalized value, packe
 
 :ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_ASTC_6x5_SRGB_BLOCK** = ``163``
 
-VRAM-compressed unsigned floating-point data format with normalized value and nonlinear sRGB encoding, packed in 6×5 blocks. Values are in the ``[0.0, 1.0]`` range. Using ASTC compression.
+VRAM-compressed unsigned floating-point data format with normalized value and nonlinear sRGB encoding, packed in 6Ãƒâ€”5 blocks. Values are in the ``[0.0, 1.0]`` range. Using ASTC compression.
 
 .. _class_RenderingDevice_constant_DATA_FORMAT_ASTC_6x6_UNORM_BLOCK:
 
@@ -1995,7 +1995,7 @@ VRAM-compressed unsigned floating-point data format with normalized value and no
 
 :ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_ASTC_6x6_UNORM_BLOCK** = ``164``
 
-VRAM-compressed unsigned floating-point data format with normalized value, packed in 6×6 blocks. Values are in the ``[0.0, 1.0]`` range. Using ASTC compression.
+VRAM-compressed unsigned floating-point data format with normalized value, packed in 6Ãƒâ€”6 blocks. Values are in the ``[0.0, 1.0]`` range. Using ASTC compression.
 
 .. _class_RenderingDevice_constant_DATA_FORMAT_ASTC_6x6_SRGB_BLOCK:
 
@@ -2003,7 +2003,7 @@ VRAM-compressed unsigned floating-point data format with normalized value, packe
 
 :ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_ASTC_6x6_SRGB_BLOCK** = ``165``
 
-VRAM-compressed unsigned floating-point data format with normalized value and nonlinear sRGB encoding, packed in 6×6 blocks. Values are in the ``[0.0, 1.0]`` range. Using ASTC compression.
+VRAM-compressed unsigned floating-point data format with normalized value and nonlinear sRGB encoding, packed in 6Ãƒâ€”6 blocks. Values are in the ``[0.0, 1.0]`` range. Using ASTC compression.
 
 .. _class_RenderingDevice_constant_DATA_FORMAT_ASTC_8x5_UNORM_BLOCK:
 
@@ -2011,7 +2011,7 @@ VRAM-compressed unsigned floating-point data format with normalized value and no
 
 :ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_ASTC_8x5_UNORM_BLOCK** = ``166``
 
-VRAM-compressed unsigned floating-point data format with normalized value, packed in 8×5 blocks. Values are in the ``[0.0, 1.0]`` range. Using ASTC compression.
+VRAM-compressed unsigned floating-point data format with normalized value, packed in 8Ãƒâ€”5 blocks. Values are in the ``[0.0, 1.0]`` range. Using ASTC compression.
 
 .. _class_RenderingDevice_constant_DATA_FORMAT_ASTC_8x5_SRGB_BLOCK:
 
@@ -2019,7 +2019,7 @@ VRAM-compressed unsigned floating-point data format with normalized value, packe
 
 :ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_ASTC_8x5_SRGB_BLOCK** = ``167``
 
-VRAM-compressed unsigned floating-point data format with normalized value and nonlinear sRGB encoding, packed in 8×5 blocks. Values are in the ``[0.0, 1.0]`` range. Using ASTC compression.
+VRAM-compressed unsigned floating-point data format with normalized value and nonlinear sRGB encoding, packed in 8Ãƒâ€”5 blocks. Values are in the ``[0.0, 1.0]`` range. Using ASTC compression.
 
 .. _class_RenderingDevice_constant_DATA_FORMAT_ASTC_8x6_UNORM_BLOCK:
 
@@ -2027,7 +2027,7 @@ VRAM-compressed unsigned floating-point data format with normalized value and no
 
 :ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_ASTC_8x6_UNORM_BLOCK** = ``168``
 
-VRAM-compressed unsigned floating-point data format with normalized value, packed in 8×6 blocks. Values are in the ``[0.0, 1.0]`` range. Using ASTC compression.
+VRAM-compressed unsigned floating-point data format with normalized value, packed in 8Ãƒâ€”6 blocks. Values are in the ``[0.0, 1.0]`` range. Using ASTC compression.
 
 .. _class_RenderingDevice_constant_DATA_FORMAT_ASTC_8x6_SRGB_BLOCK:
 
@@ -2035,7 +2035,7 @@ VRAM-compressed unsigned floating-point data format with normalized value, packe
 
 :ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_ASTC_8x6_SRGB_BLOCK** = ``169``
 
-VRAM-compressed unsigned floating-point data format with normalized value and nonlinear sRGB encoding, packed in 8×6 blocks. Values are in the ``[0.0, 1.0]`` range. Using ASTC compression.
+VRAM-compressed unsigned floating-point data format with normalized value and nonlinear sRGB encoding, packed in 8Ãƒâ€”6 blocks. Values are in the ``[0.0, 1.0]`` range. Using ASTC compression.
 
 .. _class_RenderingDevice_constant_DATA_FORMAT_ASTC_8x8_UNORM_BLOCK:
 
@@ -2043,7 +2043,7 @@ VRAM-compressed unsigned floating-point data format with normalized value and no
 
 :ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_ASTC_8x8_UNORM_BLOCK** = ``170``
 
-VRAM-compressed unsigned floating-point data format with normalized value, packed in 8×8 blocks. Values are in the ``[0.0, 1.0]`` range. Using ASTC compression.
+VRAM-compressed unsigned floating-point data format with normalized value, packed in 8Ãƒâ€”8 blocks. Values are in the ``[0.0, 1.0]`` range. Using ASTC compression.
 
 .. _class_RenderingDevice_constant_DATA_FORMAT_ASTC_8x8_SRGB_BLOCK:
 
@@ -2051,7 +2051,7 @@ VRAM-compressed unsigned floating-point data format with normalized value, packe
 
 :ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_ASTC_8x8_SRGB_BLOCK** = ``171``
 
-VRAM-compressed unsigned floating-point data format with normalized value and nonlinear sRGB encoding, packed in 8×8 blocks. Values are in the ``[0.0, 1.0]`` range. Using ASTC compression.
+VRAM-compressed unsigned floating-point data format with normalized value and nonlinear sRGB encoding, packed in 8Ãƒâ€”8 blocks. Values are in the ``[0.0, 1.0]`` range. Using ASTC compression.
 
 .. _class_RenderingDevice_constant_DATA_FORMAT_ASTC_10x5_UNORM_BLOCK:
 
@@ -2059,7 +2059,7 @@ VRAM-compressed unsigned floating-point data format with normalized value and no
 
 :ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_ASTC_10x5_UNORM_BLOCK** = ``172``
 
-VRAM-compressed unsigned floating-point data format with normalized value, packed in 10×5 blocks. Values are in the ``[0.0, 1.0]`` range. Using ASTC compression.
+VRAM-compressed unsigned floating-point data format with normalized value, packed in 10Ãƒâ€”5 blocks. Values are in the ``[0.0, 1.0]`` range. Using ASTC compression.
 
 .. _class_RenderingDevice_constant_DATA_FORMAT_ASTC_10x5_SRGB_BLOCK:
 
@@ -2067,7 +2067,7 @@ VRAM-compressed unsigned floating-point data format with normalized value, packe
 
 :ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_ASTC_10x5_SRGB_BLOCK** = ``173``
 
-VRAM-compressed unsigned floating-point data format with normalized value and nonlinear sRGB encoding, packed in 10×5 blocks. Values are in the ``[0.0, 1.0]`` range. Using ASTC compression.
+VRAM-compressed unsigned floating-point data format with normalized value and nonlinear sRGB encoding, packed in 10Ãƒâ€”5 blocks. Values are in the ``[0.0, 1.0]`` range. Using ASTC compression.
 
 .. _class_RenderingDevice_constant_DATA_FORMAT_ASTC_10x6_UNORM_BLOCK:
 
@@ -2075,7 +2075,7 @@ VRAM-compressed unsigned floating-point data format with normalized value and no
 
 :ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_ASTC_10x6_UNORM_BLOCK** = ``174``
 
-VRAM-compressed unsigned floating-point data format with normalized value, packed in 10×6 blocks. Values are in the ``[0.0, 1.0]`` range. Using ASTC compression.
+VRAM-compressed unsigned floating-point data format with normalized value, packed in 10Ãƒâ€”6 blocks. Values are in the ``[0.0, 1.0]`` range. Using ASTC compression.
 
 .. _class_RenderingDevice_constant_DATA_FORMAT_ASTC_10x6_SRGB_BLOCK:
 
@@ -2083,7 +2083,7 @@ VRAM-compressed unsigned floating-point data format with normalized value, packe
 
 :ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_ASTC_10x6_SRGB_BLOCK** = ``175``
 
-VRAM-compressed unsigned floating-point data format with normalized value and nonlinear sRGB encoding, packed in 10×6 blocks. Values are in the ``[0.0, 1.0]`` range. Using ASTC compression.
+VRAM-compressed unsigned floating-point data format with normalized value and nonlinear sRGB encoding, packed in 10Ãƒâ€”6 blocks. Values are in the ``[0.0, 1.0]`` range. Using ASTC compression.
 
 .. _class_RenderingDevice_constant_DATA_FORMAT_ASTC_10x8_UNORM_BLOCK:
 
@@ -2091,7 +2091,7 @@ VRAM-compressed unsigned floating-point data format with normalized value and no
 
 :ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_ASTC_10x8_UNORM_BLOCK** = ``176``
 
-VRAM-compressed unsigned floating-point data format with normalized value, packed in 10×8 blocks. Values are in the ``[0.0, 1.0]`` range. Using ASTC compression.
+VRAM-compressed unsigned floating-point data format with normalized value, packed in 10Ãƒâ€”8 blocks. Values are in the ``[0.0, 1.0]`` range. Using ASTC compression.
 
 .. _class_RenderingDevice_constant_DATA_FORMAT_ASTC_10x8_SRGB_BLOCK:
 
@@ -2099,7 +2099,7 @@ VRAM-compressed unsigned floating-point data format with normalized value, packe
 
 :ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_ASTC_10x8_SRGB_BLOCK** = ``177``
 
-VRAM-compressed unsigned floating-point data format with normalized value and nonlinear sRGB encoding, packed in 10×8 blocks. Values are in the ``[0.0, 1.0]`` range. Using ASTC compression.
+VRAM-compressed unsigned floating-point data format with normalized value and nonlinear sRGB encoding, packed in 10Ãƒâ€”8 blocks. Values are in the ``[0.0, 1.0]`` range. Using ASTC compression.
 
 .. _class_RenderingDevice_constant_DATA_FORMAT_ASTC_10x10_UNORM_BLOCK:
 
@@ -2107,7 +2107,7 @@ VRAM-compressed unsigned floating-point data format with normalized value and no
 
 :ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_ASTC_10x10_UNORM_BLOCK** = ``178``
 
-VRAM-compressed unsigned floating-point data format with normalized value, packed in 10×10 blocks. Values are in the ``[0.0, 1.0]`` range. Using ASTC compression.
+VRAM-compressed unsigned floating-point data format with normalized value, packed in 10Ãƒâ€”10 blocks. Values are in the ``[0.0, 1.0]`` range. Using ASTC compression.
 
 .. _class_RenderingDevice_constant_DATA_FORMAT_ASTC_10x10_SRGB_BLOCK:
 
@@ -2115,7 +2115,7 @@ VRAM-compressed unsigned floating-point data format with normalized value, packe
 
 :ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_ASTC_10x10_SRGB_BLOCK** = ``179``
 
-VRAM-compressed unsigned floating-point data format with normalized value and nonlinear sRGB encoding, packed in 10×10 blocks. Values are in the ``[0.0, 1.0]`` range. Using ASTC compression.
+VRAM-compressed unsigned floating-point data format with normalized value and nonlinear sRGB encoding, packed in 10Ãƒâ€”10 blocks. Values are in the ``[0.0, 1.0]`` range. Using ASTC compression.
 
 .. _class_RenderingDevice_constant_DATA_FORMAT_ASTC_12x10_UNORM_BLOCK:
 
@@ -2123,7 +2123,7 @@ VRAM-compressed unsigned floating-point data format with normalized value and no
 
 :ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_ASTC_12x10_UNORM_BLOCK** = ``180``
 
-VRAM-compressed unsigned floating-point data format with normalized value, packed in 12×10 blocks. Values are in the ``[0.0, 1.0]`` range. Using ASTC compression.
+VRAM-compressed unsigned floating-point data format with normalized value, packed in 12Ãƒâ€”10 blocks. Values are in the ``[0.0, 1.0]`` range. Using ASTC compression.
 
 .. _class_RenderingDevice_constant_DATA_FORMAT_ASTC_12x10_SRGB_BLOCK:
 
@@ -2131,7 +2131,7 @@ VRAM-compressed unsigned floating-point data format with normalized value, packe
 
 :ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_ASTC_12x10_SRGB_BLOCK** = ``181``
 
-VRAM-compressed unsigned floating-point data format with normalized value and nonlinear sRGB encoding, packed in 12×10 blocks. Values are in the ``[0.0, 1.0]`` range. Using ASTC compression.
+VRAM-compressed unsigned floating-point data format with normalized value and nonlinear sRGB encoding, packed in 12Ãƒâ€”10 blocks. Values are in the ``[0.0, 1.0]`` range. Using ASTC compression.
 
 .. _class_RenderingDevice_constant_DATA_FORMAT_ASTC_12x12_UNORM_BLOCK:
 
@@ -2171,7 +2171,7 @@ VRAM-compressed unsigned floating-point data format with normalized value and no
 
 :ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_G8_B8_R8_3PLANE_420_UNORM** = ``186``
 
-8-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value, stored across 3 separate planes (green + blue + red). Values are in the ``[0.0, 1.0]`` range. Blue and red channel data is stored at halved horizontal and vertical resolution (i.e. 2×2 adjacent pixels will share the same value for the blue/red channel).
+8-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value, stored across 3 separate planes (green + blue + red). Values are in the ``[0.0, 1.0]`` range. Blue and red channel data is stored at halved horizontal and vertical resolution (i.e. 2Ãƒâ€”2 adjacent pixels will share the same value for the blue/red channel).
 
 .. _class_RenderingDevice_constant_DATA_FORMAT_G8_B8R8_2PLANE_420_UNORM:
 
@@ -2179,7 +2179,7 @@ VRAM-compressed unsigned floating-point data format with normalized value and no
 
 :ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_G8_B8R8_2PLANE_420_UNORM** = ``187``
 
-8-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value, stored across 2 separate planes (green + blue/red). Values are in the ``[0.0, 1.0]`` range. Blue and red channel data is stored at halved horizontal and vertical resolution (i.e. 2×2 adjacent pixels will share the same value for the blue/red channel).
+8-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value, stored across 2 separate planes (green + blue/red). Values are in the ``[0.0, 1.0]`` range. Blue and red channel data is stored at halved horizontal and vertical resolution (i.e. 2Ãƒâ€”2 adjacent pixels will share the same value for the blue/red channel).
 
 .. _class_RenderingDevice_constant_DATA_FORMAT_G8_B8_R8_3PLANE_422_UNORM:
 
@@ -2219,7 +2219,7 @@ VRAM-compressed unsigned floating-point data format with normalized value and no
 
 :ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_R10X6G10X6_UNORM_2PACK16** = ``192``
 
-10-bit-per-channel unsigned floating-point red/green channel data with normalized value, plus 6 unused bits after each channel, packed in 2×16 bits. Values are in the ``[0.0, 1.0]`` range.
+10-bit-per-channel unsigned floating-point red/green channel data with normalized value, plus 6 unused bits after each channel, packed in 2Ãƒâ€”16 bits. Values are in the ``[0.0, 1.0]`` range.
 
 .. _class_RenderingDevice_constant_DATA_FORMAT_R10X6G10X6B10X6A10X6_UNORM_4PACK16:
 
@@ -2227,7 +2227,7 @@ VRAM-compressed unsigned floating-point data format with normalized value and no
 
 :ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_R10X6G10X6B10X6A10X6_UNORM_4PACK16** = ``193``
 
-10-bit-per-channel unsigned floating-point red/green/blue/alpha channel data with normalized value, plus 6 unused bits after each channel, packed in 4×16 bits. Values are in the ``[0.0, 1.0]`` range.
+10-bit-per-channel unsigned floating-point red/green/blue/alpha channel data with normalized value, plus 6 unused bits after each channel, packed in 4Ãƒâ€”16 bits. Values are in the ``[0.0, 1.0]`` range.
 
 .. _class_RenderingDevice_constant_DATA_FORMAT_G10X6B10X6G10X6R10X6_422_UNORM_4PACK16:
 
@@ -2235,7 +2235,7 @@ VRAM-compressed unsigned floating-point data format with normalized value and no
 
 :ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_G10X6B10X6G10X6R10X6_422_UNORM_4PACK16** = ``194``
 
-10-bit-per-channel unsigned floating-point green/blue/green/red channel data with normalized value, plus 6 unused bits after each channel, packed in 4×16 bits. Values are in the ``[0.0, 1.0]`` range. Blue and red channel data is stored at halved horizontal resolution (i.e. 2 horizontally adjacent pixels will share the same value for the blue/red channel). The green channel is listed twice, but contains different values to allow it to be represented at full resolution.
+10-bit-per-channel unsigned floating-point green/blue/green/red channel data with normalized value, plus 6 unused bits after each channel, packed in 4Ãƒâ€”16 bits. Values are in the ``[0.0, 1.0]`` range. Blue and red channel data is stored at halved horizontal resolution (i.e. 2 horizontally adjacent pixels will share the same value for the blue/red channel). The green channel is listed twice, but contains different values to allow it to be represented at full resolution.
 
 .. _class_RenderingDevice_constant_DATA_FORMAT_B10X6G10X6R10X6G10X6_422_UNORM_4PACK16:
 
@@ -2243,7 +2243,7 @@ VRAM-compressed unsigned floating-point data format with normalized value and no
 
 :ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_B10X6G10X6R10X6G10X6_422_UNORM_4PACK16** = ``195``
 
-10-bit-per-channel unsigned floating-point blue/green/red/green channel data with normalized value, plus 6 unused bits after each channel, packed in 4×16 bits. Values are in the ``[0.0, 1.0]`` range. Blue and red channel data is stored at halved horizontal resolution (i.e. 2 horizontally adjacent pixels will share the same value for the blue/red channel). The green channel is listed twice, but contains different values to allow it to be represented at full resolution.
+10-bit-per-channel unsigned floating-point blue/green/red/green channel data with normalized value, plus 6 unused bits after each channel, packed in 4Ãƒâ€”16 bits. Values are in the ``[0.0, 1.0]`` range. Blue and red channel data is stored at halved horizontal resolution (i.e. 2 horizontally adjacent pixels will share the same value for the blue/red channel). The green channel is listed twice, but contains different values to allow it to be represented at full resolution.
 
 .. _class_RenderingDevice_constant_DATA_FORMAT_G10X6_B10X6_R10X6_3PLANE_420_UNORM_3PACK16:
 
@@ -2251,7 +2251,7 @@ VRAM-compressed unsigned floating-point data format with normalized value and no
 
 :ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_G10X6_B10X6_R10X6_3PLANE_420_UNORM_3PACK16** = ``196``
 
-10-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value, plus 6 unused bits after each channel. Packed in 3×16 bits and stored across 2 separate planes (green + blue + red). Values are in the ``[0.0, 1.0]`` range. Blue and red channel data is stored at halved horizontal and vertical resolution (i.e. 2×2 adjacent pixels will share the same value for the blue/red channel).
+10-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value, plus 6 unused bits after each channel. Packed in 3Ãƒâ€”16 bits and stored across 2 separate planes (green + blue + red). Values are in the ``[0.0, 1.0]`` range. Blue and red channel data is stored at halved horizontal and vertical resolution (i.e. 2Ãƒâ€”2 adjacent pixels will share the same value for the blue/red channel).
 
 .. _class_RenderingDevice_constant_DATA_FORMAT_G10X6_B10X6R10X6_2PLANE_420_UNORM_3PACK16:
 
@@ -2259,7 +2259,7 @@ VRAM-compressed unsigned floating-point data format with normalized value and no
 
 :ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_G10X6_B10X6R10X6_2PLANE_420_UNORM_3PACK16** = ``197``
 
-10-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value, plus 6 unused bits after each channel. Packed in 3×16 bits and stored across 2 separate planes (green + blue/red). Values are in the ``[0.0, 1.0]`` range. Blue and red channel data is stored at halved horizontal and vertical resolution (i.e. 2×2 adjacent pixels will share the same value for the blue/red channel).
+10-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value, plus 6 unused bits after each channel. Packed in 3Ãƒâ€”16 bits and stored across 2 separate planes (green + blue/red). Values are in the ``[0.0, 1.0]`` range. Blue and red channel data is stored at halved horizontal and vertical resolution (i.e. 2Ãƒâ€”2 adjacent pixels will share the same value for the blue/red channel).
 
 .. _class_RenderingDevice_constant_DATA_FORMAT_G10X6_B10X6_R10X6_3PLANE_422_UNORM_3PACK16:
 
@@ -2267,7 +2267,7 @@ VRAM-compressed unsigned floating-point data format with normalized value and no
 
 :ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_G10X6_B10X6_R10X6_3PLANE_422_UNORM_3PACK16** = ``198``
 
-10-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value, plus 6 unused bits after each channel. Packed in 3×16 bits and stored across 3 separate planes (green + blue + red). Values are in the ``[0.0, 1.0]`` range. Blue and red channel data is stored at halved horizontal resolution (i.e. 2 horizontally adjacent pixels will share the same value for the blue/red channel).
+10-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value, plus 6 unused bits after each channel. Packed in 3Ãƒâ€”16 bits and stored across 3 separate planes (green + blue + red). Values are in the ``[0.0, 1.0]`` range. Blue and red channel data is stored at halved horizontal resolution (i.e. 2 horizontally adjacent pixels will share the same value for the blue/red channel).
 
 .. _class_RenderingDevice_constant_DATA_FORMAT_G10X6_B10X6R10X6_2PLANE_422_UNORM_3PACK16:
 
@@ -2275,7 +2275,7 @@ VRAM-compressed unsigned floating-point data format with normalized value and no
 
 :ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_G10X6_B10X6R10X6_2PLANE_422_UNORM_3PACK16** = ``199``
 
-10-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value, plus 6 unused bits after each channel. Packed in 3×16 bits and stored across 3 separate planes (green + blue/red). Values are in the ``[0.0, 1.0]`` range. Blue and red channel data is stored at halved horizontal resolution (i.e. 2 horizontally adjacent pixels will share the same value for the blue/red channel).
+10-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value, plus 6 unused bits after each channel. Packed in 3Ãƒâ€”16 bits and stored across 3 separate planes (green + blue/red). Values are in the ``[0.0, 1.0]`` range. Blue and red channel data is stored at halved horizontal resolution (i.e. 2 horizontally adjacent pixels will share the same value for the blue/red channel).
 
 .. _class_RenderingDevice_constant_DATA_FORMAT_G10X6_B10X6_R10X6_3PLANE_444_UNORM_3PACK16:
 
@@ -2283,7 +2283,7 @@ VRAM-compressed unsigned floating-point data format with normalized value and no
 
 :ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_G10X6_B10X6_R10X6_3PLANE_444_UNORM_3PACK16** = ``200``
 
-10-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value, plus 6 unused bits after each channel. Packed in 3×16 bits and stored across 3 separate planes (green + blue + red). Values are in the ``[0.0, 1.0]`` range.
+10-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value, plus 6 unused bits after each channel. Packed in 3Ãƒâ€”16 bits and stored across 3 separate planes (green + blue + red). Values are in the ``[0.0, 1.0]`` range.
 
 .. _class_RenderingDevice_constant_DATA_FORMAT_R12X4_UNORM_PACK16:
 
@@ -2299,7 +2299,7 @@ VRAM-compressed unsigned floating-point data format with normalized value and no
 
 :ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_R12X4G12X4_UNORM_2PACK16** = ``202``
 
-12-bit-per-channel unsigned floating-point red/green channel data with normalized value, plus 6 unused bits after each channel, packed in 2×16 bits. Values are in the ``[0.0, 1.0]`` range.
+12-bit-per-channel unsigned floating-point red/green channel data with normalized value, plus 6 unused bits after each channel, packed in 2Ãƒâ€”16 bits. Values are in the ``[0.0, 1.0]`` range.
 
 .. _class_RenderingDevice_constant_DATA_FORMAT_R12X4G12X4B12X4A12X4_UNORM_4PACK16:
 
@@ -2307,7 +2307,7 @@ VRAM-compressed unsigned floating-point data format with normalized value and no
 
 :ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_R12X4G12X4B12X4A12X4_UNORM_4PACK16** = ``203``
 
-12-bit-per-channel unsigned floating-point red/green/blue/alpha channel data with normalized value, plus 6 unused bits after each channel, packed in 4×16 bits. Values are in the ``[0.0, 1.0]`` range.
+12-bit-per-channel unsigned floating-point red/green/blue/alpha channel data with normalized value, plus 6 unused bits after each channel, packed in 4Ãƒâ€”16 bits. Values are in the ``[0.0, 1.0]`` range.
 
 .. _class_RenderingDevice_constant_DATA_FORMAT_G12X4B12X4G12X4R12X4_422_UNORM_4PACK16:
 
@@ -2315,7 +2315,7 @@ VRAM-compressed unsigned floating-point data format with normalized value and no
 
 :ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_G12X4B12X4G12X4R12X4_422_UNORM_4PACK16** = ``204``
 
-12-bit-per-channel unsigned floating-point green/blue/green/red channel data with normalized value, plus 6 unused bits after each channel, packed in 4×16 bits. Values are in the ``[0.0, 1.0]`` range. Blue and red channel data is stored at halved horizontal resolution (i.e. 2 horizontally adjacent pixels will share the same value for the blue/red channel). The green channel is listed twice, but contains different values to allow it to be represented at full resolution.
+12-bit-per-channel unsigned floating-point green/blue/green/red channel data with normalized value, plus 6 unused bits after each channel, packed in 4Ãƒâ€”16 bits. Values are in the ``[0.0, 1.0]`` range. Blue and red channel data is stored at halved horizontal resolution (i.e. 2 horizontally adjacent pixels will share the same value for the blue/red channel). The green channel is listed twice, but contains different values to allow it to be represented at full resolution.
 
 .. _class_RenderingDevice_constant_DATA_FORMAT_B12X4G12X4R12X4G12X4_422_UNORM_4PACK16:
 
@@ -2323,7 +2323,7 @@ VRAM-compressed unsigned floating-point data format with normalized value and no
 
 :ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_B12X4G12X4R12X4G12X4_422_UNORM_4PACK16** = ``205``
 
-12-bit-per-channel unsigned floating-point blue/green/red/green channel data with normalized value, plus 6 unused bits after each channel, packed in 4×16 bits. Values are in the ``[0.0, 1.0]`` range. Blue and red channel data is stored at halved horizontal resolution (i.e. 2 horizontally adjacent pixels will share the same value for the blue/red channel). The green channel is listed twice, but contains different values to allow it to be represented at full resolution.
+12-bit-per-channel unsigned floating-point blue/green/red/green channel data with normalized value, plus 6 unused bits after each channel, packed in 4Ãƒâ€”16 bits. Values are in the ``[0.0, 1.0]`` range. Blue and red channel data is stored at halved horizontal resolution (i.e. 2 horizontally adjacent pixels will share the same value for the blue/red channel). The green channel is listed twice, but contains different values to allow it to be represented at full resolution.
 
 .. _class_RenderingDevice_constant_DATA_FORMAT_G12X4_B12X4_R12X4_3PLANE_420_UNORM_3PACK16:
 
@@ -2331,7 +2331,7 @@ VRAM-compressed unsigned floating-point data format with normalized value and no
 
 :ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_G12X4_B12X4_R12X4_3PLANE_420_UNORM_3PACK16** = ``206``
 
-12-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value, plus 6 unused bits after each channel. Packed in 3×16 bits and stored across 2 separate planes (green + blue + red). Values are in the ``[0.0, 1.0]`` range. Blue and red channel data is stored at halved horizontal and vertical resolution (i.e. 2×2 adjacent pixels will share the same value for the blue/red channel).
+12-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value, plus 6 unused bits after each channel. Packed in 3Ãƒâ€”16 bits and stored across 2 separate planes (green + blue + red). Values are in the ``[0.0, 1.0]`` range. Blue and red channel data is stored at halved horizontal and vertical resolution (i.e. 2Ãƒâ€”2 adjacent pixels will share the same value for the blue/red channel).
 
 .. _class_RenderingDevice_constant_DATA_FORMAT_G12X4_B12X4R12X4_2PLANE_420_UNORM_3PACK16:
 
@@ -2339,7 +2339,7 @@ VRAM-compressed unsigned floating-point data format with normalized value and no
 
 :ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_G12X4_B12X4R12X4_2PLANE_420_UNORM_3PACK16** = ``207``
 
-12-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value, plus 6 unused bits after each channel. Packed in 3×16 bits and stored across 2 separate planes (green + blue/red). Values are in the ``[0.0, 1.0]`` range. Blue and red channel data is stored at halved horizontal and vertical resolution (i.e. 2×2 adjacent pixels will share the same value for the blue/red channel).
+12-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value, plus 6 unused bits after each channel. Packed in 3Ãƒâ€”16 bits and stored across 2 separate planes (green + blue/red). Values are in the ``[0.0, 1.0]`` range. Blue and red channel data is stored at halved horizontal and vertical resolution (i.e. 2Ãƒâ€”2 adjacent pixels will share the same value for the blue/red channel).
 
 .. _class_RenderingDevice_constant_DATA_FORMAT_G12X4_B12X4_R12X4_3PLANE_422_UNORM_3PACK16:
 
@@ -2347,7 +2347,7 @@ VRAM-compressed unsigned floating-point data format with normalized value and no
 
 :ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_G12X4_B12X4_R12X4_3PLANE_422_UNORM_3PACK16** = ``208``
 
-12-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value, plus 6 unused bits after each channel. Packed in 3×16 bits and stored across 3 separate planes (green + blue + red). Values are in the ``[0.0, 1.0]`` range. Blue and red channel data is stored at halved horizontal resolution (i.e. 2 horizontally adjacent pixels will share the same value for the blue/red channel).
+12-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value, plus 6 unused bits after each channel. Packed in 3Ãƒâ€”16 bits and stored across 3 separate planes (green + blue + red). Values are in the ``[0.0, 1.0]`` range. Blue and red channel data is stored at halved horizontal resolution (i.e. 2 horizontally adjacent pixels will share the same value for the blue/red channel).
 
 .. _class_RenderingDevice_constant_DATA_FORMAT_G12X4_B12X4R12X4_2PLANE_422_UNORM_3PACK16:
 
@@ -2355,7 +2355,7 @@ VRAM-compressed unsigned floating-point data format with normalized value and no
 
 :ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_G12X4_B12X4R12X4_2PLANE_422_UNORM_3PACK16** = ``209``
 
-12-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value, plus 6 unused bits after each channel. Packed in 3×16 bits and stored across 3 separate planes (green + blue/red). Values are in the ``[0.0, 1.0]`` range. Blue and red channel data is stored at halved horizontal resolution (i.e. 2 horizontally adjacent pixels will share the same value for the blue/red channel).
+12-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value, plus 6 unused bits after each channel. Packed in 3Ãƒâ€”16 bits and stored across 3 separate planes (green + blue/red). Values are in the ``[0.0, 1.0]`` range. Blue and red channel data is stored at halved horizontal resolution (i.e. 2 horizontally adjacent pixels will share the same value for the blue/red channel).
 
 .. _class_RenderingDevice_constant_DATA_FORMAT_G12X4_B12X4_R12X4_3PLANE_444_UNORM_3PACK16:
 
@@ -2363,7 +2363,7 @@ VRAM-compressed unsigned floating-point data format with normalized value and no
 
 :ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_G12X4_B12X4_R12X4_3PLANE_444_UNORM_3PACK16** = ``210``
 
-12-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value, plus 6 unused bits after each channel. Packed in 3×16 bits and stored across 3 separate planes (green + blue + red). Values are in the ``[0.0, 1.0]`` range.
+12-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value, plus 6 unused bits after each channel. Packed in 3Ãƒâ€”16 bits and stored across 3 separate planes (green + blue + red). Values are in the ``[0.0, 1.0]`` range.
 
 .. _class_RenderingDevice_constant_DATA_FORMAT_G16B16G16R16_422_UNORM:
 
@@ -2387,7 +2387,7 @@ VRAM-compressed unsigned floating-point data format with normalized value and no
 
 :ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_G16_B16_R16_3PLANE_420_UNORM** = ``213``
 
-16-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value, plus 6 unused bits after each channel. Stored across 2 separate planes (green + blue + red). Values are in the ``[0.0, 1.0]`` range. Blue and red channel data is stored at halved horizontal and vertical resolution (i.e. 2×2 adjacent pixels will share the same value for the blue/red channel).
+16-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value, plus 6 unused bits after each channel. Stored across 2 separate planes (green + blue + red). Values are in the ``[0.0, 1.0]`` range. Blue and red channel data is stored at halved horizontal and vertical resolution (i.e. 2Ãƒâ€”2 adjacent pixels will share the same value for the blue/red channel).
 
 .. _class_RenderingDevice_constant_DATA_FORMAT_G16_B16R16_2PLANE_420_UNORM:
 
@@ -2395,7 +2395,7 @@ VRAM-compressed unsigned floating-point data format with normalized value and no
 
 :ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_G16_B16R16_2PLANE_420_UNORM** = ``214``
 
-16-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value, plus 6 unused bits after each channel. Stored across 2 separate planes (green + blue/red). Values are in the ``[0.0, 1.0]`` range. Blue and red channel data is stored at halved horizontal and vertical resolution (i.e. 2×2 adjacent pixels will share the same value for the blue/red channel).
+16-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value, plus 6 unused bits after each channel. Stored across 2 separate planes (green + blue/red). Values are in the ``[0.0, 1.0]`` range. Blue and red channel data is stored at halved horizontal and vertical resolution (i.e. 2Ãƒâ€”2 adjacent pixels will share the same value for the blue/red channel).
 
 .. _class_RenderingDevice_constant_DATA_FORMAT_G16_B16_R16_3PLANE_422_UNORM:
 
@@ -3275,8 +3275,18 @@ Optionally, set this flag if you wish to use :ref:`buffer_get_device_address()<c
     rd = RenderingServer.get_rendering_device()
 
     if rd.has_feature(RenderingDevice.SUPPORTS_BUFFER_DEVICE_ADDRESS):
-        storage_buffer = rd.storage_buffer_create(bytes.size(), bytes, RenderingDevice.STORAGE_BUFFER_USAGE_SHADER_DEVICE_ADDRESS)
+        storage_buffer = rd.storage_buffer_create(bytes.size(), bytes, 0, RenderingDevice.BUFFER_CREATION_DEVICE_ADDRESS_BIT)
         storage_buffer_address = rd.buffer_get_device_address(storage_buffer)
+
+ .. code-tab:: csharp
+
+    var rd = RenderingServer.GetRenderingDevice();
+    if (rd.HasFeature(RenderingDevice.Features.BufferDeviceAddress))
+    {
+        Rid storageBuffer = rd.StorageBufferCreate((uint)bytes.Length, bytes, 0,
+            RenderingDevice.BufferCreationBits.DeviceAddressBit);
+        ulong storageBufferAddress = rd.BufferGetDeviceAddress(storageBuffer);
+    }
 
 
 
@@ -3306,7 +3316,16 @@ Allows usage of this buffer as input data for an acceleration structure build op
     rd = RenderingServer.get_rendering_device()
 
     if rd.has_feature(RenderingDevice.SUPPORTS_RAYTRACING_PIPELINE):
-        storage_buffer = rd.storage_buffer_create(bytes.size(), bytes, RenderingDevice.BUFFER_CREATION_ACCELERATION_STRUCTURE_BUILD_INPUT_READ_ONLY_BIT)
+        storage_buffer = rd.storage_buffer_create(bytes.size(), bytes, 0, RenderingDevice.BUFFER_CREATION_ACCELERATION_STRUCTURE_BUILD_INPUT_READ_ONLY_BIT)
+
+ .. code-tab:: csharp
+
+    var rd = RenderingServer.GetRenderingDevice();
+    if (rd.HasFeature(RenderingDevice.Features.RaytracingPipeline))
+    {
+        Rid storageBuffer = rd.StorageBufferCreate((uint)bytes.Length, bytes, 0,
+            RenderingDevice.BufferCreationBits.AccelerationStructureBuildInputReadOnlyBit);
+    }
 
 
 
@@ -5706,7 +5725,10 @@ Asynchronous version of :ref:`buffer_get_data()<class_RenderingDevice_method_buf
 
 \ **Note:** Downloading large buffers can have a prohibitive cost for real-time even when using the asynchronous method due to hardware bandwidth limitations. When dealing with large resources, you can adjust settings such as :ref:`ProjectSettings.rendering/rendering_device/staging_buffer/block_size_kb<class_ProjectSettings_property_rendering/rendering_device/staging_buffer/block_size_kb>` to improve the transfer speed at the cost of extra memory.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     func _buffer_get_data_callback(array):
         value = array.decode_u32(0)
@@ -5714,6 +5736,12 @@ Asynchronous version of :ref:`buffer_get_data()<class_RenderingDevice_method_buf
     ...
 
     rd.buffer_get_data_async(buffer, _buffer_get_data_callback)
+
+ .. code-tab:: csharp
+
+    rd.BufferGetDataAsync(buffer, Callable.From<byte[]>(bytes => value = System.Buffers.Binary.BinaryPrimitives.ReadUInt32LittleEndian(bytes)));
+
+
 
 .. rst-class:: classref-item-separator
 
@@ -5789,9 +5817,12 @@ Multiple compute lists cannot be created at the same time; you must finish the p
 
 A simple compute operation might look like this (code is not a complete example):
 
-::
 
-    var rd = RenderingDevice.new()
+.. tabs::
+
+ .. code-tab:: gdscript
+
+    var rd = RenderingServer.create_local_rendering_device()
     var compute_list = rd.compute_list_begin()
 
     rd.compute_list_bind_compute_pipeline(compute_list, compute_shader_dilate_pipeline)
@@ -5804,6 +5835,22 @@ A simple compute operation might look like this (code is not a complete example)
         # No barrier, let them run all together.
 
     rd.compute_list_end()
+
+ .. code-tab:: csharp
+
+    var rd = RenderingServer.CreateLocalRenderingDevice();
+    long list = rd.ComputeListBegin();
+    rd.ComputeListBindComputePipeline(list, computeShaderDilatePipeline);
+    rd.ComputeListBindUniformSet(list, computeBaseUniformSet, 0);
+    rd.ComputeListBindUniformSet(list, dilateUniformSet, 1);
+    for (int i = 0; i < atlasSlices; i++)
+    {
+        rd.ComputeListSetPushConstant(list, pushConstant, (uint)pushConstant.Length);
+        rd.ComputeListDispatch(list, (uint)groupSize.X, (uint)groupSize.Y, (uint)groupSize.Z);
+    }
+    rd.ComputeListEnd();
+
+
 
 .. rst-class:: classref-item-separator
 
@@ -5973,11 +6020,14 @@ Multiple draw lists cannot be created at the same time; you must finish the prev
 
 A simple drawing operation might look like this (code is not a complete example):
 
-::
 
-    var rd = RenderingDevice.new()
+.. tabs::
+
+ .. code-tab:: gdscript
+
+    var rd = RenderingServer.create_local_rendering_device()
     var clear_colors = PackedColorArray([Color(0, 0, 0, 0), Color(0, 0, 0, 0), Color(0, 0, 0, 0)])
-    var draw_list = rd.draw_list_begin(framebuffers[i], RenderingDevice.CLEAR_COLOR_ALL, clear_colors, true, 1.0f, true, 0, Rect2(), RenderingDevice.OPAQUE_PASS)
+    var draw_list = rd.draw_list_begin(framebuffers[i], RenderingDevice.DRAW_CLEAR_COLOR_ALL | RenderingDevice.DRAW_CLEAR_DEPTH | RenderingDevice.DRAW_CLEAR_STENCIL, clear_colors, 1.0, 0, Rect2(), RenderingDevice.OPAQUE_PASS)
 
     # Draw opaque.
     rd.draw_list_bind_render_pipeline(draw_list, raster_pipeline)
@@ -5992,15 +6042,43 @@ A simple drawing operation might look like this (code is not a complete example)
 
     rd.draw_list_end()
 
+ .. code-tab:: csharp
+
+    var rd = RenderingServer.CreateLocalRenderingDevice();
+    Color[] clearColors = { new(0, 0, 0, 0), new(0, 0, 0, 0), new(0, 0, 0, 0) };
+    long list = rd.DrawListBegin(framebuffers[i], RenderingDevice.DrawFlags.ClearColorAll | RenderingDevice.DrawFlags.ClearDepth | RenderingDevice.DrawFlags.ClearStencil, clearColors, 1.0f, 0,
+        new Rect2(), (uint)RenderingDevice.BreadcrumbMarker.OpaquePass);
+    rd.DrawListBindRenderPipeline(list, rasterPipeline);
+    rd.DrawListBindUniformSet(list, rasterBaseUniform, 0);
+    rd.DrawListSetPushConstant(list, rasterPushConstant, (uint)rasterPushConstant.Length);
+    rd.DrawListDraw(list, false, 1, (uint)(sliceTriangleCount[i] * 3));
+    rd.DrawListBindRenderPipeline(list, rasterPipelineWire);
+    rd.DrawListBindUniformSet(list, rasterBaseUniform, 0);
+    rd.DrawListSetPushConstant(list, rasterPushConstant, (uint)rasterPushConstant.Length);
+    rd.DrawListDraw(list, false, 1, (uint)(sliceTriangleCount[i] * 3));
+    rd.DrawListEnd();
+
+
+
 The ``draw_flags`` indicates if the texture attachments of the framebuffer should be cleared or ignored. Only one of the two flags can be used for each individual attachment. Ignoring an attachment means that any contents that existed before the draw list will be completely discarded, reducing the memory bandwidth used by the render pass but producing garbage results if the pixels aren't replaced. The default behavior allows the engine to figure out the right operation to use if the texture is discardable, which can result in increased performance. See :ref:`RDTextureFormat<class_RDTextureFormat>` or :ref:`texture_set_discardable()<class_RenderingDevice_method_texture_set_discardable>`.
 
 The ``breadcrumb`` parameter can be an arbitrary 32-bit integer that is useful to diagnose GPU crashes. If Godot is built in dev or debug mode; when the GPU crashes Godot will dump all shaders that were being executed at the time of the crash and the breadcrumb is useful to diagnose what passes did those shaders belong to.
 
 It does not affect rendering behavior and can be set to 0. It is recommended to use :ref:`BreadcrumbMarker<enum_RenderingDevice_BreadcrumbMarker>` enumerations for consistency but it's not required. It is also possible to use bitwise operations to add extra data. e.g.
 
-::
 
-    rd.draw_list_begin(fb[i], RenderingDevice.CLEAR_COLOR_ALL, clear_colors, true, 1.0f, true, 0, Rect2(), RenderingDevice.OPAQUE_PASS | 5)
+.. tabs::
+
+ .. code-tab:: gdscript
+
+    rd.draw_list_begin(fb[i], RenderingDevice.DRAW_CLEAR_COLOR_ALL | RenderingDevice.DRAW_CLEAR_DEPTH | RenderingDevice.DRAW_CLEAR_STENCIL, clear_colors, 1.0, 0, Rect2(), RenderingDevice.OPAQUE_PASS | 5)
+
+ .. code-tab:: csharp
+
+    rd.DrawListBegin(framebuffers[i], RenderingDevice.DrawFlags.ClearColorAll | RenderingDevice.DrawFlags.ClearDepth | RenderingDevice.DrawFlags.ClearStencil, clearColors, 1.0f, 0,
+        new Rect2(), (uint)RenderingDevice.BreadcrumbMarker.OpaquePass | 5u);
+
+
 
 .. rst-class:: classref-item-separator
 
@@ -6738,7 +6816,7 @@ During ray traversal, hit group index is computed as:
 
 (geometry index in :ref:`RDAccelerationStructureInstance.blas<class_RDAccelerationStructureInstance_property_blas>`)
 
-× (SBT stride used in ``traceRayEXT``)
+Ãƒâ€” (SBT stride used in ``traceRayEXT``)
 
 + (SBT offset used in ``traceRayEXT``)
 
@@ -6748,7 +6826,7 @@ During ray traversal, hit group index is computed as:
 
 (geometry count in :ref:`RDAccelerationStructureInstance.blas<class_RDAccelerationStructureInstance_property_blas>`)
 
-× (SBT stride used in ``traceRayEXT``)
+Ãƒâ€” (SBT stride used in ``traceRayEXT``)
 
 The allocated range is uninitialized and must be filled using :ref:`hit_sbt_range_update()<class_RenderingDevice_method_hit_sbt_range_update>`.
 
@@ -6871,7 +6949,7 @@ A simple raytracing operation might look like this (code is not a complete examp
 
  .. code-tab:: gdscript
 
-    var rd = RenderingDevice.new()
+    var rd = RenderingServer.create_local_rendering_device()
     assert(rd.has_feature(RenderingDevice.SUPPORTS_RAYTRACING_PIPELINE))
 
     # Create a BLAS for a mesh.
@@ -6908,11 +6986,40 @@ A simple raytracing operation might look like this (code is not a complete examp
     rd.raytracing_list_bind_uniform_set(raylist, uniform_set, 0)
 
     # Trace rays.
-    var width = get_viewport().size.x
-    var height = get_viewport().size.y
+    var width = get_viewport().get_visible_rect().size.x
+    var height = get_viewport().get_visible_rect().size.y
     rd.raytracing_list_trace_rays(raylist, 0, hit_sbt, width, height, 1)
 
     rd.raytracing_list_end()
+
+ .. code-tab:: csharp
+
+    var rd = RenderingServer.CreateLocalRenderingDevice();
+    if (!rd.HasFeature(RenderingDevice.Features.RaytracingPipeline))
+        return;
+    var geometry = new RDAccelerationStructureGeometry
+    {
+        Flags = RenderingDevice.AccelerationStructureGeometryFlagBits.OpaqueBit,
+        VertexBuffer = vertexBuffer,
+        VertexStride = 12,
+        VertexFormat = RenderingDevice.DataFormat.R32G32B32Sfloat,
+        VertexCount = 3,
+        IndexBuffer = indexBuffer,
+        IndexCount = 3,
+    };
+    Rid blas = rd.BlasCreate(new Godot.Collections.Array<RDAccelerationStructureGeometry> { geometry }, 0);
+    Rid tlas = rd.TlasCreate(1, 0);
+    rd.BlasBuild(blas);
+    var instance = new RDAccelerationStructureInstance { Blas = blas };
+    instance.HitSbtRange = rd.HitSbtRangeAlloc(hitSbt, 1);
+    rd.HitSbtRangeUpdate(hitSbt, instance.HitSbtRange, 0, new int[] { 0 });
+    rd.TlasBuild(tlas, new Godot.Collections.Array<RDAccelerationStructureInstance> { instance });
+    long list = rd.RaytracingListBegin();
+    rd.RaytracingListBindRaytracingPipeline(list, raytracingPipeline);
+    rd.RaytracingListBindUniformSet(list, uniformSet, 0);
+    Vector2 size = GetViewport().GetVisibleRect().Size;
+    rd.RaytracingListTraceRays(list, 0, hitSbt, (uint)size.X, (uint)size.Y, 1);
+    rd.RaytracingListEnd();
 
 
 
@@ -6984,7 +7091,7 @@ Sets the push constant data to ``buffer`` for the specified ``raytracing_list``.
 
 **Experimental:** This method may be changed or removed in future versions.
 
-Initializes a raytracing dispatch for ``raytracing_list``, launching ``width`` × ``height`` × ``depth`` rays.
+Initializes a raytracing dispatch for ``raytracing_list``, launching ``width`` Ãƒâ€” ``height`` Ãƒâ€” ``depth`` rays.
 
 \ ``raygen_shader_index`` selects the ray generation shader from the pipeline bound with :ref:`raytracing_list_bind_raytracing_pipeline()<class_RenderingDevice_method_raytracing_list_bind_raytracing_pipeline>`.
 
@@ -7410,7 +7517,10 @@ Asynchronous version of :ref:`texture_get_data()<class_RenderingDevice_method_te
 
 \ **Note:** Downloading large textures can have a prohibitive cost for real-time even when using the asynchronous method due to hardware bandwidth limitations. When dealing with large resources, you can adjust settings such as :ref:`ProjectSettings.rendering/rendering_device/staging_buffer/texture_download_region_size_px<class_ProjectSettings_property_rendering/rendering_device/staging_buffer/texture_download_region_size_px>` and :ref:`ProjectSettings.rendering/rendering_device/staging_buffer/block_size_kb<class_ProjectSettings_property_rendering/rendering_device/staging_buffer/block_size_kb>` to improve the transfer speed at the cost of extra memory.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     func _texture_get_data_callback(array):
         value = array.decode_u32(0)
@@ -7418,6 +7528,12 @@ Asynchronous version of :ref:`texture_get_data()<class_RenderingDevice_method_te
     ...
 
     rd.texture_get_data_async(texture, 0, _texture_get_data_callback)
+
+ .. code-tab:: csharp
+
+    rd.TextureGetDataAsync(texture, 0, Callable.From<byte[]>(bytes => value = System.Buffers.Binary.BinaryPrimitives.ReadUInt32LittleEndian(bytes)));
+
+
 
 .. rst-class:: classref-item-separator
 

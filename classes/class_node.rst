@@ -662,10 +662,19 @@ Duplicate also non-serializable variables (i.e. without :ref:`@GlobalScope.PROPE
 
 Duplicate using default flags. This constant is useful to add or remove a single flag.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     # Duplicate non-exported variables.
     var dupe = duplicate(DUPLICATE_DEFAULT | DUPLICATE_INTERNAL_STATE)
+
+ .. code-tab:: csharp
+
+    Node dupe = Duplicate((int)(DuplicateFlags.Default | DuplicateFlags.InternalState));
+
+
 
 .. rst-class:: classref-item-separator
 
@@ -1080,13 +1089,30 @@ Notification received when translations may have changed. Can be triggered by th
 
 \ **Note:** This notification is received alongside :ref:`NOTIFICATION_ENTER_TREE<class_Node_constant_NOTIFICATION_ENTER_TREE>`, so if you are instantiating a scene, the child nodes will not be initialized yet. You can use it to setup translations for this node, child nodes created from script, or if you want to access child nodes added in the editor, make sure the node is ready using :ref:`is_node_ready()<class_Node_method_is_node_ready>`.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     func _notification(what):
         if what == NOTIFICATION_TRANSLATION_CHANGED:
             if not is_node_ready():
                 await ready # Wait until ready signal.
             $Label.text = atr("%d Bananas") % banana_counter
+
+ .. code-tab:: csharp
+
+    public override async void _Notification(int what)
+    {
+        if (what == NotificationTranslationChanged)
+        {
+            if (!IsNodeReady())
+                await ToSignal(this, SignalName.Ready);
+            GetNode<Label>("Label").Text = Atr("%d Bananas").Replace("%d", bananaCounter.ToString());
+        }
+    }
+
+
 
 .. _class_Node_constant_NOTIFICATION_WM_ABOUT:
 
@@ -1511,7 +1537,10 @@ Returning an empty array produces no warnings.
 
 Call :ref:`update_configuration_warnings()<class_Node_method_update_configuration_warnings>` when the warnings need to be updated for this node.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     @export var energy = 0:
         set(value):
@@ -1523,6 +1552,20 @@ Call :ref:`update_configuration_warnings()<class_Node_method_update_configuratio
             return ["Energy must be 0 or greater."]
         else:
             return []
+
+ .. code-tab:: csharp
+
+    private int energy;
+    [Export]
+    public int Energy
+    {
+        get => energy;
+        set { energy = value; UpdateConfigurationWarnings(); }
+    }
+    public override string[] _GetConfigurationWarnings()
+        => energy < 0 ? new[] { "Energy must be 0 or greater." } : System.Array.Empty<string>();
+
+
 
 .. rst-class:: classref-item-separator
 
@@ -1994,15 +2037,28 @@ Fetches a child node by its index. Each child node has an index relative to its 
 
 If ``include_internal`` is ``false``, internal children are ignored (see :ref:`add_child()<class_Node_method_add_child>`'s ``internal`` parameter).
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     # Assuming the following are children of this node, in order:
     # First, Middle, Last.
 
     var a = get_child(0).name  # a is "First"
     var b = get_child(1).name  # b is "Middle"
-    var b = get_child(2).name  # b is "Last"
+    var last = get_child(2).name  # b is "Last"
     var c = get_child(-1).name # c is "Last"
+
+ .. code-tab:: csharp
+
+    // Children in order: First, Middle, Last.
+    StringName first = GetChild(0).Name;
+    StringName middle = GetChild(1).Name;
+    StringName last = GetChild(2).Name;
+    StringName fromEnd = GetChild(-1).Name; // Last.
+
+
 
 \ **Note:** To fetch a node by :ref:`NodePath<class_NodePath>`, use :ref:`get_node()<class_Node_method_get_node>`.
 

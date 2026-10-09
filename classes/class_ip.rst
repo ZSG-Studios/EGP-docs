@@ -223,7 +223,7 @@ Returns all network adapters as an array.
 
 Each adapter is a dictionary of the form:
 
-::
+.. code:: text
 
     {
         "index": "1", # Interface index.

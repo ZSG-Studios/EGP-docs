@@ -25,11 +25,21 @@ Note that even though there is no positional tracking, the camera will assume th
 
 You can initialize this interface as follows:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var interface = XRServer.find_interface("Native mobile")
     if interface and interface.initialize():
         get_viewport().use_xr = true
+
+ .. code-tab:: csharp
+
+    XRInterface xr = XRServer.FindInterface("Native mobile");
+    if (xr != null && xr.Initialize()) GetViewport().UseXR = true;
+
+
 
 \ **Note:** For Android, :ref:`ProjectSettings.input_devices/sensors/enable_accelerometer<class_ProjectSettings_property_input_devices/sensors/enable_accelerometer>`, :ref:`ProjectSettings.input_devices/sensors/enable_gravity<class_ProjectSettings_property_input_devices/sensors/enable_gravity>`, :ref:`ProjectSettings.input_devices/sensors/enable_gyroscope<class_ProjectSettings_property_input_devices/sensors/enable_gyroscope>` and :ref:`ProjectSettings.input_devices/sensors/enable_magnetometer<class_ProjectSettings_property_input_devices/sensors/enable_magnetometer>` must be enabled.
 

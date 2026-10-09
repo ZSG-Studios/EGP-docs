@@ -61,11 +61,22 @@ Method Descriptions
 
 Returns a new instance of the script.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var MyClass = load("myclass.gd")
     var instance = MyClass.new()
     print(instance.get_script() == MyClass) # Prints true
+
+ .. code-tab:: csharp
+
+    var script = GD.Load<GDScript>("res://myclass.gd");
+    GodotObject instance = script.Call("new").AsGodotObject();
+    GD.Print(instance.GetScript().AsGodotObject() == script); // True.
+
+
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
 .. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`

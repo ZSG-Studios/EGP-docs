@@ -522,7 +522,7 @@ Property Descriptions
 
 Additional data added to the root ``<dict>`` section of the `Info.plist <https://developer.apple.com/documentation/bundleresources/information_property_list>`__ file. The value should be an XML section with pairs of key-value elements, e.g.:
 
-.. code:: text
+.. code:: xml
 
     <key>key_name</key>
     <string>value</string>
@@ -777,7 +777,7 @@ Array of the additional command line arguments passed to the code signing tool.
 
 Additional data added to the root ``<dict>`` section of the `.entitlements <https://developer.apple.com/documentation/bundleresources/entitlements>`__ file. The value should be an XML section with pairs of key-value elements, for example:
 
-.. code:: text
+.. code:: xml
 
     <key>key_name</key>
     <string>value</string>

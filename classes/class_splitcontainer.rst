@@ -456,9 +456,18 @@ Clamps the :ref:`split_offsets<class_SplitContainer_property_split_offsets>` val
 
 Returns the drag area :ref:`Control<class_Control>`. For example, you can move a pre-configured button into the drag area :ref:`Control<class_Control>` so that it rides along with the split bar. Try setting the :ref:`Button<class_Button>` anchors to ``center`` prior to the ``reparent()`` call.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     $BarnacleButton.reparent($SplitContainer.get_drag_area_control())
+
+ .. code-tab:: csharp
+
+    GetNode<Button>("BarnacleButton").Reparent(GetNode<SplitContainer>("SplitContainer").GetDragAreaControl());
+
+
 
 \ **Note:** The drag area :ref:`Control<class_Control>` is drawn over the **SplitContainer**'s children, so :ref:`CanvasItem<class_CanvasItem>` draw objects called from the :ref:`Control<class_Control>` and children added to the :ref:`Control<class_Control>` will also appear over the **SplitContainer**'s children. Try setting :ref:`Control.mouse_filter<class_Control_property_mouse_filter>` of custom children to :ref:`Control.MOUSE_FILTER_IGNORE<class_Control_constant_MOUSE_FILTER_IGNORE>` to prevent blocking the mouse from dragging if desired.
 
@@ -476,9 +485,18 @@ Returns the drag area :ref:`Control<class_Control>`. For example, you can move a
 
 Returns an :ref:`Array<class_Array>` of the drag area :ref:`Control<class_Control>`\ s. These are the interactable :ref:`Control<class_Control>` nodes between each child. For example, this can be used to add a pre-configured button to a drag area :ref:`Control<class_Control>` so that it rides along with the split bar. Try setting the :ref:`Button<class_Button>` anchors to ``center`` prior to the :ref:`Node.reparent()<class_Node_method_reparent>` call.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     $BarnacleButton.reparent($SplitContainer.get_drag_area_controls()[0])
+
+ .. code-tab:: csharp
+
+    GetNode<Button>("BarnacleButton").Reparent(GetNode<SplitContainer>("SplitContainer").GetDragAreaControls()[0]);
+
+
 
 \ **Note:** The drag area :ref:`Control<class_Control>`\ s are drawn over the **SplitContainer**'s children, so :ref:`CanvasItem<class_CanvasItem>` draw objects called from a drag area and children added to it will also appear over the **SplitContainer**'s children. Try setting :ref:`Control.mouse_filter<class_Control_property_mouse_filter>` of custom children to :ref:`Control.MOUSE_FILTER_IGNORE<class_Control_constant_MOUSE_FILTER_IGNORE>` to prevent blocking the mouse from dragging if desired.
 

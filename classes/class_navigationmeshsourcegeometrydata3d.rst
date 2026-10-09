@@ -260,17 +260,12 @@ Sets the parsed source geometry data indices. The indices need to be matched wit
 
 Sets the projected obstructions with an Array of Dictionaries with the following key value pairs:
 
-
-.. tabs::
-
- .. code-tab:: gdscript
+.. code:: text
 
     "vertices" : PackedFloat32Array
     "elevation" : float
     "height" : float
     "carve" : bool
-
-
 
 .. rst-class:: classref-item-separator
 

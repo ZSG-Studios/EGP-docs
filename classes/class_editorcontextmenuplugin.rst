@@ -104,13 +104,26 @@ The "Create..." submenu of FileSystem dock's context menu, or the "New" section 
 
 \ ``&"needs_prefix": bool`` - Whether the option needs a "New" prefix (for consistency with native options).
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     func _get_menu_options(data):
         if data["needs_prefix"]:
             add_context_menu_item("New Image File...", create_image)
         else:
             add_context_menu_item("Image File...", create_image)
+
+ .. code-tab:: csharp
+
+    public override void _GetMenuOptions(Godot.Collections.Dictionary<StringName, Variant> data)
+    {
+        string label = data["needs_prefix"].AsBool() ? "New Image File..." : "Image File...";
+        AddContextMenuItem(label, Callable.From(CreateImage));
+    }
+
+
 
 .. _class_EditorContextMenuPlugin_constant_CONTEXT_SLOT_SCRIPT_EDITOR_CODE:
 
@@ -203,10 +216,22 @@ Called when creating a context menu, custom options can be added by using the :r
 
 Add custom option to the context menu of the plugin's specified slot. ``callback`` should be a method that takes a single argument of type :ref:`Dictionary<class_Dictionary>`. It will be called when the option is activated and the data received in the callback is the same as in :ref:`_get_menu_options()<class_EditorContextMenuPlugin_private_method__get_menu_options>`.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     func _get_menu_options(data):
         add_context_menu_item("File Custom options", handle, ICON)
+
+ .. code-tab:: csharp
+
+    public override void _GetMenuOptions(Godot.Collections.Dictionary<StringName, Variant> data)
+    {
+        AddContextMenuItem("File Custom options", Callable.From(Handle), icon);
+    }
+
+
 
 If you want to assign shortcut to the menu item, use :ref:`add_context_menu_item_from_shortcut()<class_EditorContextMenuPlugin_method_add_context_menu_item_from_shortcut>` instead.
 
@@ -222,13 +247,29 @@ If you want to assign shortcut to the menu item, use :ref:`add_context_menu_item
 
 Add custom option to the context menu of the plugin's specified slot. The option will have the ``shortcut`` assigned and reuse its callback. The shortcut has to be registered beforehand with :ref:`add_menu_shortcut()<class_EditorContextMenuPlugin_method_add_menu_shortcut>`.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     func _init():
         add_menu_shortcut(SHORTCUT, handle)
 
     func _get_menu_options(paths):
         add_context_menu_item_from_shortcut("File Custom options", SHORTCUT, ICON)
+
+ .. code-tab:: csharp
+
+    public MyContextMenuPlugin()
+    {
+        AddMenuShortcut(shortcut, Callable.From(Handle));
+    }
+    public override void _GetMenuOptions(Godot.Collections.Dictionary<StringName, Variant> data)
+    {
+        AddContextMenuItemFromShortcut("File Custom options", shortcut, icon);
+    }
+
+
 
 .. rst-class:: classref-item-separator
 
@@ -242,7 +283,10 @@ Add custom option to the context menu of the plugin's specified slot. The option
 
 Add a submenu to the context menu of the plugin's specified slot. The submenu is not automatically handled, you need to connect to its signals yourself. Also the submenu is freed on every popup, so provide a new :ref:`PopupMenu<class_PopupMenu>` every time.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     func _get_menu_options(data):
         var popup_menu = PopupMenu.new()
@@ -251,6 +295,19 @@ Add a submenu to the context menu of the plugin's specified slot. The submenu is
         popup_menu.id_pressed.connect(_on_color_submenu_option)
 
         add_context_submenu_item("Set Node Color", popup_menu)
+
+ .. code-tab:: csharp
+
+    public override void _GetMenuOptions(Godot.Collections.Dictionary<StringName, Variant> data)
+    {
+        var popupMenu = new PopupMenu();
+        popupMenu.AddItem("Blue");
+        popupMenu.AddItem("White");
+        popupMenu.IdPressed += OnColorSubmenuOption;
+        AddContextSubmenuItem("Set Node Color", popupMenu);
+    }
+
+
 
 .. rst-class:: classref-item-separator
 
@@ -264,10 +321,22 @@ Add a submenu to the context menu of the plugin's specified slot. The submenu is
 
 Registers a shortcut associated with the plugin's context menu. This method should be called once (e.g. in the plugin's :ref:`Object._init()<class_Object_private_method__init>`). ``callback`` will be called when user presses the specified ``shortcut`` while the menu's context is in effect (e.g. FileSystem dock is focused). Callback should take single data :ref:`Dictionary<class_Dictionary>`, same as in :ref:`add_context_menu_item()<class_EditorContextMenuPlugin_method_add_context_menu_item>`.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     func _init():
         add_menu_shortcut(SHORTCUT, handle)
+
+ .. code-tab:: csharp
+
+    public MyContextMenuPlugin()
+    {
+        AddMenuShortcut(shortcut, Callable.From(Handle));
+    }
+
+
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
 .. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`

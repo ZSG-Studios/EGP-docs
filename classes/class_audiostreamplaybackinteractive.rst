@@ -63,6 +63,12 @@ Return the index of the currently playing clip. You can use this to get the name
 
     var playing_clip_name = stream.get_clip_name(get_stream_playback().get_current_clip_index())
 
+ .. code-tab:: csharp
+
+    var playback = (AudioStreamPlaybackInteractive)GetStreamPlayback();
+    var interactiveStream = (AudioStreamInteractive)Stream;
+    StringName playingClipName = interactiveStream.GetClipName(playback.GetCurrentClipIndex());
+
 
 
 .. rst-class:: classref-item-separator

@@ -228,7 +228,10 @@ Returns the keys of all messages, that is, the context and untranslated strings 
 
 \ **Note:** If a message does not use a context, the corresponding element is the untranslated string. Otherwise, the corresponding element is the context and untranslated string separated by the EOT character (\ ``U+0004``). This is done for compatibility purposes.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     for key in translation.get_message_list():
         var p = key.find("\u0004")
@@ -239,6 +242,17 @@ Returns the keys of all messages, that is, the context and untranslated strings 
             var context = key.substr(0, p)
             var untranslated = key.substr(p + 1)
             print("Message %s with context %s" % [untranslated, context])
+
+ .. code-tab:: csharp
+
+    foreach (string key in translation.GetMessageList())
+    {
+        int separator = key.IndexOf('\u0004');
+        if (separator < 0) GD.Print($"Message {key}");
+        else GD.Print($"Message {key.Substring(separator + 1)} with context {key.Substring(0, separator)}");
+    }
+
+
 
 .. rst-class:: classref-item-separator
 

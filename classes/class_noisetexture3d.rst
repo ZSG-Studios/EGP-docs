@@ -23,12 +23,23 @@ Uses the :ref:`FastNoiseLite<class_FastNoiseLite>` library or other noise genera
 
 The class uses :ref:`Thread<class_Thread>`\ s to generate the texture data internally, so :ref:`Texture3D.get_data()<class_Texture3D_method_get_data>` may return ``null`` if the generation process has not completed yet. In that case, you need to wait for the texture to be generated before accessing the image:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var texture = NoiseTexture3D.new()
     texture.noise = FastNoiseLite.new()
     await texture.changed
     var data = texture.get_data()
+
+ .. code-tab:: csharp
+
+    var texture = new NoiseTexture3D { Noise = new FastNoiseLite() };
+    await ToSignal(texture, Resource.SignalName.Changed);
+    var data = texture.GetData();
+
+
 
 .. rst-class:: classref-reftable-group
 

@@ -2158,7 +2158,10 @@ Starts a multipart edit. All edits will be treated as one action until :ref:`end
 
 Starts an edit for multiple carets. The edit must be ended with :ref:`end_multicaret_edit()<class_TextEdit_method_end_multicaret_edit>`. Multicaret edits can be used to edit text at multiple carets and delay merging the carets until the end, so the caret indexes aren't affected immediately. :ref:`begin_multicaret_edit()<class_TextEdit_method_begin_multicaret_edit>` and :ref:`end_multicaret_edit()<class_TextEdit_method_end_multicaret_edit>` can be nested, and the merge will happen at the last :ref:`end_multicaret_edit()<class_TextEdit_method_end_multicaret_edit>`.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     begin_complex_operation()
     begin_multicaret_edit()
@@ -2168,6 +2171,20 @@ Starts an edit for multiple carets. The edit must be ended with :ref:`end_multic
         # Logic here.
     end_multicaret_edit()
     end_complex_operation()
+
+ .. code-tab:: csharp
+
+    BeginComplexOperation();
+    BeginMulticaretEdit();
+    for (int i = 0; i < GetCaretCount(); i++)
+    {
+        if (MulticaretEditIgnoreCaret(i)) continue;
+        // Logic here.
+    }
+    EndMulticaretEdit();
+    EndComplexOperation();
+
+
 
 .. rst-class:: classref-item-separator
 

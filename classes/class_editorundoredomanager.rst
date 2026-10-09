@@ -238,11 +238,22 @@ Clears the given undo history. You can clear history for a specific scene, globa
 
 If ``increase_version`` is ``true``, the undo history version will be increased, marking it as unsaved. Useful for operations that modify the scene, but don't support undo.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var scene_root = EditorInterface.get_edited_scene_root()
     var undo_redo = EditorInterface.get_editor_undo_redo()
     undo_redo.clear_history(undo_redo.get_object_history_id(scene_root))
+
+ .. code-tab:: csharp
+
+    Node sceneRoot = EditorInterface.Singleton.GetEditedSceneRoot();
+    EditorUndoRedoManager undoRedo = EditorInterface.Singleton.GetEditorUndoRedo();
+    undoRedo.ClearHistory(undoRedo.GetObjectHistoryId(sceneRoot));
+
+
 
 \ **Note:** If you want to mark an edited scene as unsaved without clearing its history, use :ref:`EditorInterface.mark_scene_as_unsaved()<class_EditorInterface_method_mark_scene_as_unsaved>` instead.
 

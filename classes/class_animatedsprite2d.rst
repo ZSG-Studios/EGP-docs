@@ -427,6 +427,13 @@ Sets :ref:`frame<class_AnimatedSprite2D_property_frame>` and :ref:`frame_progres
     animated_sprite.play("walk_another_skin")
     animated_sprite.set_frame_and_progress(current_frame, current_progress)
 
+ .. code-tab:: csharp
+
+    int currentFrame = animatedSprite.Frame;
+    float currentProgress = animatedSprite.FrameProgress;
+    animatedSprite.Play("walk_another_skin");
+    animatedSprite.SetFrameAndProgress(currentFrame, currentProgress);
+
 
 
 .. rst-class:: classref-item-separator

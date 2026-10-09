@@ -540,7 +540,10 @@ Font variations allow for continuous change of glyph characteristics along some 
 
 To print available variation axes of a variable font:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var fv = FontVariation.new()
     fv.base_font = load("res://RobotoFlex.ttf")
@@ -549,6 +552,18 @@ To print available variation axes of a variable font:
         var name = TextServerManager.get_primary_interface().tag_to_name(tag)
         var values = variation_list[tag]
         print("variation axis: %s (%d)\n\tmin, max, default: %s" % [name, tag, values])
+
+ .. code-tab:: csharp
+
+    var font = new FontVariation { BaseFont = GD.Load<Font>("res://RobotoFlex.ttf") };
+    var variations = font.GetSupportedVariationList();
+    foreach (var tag in variations.Keys)
+    {
+        string name = TextServerManager.GetPrimaryInterface().TagToName(tag.AsInt64());
+        GD.Print($"variation axis: {name} ({tag})\n\tmin, max, default: {variations[tag]}");
+    }
+
+
 
 \ **Note:** To set and get variation coordinates of a :ref:`FontVariation<class_FontVariation>`, use :ref:`FontVariation.variation_opentype<class_FontVariation_property_variation_opentype>`.
 

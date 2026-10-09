@@ -5268,10 +5268,7 @@ The port number to use to contact the HTTP and HTTPS proxy in the editor (for th
 
 If ``true`` the language server will try to provide additional results when resolving symbols at the cost of showing wrong results. All symbols in the project are checked and resolved just based on their name, without taking context into account.
 
-::
-
-    func untyped(param):
-        param.print() # Will resolve to the global print method for e.g. hover hints.
+For example, within ``func untyped(param):``, an untyped ``param.print()`` call can resolve to the global :ref:`@GlobalScope.print()<class_@GlobalScope_method_print>` for hover hints. This language-server behavior is specific to GDScript.
 
 When using static typing it is recommended to disable this setting, since it will mostly add false positives for typed code.
 
@@ -7336,7 +7333,10 @@ The ``path`` determines how the shortcut is organized and displayed in the edito
 
 \ **Note:** Shortcuts are only saved to the editor settings if they differ from their original/default state. This means empty shortcuts that were originally empty will not persist between editor sessions and must be re-added. If a shortcut with the same ``path`` already exists, this method will update it with the new ``shortcut`` instead of creating a duplicate.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     # Add a custom shortcut for a plugin action.
     var my_shortcut = Shortcut.new()
@@ -7350,6 +7350,16 @@ The ``path`` determines how the shortcut is organized and displayed in the edito
 
     # This will appear under the "Test Action" category as "Test Action".
     EditorInterface.get_editor_settings().add_shortcut("test_action", my_shortcut)
+
+ .. code-tab:: csharp
+
+    var inputEvent = new InputEventKey { Keycode = Key.F5, CtrlPressed = true };
+    var shortcut = new Shortcut { Events = new Godot.Collections.Array<InputEvent> { inputEvent } };
+    EditorSettings settings = EditorInterface.Singleton.GetEditorSettings();
+    settings.AddShortcut("my_plugin/reload_data", shortcut);
+    settings.AddShortcut("test_action", shortcut);
+
+
 
 .. rst-class:: classref-item-separator
 

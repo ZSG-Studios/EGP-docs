@@ -629,7 +629,7 @@ The engine will already do this itself at key execution points (at least once pe
 
 :ref:`Vector3<class_Vector3>` **get_accelerometer**\ (\ ) |const| :ref:`🔗<class_Input_method_get_accelerometer>`
 
-Returns the acceleration in m/s² of the device's accelerometer sensor, if the device has one. Otherwise, the method returns :ref:`Vector3.ZERO<class_Vector3_constant_ZERO>`.
+Returns the acceleration in m/sÂ² of the device's accelerometer sensor, if the device has one. Otherwise, the method returns :ref:`Vector3.ZERO<class_Vector3_constant_ZERO>`.
 
 Note this method returns an empty :ref:`Vector3<class_Vector3>` when running from the editor even when your device has an accelerometer. You must export your project to a supported device to read values from the accelerometer.
 
@@ -725,11 +725,22 @@ The returned quaternion represents the rotation from the device coordinate frame
 
 \ **Note:** For Android, :ref:`ProjectSettings.input_devices/sensors/enable_device_orientation<class_ProjectSettings_property_input_devices/sensors/enable_device_orientation>` must be enabled.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var orientation := Input.get_device_orientation()
     var euler := orientation.get_euler()
     var roll := euler.z  # Device roll angle in radians.
+
+ .. code-tab:: csharp
+
+    Quaternion orientation = Input.GetDeviceOrientation();
+    Vector3 euler = orientation.GetEuler();
+    float roll = euler.Z; // Radians.
+
+
 
 .. rst-class:: classref-item-separator
 
@@ -741,7 +752,7 @@ The returned quaternion represents the rotation from the device coordinate frame
 
 :ref:`Vector3<class_Vector3>` **get_gravity**\ (\ ) |const| :ref:`🔗<class_Input_method_get_gravity>`
 
-Returns the gravity in m/s² of the device's accelerometer sensor, if the device has one. Otherwise, the method returns :ref:`Vector3.ZERO<class_Vector3_constant_ZERO>`.
+Returns the gravity in m/sÂ² of the device's accelerometer sensor, if the device has one. Otherwise, the method returns :ref:`Vector3.ZERO<class_Vector3_constant_ZERO>`.
 
 \ **Note:** This method only works on Android and iOS. On other platforms, it always returns :ref:`Vector3.ZERO<class_Vector3_constant_ZERO>`.
 
@@ -775,7 +786,7 @@ Returns the rotation rate in rad/s around a device's X, Y, and Z axes of the gyr
 
 **Experimental:** This method may be changed or removed in future versions.
 
-Returns the acceleration, including the force of gravity, in m/s² of the joypad's accelerometer sensor, if the joypad has one and it's currently enabled. Otherwise, the method returns :ref:`Vector3.ZERO<class_Vector3_constant_ZERO>`. See also :ref:`get_joy_gravity()<class_Input_method_get_joy_gravity>` and :ref:`set_joy_motion_sensors_enabled()<class_Input_method_set_joy_motion_sensors_enabled>`.
+Returns the acceleration, including the force of gravity, in m/sÂ² of the joypad's accelerometer sensor, if the joypad has one and it's currently enabled. Otherwise, the method returns :ref:`Vector3.ZERO<class_Vector3_constant_ZERO>`. See also :ref:`get_joy_gravity()<class_Input_method_get_joy_gravity>` and :ref:`set_joy_motion_sensors_enabled()<class_Input_method_set_joy_motion_sensors_enabled>`.
 
 For a joypad held in front of you, the returned axes are defined as follows:
 
@@ -813,7 +824,7 @@ Returns the current value of the joypad axis at index ``axis``.
 
 **Experimental:** This method may be changed or removed in future versions.
 
-Returns the gravity in m/s² of the joypad's accelerometer sensor, if the joypad has one and it's currently enabled. Otherwise, the method returns :ref:`Vector3.ZERO<class_Vector3_constant_ZERO>`. See also :ref:`get_joy_accelerometer()<class_Input_method_get_joy_accelerometer>` and :ref:`set_joy_motion_sensors_enabled()<class_Input_method_set_joy_motion_sensors_enabled>`.
+Returns the gravity in m/sÂ² of the joypad's accelerometer sensor, if the joypad has one and it's currently enabled. Otherwise, the method returns :ref:`Vector3.ZERO<class_Vector3_constant_ZERO>`. See also :ref:`get_joy_accelerometer()<class_Input_method_get_joy_accelerometer>` and :ref:`set_joy_motion_sensors_enabled()<class_Input_method_set_joy_motion_sensors_enabled>`.
 
 For a joypad held in front of you, the returned axes are defined as follows:
 
@@ -1635,7 +1646,7 @@ Sets the acceleration value of the accelerometer sensor. Can be used for debuggi
 
 Sets a custom mouse cursor image, which is only visible inside the game window, for the given mouse ``shape``. The hotspot can also be specified. Passing ``null`` to the image parameter resets to the system cursor.
 
-\ ``image`` can be either :ref:`Texture2D<class_Texture2D>` or :ref:`Image<class_Image>` and its size must be lower than or equal to 256×256. To avoid rendering issues, sizes lower than or equal to 128×128 are recommended.
+\ ``image`` can be either :ref:`Texture2D<class_Texture2D>` or :ref:`Image<class_Image>` and its size must be lower than or equal to 256Ã—256. To avoid rendering issues, sizes lower than or equal to 128Ã—128 are recommended.
 
 \ ``hotspot`` must be within ``image``'s size.
 
@@ -1643,7 +1654,7 @@ Sets a custom mouse cursor image, which is only visible inside the game window, 
 
 \ **Note:** The **Lossless**, **Lossy** or **Uncompressed** compression modes are recommended. The **Video RAM** compression mode can be used, but it will be decompressed on the CPU, which means loading times are slowed down and no memory is saved compared to lossless modes.
 
-\ **Note:** On the web platform, the maximum allowed cursor image size is 128×128. Cursor images larger than 32×32 will also only be displayed if the mouse cursor image is entirely located within the page for `security reasons <https://chromestatus.com/feature/5825971391299584>`__.
+\ **Note:** On the web platform, the maximum allowed cursor image size is 128Ã—128. Cursor images larger than 32Ã—32 will also only be displayed if the mouse cursor image is entirely located within the page for `security reasons <https://chromestatus.com/feature/5825971391299584>`__.
 
 .. rst-class:: classref-item-separator
 

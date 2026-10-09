@@ -359,7 +359,10 @@ The keys and values of ``options`` match the properties of :ref:`ResourceImporte
 
 \ **Example:** Load the first file dropped as a WAV and play it:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     @onready var audio_player = $AudioStreamPlayer
 
@@ -367,12 +370,33 @@ The keys and values of ``options`` match the properties of :ref:`ResourceImporte
         get_window().files_dropped.connect(_on_files_dropped)
 
     func _on_files_dropped(files):
-        if files[0].get_extension() == "wav":
+        if not files.is_empty() and files[0].get_extension() == "wav":
             audio_player.stream = AudioStreamWAV.load_from_file(files[0], {
                     "force/max_rate": true,
                     "force/max_rate_hz": 11025
                 })
             audio_player.play()
+
+ .. code-tab:: csharp
+
+    public override void _Ready()
+    {
+        GetWindow().FilesDropped += OnFilesDropped;
+    }
+    private void OnFilesDropped(string[] files)
+    {
+        if (files.Length == 0 || files[0].GetExtension() != "wav")
+            return;
+        var player = GetNode<AudioStreamPlayer>("AudioStreamPlayer");
+        player.Stream = AudioStreamWav.LoadFromFile(files[0], new Godot.Collections.Dictionary
+        {
+            { "force/max_rate", true },
+            { "force/max_rate_hz", 11025 },
+        });
+        player.Play();
+    }
+
+
 
 .. rst-class:: classref-item-separator
 

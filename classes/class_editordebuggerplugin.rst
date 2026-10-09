@@ -66,6 +66,37 @@ You can retrieve the available :ref:`EditorDebuggerSession<class_EditorDebuggerS
     func _exit_tree():
         remove_debugger_plugin(debugger)
 
+ .. code-tab:: csharp
+
+    [Tool]
+    public partial class ExampleEditorDebugger : EditorDebuggerPlugin
+    {
+        public override bool _HasCapture(string capture) => capture == "my_plugin";
+        public override bool _Capture(string message, Godot.Collections.Array data, int sessionId)
+        {
+            if (message != "my_plugin:ping")
+                return false;
+            GetSession(sessionId).SendMessage("my_plugin:echo", data);
+            return true;
+        }
+        public override void _SetupSession(int sessionId)
+        {
+            var label = new Label { Name = "Example plugin", Text = "Example plugin" };
+            var session = GetSession(sessionId);
+            session.Started += () => GD.Print("Session started");
+            session.Stopped += () => GD.Print("Session stopped");
+            session.AddSessionTab(label);
+        }
+    }
+    // In a separate EditorPlugin script:
+    [Tool]
+    public partial class ExamplePlugin : EditorPlugin
+    {
+        private readonly ExampleEditorDebugger debugger = new();
+        public override void _EnterTree() => AddDebuggerPlugin(debugger);
+        public override void _ExitTree() => RemoveDebuggerPlugin(debugger);
+    }
+
 
 
 To connect on the running game side, use the :ref:`EngineDebugger<class_EngineDebugger>` singleton:
@@ -87,6 +118,22 @@ To connect on the running game side, use the :ref:`EngineDebugger<class_EngineDe
             prints("Echo received:", data)
             return true
         return false
+
+ .. code-tab:: csharp
+
+    public override void _Ready()
+    {
+        EngineDebugger.RegisterMessageCapture("my_plugin",
+            Callable.From<string, Godot.Collections.Array, bool>(Capture));
+        EngineDebugger.SendMessage("my_plugin:ping", new Godot.Collections.Array { "test" });
+    }
+    private bool Capture(string message, Godot.Collections.Array data)
+    {
+        if (message != "echo")
+            return false;
+        GD.Print("Echo received: ", data);
+        return true;
+    }
 
 
 

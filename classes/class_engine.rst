@@ -717,7 +717,10 @@ Returns ``true`` if the engine is running embedded in the editor. This is useful
 
 Returns ``true`` if the engine is inside the fixed physics process step of the main loop.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     func _enter_tree():
         # Depending on when the node is added to the tree,
@@ -729,6 +732,14 @@ Returns ``true`` if the engine is inside the fixed physics process step of the m
 
     func _physics_process(delta):
         print(Engine.is_in_physics_frame()) # Prints true
+
+ .. code-tab:: csharp
+
+    public override void _EnterTree() => GD.Print(Engine.IsInPhysicsFrame());
+    public override void _Process(double delta) => GD.Print(Engine.IsInPhysicsFrame()); // False.
+    public override void _PhysicsProcess(double delta) => GD.Print(Engine.IsInPhysicsFrame()); // True.
+
+
 
 .. rst-class:: classref-item-separator
 

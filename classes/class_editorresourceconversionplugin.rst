@@ -41,6 +41,20 @@ Below shows an example of a basic plugin that will convert an :ref:`ImageTexture
         ptex.create_from_image(itex.get_image(), PortableCompressedTexture2D.COMPRESSION_MODE_LOSSLESS)
         return ptex
 
+ .. code-tab:: csharp
+
+    public partial class MyConversionPlugin : EditorResourceConversionPlugin
+    {
+        public override bool _Handles(Resource resource) => resource is ImageTexture;
+        public override string _ConvertsTo() => "PortableCompressedTexture2D";
+        public override Resource _Convert(Resource resource)
+        {
+            var texture = new PortableCompressedTexture2D();
+            texture.CreateFromImage(((ImageTexture)resource).GetImage(), PortableCompressedTexture2D.CompressionMode.Lossless);
+            return texture;
+        }
+    }
+
 
 
 To use an **EditorResourceConversionPlugin**, register it using the :ref:`EditorPlugin.add_resource_conversion_plugin()<class_EditorPlugin_method_add_resource_conversion_plugin>` method first.

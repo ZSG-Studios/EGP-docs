@@ -700,7 +700,10 @@ Sets the active environment blend mode.
 
 \ **Note:** Not all runtimes support all environment blend modes, so it is important to check this at startup. For example:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     func _ready():
         var xr_interface = XRServer.find_interface("OpenXR")
@@ -713,6 +716,24 @@ Sets the active environment blend mode.
                 if mode in modes:
                     xr_interface.set_environment_blend_mode(mode)
                     break
+
+ .. code-tab:: csharp
+
+    public override void _Ready()
+    {
+        XRInterface xr = XRServer.FindInterface("OpenXR");
+        if (xr == null || !xr.IsInitialized()) return;
+        GetViewport().UseXR = true;
+        var supported = xr.GetSupportedEnvironmentBlendModes();
+        foreach (var preferred in new[] { XRInterface.EnvironmentBlendMode.Opaque, XRInterface.EnvironmentBlendMode.Additive })
+        {
+            if (!supported.Contains((long)preferred)) continue;
+            xr.SetEnvironmentBlendMode(preferred);
+            break;
+        }
+    }
+
+
 
 .. rst-class:: classref-item-separator
 

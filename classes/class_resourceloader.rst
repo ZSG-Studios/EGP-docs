@@ -236,7 +236,10 @@ Returns the dependencies for the resource at the given ``path``.
 
 Each dependency is a string that can be divided into sections by ``::``. There can be either one section or three sections, with the second section always being empty. When there is one section, it contains the file path. When there are three sections, the first section contains the UID and the third section contains the fallback path.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     for dependency in ResourceLoader.get_dependencies(path):
         if dependency.contains("::"):
@@ -244,6 +247,20 @@ Each dependency is a string that can be divided into sections by ``::``. There c
             print(dependency.get_slice("::", 2)) # Prints the fallback path.
         else:
             print(dependency) # Prints the path.
+
+ .. code-tab:: csharp
+
+    foreach (string dependency in ResourceLoader.GetDependencies(path))
+    {
+        if (dependency.Contains("::"))
+        {
+            GD.Print(dependency.GetSlice("::", 0)); // UID.
+            GD.Print(dependency.GetSlice("::", 2)); // Fallback path.
+        }
+        else GD.Print(dependency);
+    }
+
+
 
 .. rst-class:: classref-item-separator
 
@@ -307,10 +324,19 @@ Once a resource has been loaded by the engine, it is cached in memory for faster
 
 Lists a directory, returning all resources and subdirectories contained within. The resource files have the original file names as visible in the editor before exporting. The directories have ``"/"`` appended.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     # Prints ["extra_data/", "model.gltf", "model.tscn", "model_slime.png"]
     print(ResourceLoader.list_directory("res://assets/enemies/slime"))
+
+ .. code-tab:: csharp
+
+    GD.Print(ResourceLoader.ListDirectory("res://assets/enemies/slime"));
+
+
 
 \ **Note:** The order of files and directories returned by this method is not deterministic, and can vary between operating systems.
 

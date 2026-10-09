@@ -6430,17 +6430,37 @@ Sets the exposure values that will be used by the renderers. The normalization a
 
 The normalization factor can be calculated from exposure value (EV100) as follows:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     func get_exposure_normalization(ev100: float):
         return 1.0 / (pow(2.0, ev100) * 1.2)
 
+ .. code-tab:: csharp
+
+    private static double GetExposureNormalization(double ev100)
+        => 1.0 / (System.Math.Pow(2.0, ev100) * 1.2);
+
+
+
 The exposure value can be calculated from aperture (in f-stops), shutter speed (in seconds), and sensitivity (in ISO) as follows:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     func get_exposure(aperture: float, shutter_speed: float, sensitivity: float):
         return log((aperture * aperture) / shutter_speed * (100.0 / sensitivity)) / log(2)
+
+ .. code-tab:: csharp
+
+    private static double GetExposure(double aperture, double shutterSpeed, double sensitivity)
+        => System.Math.Log2(aperture * aperture / shutterSpeed * (100.0 / sensitivity));
+
+
 
 .. rst-class:: classref-item-separator
 
@@ -8660,13 +8680,26 @@ Returns a statistic about the rendering engine which can be used for performance
 
 \ **Note:** Rendering information is not available until at least 2 frames have been rendered by the engine. If rendering information is not available, :ref:`get_rendering_info()<class_RenderingServer_method_get_rendering_info>` returns ``0``. To print rendering information in ``_ready()`` successfully, use the following:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     func _ready():
         for _i in 2:
             await get_tree().process_frame
 
         print(RenderingServer.get_rendering_info(RENDERING_INFO_TOTAL_DRAW_CALLS_IN_FRAME))
+
+ .. code-tab:: csharp
+
+    public override async void _Ready()
+    {
+        for (int i = 0; i < 2; i++) await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+        GD.Print(RenderingServer.GetRenderingInfo(RenderingServer.RenderingInfo.TotalDrawCallsInFrame));
+    }
+
+
 
 .. rst-class:: classref-item-separator
 
@@ -8706,11 +8739,22 @@ Returns the RID of a 256×256 texture with a testing pattern on it (in :ref:`Ima
 
 \ **Example:** Get the test texture and apply it to a :ref:`Sprite2D<class_Sprite2D>` node:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var texture_rid = RenderingServer.get_test_texture()
     var texture = ImageTexture.create_from_image(RenderingServer.texture_2d_get(texture_rid))
     $Sprite2D.texture = texture
+
+ .. code-tab:: csharp
+
+    Rid textureRid = RenderingServer.GetTestTexture();
+    var texture = ImageTexture.CreateFromImage(RenderingServer.Texture2DGet(textureRid));
+    GetNode<Sprite2D>("Sprite2D").Texture = texture;
+
+
 
 .. rst-class:: classref-item-separator
 
@@ -8784,11 +8828,22 @@ Returns the ID of a 4×4 white texture (in :ref:`Image.FORMAT_RGB8<class_Image_c
 
 \ **Example:** Get the white texture and apply it to a :ref:`Sprite2D<class_Sprite2D>` node:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var texture_rid = RenderingServer.get_white_texture()
     var texture = ImageTexture.create_from_image(RenderingServer.texture_2d_get(texture_rid))
     $Sprite2D.texture = texture
+
+ .. code-tab:: csharp
+
+    Rid textureRid = RenderingServer.GetWhiteTexture();
+    var texture = ImageTexture.CreateFromImage(RenderingServer.Texture2DGet(textureRid));
+    GetNode<Sprite2D>("Sprite2D").Texture = texture;
+
+
 
 .. rst-class:: classref-item-separator
 
@@ -9840,7 +9895,7 @@ See also :ref:`ProjectSettings.rendering/anti_aliasing/quality/use_debanding<cla
 
 Creates a new surface on the given ``mesh``. Equivalent to :ref:`mesh_add_surface_from_arrays()<class_RenderingServer_method_mesh_add_surface_from_arrays>`, but takes a single :ref:`Dictionary<class_Dictionary>` argument instead of separate arguments. The dictionary must follow this structure:
 
-::
+.. code:: text
 
     {
         # Required:
@@ -12018,11 +12073,22 @@ Returns an :ref:`Image<class_Image>` instance from the given ``texture`` :ref:`R
 
 \ **Example:** Get the test texture from :ref:`get_test_texture()<class_RenderingServer_method_get_test_texture>` and apply it to a :ref:`Sprite2D<class_Sprite2D>` node:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var texture_rid = RenderingServer.get_test_texture()
     var texture = ImageTexture.create_from_image(RenderingServer.texture_2d_get(texture_rid))
     $Sprite2D.texture = texture
+
+ .. code-tab:: csharp
+
+    Rid textureRid = RenderingServer.GetTestTexture();
+    var texture = ImageTexture.CreateFromImage(RenderingServer.Texture2DGet(textureRid));
+    GetNode<Sprite2D>("Sprite2D").Texture = texture;
+
+
 
 .. rst-class:: classref-item-separator
 
@@ -12429,6 +12495,14 @@ For example, you can set the root viewport to not render at all with the followi
         RenderingServer.viewport_attach_to_screen(get_viewport().get_viewport_rid(), Rect2())
         RenderingServer.viewport_attach_to_screen($Viewport.get_viewport_rid(), Rect2(0, 0, 600, 600))
 
+ .. code-tab:: csharp
+
+    public override void _Ready()
+    {
+        RenderingServer.ViewportAttachToScreen(GetViewport().GetViewportRid(), new Rect2());
+        RenderingServer.ViewportAttachToScreen(GetNode<SubViewport>("Viewport").GetViewportRid(), new Rect2(0, 0, 600, 600));
+    }
+
 
 
 Using this can result in significant optimization, especially on lower-end devices. However, it comes at the cost of having to manage your viewports manually. For further optimization, see :ref:`viewport_set_render_direct_to_screen()<class_RenderingServer_method_viewport_set_render_direct_to_screen>`.
@@ -12495,7 +12569,10 @@ See also :ref:`get_rendering_info()<class_RenderingServer_method_get_rendering_i
 
 \ **Note:** Viewport rendering information is not available until at least 2 frames have been rendered by the engine. If rendering information is not available, :ref:`viewport_get_render_info()<class_RenderingServer_method_viewport_get_render_info>` returns ``0``. To print rendering information in ``_ready()`` successfully, use the following:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     func _ready():
         for _i in 2:
@@ -12506,6 +12583,17 @@ See also :ref:`get_rendering_info()<class_RenderingServer_method_get_rendering_i
                 RenderingServer.VIEWPORT_RENDER_INFO_TYPE_VISIBLE,
                 RenderingServer.VIEWPORT_RENDER_INFO_DRAW_CALLS_IN_FRAME)
         )
+
+ .. code-tab:: csharp
+
+    public override async void _Ready()
+    {
+        for (int i = 0; i < 2; i++) await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+        GD.Print(RenderingServer.ViewportGetRenderInfo(GetViewport().GetViewportRid(),
+            RenderingServer.ViewportRenderInfoType.Visible, RenderingServer.ViewportRenderInfo.DrawCallsInFrame));
+    }
+
+
 
 .. rst-class:: classref-item-separator
 

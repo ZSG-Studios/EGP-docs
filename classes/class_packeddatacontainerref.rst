@@ -23,7 +23,10 @@ Description
 
 When packing nested containers using :ref:`PackedDataContainer<class_PackedDataContainer>`, they are recursively packed into **PackedDataContainerRef** (only applies to :ref:`Array<class_Array>` and :ref:`Dictionary<class_Dictionary>`). Their data can be retrieved the same way as from :ref:`PackedDataContainer<class_PackedDataContainer>`.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     var packed = PackedDataContainer.new()
     packed.pack([1, 2, 3, ["nested1", "nested2"], 4, 5, 6])
@@ -34,6 +37,29 @@ When packing nested containers using :ref:`PackedDataContainer<class_PackedDataC
                 print("::", subelement)
         else:
             print(element)
+
+ .. code-tab:: csharp
+
+    var packed = new PackedDataContainer();
+    packed.Pack(new Godot.Collections.Array { 1, 2, 3, new Godot.Collections.Array { "nested1", "nested2" }, 4, 5, 6 });
+    // PackedDataContainer exposes native iterator hooks, rather than IEnumerable.
+    void PrintContainer(GodotObject container, string prefix)
+    {
+        var iterator = new Godot.Collections.Array { 0 };
+        bool valid = container.Call("_iter_init", iterator).AsBool();
+        while (valid)
+        {
+            Variant element = container.Call("_iter_get", iterator[0]);
+            if (element.VariantType == Variant.Type.Object && element.AsGodotObject() is PackedDataContainerRef nested)
+                PrintContainer(nested, "::");
+            else
+                GD.Print(prefix, element);
+            valid = container.Call("_iter_next", iterator).AsBool();
+        }
+    }
+    PrintContainer(packed, "");
+
+
 
 Prints:
 

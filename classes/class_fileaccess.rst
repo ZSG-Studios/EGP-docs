@@ -660,7 +660,7 @@ Text is interpreted as being UTF-8 encoded. Text values must be enclosed in doub
 
 For example, the following CSV lines are valid and will be properly parsed as two strings each:
 
-.. code:: text
+.. code:: csv
 
     Alice,"Hello, Bob!"
     Bob,Alice! What a surprise!

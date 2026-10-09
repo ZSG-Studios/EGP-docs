@@ -738,12 +738,24 @@ Returns the 2D coordinate in the :ref:`Viewport<class_Viewport>` rectangle that 
 
 \ **Note:** When using this to position GUI elements over a 3D viewport, use :ref:`is_position_behind()<class_Camera3D_method_is_position_behind>` to prevent them from appearing if the 3D point is behind the camera:
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     # This code block is part of a script that inherits from Node3D.
     # `control` is a reference to a node inheriting from Control.
     control.visible = not get_viewport().get_camera_3d().is_position_behind(global_transform.origin)
     control.position = get_viewport().get_camera_3d().unproject_position(global_transform.origin)
+
+ .. code-tab:: csharp
+
+    // In a Node3D script; control refers to a Control node.
+    Camera3D camera = GetViewport().GetCamera3D();
+    control.Visible = !camera.IsPositionBehind(GlobalTransform.Origin);
+    control.Position = camera.UnprojectPosition(GlobalTransform.Origin);
+
+
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
 .. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`

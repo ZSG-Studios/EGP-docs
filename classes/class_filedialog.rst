@@ -1290,7 +1290,10 @@ Sets the callback used by the **FileDialog** nodes to get a file icon, when :ref
 
 Thumbnails are usually more complex and may take a while to load. To avoid stalling the application, you can use :ref:`ImageTexture<class_ImageTexture>` to asynchronously create the thumbnail.
 
-::
+
+.. tabs::
+
+ .. code-tab:: gdscript
 
     func _ready():
         FileDialog.set_get_thumbnail_callback(thumbnail_method)
@@ -1303,6 +1306,26 @@ Thumbnails are usually more complex and may take a while to load. To avoid stall
     func make_thumbnail_async(path, image_texture):
         var thumbnail_texture = await generate_thumbnail(path) # Some method that generates a thumbnail.
         image_texture.set_image(thumbnail_texture.get_image())
+
+ .. code-tab:: csharp
+
+    public override void _Ready()
+    {
+        FileDialog.SetGetThumbnailCallback(Callable.From<string, Texture2D>(ThumbnailMethod));
+    }
+    private Texture2D ThumbnailMethod(string path)
+    {
+        var texture = new ImageTexture();
+        MakeThumbnailAsync(path, texture);
+        return texture;
+    }
+    private async void MakeThumbnailAsync(string path, ImageTexture texture)
+    {
+        Texture2D thumbnail = await GenerateThumbnail(path); // Application-provided async method.
+        texture.SetImage(thumbnail.GetImage());
+    }
+
+
 
 .. rst-class:: classref-item-separator
 
