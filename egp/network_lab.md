@@ -21,7 +21,7 @@ fixture does not establish production gameplay, WAN capacity or platform parity.
 
 ## Physics showcase
 
-[The physics showcase](https://github.com/ZSG-Studios/EGP-Engine/blob/1c0039286e58ba92aa741541383b600ce2bdf839/demos/physics_superpos_showcase/README.md) runs two
+[The physics showcase](https://github.com/ZSG-Studios/EGP-Engine/blob/aa17b93d1b0d62d413eae44a135184b467fabf7b/demos/physics_superpos_showcase/README.md) runs two
 independent authenticated UDP associations in one process. A native Box3D
 world steps at 60 Hz and sends validated poses at 10 Hz; a separate viewport
 explicitly projects received canonical state. Four controls travel back
@@ -36,7 +36,7 @@ documented 10 Hz workload. Separate-process transport is checked elsewhere.
 
 ## Remote courier arena
 
-[The courier arena](https://github.com/ZSG-Studios/EGP-Engine/blob/1c0039286e58ba92aa741541383b600ce2bdf839/demos/superpos_100_player_lab/README.md) uses one remote
+[The courier arena](https://github.com/ZSG-Studios/EGP-Engine/blob/aa17b93d1b0d62d413eae44a135184b467fabf7b/demos/superpos_100_player_lab/README.md) uses one remote
 headless Box3D server, four local processes containing 25 independent bot
 sessions each, and one playable client: 101 streams in total. Gameplay travels
 over native UDP/DTLS through the existing VPN; SSH supplies supervision and

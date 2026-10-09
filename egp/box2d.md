@@ -46,7 +46,7 @@ The initial cutover's native Windows editor passed twelve scene runs, including 
 300-tick one/four-worker trajectories and old-backend migration. Repeat those
 checks for each newly qualified executable. Current combined-engine source,
 binary identities, expanded scene results and Debug/Release export receipts are
-recorded in [the integration checklist](https://github.com/ZSG-Studios/EGP-Engine/blob/1c0039286e58ba92aa741541383b600ce2bdf839/doc/egp_integration_loop.md):
+recorded in [the integration checklist](https://github.com/ZSG-Studios/EGP-Engine/blob/aa17b93d1b0d62d413eae44a135184b467fabf7b/doc/egp_integration_loop.md):
 
 ```powershell
 python misc/scripts/validate_box2d_scene.py --engine <editor.exe> --output .build/box2d-scene-cutover
