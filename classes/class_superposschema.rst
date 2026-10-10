@@ -32,6 +32,8 @@ Properties
    +------------------------------------------------------------------------+-----------------------------------------------------------+--------+
    | :ref:`Array<class_Array>`\[:ref:`SuperposField<class_SuperposField>`\] | :ref:`fields<class_SuperposSchema_property_fields>`       | ``[]`` |
    +------------------------------------------------------------------------+-----------------------------------------------------------+--------+
+   | :ref:`Array<class_Array>`\[:ref:`SuperposRpc<class_SuperposRpc>`\]     | :ref:`rpcs<class_SuperposSchema_property_rpcs>`           | ``[]`` |
+   +------------------------------------------------------------------------+-----------------------------------------------------------+--------+
    | :ref:`int<class_int>`                                                  | :ref:`revision<class_SuperposSchema_property_revision>`   | ``1``  |
    +------------------------------------------------------------------------+-----------------------------------------------------------+--------+
    | :ref:`int<class_int>`                                                  | :ref:`schema_id<class_SuperposSchema_property_schema_id>` | ``1``  |
@@ -72,6 +74,23 @@ Property Descriptions
 - :ref:`Array<class_Array>`\[:ref:`SuperposField<class_SuperposField>`\] **get_fields**\ (\ )
 
 Authored canonical field descriptors. Baking rejects null entries, invalid descriptors and duplicate field IDs.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_SuperposSchema_property_rpcs:
+
+.. rst-class:: classref-property
+
+:ref:`Array<class_Array>`\[:ref:`SuperposRpc<class_SuperposRpc>`\] **rpcs** = ``[]`` :ref:`🔗<class_SuperposSchema_property_rpcs>`
+
+.. rst-class:: classref-property-setget
+
+- |void| **set_rpcs**\ (\ value\: :ref:`Array<class_Array>`\[:ref:`SuperposRpc<class_SuperposRpc>`\]\ )
+- :ref:`Array<class_Array>`\[:ref:`SuperposRpc<class_SuperposRpc>`\] **get_rpcs**\ (\ )
+
+Registered typed RPCs of this schema, at most 32 with distinct nonzero IDs. Peers must declare identical RPCs; they are part of the schema fingerprint.
 
 .. rst-class:: classref-item-separator
 
@@ -122,7 +141,7 @@ Method Descriptions
 
 :ref:`Dictionary<class_Dictionary>` **bake**\ (\ ) |const| :ref:`🔗<class_SuperposSchema_method_bake>`
 
-Validates and sorts the authored field descriptors, then returns a Dictionary containing ``error``. On success it also contains ``manifest``, ``fingerprint``, ``schema_id``, ``revision`` and ``state_bytes``. Duplicate IDs and invalid codec bounds are rejected. Baking does not configure a session.
+Validates and sorts the authored field descriptors, then returns a Dictionary containing ``error``. On success it also contains ``manifest``, ``fingerprint``, ``schema_id``, ``revision``, ``state_bytes`` and ``rpcs`` (the number of declared RPCs). Without RPCs the manifest format and fingerprint are unchanged; declaring RPCs changes the fingerprint. Duplicate IDs and invalid codec bounds are rejected. Baking does not configure a session.
 
 .. rst-class:: classref-item-separator
 

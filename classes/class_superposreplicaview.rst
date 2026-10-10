@@ -29,17 +29,19 @@ Methods
 .. table::
    :widths: auto
 
-   +---------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`int<class_int>`                 | :ref:`get_binding_generation<class_SuperposReplicaView_method_get_binding_generation>`\ (\ ) |const|                                     |
-   +---------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`int<class_int>`                 | :ref:`get_handle<class_SuperposReplicaView_method_get_handle>`\ (\ ) |const|                                                             |
-   +---------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`Dictionary<class_Dictionary>`   | :ref:`read_fields<class_SuperposReplicaView_method_read_fields>`\ (\ fields\: :ref:`PackedInt64Array<class_PackedInt64Array>`\ ) |const| |
-   +---------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`Dictionary<class_Dictionary>`   | :ref:`read_status<class_SuperposReplicaView_method_read_status>`\ (\ ) |const|                                                           |
-   +---------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`Error<enum_@GlobalScope_Error>` | :ref:`retry_projection<class_SuperposReplicaView_method_retry_projection>`\ (\ ) |const|                                                 |
-   +---------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------+
+   +---------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`Error<enum_@GlobalScope_Error>` | :ref:`call_rpc<class_SuperposReplicaView_method_call_rpc>`\ (\ rpc_id\: :ref:`int<class_int>`, payload\: :ref:`PackedByteArray<class_PackedByteArray>`\ ) |const| |
+   +---------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`int<class_int>`                 | :ref:`get_binding_generation<class_SuperposReplicaView_method_get_binding_generation>`\ (\ ) |const|                                                              |
+   +---------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`int<class_int>`                 | :ref:`get_handle<class_SuperposReplicaView_method_get_handle>`\ (\ ) |const|                                                                                      |
+   +---------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`Dictionary<class_Dictionary>`   | :ref:`read_fields<class_SuperposReplicaView_method_read_fields>`\ (\ fields\: :ref:`PackedInt64Array<class_PackedInt64Array>`\ ) |const|                          |
+   +---------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`Dictionary<class_Dictionary>`   | :ref:`read_status<class_SuperposReplicaView_method_read_status>`\ (\ ) |const|                                                                                    |
+   +---------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`Error<enum_@GlobalScope_Error>` | :ref:`retry_projection<class_SuperposReplicaView_method_retry_projection>`\ (\ ) |const|                                                                          |
+   +---------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 .. rst-class:: classref-section-separator
 
@@ -49,6 +51,18 @@ Methods
 
 Method Descriptions
 -------------------
+
+.. _class_SuperposReplicaView_method_call_rpc:
+
+.. rst-class:: classref-method
+
+:ref:`Error<enum_@GlobalScope_Error>` **call_rpc**\ (\ rpc_id\: :ref:`int<class_int>`, payload\: :ref:`PackedByteArray<class_PackedByteArray>`\ ) |const| :ref:`🔗<class_SuperposReplicaView_method_call_rpc>`
+
+Sends the registered schema RPC ``rpc_id`` for this replica to the authority over the receiver's RPC channel. The replica must be canonical-ready and its schema must declare the RPC; ``payload`` may not exceed the declared maximum. A client is never the authority, so an Authority-permission RPC returns :ref:`@GlobalScope.ERR_UNAUTHORIZED<class_@GlobalScope_constant_ERR_UNAUTHORIZED>`, and an Owner-permission RPC returns it unless this peer owns the replica. The call carries the observed ownership revision; the authority authorizes it again when gameplay takes it. Returns :ref:`@GlobalScope.ERR_BUSY<class_@GlobalScope_constant_ERR_BUSY>` while eight sends are still awaiting delivery, and :ref:`@GlobalScope.ERR_UNAVAILABLE<class_@GlobalScope_constant_ERR_UNAVAILABLE>` for an undeclared RPC.
+
+.. rst-class:: classref-item-separator
+
+----
 
 .. _class_SuperposReplicaView_method_get_binding_generation:
 

@@ -274,8 +274,8 @@ Disabling unwanted modules
 - **Performed in official builds:** No
 
 Many engine functions are offered as modules. EGP networking is provided by
-``egp_net``; the removed ENet, scene multiplayer and WebRTC modules cannot be
-selected. Preserve ``egp_net`` for projects using ``EGPNetSession``.
+``superpos``; the removed ENet, scene multiplayer, WebRTC and ``egp_net`` modules
+cannot be selected. Preserve ``superpos`` for projects using ``SuperposSession``.
 You can see a list of modules with the following command:
 
 ::

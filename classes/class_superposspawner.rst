@@ -54,6 +54,8 @@ Methods
    +------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`Dictionary<class_Dictionary>`                                                | :ref:`project_pending<class_SuperposSpawner_method_project_pending>`\ (\ )                                                                           |
    +------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`Array<class_Array>`                                                          | :ref:`read_rpcs<class_SuperposSpawner_method_read_rpcs>`\ (\ maximum\: :ref:`int<class_int>` = 16\ )                                                 |
+   +------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`Dictionary<class_Dictionary>`                                                | :ref:`read_status<class_SuperposSpawner_method_read_status>`\ (\ ) |const|                                                                           |
    +------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`Error<enum_@GlobalScope_Error>`                                              | :ref:`start<class_SuperposSpawner_method_start>`\ (\ receiver_config\: :ref:`Dictionary<class_Dictionary>`\ )                                        |
@@ -150,6 +152,18 @@ First marks pending constructions whose spawn readiness timeout has expired, the
 
 ----
 
+.. _class_SuperposSpawner_method_read_rpcs:
+
+.. rst-class:: classref-method
+
+:ref:`Array<class_Array>` **read_rpcs**\ (\ maximum\: :ref:`int<class_int>` = 16\ ) :ref:`🔗<class_SuperposSpawner_method_read_rpcs>`
+
+Takes at most ``maximum`` (at most 64) authority RPCs, each a Dictionary with ``handle``, ``rpc_id``, ``ownership_revision`` and ``payload``. A call is delivered only for a Ready replica whose schema declares it. Calls that arrive before their replica is ready wait in a pre-readiness buffer of at most 64 calls and 64 KiB; beyond that the newest call is dropped and counted, and buffered calls expire after 15 seconds. A call whose replica retired before it is taken is discarded. Counters are in :ref:`SuperposSession.read_receiver_status()<class_SuperposSession_method_read_receiver_status>` under ``rpc``.
+
+.. rst-class:: classref-item-separator
+
+----
+
 .. _class_SuperposSpawner_method_read_status:
 
 .. rst-class:: classref-method
@@ -168,7 +182,7 @@ Returns ``error``, ``canonical_ready``, ``scene_ready``, ``scene_failed``, ``spa
 
 :ref:`Error<enum_@GlobalScope_Error>` **start**\ (\ receiver_config\: :ref:`Dictionary<class_Dictionary>`\ ) :ref:`🔗<class_SuperposSpawner_method_start>`
 
-Snapshots the catalog, reserves every native row, proxy, slot and projection cell, and attaches the receiver to :ref:`session<class_SuperposSpawner_property_session>`. Accepted integer keys are ``authority_epoch``, ``connection_epoch``, ``replica_epoch``, ``peer``, ``maximum_active`` (at most 1000), ``maximum_transitions`` (at most 64), ``control_channel``, ``state_channel``, ``bulk_channel``, ``native_bytes`` (at most 64 MiB) and ``spawn_timeout_ms`` (1 through 60000, default 15000). Unknown keys, including atomic-scene requests, return :ref:`@GlobalScope.ERR_INVALID_PARAMETER<class_@GlobalScope_constant_ERR_INVALID_PARAMETER>`. The spawner must be inside the scene tree.
+Snapshots the catalog, reserves every native row, proxy, slot and projection cell, and attaches the receiver to :ref:`session<class_SuperposSpawner_property_session>`. Accepted integer keys are ``authority_epoch``, ``connection_epoch``, ``replica_epoch``, ``peer``, ``maximum_active`` (at most 1000), ``maximum_transitions`` (at most 64), ``control_channel``, ``state_channel``, ``bulk_channel``, ``native_bytes`` (at most 64 MiB), ``spawn_timeout_ms`` (1 through 60000, default 15000) and ``rpc_channel`` (default 3: a reliable ordered application channel distinct from the replication channels). Unknown keys, including atomic-scene requests, return :ref:`@GlobalScope.ERR_INVALID_PARAMETER<class_@GlobalScope_constant_ERR_INVALID_PARAMETER>`. The spawner must be inside the scene tree.
 
 .. rst-class:: classref-item-separator
 

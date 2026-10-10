@@ -602,6 +602,7 @@ Resources
     class_styleboxtexture
     class_superposfield
     class_superposreplicaview
+    class_superposrpc
     class_superposschema
     class_superposspawncatalog
     class_superposspawnentry
@@ -1068,6 +1069,7 @@ Other objects
     class_subtweentweener
     class_superposlockstepclient
     class_superposlockstepserver
+    class_superposreplicationserver
     class_superpossession
     class_superpossimulationprovider
     class_superposudplistener
