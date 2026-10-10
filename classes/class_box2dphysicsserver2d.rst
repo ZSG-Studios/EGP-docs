@@ -29,13 +29,27 @@ Methods
 .. table::
    :widths: auto
 
-   +-------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`Variant<class_Variant>` | :ref:`body_get_user_data<class_Box2DPhysicsServer2D_method_body_get_user_data>`\ (\ body\: :ref:`RID<class_RID>`\ ) |const|                                       |
-   +-------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | |void|                        | :ref:`body_set_user_data<class_Box2DPhysicsServer2D_method_body_set_user_data>`\ (\ body\: :ref:`RID<class_RID>`, data\: :ref:`Variant<class_Variant>`\ ) |const| |
-   +-------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`Array<class_Array>`     | :ref:`space_get_body_move_events<class_Box2DPhysicsServer2D_method_space_get_body_move_events>`\ (\ space\: :ref:`RID<class_RID>`\ ) |const|                      |
-   +-------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   +-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`Variant<class_Variant>`                 | :ref:`body_get_user_data<class_Box2DPhysicsServer2D_method_body_get_user_data>`\ (\ body\: :ref:`RID<class_RID>`\ ) |const|                                                                                                                                                                                                |
+   +-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`int<class_int>`                         | :ref:`body_portable_identity<class_Box2DPhysicsServer2D_method_body_portable_identity>`\ (\ body\: :ref:`RID<class_RID>`\ )                                                                                                                                                                                                |
+   +-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | |void|                                        | :ref:`body_set_user_data<class_Box2DPhysicsServer2D_method_body_set_user_data>`\ (\ body\: :ref:`RID<class_RID>`, data\: :ref:`Variant<class_Variant>`\ ) |const|                                                                                                                                                          |
+   +-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`Array<class_Array>`                     | :ref:`space_get_body_move_events<class_Box2DPhysicsServer2D_method_space_get_body_move_events>`\ (\ space\: :ref:`RID<class_RID>`\ ) |const|                                                                                                                                                                               |
+   +-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`Dictionary<class_Dictionary>`           | :ref:`space_portable_capture<class_Box2DPhysicsServer2D_method_space_portable_capture>`\ (\ space\: :ref:`RID<class_RID>`\ )                                                                                                                                                                                               |
+   +-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`Dictionary<class_Dictionary>`           | :ref:`space_portable_capture_info<class_Box2DPhysicsServer2D_method_space_portable_capture_info>`\ (\ space\: :ref:`RID<class_RID>`\ )                                                                                                                                                                                     |
+   +-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`PackedByteArray<class_PackedByteArray>` | :ref:`space_portable_digest<class_Box2DPhysicsServer2D_method_space_portable_digest>`\ (\ space\: :ref:`RID<class_RID>`\ )                                                                                                                                                                                                 |
+   +-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`int<class_int>`                         | :ref:`space_portable_request_capture<class_Box2DPhysicsServer2D_method_space_portable_request_capture>`\ (\ space\: :ref:`RID<class_RID>`\ )                                                                                                                                                                               |
+   +-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`Dictionary<class_Dictionary>`           | :ref:`space_portable_restore<class_Box2DPhysicsServer2D_method_space_portable_restore>`\ (\ bytes\: :ref:`PackedByteArray<class_PackedByteArray>`, object_map\: :ref:`Dictionary<class_Dictionary>` = {}, shape_map\: :ref:`Dictionary<class_Dictionary>` = {}, callable_map\: :ref:`Dictionary<class_Dictionary>` = {}\ ) |
+   +-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`Dictionary<class_Dictionary>`           | :ref:`space_portable_take_capture<class_Box2DPhysicsServer2D_method_space_portable_take_capture>`\ (\ space\: :ref:`RID<class_RID>`\ )                                                                                                                                                                                     |
+   +-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 .. rst-class:: classref-section-separator
 
@@ -53,6 +67,18 @@ Method Descriptions
 :ref:`Variant<class_Variant>` **body_get_user_data**\ (\ body\: :ref:`RID<class_RID>`\ ) |const| :ref:`🔗<class_Box2DPhysicsServer2D_method_body_get_user_data>`
 
 Returns the application metadata assigned with :ref:`body_set_user_data()<class_Box2DPhysicsServer2D_method_body_set_user_data>`. An invalid ``body`` reports an error and returns ``null``.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_Box2DPhysicsServer2D_method_body_portable_identity:
+
+.. rst-class:: classref-method
+
+:ref:`int<class_int>` **body_portable_identity**\ (\ body\: :ref:`RID<class_RID>`\ ) :ref:`🔗<class_Box2DPhysicsServer2D_method_body_portable_identity>`
+
+Returns the persistent canonical identity of ``body`` assigned by the most recent portable capture of its space, or ``0`` if the body has not been captured. Identities persist across captures: a surviving body keeps its identity, a new body receives a fresh one and a removed body's identity is never reused.
 
 .. rst-class:: classref-item-separator
 
@@ -77,6 +103,78 @@ Associates an arbitrary :ref:`Variant<class_Variant>` with the valid ``body`` RI
 :ref:`Array<class_Array>` **space_get_body_move_events**\ (\ space\: :ref:`RID<class_RID>`\ ) |const| :ref:`🔗<class_Box2DPhysicsServer2D_method_space_get_body_move_events>`
 
 Returns a flat :ref:`Array<class_Array>` of alternating application user-data and :ref:`Transform2D<class_Transform2D>` entries for bodies moved in the most recent native step: ``[data0, transform0, data1, transform1, ...]``. Assign metadata with :ref:`body_set_user_data()<class_Box2DPhysicsServer2D_method_body_set_user_data>` to identify bodies. Read after stepping, outside locked physics callbacks. An invalid or locked space reports an error and returns an empty array.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_Box2DPhysicsServer2D_method_space_portable_capture:
+
+.. rst-class:: classref-method
+
+:ref:`Dictionary<class_Dictionary>` **space_portable_capture**\ (\ space\: :ref:`RID<class_RID>`\ ) :ref:`🔗<class_Box2DPhysicsServer2D_method_space_portable_capture>`
+
+Captures a portable checkpoint of ``space`` immediately. Returns ``{"error": Error, "bytes": PackedByteArray, "refusal": int}``, where ``refusal`` is a nonzero diagnostic code when the capture is refused. Succeeds only at the physics phase boundary (outside stepping and query flushing, after the space's step effects were consumed); otherwise ``error`` is :ref:`@GlobalScope.ERR_BUSY<class_@GlobalScope_constant_ERR_BUSY>`. Cached hit or joint events, named bodies and pointers outside the symbolic registry return :ref:`@GlobalScope.ERR_UNAVAILABLE<class_@GlobalScope_constant_ERR_UNAVAILABLE>`.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_Box2DPhysicsServer2D_method_space_portable_capture_info:
+
+.. rst-class:: classref-method
+
+:ref:`Dictionary<class_Dictionary>` **space_portable_capture_info**\ (\ space\: :ref:`RID<class_RID>`\ ) :ref:`🔗<class_Box2DPhysicsServer2D_method_space_portable_capture_info>`
+
+Returns statistics of the most recent portable capture of ``space``: ``captures``, ``births``, ``retirements``, ``survivors``, ``records`` and ``bindings``. Empty if the space was never captured.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_Box2DPhysicsServer2D_method_space_portable_digest:
+
+.. rst-class:: classref-method
+
+:ref:`PackedByteArray<class_PackedByteArray>` **space_portable_digest**\ (\ space\: :ref:`RID<class_RID>`\ ) :ref:`🔗<class_Box2DPhysicsServer2D_method_space_portable_digest>`
+
+Returns the 32-byte complete-state digest of ``space``'s native world, with every pointer named symbolically, or an empty array if the space is locked or holds unsupported pointers. A restored space and its source have equal digests while they step identically.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_Box2DPhysicsServer2D_method_space_portable_request_capture:
+
+.. rst-class:: classref-method
+
+:ref:`int<class_int>` **space_portable_request_capture**\ (\ space\: :ref:`RID<class_RID>`\ ) :ref:`🔗<class_Box2DPhysicsServer2D_method_space_portable_request_capture>`
+
+Requests a portable capture of ``space`` at the next physics phase boundary, immediately after the space's state sync and before scripts run. Collect it with :ref:`space_portable_take_capture()<class_Box2DPhysicsServer2D_method_space_portable_take_capture>`. Returns an :ref:`Error<enum_@GlobalScope_Error>` code.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_Box2DPhysicsServer2D_method_space_portable_restore:
+
+.. rst-class:: classref-method
+
+:ref:`Dictionary<class_Dictionary>` **space_portable_restore**\ (\ bytes\: :ref:`PackedByteArray<class_PackedByteArray>`, object_map\: :ref:`Dictionary<class_Dictionary>` = {}, shape_map\: :ref:`Dictionary<class_Dictionary>` = {}, callable_map\: :ref:`Dictionary<class_Dictionary>` = {}\ ) :ref:`🔗<class_Box2DPhysicsServer2D_method_space_portable_restore>`
+
+Restores a portable checkpoint into a fresh space with new body RIDs. Returns ``{"error": Error, "space": RID, "default_area": RID, "bodies": {source body id: RID}}``; the new space is inactive. ``object_map`` maps every non-zero source instance id (node and canvas instance ids, object user data) to an :ref:`Object<class_Object>` or instance id; an unmapped id fails with :ref:`@GlobalScope.ERR_DOES_NOT_EXIST<class_@GlobalScope_constant_ERR_DOES_NOT_EXIST>`. ``shape_map`` maps source shape RID ids to shape :ref:`RID<class_RID>`\ s; when empty, the source shape RIDs of this server are used. Corrupt or tampered bytes fail with :ref:`@GlobalScope.ERR_FILE_CORRUPT<class_@GlobalScope_constant_ERR_FILE_CORRUPT>`, another format version or position width with :ref:`@GlobalScope.ERR_FILE_UNRECOGNIZED<class_@GlobalScope_constant_ERR_FILE_UNRECOGNIZED>`. Bodies, extra areas (with overrides, step order and overlap state), every joint type, collision exceptions and reported contacts are restored; ``areas`` and ``joints`` map source ids to new RIDs as well. Callbacks are rebound through ``callable_map``, keyed ``"state_sync:<source id>"``, ``"force_integration:<source id>"``, ``"body_monitor:<source id>"`` or ``"area_monitor:<source id>"``; a method callable whose object is in ``object_map`` is rebound automatically. An unresolvable force-integration or monitor callback fails with :ref:`@GlobalScope.ERR_DOES_NOT_EXIST<class_@GlobalScope_constant_ERR_DOES_NOT_EXIST>`; an unresolvable state-sync callback is dropped.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_Box2DPhysicsServer2D_method_space_portable_take_capture:
+
+.. rst-class:: classref-method
+
+:ref:`Dictionary<class_Dictionary>` **space_portable_take_capture**\ (\ space\: :ref:`RID<class_RID>`\ ) :ref:`🔗<class_Box2DPhysicsServer2D_method_space_portable_take_capture>`
+
+Returns the capture taken at the phase boundary after :ref:`space_portable_request_capture()<class_Box2DPhysicsServer2D_method_space_portable_request_capture>`, as ``{"error": Error, "bytes": PackedByteArray}``. ``error`` is :ref:`@GlobalScope.ERR_BUSY<class_@GlobalScope_constant_ERR_BUSY>` while the capture is still pending and :ref:`@GlobalScope.ERR_DOES_NOT_EXIST<class_@GlobalScope_constant_ERR_DOES_NOT_EXIST>` if none was requested.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
 .. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`

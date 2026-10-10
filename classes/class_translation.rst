@@ -247,7 +247,7 @@ Returns the keys of all messages, that is, the context and untranslated strings 
 
     foreach (string key in translation.GetMessageList())
     {
-        int separator = key.IndexOf('\u0004');
+        int separator = key.IndexOf((char)4);
         if (separator < 0) GD.Print($"Message {key}");
         else GD.Print($"Message {key.Substring(separator + 1)} with context {key.Substring(0, separator)}");
     }

@@ -25,7 +25,7 @@ In the CSV file used for translation, the first column contains string identifie
 
 \ **Example CSV file:**\ 
 
-.. code:: csv
+.. code:: text
 
     keys,en,es,ja
     GREET,"Hello, friend!","Hola, amigo!",こんにちは
@@ -35,7 +35,7 @@ In the CSV file used for translation, the first column contains string identifie
 
 Although keys in the first column typically use uppercase string identifiers, it is not uncommon to directly use strings appearing in the game as keys. To avoid string ambiguity, you can use a special ``?context`` column to specify the context to use with :ref:`Object.tr()<class_Object_method_tr>`.
 
-.. code:: csv
+.. code:: text
 
     en,?context,fr,ja,zh
     Letter,Alphabet,Lettre,字母,字母
@@ -45,7 +45,7 @@ To set the plural form of a string to use with :ref:`Object.tr_n()<class_Object_
 
 Godot includes built-in plural rules for some languages. You can also customize them using a special ``?pluralrule`` row. See `GNU gettext <https://www.gnu.org/software/gettext/manual/html_node/Plural-forms.html>`__ for examples and more info.
 
-.. code:: csv
+.. code:: text
 
     en,?plural,fr,ru,zh,_Comment
     ?pluralrule,,nplurals=2; plural=(n >= 2);,,,Customize the plural rule for French

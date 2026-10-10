@@ -274,6 +274,7 @@ Nodes
     class_statusindicator
     class_subviewport
     class_subviewportcontainer
+    class_superposspawner
     class_superposworld
     class_tabbar
     class_tabcontainer
@@ -600,7 +601,10 @@ Resources
     class_styleboxline
     class_styleboxtexture
     class_superposfield
+    class_superposreplicaview
     class_superposschema
+    class_superposspawncatalog
+    class_superposspawnentry
     class_syntaxhighlighter
     class_systemfont
     class_textmesh
@@ -833,6 +837,7 @@ Other objects
     class_editortranslationparserplugin
     class_editorundoredomanager
     class_editorvcsinterface
+    class_egpbox2dworld
     class_egpbox3dworld
     class_encodedobjectasid
     class_engine
@@ -1061,8 +1066,11 @@ Other objects
     class_streampeertls
     class_streampeeruds
     class_subtweentweener
+    class_superposlockstepclient
+    class_superposlockstepserver
     class_superpossession
     class_superpossimulationprovider
+    class_superposudplistener
     class_superposuint64
     class_surfacetool
     class_tcpserver
